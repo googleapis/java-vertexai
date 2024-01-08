@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,10 @@ package com.google.cloud.vertexai;
 
 import com.google.api.gax.core.CredentialsProvider;
 import com.google.api.gax.core.FixedCredentialsProvider;
+import com.google.api.gax.core.GaxProperties;
 import com.google.api.gax.core.GoogleCredentialsProvider;
+import com.google.api.gax.rpc.FixedHeaderProvider;
+import com.google.api.gax.rpc.HeaderProvider;
 import com.google.auth.Credentials;
 import com.google.cloud.vertexai.api.LlmUtilityServiceClient;
 import com.google.cloud.vertexai.api.LlmUtilityServiceSettings;
@@ -193,6 +196,14 @@ public class VertexAI implements AutoCloseable {
       if (this.credentialsProvider != null) {
         settingsBuilder.setCredentialsProvider(this.credentialsProvider);
       }
+      HeaderProvider headerProvider =
+          FixedHeaderProvider.create(
+              "user-agent",
+              String.format(
+                  "%s/%s",
+                  Constants.USER_AGENT_HEADER,
+                  GaxProperties.getLibraryVersion(PredictionServiceSettings.class)));
+      settingsBuilder.setHeaderProvider(headerProvider);
       // Disable the warning message logged in getApplicationDefault
       Logger logger = Logger.getLogger("com.google.auth.oauth2.DefaultCredentialsProvider");
       Level previousLevel = logger.getLevel();
@@ -215,6 +226,14 @@ public class VertexAI implements AutoCloseable {
       if (this.credentialsProvider != null) {
         settingsBuilder.setCredentialsProvider(this.credentialsProvider);
       }
+      HeaderProvider headerProvider =
+          FixedHeaderProvider.create(
+              "user-agent",
+              String.format(
+                  "%s/%s",
+                  Constants.USER_AGENT_HEADER,
+                  GaxProperties.getLibraryVersion(PredictionServiceSettings.class)));
+      settingsBuilder.setHeaderProvider(headerProvider);
       // Disable the warning message logged in getApplicationDefault
       Logger logger = Logger.getLogger("com.google.auth.oauth2.DefaultCredentialsProvider");
       Level previousLevel = logger.getLevel();
@@ -236,6 +255,14 @@ public class VertexAI implements AutoCloseable {
       if (this.credentialsProvider != null) {
         settingsBuilder.setCredentialsProvider(this.credentialsProvider);
       }
+      HeaderProvider headerProvider =
+          FixedHeaderProvider.create(
+              "user-agent",
+              String.format(
+                  "%s/%s",
+                  Constants.USER_AGENT_HEADER,
+                  GaxProperties.getLibraryVersion(LlmUtilityServiceSettings.class)));
+      settingsBuilder.setHeaderProvider(headerProvider);
       // Disable the warning message logged in getApplicationDefault
       Logger logger = Logger.getLogger("com.google.auth.oauth2.DefaultCredentialsProvider");
       Level previousLevel = logger.getLevel();
@@ -258,6 +285,14 @@ public class VertexAI implements AutoCloseable {
       if (this.credentialsProvider != null) {
         settingsBuilder.setCredentialsProvider(this.credentialsProvider);
       }
+      HeaderProvider headerProvider =
+          FixedHeaderProvider.create(
+              "user-agent",
+              String.format(
+                  "%s/%s",
+                  Constants.USER_AGENT_HEADER,
+                  GaxProperties.getLibraryVersion(LlmUtilityServiceSettings.class)));
+      settingsBuilder.setHeaderProvider(headerProvider);
       // Disable the warning message logged in getApplicationDefault
       Logger logger = Logger.getLogger("com.google.auth.oauth2.DefaultCredentialsProvider");
       Level previousLevel = logger.getLevel();
