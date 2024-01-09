@@ -30,6 +30,7 @@ import com.google.cloud.vertexai.VertexAI;
 import com.google.cloud.vertexai.api.Content;
 import com.google.cloud.vertexai.api.CountTokensRequest;
 import com.google.cloud.vertexai.api.CountTokensResponse;
+import com.google.cloud.vertexai.api.FunctionDeclaration;
 import com.google.cloud.vertexai.api.GenerateContentRequest;
 import com.google.cloud.vertexai.api.GenerateContentResponse;
 import com.google.cloud.vertexai.api.GenerationConfig;
@@ -39,6 +40,9 @@ import com.google.cloud.vertexai.api.Part;
 import com.google.cloud.vertexai.api.PredictionServiceClient;
 import com.google.cloud.vertexai.api.SafetySetting;
 import com.google.cloud.vertexai.api.SafetySetting.HarmBlockThreshold;
+import com.google.cloud.vertexai.api.Schema;
+import com.google.cloud.vertexai.api.Tool;
+import com.google.cloud.vertexai.api.Type;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -75,6 +79,25 @@ public final class GenerativeModelTest {
           .setCategory(HarmCategory.HARM_CATEGORY_HATE_SPEECH)
           .setThreshold(HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE)
           .build();
+  private static final Tool TOOL =
+      Tool.newBuilder()
+          .addFunctionDeclarations(
+              FunctionDeclaration.newBuilder()
+                  .setName("getCurrentWeather")
+                  .setDescription("Get the current weather in a given location")
+                  .setParameters(
+                      Schema.newBuilder()
+                          .setType(Type.OBJECT)
+                          .putProperties(
+                              "location",
+                              Schema.newBuilder()
+                                  .setType(Type.STRING)
+                                  .setDescription("location")
+                                  .build())
+                          .addRequired("location")
+                          .build())
+                  .build())
+          .build();
 
   private static final String TEXT = "What is your name?";
 
@@ -82,6 +105,7 @@ public final class GenerativeModelTest {
   private GenerativeModel model;
   private List<SafetySetting> safetySettings = Arrays.asList(SAFETY_SETTING);
   private List<SafetySetting> defaultSafetySettings = Arrays.asList(DEFAULT_SAFETY_SETTING);
+  private List<Tool> tools = Arrays.asList(TOOL);
 
   @Rule public final MockitoRule mocksRule = MockitoJUnit.rule();
 
@@ -110,6 +134,7 @@ public final class GenerativeModelTest {
     assertThat(model.getModelName()).isEqualTo(MODEL_NAME);
     assertThat(model.getGenerationConfig()).isNull();
     assertThat(model.getSafetySettings()).isNull();
+    assertThat(model.getTools()).isNull();
   }
 
   @Test
@@ -118,6 +143,7 @@ public final class GenerativeModelTest {
     assertThat(model.getModelName()).isEqualTo(MODEL_NAME);
     assertThat(model.getGenerationConfig()).isEqualTo(GENERATION_CONFIG);
     assertThat(model.getSafetySettings()).isNull();
+    assertThat(model.getTools()).isNull();
   }
 
   @Test
@@ -126,6 +152,16 @@ public final class GenerativeModelTest {
     assertThat(model.getModelName()).isEqualTo(MODEL_NAME);
     assertThat(model.getGenerationConfig()).isNull();
     assertThat(model.getSafetySettings()).isEqualTo(safetySettings);
+    assertThat(model.getTools()).isNull();
+  }
+
+  @Test
+  public void testInstantiateGenerativeModelwithTools() {
+    model = new GenerativeModel(MODEL_NAME, vertexAi, tools);
+    assertThat(model.getModelName()).isEqualTo(MODEL_NAME);
+    assertThat(model.getGenerationConfig()).isNull();
+    assertThat(model.getSafetySettings()).isNull();
+    assertThat(model.getTools()).isEqualTo(tools);
   }
 
   @Test
@@ -162,6 +198,13 @@ public final class GenerativeModelTest {
     model = new GenerativeModel(MODEL_NAME, vertexAi);
     model.setSafetySettings(safetySettings);
     assertThat(model.getSafetySettings()).isEqualTo(safetySettings);
+  }
+
+  @Test
+  public void testSetTools() {
+    model = new GenerativeModel(MODEL_NAME, vertexAi);
+    model.setTools(tools);
+    assertThat(model.getTools()).isEqualTo(tools);
   }
 
   @Test
@@ -375,6 +418,29 @@ public final class GenerativeModelTest {
   }
 
   @Test
+  public void testGenerateContentwithDefaultTools() throws Exception {
+    model = new GenerativeModel(MODEL_NAME, vertexAi, tools);
+
+    Field field = VertexAI.class.getDeclaredField("predictionServiceClient");
+    field.setAccessible(true);
+    field.set(vertexAi, mockPredictionServiceClient);
+
+    when(mockPredictionServiceClient.streamGenerateContentCallable())
+        .thenReturn(mockServerStreamCallable);
+    when(mockServerStreamCallable.call(any(GenerateContentRequest.class)))
+        .thenReturn(mockServerStream);
+    when(mockServerStream.iterator()).thenReturn(mockServerStreamIterator);
+
+    GenerateContentResponse unused = model.generateContent(TEXT);
+
+    ArgumentCaptor<GenerateContentRequest> request =
+        ArgumentCaptor.forClass(GenerateContentRequest.class);
+    verify(mockServerStreamCallable).call(request.capture());
+    assertThat(request.getValue().getContents(0).getParts(0).getText()).isEqualTo(TEXT);
+    assertThat(request.getValue().getTools(0)).isEqualTo(TOOL);
+  }
+
+  @Test
   public void testGenerateContentStreamwithText() throws Exception {
     model = new GenerativeModel(MODEL_NAME, vertexAi);
 
@@ -533,5 +599,27 @@ public final class GenerativeModelTest {
         ArgumentCaptor.forClass(GenerateContentRequest.class);
     verify(mockServerStreamCallable).call(request.capture());
     assertThat(request.getValue().getSafetySettings(0)).isEqualTo(DEFAULT_SAFETY_SETTING);
+  }
+
+  @Test
+  public void testGenerateContentStreamwithDefaultTools() throws Exception {
+    model = new GenerativeModel(MODEL_NAME, vertexAi, tools);
+
+    Field field = VertexAI.class.getDeclaredField("predictionServiceClient");
+    field.setAccessible(true);
+    field.set(vertexAi, mockPredictionServiceClient);
+
+    when(mockPredictionServiceClient.streamGenerateContentCallable())
+        .thenReturn(mockServerStreamCallable);
+    when(mockServerStreamCallable.call(any(GenerateContentRequest.class)))
+        .thenReturn(mockServerStream);
+    when(mockServerStream.iterator()).thenReturn(mockServerStreamIterator);
+
+    ResponseStream unused = model.generateContentStream(TEXT);
+
+    ArgumentCaptor<GenerateContentRequest> request =
+        ArgumentCaptor.forClass(GenerateContentRequest.class);
+    verify(mockServerStreamCallable).call(request.capture());
+    assertThat(request.getValue().getTools(0)).isEqualTo(TOOL);
   }
 }
