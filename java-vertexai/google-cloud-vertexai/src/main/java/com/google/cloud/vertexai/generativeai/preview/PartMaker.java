@@ -34,7 +34,7 @@ public class PartMaker {
    *     "video/mpeg", "video/quicktime", "video/x-msvideo", "video/x-ms-wmv", "video/x-flv"
    * @param partData the following types can be accepted.
    *     <ul>
-   *       <li>a String representing the uri of the data. Resulting Part will have fileData field
+   *       <li>a String representing the url of the data. Resulting Part will have fileData field
    *           set.
    *       <li>a GCS URI object. Resulting Part will have fileData field set.
    *       <li>byte arrays that represents the actual data. Resulting Part will have inlineData
@@ -53,10 +53,10 @@ public class PartMaker {
               .setInlineData(Blob.newBuilder().setMimeType(mimeType).setData(byteData))
               .build();
     } else if (partData instanceof String) {
-      String uri = (String) partData;
+      String url = (String) partData;
       part =
           Part.newBuilder()
-              .setFileData(FileData.newBuilder().setMimeType(mimeType).setFileUri(uri))
+              .setFileData(FileData.newBuilder().setMimeType(mimeType).setFileUri(url))
               .build();
     } else if (partData instanceof URI) {
       URI uri = (URI) partData;
