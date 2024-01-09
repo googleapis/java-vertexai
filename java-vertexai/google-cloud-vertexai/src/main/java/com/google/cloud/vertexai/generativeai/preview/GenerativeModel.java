@@ -46,7 +46,9 @@ public class GenerativeModel {
    * Construct a GenerativeModel instance.
    *
    * @param modelName the name of the generative model. Supported format: "gemini-pro",
-   *     "models/gemini-pro", "publishers/google/models/gemini-pro"
+   *     "models/gemini-pro", "publishers/google/models/gemini-pro", where "gemini-pro" is the
+   *     model name. Valid model names can be found at
+   *     https://cloud.google.com/vertex-ai/docs/generative-ai/learn/models#gemini-models
    * @param vertexAI a {@link com.google.cloud.vertexai.VertexAI} that contains the default configs
    *     for the generative model
    */
