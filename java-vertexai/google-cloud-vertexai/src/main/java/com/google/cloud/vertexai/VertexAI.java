@@ -94,19 +94,15 @@ public class VertexAI implements AutoCloseable {
    *
    * @param projectId the default project to use when making API calls
    * @param location the default location to use when making API calls
-   * @param scopes collection of scopes in the default credentials.
+   * @param scopes collection of scopes in the default credentials. Make sure you have specified
+   *     "https://www.googleapis.com/auth/cloud-platform" scope to access resources on Vertex AI.
    */
   public VertexAI(String projectId, String location, String... scopes) throws IOException {
-    List<String> defaultScopes =
-        PredictionServiceStubSettings.defaultCredentialsProviderBuilder().getScopesToApply();
-    List<String> allScopes = new ArrayList<String>(Arrays.asList(scopes));
-    // defaultScopes contains the necessary scope to make service account credentials work.
-    allScopes.addAll(defaultScopes);
     CredentialsProvider credentialsProvider =
         scopes.length == 0
             ? null
             : GoogleCredentialsProvider.newBuilder()
-                .setScopesToApply(allScopes)
+                .setScopesToApply(Arrays.asList(scopes))
                 .setUseJwtAccessWithScope(true)
                 .build();
 
@@ -205,11 +201,12 @@ public class VertexAI implements AutoCloseable {
                   GaxProperties.getLibraryVersion(PredictionServiceSettings.class)));
       settingsBuilder.setHeaderProvider(headerProvider);
       // Disable the warning message logged in getApplicationDefault
-      Logger logger = Logger.getLogger("com.google.auth.oauth2.DefaultCredentialsProvider");
-      Level previousLevel = logger.getLevel();
-      logger.setLevel(Level.SEVERE);
+      Logger defaultCredentialsProviderLogger =
+          Logger.getLogger("com.google.auth.oauth2.DefaultCredentialsProvider");
+      Level previousLevel = defaultCredentialsProviderLogger.getLevel();
+      defaultCredentialsProviderLogger.setLevel(Level.SEVERE);
       predictionServiceClient = PredictionServiceClient.create(settingsBuilder.build());
-      logger.setLevel(previousLevel);
+      defaultCredentialsProviderLogger.setLevel(previousLevel);
     }
     return predictionServiceClient;
   }
@@ -235,11 +232,12 @@ public class VertexAI implements AutoCloseable {
                   GaxProperties.getLibraryVersion(PredictionServiceSettings.class)));
       settingsBuilder.setHeaderProvider(headerProvider);
       // Disable the warning message logged in getApplicationDefault
-      Logger logger = Logger.getLogger("com.google.auth.oauth2.DefaultCredentialsProvider");
-      Level previousLevel = logger.getLevel();
-      logger.setLevel(Level.SEVERE);
+      Logger defaultCredentialsProviderLogger =
+          Logger.getLogger("com.google.auth.oauth2.DefaultCredentialsProvider");
+      Level previousLevel = defaultCredentialsProviderLogger.getLevel();
+      defaultCredentialsProviderLogger.setLevel(Level.SEVERE);
       predictionServiceRestClient = PredictionServiceClient.create(settingsBuilder.build());
-      logger.setLevel(previousLevel);
+      defaultCredentialsProviderLogger.setLevel(previousLevel);
     }
     return predictionServiceRestClient;
   }
@@ -264,11 +262,12 @@ public class VertexAI implements AutoCloseable {
                   GaxProperties.getLibraryVersion(LlmUtilityServiceSettings.class)));
       settingsBuilder.setHeaderProvider(headerProvider);
       // Disable the warning message logged in getApplicationDefault
-      Logger logger = Logger.getLogger("com.google.auth.oauth2.DefaultCredentialsProvider");
+      Logger defaultCredentialsProviderLogger =
+          Logger.getLogger("com.google.auth.oauth2.DefaultCredentialsProvider");
       Level previousLevel = logger.getLevel();
-      logger.setLevel(Level.SEVERE);
+      defaultCredentialsProviderLogger.setLevel(Level.SEVERE);
       llmUtilityClient = LlmUtilityServiceClient.create(settingsBuilder.build());
-      logger.setLevel(previousLevel);
+      defaultCredentialsProviderLogger.setLevel(previousLevel);
     }
     return llmUtilityClient;
   }
@@ -294,11 +293,12 @@ public class VertexAI implements AutoCloseable {
                   GaxProperties.getLibraryVersion(LlmUtilityServiceSettings.class)));
       settingsBuilder.setHeaderProvider(headerProvider);
       // Disable the warning message logged in getApplicationDefault
-      Logger logger = Logger.getLogger("com.google.auth.oauth2.DefaultCredentialsProvider");
-      Level previousLevel = logger.getLevel();
-      logger.setLevel(Level.SEVERE);
+      Logger defaultCredentialsProviderLogger =
+          Logger.getLogger("com.google.auth.oauth2.DefaultCredentialsProvider");
+      Level previousLevel = defaultCredentialsProviderLogger.getLevel();
+      defaultCredentialsProviderLogger.setLevel(Level.SEVERE);
       llmUtilityRestClient = LlmUtilityServiceClient.create(settingsBuilder.build());
-      logger.setLevel(previousLevel);
+      defaultCredentialsProviderLogger.setLevel(previousLevel);
     }
     return llmUtilityRestClient;
   }
