@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,11 +22,11 @@ import com.google.cloud.vertexai.api.Content;
 import com.google.cloud.vertexai.api.CountTokensRequest;
 import com.google.cloud.vertexai.api.CountTokensResponse;
 import com.google.cloud.vertexai.api.GenerateContentRequest;
-import com.google.cloud.vertexai.api.GenerateContentRequest.Builder;
 import com.google.cloud.vertexai.api.GenerateContentResponse;
 import com.google.cloud.vertexai.api.GenerationConfig;
 import com.google.cloud.vertexai.api.Part;
 import com.google.cloud.vertexai.api.SafetySetting;
+import com.google.cloud.vertexai.api.Tool;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,7 +40,126 @@ public class GenerativeModel {
   private final VertexAI vertexAi;
   private GenerationConfig generationConfig = null;
   private List<SafetySetting> safetySettings = null;
+  private List<Tool> tools = null;
   private Transport transport;
+
+  public static Builder newBuilder() {
+    return new Builder();
+  }
+
+  private GenerativeModel(Builder builder) {
+    this.modelName = builder.modelName;
+
+    this.vertexAi = builder.vertexAi;
+
+    this.resourceName =
+        String.format(
+            "projects/%s/locations/%s/publishers/google/models/%s",
+            this.vertexAi.getProjectId(), this.vertexAi.getLocation(), this.modelName);
+
+    if (builder.generationConfig != null) {
+      this.generationConfig = builder.generationConfig;
+    }
+    if (builder.safetySettings != null) {
+      this.safetySettings = builder.safetySettings;
+    }
+    if (builder.tools != null) {
+      this.tools = builder.tools;
+    }
+
+    if (builder.transport != null) {
+      this.transport = builder.transport;
+    } else {
+      this.transport = this.vertexAi.getTransport();
+    }
+  }
+
+  /** Builder class for {@link GenerativeModel}. */
+  public static class Builder {
+    private String modelName;
+    private VertexAI vertexAi;
+    private GenerationConfig generationConfig;
+    private List<SafetySetting> safetySettings;
+    private List<Tool> tools;
+    private Transport transport;
+
+    private Builder() {}
+
+    public GenerativeModel build() {
+      if (this.modelName == null) {
+        throw new IllegalArgumentException(
+            "modelName is required. Please call setModelName() before building.");
+      }
+      if (this.vertexAi == null) {
+        throw new IllegalArgumentException(
+            "vertexAi is required. Please call setVertexAi() before building.");
+      }
+      return new GenerativeModel(this);
+    }
+
+    /**
+     * Set the name of the generative model. This is required for building a GenerativeModel
+     * instance. Supported format: "gemini-pro", "models/gemini-pro",
+     * "publishers/google/models/gemini-pro", where "gemini-pro" is the model name. Valid model
+     * names can be found at
+     * https://cloud.google.com/vertex-ai/docs/generative-ai/learn/models#gemini-models
+     */
+    public Builder setModelName(String modelName) {
+      this.modelName = validateModelName(modelName);
+      return this;
+    }
+
+    /**
+     * Set {@link com.google.cloud.vertexai.VertexAI} that contains the default configs for the
+     * generative model. This is required for building a GenerativeModel instance.
+     */
+    public Builder setVertexAi(VertexAI vertexAi) {
+      this.vertexAi = vertexAi;
+      return this;
+    }
+
+    /**
+     * Set {@link com.google.cloud.vertexai.api.GenerationConfig} that will be used by default to
+     * interact with the generative model.
+     */
+    public Builder setGenerationConfig(GenerationConfig generationConfig) {
+      this.generationConfig = generationConfig;
+      return this;
+    }
+
+    /**
+     * Set a list of {@link com.google.cloud.vertexai.api.SafetySetting} that will be used by
+     * default to interact with the generative model.
+     */
+    public Builder setSafetySettings(List<SafetySetting> safetySettings) {
+      this.safetySettings = new ArrayList<>();
+      for (SafetySetting safetySetting : safetySettings) {
+        this.safetySettings.add(safetySetting);
+      }
+      return this;
+    }
+
+    /**
+     * Set a list of {@link com.google.cloud.vertexai.api.Tool} that will be used by default to
+     * interact with the generative model.
+     */
+    public Builder setTools(List<Tool> tools) {
+      this.tools = new ArrayList<>();
+      for (Tool tool : tools) {
+        this.tools.add(tool);
+      }
+      return this;
+    }
+
+    /**
+     * Set the {@link Transport} layer for API calls in the generative model. It overrides the
+     * transport setting in {@link com.google.cloud.vertexai.VertexAI}
+     */
+    public Builder setTransport(Transport transport) {
+      this.transport = transport;
+      return this;
+    }
+  }
 
   /**
    * Construct a GenerativeModel instance.
@@ -160,10 +279,10 @@ public class GenerativeModel {
    *
    * @param modelName the name of the generative model. Supported format: "gemini-pro",
    *     "models/gemini-pro", "publishers/google/models/gemini-pro"
-   * @param generationConfig a {@link com.google.cloud.vertexai.api.GenerationConfig} instance
+   * @param generationConfig a {@link com.google.cloud.vertexai.api.GenerationConfig} instance that
+   *     will be used by default for generating response
+   * @param safetySettings a list of {@link com.google.cloud.vertexai.api.SafetySetting} instances
    *     that will be used by default for generating response
-   * @param safetySettings a list of {@link com.google.cloud.vertexai.api.SafetySetting}
-   *     instances that will be used by default for generating response
    * @param vertexAI a {@link com.google.cloud.vertexai.VertexAI} that contains the default configs
    *     for the generative model
    * @param transport the {@link Transport} layer for API calls in the generative model. It
@@ -373,18 +492,19 @@ public class GenerativeModel {
    *
    * @param contents a list of {@link com.google.cloud.vertexai.api.Content} to send to the
    *     generative model
-   * @param generationConfig a {@link com.google.cloud.vertexai.api.GenerationConfig} instance
-   *     for generating response. {@link #getGenerationConfig} will not be used if this is set
+   * @param generationConfig a {@link com.google.cloud.vertexai.api.GenerationConfig} instance for
+   *     generating response. {@link #getGenerationConfig} will not be used if this is set
    * @param safetySettings a list of {@link com.google.cloud.vertexai.api.SafetySetting} for
    *     generating response. {@link #getSafetySettings} will not be used if this is set
-   * @return a {@link com.google.cloud.vertexai.api.GenerateContentResponse} instance that
-   *     contains response contents and other metadata
+   * @return a {@link com.google.cloud.vertexai.api.GenerateContentResponse} instance that contains
+   *     response contents and other metadata
    * @throws IOException if an I/O error occurs while making the API call
    */
   public GenerateContentResponse generateContent(
       List<Content> contents, GenerationConfig generationConfig, List<SafetySetting> safetySettings)
       throws IOException {
-    Builder requestBuilder = GenerateContentRequest.newBuilder().addAllContents(contents);
+    GenerateContentRequest.Builder requestBuilder =
+        GenerateContentRequest.newBuilder().addAllContents(contents);
     if (generationConfig != null) {
       requestBuilder.setGenerationConfig(generationConfig);
     } else if (this.generationConfig != null) {
@@ -394,6 +514,9 @@ public class GenerativeModel {
       requestBuilder.addAllSafetySettings(safetySettings);
     } else if (this.safetySettings != null) {
       requestBuilder.addAllSafetySettings(this.safetySettings);
+    }
+    if (this.tools != null) {
+      requestBuilder.addAllTools(this.tools);
     }
     return ResponseHandler.aggregateStreamIntoResponse(generateContentStream(requestBuilder));
   }
@@ -662,7 +785,8 @@ public class GenerativeModel {
   public ResponseStream<GenerateContentResponse> generateContentStream(
       List<Content> contents, GenerationConfig generationConfig, List<SafetySetting> safetySettings)
       throws IOException {
-    Builder requestBuilder = GenerateContentRequest.newBuilder().addAllContents(contents);
+    GenerateContentRequest.Builder requestBuilder =
+        GenerateContentRequest.newBuilder().addAllContents(contents);
     if (generationConfig != null) {
       requestBuilder.setGenerationConfig(generationConfig);
     } else if (this.generationConfig != null) {
@@ -673,20 +797,23 @@ public class GenerativeModel {
     } else if (this.safetySettings != null) {
       requestBuilder.addAllSafetySettings(this.safetySettings);
     }
+    if (this.tools != null) {
+      requestBuilder.addAllTools(this.tools);
+    }
     return generateContentStream(requestBuilder);
   }
 
   /**
    * A base generateContentStream method that will be used internally.
    *
-   * @param requestBuilder a {@link
-   *     com.google.cloud.vertexai.api.GenerateContentRequest.Builder} instance
+   * @param requestBuilder a {@link com.google.cloud.vertexai.api.GenerateContentRequest.Builder}
+   *     instance
    * @return a {@link ResponseStream} that contains a streaming of {@link
    *     com.google.cloud.vertexai.api.GenerateContentResponse}
    * @throws IOException if an I/O error occurs while making the API call
    */
-  private ResponseStream<GenerateContentResponse> generateContentStream(Builder requestBuilder)
-      throws IOException {
+  private ResponseStream<GenerateContentResponse> generateContentStream(
+      GenerateContentRequest.Builder requestBuilder) throws IOException {
     GenerateContentRequest request = requestBuilder.setModel(this.resourceName).build();
     ResponseStream<GenerateContentResponse> responseStream = null;
     if (this.transport == Transport.REST) {
@@ -731,6 +858,16 @@ public class GenerativeModel {
   }
 
   /**
+   * Sets the value for {@link #getTools}, which will be used by default for generating response.
+   */
+  public void setTools(List<Tool> tools) {
+    this.tools = new ArrayList<>();
+    for (Tool tool : tools) {
+      this.tools.add(tool);
+    }
+  }
+
+  /**
    * Sets the value for {@link #getTransport}, which defines the layer for API calls in this
    * generative model.
    */
@@ -763,6 +900,15 @@ public class GenerativeModel {
   public List<SafetySetting> getSafetySettings() {
     if (this.safetySettings != null) {
       return Collections.unmodifiableList(this.safetySettings);
+    } else {
+      return null;
+    }
+  }
+
+  /** Returns a list of {@link com.google.cloud.vertexai.api.Tool} of this generative model. */
+  public List<Tool> getTools() {
+    if (this.tools != null) {
+      return Collections.unmodifiableList(this.tools);
     } else {
       return null;
     }

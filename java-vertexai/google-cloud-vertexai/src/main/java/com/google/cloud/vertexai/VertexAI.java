@@ -27,11 +27,8 @@ import com.google.cloud.vertexai.api.LlmUtilityServiceClient;
 import com.google.cloud.vertexai.api.LlmUtilityServiceSettings;
 import com.google.cloud.vertexai.api.PredictionServiceClient;
 import com.google.cloud.vertexai.api.PredictionServiceSettings;
-import com.google.cloud.vertexai.api.stub.PredictionServiceStubSettings;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -264,7 +261,7 @@ public class VertexAI implements AutoCloseable {
       // Disable the warning message logged in getApplicationDefault
       Logger defaultCredentialsProviderLogger =
           Logger.getLogger("com.google.auth.oauth2.DefaultCredentialsProvider");
-      Level previousLevel = logger.getLevel();
+      Level previousLevel = defaultCredentialsProviderLogger.getLevel();
       defaultCredentialsProviderLogger.setLevel(Level.SEVERE);
       llmUtilityClient = LlmUtilityServiceClient.create(settingsBuilder.build());
       defaultCredentialsProviderLogger.setLevel(previousLevel);

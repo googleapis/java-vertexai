@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,10 +26,12 @@ import com.google.api.gax.rpc.ServerStream;
 import com.google.api.gax.rpc.ServerStreamingCallable;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.vertexai.Transport;
 import com.google.cloud.vertexai.VertexAI;
 import com.google.cloud.vertexai.api.Content;
 import com.google.cloud.vertexai.api.CountTokensRequest;
 import com.google.cloud.vertexai.api.CountTokensResponse;
+import com.google.cloud.vertexai.api.FunctionDeclaration;
 import com.google.cloud.vertexai.api.GenerateContentRequest;
 import com.google.cloud.vertexai.api.GenerateContentResponse;
 import com.google.cloud.vertexai.api.GenerationConfig;
@@ -39,6 +41,9 @@ import com.google.cloud.vertexai.api.Part;
 import com.google.cloud.vertexai.api.PredictionServiceClient;
 import com.google.cloud.vertexai.api.SafetySetting;
 import com.google.cloud.vertexai.api.SafetySetting.HarmBlockThreshold;
+import com.google.cloud.vertexai.api.Schema;
+import com.google.cloud.vertexai.api.Tool;
+import com.google.cloud.vertexai.api.Type;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -75,6 +80,23 @@ public final class GenerativeModelTest {
           .setCategory(HarmCategory.HARM_CATEGORY_HATE_SPEECH)
           .setThreshold(HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE)
           .build();
+  private static final Tool TOOL =
+      Tool.newBuilder()
+          .addFunctionDeclarations(
+              FunctionDeclaration.newBuilder()
+                  .setName("getCurrentWeather")
+                  .setDescription("Get the current weather in a given location")
+                  .setParameters(
+                      Schema.newBuilder()
+                          .setType(Type.OBJECT)
+                          .putProperties(
+                              "location",
+                              Schema.newBuilder()
+                                  .setType(Type.STRING)
+                                  .setDescription("location")
+                                  .build())
+                          .addRequired("location")))
+          .build();
 
   private static final String TEXT = "What is your name?";
 
@@ -82,6 +104,7 @@ public final class GenerativeModelTest {
   private GenerativeModel model;
   private List<SafetySetting> safetySettings = Arrays.asList(SAFETY_SETTING);
   private List<SafetySetting> defaultSafetySettings = Arrays.asList(DEFAULT_SAFETY_SETTING);
+  private List<Tool> tools = Arrays.asList(TOOL);
 
   @Rule public final MockitoRule mocksRule = MockitoJUnit.rule();
 
@@ -110,6 +133,7 @@ public final class GenerativeModelTest {
     assertThat(model.getModelName()).isEqualTo(MODEL_NAME);
     assertThat(model.getGenerationConfig()).isNull();
     assertThat(model.getSafetySettings()).isNull();
+    assertThat(model.getTools()).isNull();
   }
 
   @Test
@@ -118,6 +142,7 @@ public final class GenerativeModelTest {
     assertThat(model.getModelName()).isEqualTo(MODEL_NAME);
     assertThat(model.getGenerationConfig()).isEqualTo(GENERATION_CONFIG);
     assertThat(model.getSafetySettings()).isNull();
+    assertThat(model.getTools()).isNull();
   }
 
   @Test
@@ -126,6 +151,7 @@ public final class GenerativeModelTest {
     assertThat(model.getModelName()).isEqualTo(MODEL_NAME);
     assertThat(model.getGenerationConfig()).isNull();
     assertThat(model.getSafetySettings()).isEqualTo(safetySettings);
+    assertThat(model.getTools()).isNull();
   }
 
   @Test
@@ -151,6 +177,54 @@ public final class GenerativeModelTest {
   }
 
   @Test
+  public void testInstantiateGenerativeModelwithBuilder() {
+    model = GenerativeModel.newBuilder().setModelName(MODEL_NAME).setVertexAi(vertexAi).build();
+    assertThat(model.getModelName()).isEqualTo(MODEL_NAME);
+    assertThat(model.getGenerationConfig()).isNull();
+    assertThat(model.getSafetySettings()).isNull();
+    assertThat(model.getTools()).isNull();
+    assertThat(model.getTransport()).isEqualTo(Transport.GRPC);
+  }
+
+  @Test
+  public void testInstantiateGenerativeModelwithBuilderAllConfigs() {
+    model =
+        GenerativeModel.newBuilder()
+            .setModelName(MODEL_NAME)
+            .setVertexAi(vertexAi)
+            .setGenerationConfig(GENERATION_CONFIG)
+            .setSafetySettings(safetySettings)
+            .setTools(tools)
+            .setTransport(Transport.REST)
+            .build();
+    assertThat(model.getModelName()).isEqualTo(MODEL_NAME);
+    assertThat(model.getGenerationConfig()).isEqualTo(GENERATION_CONFIG);
+    assertThat(model.getSafetySettings()).isEqualTo(safetySettings);
+    assertThat(model.getTools()).isEqualTo(tools);
+    assertThat(model.getTransport()).isEqualTo(Transport.REST);
+  }
+
+  @Test
+  public void testInstantiateGenerativeModelwithBuilderMissingModelName() {
+    IllegalArgumentException thrown =
+        assertThrows(IllegalArgumentException.class, () -> GenerativeModel.newBuilder().build());
+    assertThat(thrown)
+        .hasMessageThat()
+        .isEqualTo("modelName is required. Please call setModelName() before building.");
+  }
+
+  @Test
+  public void testInstantiateGenerativeModelwithBuilderMissingVertexAi() {
+    IllegalArgumentException thrown =
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> GenerativeModel.newBuilder().setModelName(MODEL_NAME).build());
+    assertThat(thrown)
+        .hasMessageThat()
+        .isEqualTo("vertexAi is required. Please call setVertexAi() before building.");
+  }
+
+  @Test
   public void testSetGenerationConfig() {
     model = new GenerativeModel(MODEL_NAME, vertexAi);
     model.setGenerationConfig(GENERATION_CONFIG);
@@ -162,6 +236,13 @@ public final class GenerativeModelTest {
     model = new GenerativeModel(MODEL_NAME, vertexAi);
     model.setSafetySettings(safetySettings);
     assertThat(model.getSafetySettings()).isEqualTo(safetySettings);
+  }
+
+  @Test
+  public void testSetTools() {
+    model = new GenerativeModel(MODEL_NAME, vertexAi);
+    model.setTools(tools);
+    assertThat(model.getTools()).isEqualTo(tools);
   }
 
   @Test
@@ -375,6 +456,34 @@ public final class GenerativeModelTest {
   }
 
   @Test
+  public void testGenerateContentwithDefaultTools() throws Exception {
+    model =
+        GenerativeModel.newBuilder()
+            .setModelName(MODEL_NAME)
+            .setVertexAi(vertexAi)
+            .setTools(tools)
+            .build();
+
+    Field field = VertexAI.class.getDeclaredField("predictionServiceClient");
+    field.setAccessible(true);
+    field.set(vertexAi, mockPredictionServiceClient);
+
+    when(mockPredictionServiceClient.streamGenerateContentCallable())
+        .thenReturn(mockServerStreamCallable);
+    when(mockServerStreamCallable.call(any(GenerateContentRequest.class)))
+        .thenReturn(mockServerStream);
+    when(mockServerStream.iterator()).thenReturn(mockServerStreamIterator);
+
+    GenerateContentResponse unused = model.generateContent(TEXT);
+
+    ArgumentCaptor<GenerateContentRequest> request =
+        ArgumentCaptor.forClass(GenerateContentRequest.class);
+    verify(mockServerStreamCallable).call(request.capture());
+    assertThat(request.getValue().getContents(0).getParts(0).getText()).isEqualTo(TEXT);
+    assertThat(request.getValue().getTools(0)).isEqualTo(TOOL);
+  }
+
+  @Test
   public void testGenerateContentStreamwithText() throws Exception {
     model = new GenerativeModel(MODEL_NAME, vertexAi);
 
@@ -533,5 +642,32 @@ public final class GenerativeModelTest {
         ArgumentCaptor.forClass(GenerateContentRequest.class);
     verify(mockServerStreamCallable).call(request.capture());
     assertThat(request.getValue().getSafetySettings(0)).isEqualTo(DEFAULT_SAFETY_SETTING);
+  }
+
+  @Test
+  public void testGenerateContentStreamwithDefaultTools() throws Exception {
+    model =
+        GenerativeModel.newBuilder()
+            .setModelName(MODEL_NAME)
+            .setVertexAi(vertexAi)
+            .setTools(tools)
+            .build();
+
+    Field field = VertexAI.class.getDeclaredField("predictionServiceClient");
+    field.setAccessible(true);
+    field.set(vertexAi, mockPredictionServiceClient);
+
+    when(mockPredictionServiceClient.streamGenerateContentCallable())
+        .thenReturn(mockServerStreamCallable);
+    when(mockServerStreamCallable.call(any(GenerateContentRequest.class)))
+        .thenReturn(mockServerStream);
+    when(mockServerStream.iterator()).thenReturn(mockServerStreamIterator);
+
+    ResponseStream unused = model.generateContentStream(TEXT);
+
+    ArgumentCaptor<GenerateContentRequest> request =
+        ArgumentCaptor.forClass(GenerateContentRequest.class);
+    verify(mockServerStreamCallable).call(request.capture());
+    assertThat(request.getValue().getTools(0)).isEqualTo(TOOL);
   }
 }
