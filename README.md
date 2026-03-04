@@ -15,6 +15,7 @@ Java idiomatic SDK for [Vertex AI][product-docs].
 
 - [Product Documentation][product-docs]
 
+
 ## Add dependency
 
 If you are using Maven with [BOM][libraries-bom], add this to your pom.xml file:
@@ -25,7 +26,7 @@ If you are using Maven with [BOM][libraries-bom], add this to your pom.xml file:
     <dependency>
       <groupId>com.google.cloud</groupId>
       <artifactId>libraries-bom</artifactId>
-      <version>26.54.0</version>
+      <version>26.72.0</version>
       <type>pom</type>
       <scope>import</scope>
     </dependency>
@@ -47,20 +48,20 @@ If you're using Maven without the BOM, add the following to your dependencies:
 <dependency>
   <groupId>com.google.cloud</groupId>
   <artifactId>google-cloud-vertexai</artifactId>
-  <version>1.19.0</version>
+  <version>1.46.0</version>
 </dependency>
 ```
 
 If you are using Gradle without BOM, add this to your dependencies:
 
 ```Groovy
-implementation 'com.google.cloud:google-cloud-vertexai:1.19.0'
+implementation 'com.google.cloud:google-cloud-vertexai:1.46.0'
 ```
 
 If you are using SBT, add this to your dependencies:
 
 ```Scala
-libraryDependencies += "com.google.cloud" % "google-cloud-vertexai" % "1.19.0"
+libraryDependencies += "com.google.cloud" % "google-cloud-vertexai" % "1.46.0"
 ```
 <!-- {x-version-update-end} -->
 
@@ -127,7 +128,7 @@ public class Main {
   public static void main(String[] args) throws IOException {
     try (VertexAI vertexAi = new VertexAI(PROJECT_ID, LOCATION);) {
 
-      GenerativeModel model = new GenerativeModel("gemini-1.5-flash-001", vertexAi);
+      GenerativeModel model = new GenerativeModel("gemini-pro", vertexAi);
 
       GenerateContentResponse response = model.generateContent("How are you?");
       // Do something with the response
@@ -156,7 +157,7 @@ public class Main {
   public static void main(String[] args) throws IOException {
     try (VertexAI vertexAi = new VertexAI(PROJECT_ID, LOCATION);) {
 
-      GenerativeModel model = new GenerativeModel("gemini-1.5-flash-001", vertexAi);
+      GenerativeModel model = new GenerativeModel("gemini-pro", vertexAi);
 
       ResponseStream<GenerateContentResponse> responseStream = model.generateContentStream("How are you?");
       // Do something with the ResponseStream, which is an iterable.
@@ -184,7 +185,7 @@ public class Main {
   public static void main(String[] args) throws IOException {
     try (VertexAI vertexAi = new VertexAI(PROJECT_ID, LOCATION);) {
 
-      GenerativeModel model = new GenerativeModel("gemini-1.5-flash-001", vertexAi);
+      GenerativeModel model = new GenerativeModel("gemini-pro", vertexAi);
 
       ApiFuture<GenerateContentResponse> future = model.generateContentAsync("How are you?");
 
@@ -223,7 +224,7 @@ public class Main {
   public static void main(String[] args) throws Exception {
     try (VertexAI vertexAi = new VertexAI(PROJECT_ID, LOCATION); ) {
       // Vision model must be used for multi-modal input
-      GenerativeModel model = new GenerativeModel("gemini-1.0-pro-vision-001", vertexAi);
+      GenerativeModel model = new GenerativeModel("gemini-pro-vision", vertexAi);
 
       ResponseStream<GenerateContentResponse> stream =
           model.generateContentStream(ContentMaker.fromMultiModalData(
@@ -255,7 +256,7 @@ import java.util.List;
 public class Main {
   private static final String PROJECT_ID = <your project id>;
   private static final String LOCATION = <location>;
-  private static final String MODEL_NAME = "gemini-1.5-flash-001";
+  private static final String MODEL_NAME = "gemini-pro";
 
   public static void main(String[] args) throws IOException {
     try (VertexAI vertexAi = new VertexAI(PROJECT_ID, LOCATION); ) {
@@ -307,7 +308,7 @@ public class Main {
   public static void main(String[] args) throws IOException {
     try (VertexAI vertexAi = new VertexAI(PROJECT_ID, LOCATION); ) {
       GenerativeModel model =
-          new GenerativeModel("gemini-1.5-flash-001", vertexAi);
+          new GenerativeModel("gemini-pro", vertexAi);
       ChatSession chat = model.startChat();
 
       // Send the first message.
@@ -345,7 +346,6 @@ adjust them on a per-request basis for fine-grained control.
 ##### Model level configurations
 
 Below is an example of configure `GenerationConfig` for a `GenerativeModel`:
-
 ```java
 package <PACKAGE_NAME>
 
@@ -384,7 +384,6 @@ public class Main {
 ```
 
 And an example of configuring preambles as a [system instruction][system-instruction].
-
 ```java
 package <your package name>
 
@@ -517,7 +516,7 @@ public class Main {
 
 #### Use ChatSession for function calling
 
-You can perform a function call in a `ChatSession` as follows:
+You can perfrom a function call in a `ChatSession` as follows:
 
 ```java
 package <your package name>;
@@ -533,7 +532,7 @@ import java.io.IOException;
 public class Main {
   private static final String PROJECT_ID = "<your project>";
   private static final String LOCATION = "<location>";
-  private static final String MODEL_NAME = "gemini-1.5-flash-001";
+  private static final String MODEL_NAME = "gemini-pro";
   private static final String TEXT = "What's the weather in Vancouver?";
 
   public static void main(String[] args) throws IOException {
@@ -632,17 +631,7 @@ public class Main {
 }
 ```
 
-#### Automatic function calling
-
-If functions you want to use are callable, Vertex AI SDK can help you automatically
-call functions when requested by the model, eliminating the need for extensive manual coding.
-
-For implementation details, refer to our [Automatic Function Calling code sample][automatic-function-calling-sample].
-
-
-
-#### API references
-Explore the [Vertex AI SDK docs][javadocs] to learn more about how to use Vertex AI SDK in more advanced ways.
+See the [Vertex AI SDK docs][javadocs] to learn more about how to use this Vertex AI SDK in more advanced ways.
 
 ## Troubleshooting
 
@@ -673,7 +662,7 @@ public class Main {
                                   .setLocation(LOCATION)
                                   .setTransport(Transport.REST);) {
 
-      GenerativeModel model = new GenerativeModel("gemini-1.5-flash-001", vertexAi);
+      GenerativeModel model = new GenerativeModel("gemini-pro", vertexAi);
 
       GenerateContentResponse response = model.generateContent("How are you?");
       // Do something with the response
@@ -705,7 +694,7 @@ public class Main {
                                   .setLocation(LOCATION)
                                   .setApiEndpoint(<new_endpoint>);) {
 
-      GenerativeModel model = new GenerativeModel("gemini-1.5-flash-001", vertexAi);
+      GenerativeModel model = new GenerativeModel("gemini-pro", vertexAi);
 
       GenerateContentResponse response = model.generateContent("How are you?");
       // Do something with the response
@@ -831,8 +820,7 @@ Java is a registered trademark of Oracle and/or its affiliates.
 [oracle]: https://www.oracle.com/java/technologies/java-se-support-roadmap.html
 [g-c-j]: http://github.com/googleapis/google-cloud-java
 [generative-ai-studio]: https://cloud.google.com/generative-ai-studio?hl=en
-[generationconfig-ref]: https://cloud.google.com/vertex-ai/generative-ai/docs/reference/java/latest/com.google.cloud.vertexai.api.GenerationConfig.Builder
-[safetysetting-ref]: https://cloud.google.com/vertex-ai/generative-ai/docs/reference/java/latest/com.google.cloud.vertexai.api.SafetySetting.Builder
-[tool-ref]: https://cloud.google.com/vertex-ai/generative-ai/docs/reference/java/latest/com.google.cloud.vertexai.api.Tool.Builder
+[generationconfig-ref]: https://cloud.google.com/java/docs/reference/google-cloud-vertexai/latest/com.google.cloud.vertexai.api.GenerationConfig.Builder
+[safetysetting-ref]: https://cloud.google.com/java/docs/reference/google-cloud-vertexai/latest/com.google.cloud.vertexai.api.SafetySetting.Builder
+[tool-ref]: https://cloud.google.com/java/docs/reference/google-cloud-vertexai/latest/com.google.cloud.vertexai.api.Tool.Builder
 [system-instruction]: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/system-instructions
-[automatic-function-calling-sample]: https://github.com/GoogleCloudPlatform/java-docs-samples/blob/937aaa277811486052afcba07ee23f37dade0a39/vertexai/snippets/src/main/java/vertexai/gemini/AutomaticFunctionCalling.java
