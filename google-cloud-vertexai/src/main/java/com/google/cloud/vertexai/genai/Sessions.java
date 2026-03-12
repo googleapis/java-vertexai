@@ -48,11 +48,13 @@ import java.util.Optional;
 import okhttp3.ResponseBody;
 
 public final class Sessions {
+  public final SessionEvents events;
 
   final ApiClient apiClient;
 
   public Sessions(ApiClient apiClient) {
     this.apiClient = apiClient;
+    this.events = new SessionEvents(apiClient);
   }
 
   @ExcludeFromGeneratedCoverageReport
