@@ -30,7 +30,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-/** The PSC interface config. */
+/** Configuration for PSC-I. */
 @AutoValue
 @JsonDeserialize(builder = PscInterfaceConfig.Builder.class)
 public abstract class PscInterfaceConfig extends JsonSerializable {

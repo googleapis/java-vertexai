@@ -228,6 +228,10 @@ public abstract class AgentEngineConfig extends JsonSerializable {
   @JsonProperty("agentConfigSource")
   public abstract Optional<ReasoningEngineSpecSourceCodeSpecAgentConfigSource> agentConfigSource();
 
+  /** The container spec for the Agent Engine. */
+  @JsonProperty("containerSpec")
+  public abstract Optional<ReasoningEngineSpecContainerSpec> containerSpec();
+
   /** Instantiates a builder for AgentEngineConfig. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -1015,6 +1019,34 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearAgentConfigSource() {
       return agentConfigSource(Optional.empty());
+    }
+
+    /**
+     * Setter for containerSpec.
+     *
+     * <p>containerSpec: The container spec for the Agent Engine.
+     */
+    @JsonProperty("containerSpec")
+    public abstract Builder containerSpec(ReasoningEngineSpecContainerSpec containerSpec);
+
+    /**
+     * Setter for containerSpec builder.
+     *
+     * <p>containerSpec: The container spec for the Agent Engine.
+     */
+    @CanIgnoreReturnValue
+    public Builder containerSpec(ReasoningEngineSpecContainerSpec.Builder containerSpecBuilder) {
+      return containerSpec(containerSpecBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder containerSpec(Optional<ReasoningEngineSpecContainerSpec> containerSpec);
+
+    /** Clears the value of containerSpec field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearContainerSpec() {
+      return containerSpec(Optional.empty());
     }
 
     public abstract AgentEngineConfig build();

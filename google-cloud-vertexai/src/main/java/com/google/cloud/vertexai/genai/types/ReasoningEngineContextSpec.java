@@ -26,7 +26,7 @@ import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.genai.JsonSerializable;
 import java.util.Optional;
 
-/** The configuration for agent engine sub-resources to manage context. */
+/** Configuration for how Agent Engine sub-resources should manage context. */
 @AutoValue
 @JsonDeserialize(builder = ReasoningEngineContextSpec.Builder.class)
 public abstract class ReasoningEngineContextSpec extends JsonSerializable {
