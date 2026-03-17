@@ -37,6 +37,7 @@ import java.util.concurrent.CompletableFuture;
 
 /** Async module of {@link AgentEngines} */
 public final class AsyncAgentEngines {
+  public final AsyncSessions sessions;
 
   AgentEngines agentEngines;
   ApiClient apiClient;
@@ -44,6 +45,8 @@ public final class AsyncAgentEngines {
   public AsyncAgentEngines(ApiClient apiClient) {
     this.apiClient = apiClient;
     this.agentEngines = new AgentEngines(apiClient);
+
+    this.sessions = new AsyncSessions(apiClient);
   }
 
   CompletableFuture<AgentEngineOperation> privateCreate(CreateAgentEngineConfig config) {

@@ -16,25 +16,15 @@
 
 package com.google.cloud.vertexai.genai;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.google.common.collect.ImmutableList;
+import com.google.cloud.vertexai.genai.types.AgentEngineOperation;
+import com.google.cloud.vertexai.genai.types.CreateAgentEngineConfig;
+import com.google.cloud.vertexai.genai.types.DeleteAgentEngineOperation;
 import com.google.common.collect.ImmutableMap;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.provider.ValueSource;
-
-import com.google.cloud.vertexai.genai.types.CreateAgentEngineConfig;
-import com.google.cloud.vertexai.genai.types.AgentEngineOperation;
-import com.google.cloud.vertexai.genai.types.DeleteAgentEngineOperation;
 
 @EnabledIfEnvironmentVariable(
     named = "GOOGLE_GENAI_REPLAYS_DIRECTORY",
