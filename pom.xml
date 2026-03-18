@@ -47,6 +47,5 @@
     <module>google-cloud-vertexai</module>
     <module>grpc-google-cloud-vertexai-v1</module>
     <module>proto-google-cloud-vertexai-v1</module>
-    <module>google-cloud-vertexai-bom</module>
   </modules>
 </project>
