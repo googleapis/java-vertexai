@@ -29,6 +29,8 @@ import com.google.genai.types.ClientOptions;
 import com.google.genai.types.HttpOptions;
 import java.io.IOException;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.logging.Logger;
 
 /** Client class for GenAI. This class is thread-safe. */
 public final class Client implements AutoCloseable {
@@ -47,6 +49,8 @@ public final class Client implements AutoCloseable {
   private static final String SDK_VERSION = "1.80.0";
   // {x-version-update-end:google-vertexai:released}
   private static final ImmutableMap<String, String> TRACKING_HEADERS;
+  private static final Logger logger = Logger.getLogger(Client.class.getName());
+  private static final AtomicBoolean initializedWarningShown = new AtomicBoolean(false);
 
   static {
     String frameworkLabel = "vertex-genai-modules/" + SDK_VERSION;
@@ -180,6 +184,11 @@ public final class Client implements AutoCloseable {
       Optional<ClientOptions> clientOptions,
       Optional<DebugConfig> debugConfig) {
     checkNotNull(debugConfig, "debugConfig cannot be null");
+
+    if (initializedWarningShown.compareAndSet(false, true)) {
+      logger.warning(
+          "The Vertex GenAI Modules are experimental, and may change in future versions.");
+    }
 
     if (project.isPresent() || location.isPresent()) {
       if (apiKey.isPresent()) {
