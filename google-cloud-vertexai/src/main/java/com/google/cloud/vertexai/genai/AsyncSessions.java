@@ -35,6 +35,7 @@ import java.util.concurrent.CompletableFuture;
 
 /** Async module of {@link Sessions} */
 public final class AsyncSessions {
+  public final AsyncSessionEvents events;
 
   Sessions sessions;
   ApiClient apiClient;
@@ -42,6 +43,8 @@ public final class AsyncSessions {
   public AsyncSessions(ApiClient apiClient) {
     this.apiClient = apiClient;
     this.sessions = new Sessions(apiClient);
+
+    this.events = new AsyncSessionEvents(apiClient);
   }
 
   CompletableFuture<AgentEngineSessionOperation> privateCreate(
