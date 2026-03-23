@@ -44,3 +44,8 @@
   </dependencyManagement>
 
   <modules>
+    <module>google-cloud-vertexai</module>
+    <module>grpc-google-cloud-vertexai-v1</module>
+    <module>proto-google-cloud-vertexai-v1</module>
+  </modules>
+</project>
