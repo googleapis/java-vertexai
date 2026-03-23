@@ -18,50 +18,26 @@ Java idiomatic SDK for [Vertex AI][product-docs].
 
 ## Add dependency
 
-If you are using Maven with [BOM][libraries-bom], add this to your pom.xml file:
-
-```xml
-<dependencyManagement>
-  <dependencies>
-    <dependency>
-      <groupId>com.google.cloud</groupId>
-      <artifactId>libraries-bom</artifactId>
-      <version>26.72.0</version>
-      <type>pom</type>
-      <scope>import</scope>
-    </dependency>
-  </dependencies>
-</dependencyManagement>
-
-<dependencies>
-  <dependency>
-    <groupId>com.google.cloud</groupId>
-    <artifactId>google-cloud-vertexai</artifactId>
-  </dependency>
-```
-
-If you're using Maven without the BOM, add the following to your dependencies:
-
 <!-- {x-version-update-start:google-cloud-vertexai:released} -->
 
 ```xml
 <dependency>
   <groupId>com.google.cloud</groupId>
   <artifactId>google-cloud-vertexai</artifactId>
-  <version>1.46.0</version>
+  <version>1.48.0</version>
 </dependency>
 ```
 
 If you are using Gradle without BOM, add this to your dependencies:
 
 ```Groovy
-implementation 'com.google.cloud:google-cloud-vertexai:1.46.0'
+implementation 'com.google.cloud:google-cloud-vertexai:1.48.0'
 ```
 
 If you are using SBT, add this to your dependencies:
 
 ```Scala
-libraryDependencies += "com.google.cloud" % "google-cloud-vertexai" % "1.46.0"
+libraryDependencies += "com.google.cloud" % "google-cloud-vertexai" % "1.48.0"
 ```
 <!-- {x-version-update-end} -->
 
