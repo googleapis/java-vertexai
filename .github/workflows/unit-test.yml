@@ -31,3 +31,4 @@ jobs:
         -Djacoco.skip=true
         -Dcheckstyle.skip=true
         -Dclirr.skip=true
+        -Dsurefire.failIfNoSpecifiedTests=false
