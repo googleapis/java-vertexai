@@ -1,0 +1,33 @@
+name: Java Unit Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  unit-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [8, 11, 17, 21, 25]
+      fail-fast: false
+    name: unit-test (${{matrix.java}})
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK ${{ matrix.java }}
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: ${{matrix.java}}
+        cache: 'maven'
+    - name: Run Java Unit Tests
+      run: >
+        mvn clean test
+        -Dtest="**/*Test"
+        -Djacoco.skip=true
+        -Dcheckstyle.skip=true
+        -Dclirr.skip=true
