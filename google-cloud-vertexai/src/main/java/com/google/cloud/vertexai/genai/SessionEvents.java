@@ -86,6 +86,13 @@ public final class SessionEvents {
           Common.getValueByPath(fromObject, new String[] {"eventMetadata"}));
     }
 
+    if (Common.getValueByPath(fromObject, new String[] {"rawEvent"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"rawEvent"},
+          Common.getValueByPath(fromObject, new String[] {"rawEvent"}));
+    }
+
     return toObject;
   }
 
@@ -335,7 +342,7 @@ public final class SessionEvents {
     return JsonSerializable.fromJsonNode(responseNode, ListAgentEngineSessionEventsResponse.class);
   }
 
-  ListAgentEngineSessionEventsResponse privateList(
+  public ListAgentEngineSessionEventsResponse privateList(
       String name, ListAgentEngineSessionEventsConfig config) {
     BuiltRequest builtRequest = buildRequestForPrivateList(name, config);
 

@@ -499,7 +499,7 @@ public final class AgentEngines {
     return JsonSerializable.fromJsonNode(responseNode, AgentEngineOperation.class);
   }
 
-  AgentEngineOperation privateCreate(CreateAgentEngineConfig config) {
+  public AgentEngineOperation privateCreate(CreateAgentEngineConfig config) {
     BuiltRequest builtRequest = buildRequestForPrivateCreate(config);
 
     try (ApiResponse response =
@@ -574,7 +574,7 @@ public final class AgentEngines {
     return JsonSerializable.fromJsonNode(responseNode, DeleteAgentEngineOperation.class);
   }
 
-  DeleteAgentEngineOperation privateDelete(
+  public DeleteAgentEngineOperation privateDelete(
       String name, boolean force, DeleteAgentEngineConfig config) {
     BuiltRequest builtRequest = buildRequestForPrivateDelete(name, force, config);
 
@@ -645,7 +645,7 @@ public final class AgentEngines {
     return JsonSerializable.fromJsonNode(responseNode, ReasoningEngine.class);
   }
 
-  ReasoningEngine privateGet(String name, GetAgentEngineConfig config) {
+  public ReasoningEngine privateGet(String name, GetAgentEngineConfig config) {
     BuiltRequest builtRequest = buildRequestForPrivateGet(name, config);
 
     try (ApiResponse response =
@@ -713,7 +713,7 @@ public final class AgentEngines {
     return JsonSerializable.fromJsonNode(responseNode, ListReasoningEnginesResponse.class);
   }
 
-  ListReasoningEnginesResponse privateList(ListAgentEngineConfig config) {
+  public ListReasoningEnginesResponse privateList(ListAgentEngineConfig config) {
     BuiltRequest builtRequest = buildRequestForPrivateList(config);
 
     try (ApiResponse response =
@@ -785,7 +785,7 @@ public final class AgentEngines {
     return JsonSerializable.fromJsonNode(responseNode, AgentEngineOperation.class);
   }
 
-  AgentEngineOperation privateGetAgentOperation(
+  public AgentEngineOperation privateGetAgentOperation(
       String operationName, GetAgentEngineOperationConfig config) {
     BuiltRequest builtRequest = buildRequestForPrivateGetAgentOperation(operationName, config);
 
@@ -857,7 +857,7 @@ public final class AgentEngines {
     return JsonSerializable.fromJsonNode(responseNode, QueryReasoningEngineResponse.class);
   }
 
-  QueryReasoningEngineResponse privateQuery(String name, QueryAgentEngineConfig config) {
+  public QueryReasoningEngineResponse privateQuery(String name, QueryAgentEngineConfig config) {
     BuiltRequest builtRequest = buildRequestForPrivateQuery(name, config);
 
     try (ApiResponse response =
@@ -928,7 +928,7 @@ public final class AgentEngines {
     return JsonSerializable.fromJsonNode(responseNode, AgentEngineOperation.class);
   }
 
-  AgentEngineOperation privateUpdate(String name, UpdateAgentEngineConfig config) {
+  public AgentEngineOperation privateUpdate(String name, UpdateAgentEngineConfig config) {
     BuiltRequest builtRequest = buildRequestForPrivateUpdate(name, config);
 
     try (ApiResponse response =
