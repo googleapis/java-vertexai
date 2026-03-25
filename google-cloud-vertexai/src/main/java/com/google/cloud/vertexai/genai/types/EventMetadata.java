@@ -25,6 +25,7 @@ import com.google.auto.value.AutoValue;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.genai.JsonSerializable;
 import com.google.genai.types.GroundingMetadata;
+import com.google.genai.types.Transcription;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -77,6 +78,14 @@ public abstract class EventMetadata extends JsonSerializable {
    */
   @JsonProperty("turnComplete")
   public abstract Optional<Boolean> turnComplete();
+
+  /** Optional. Audio transcription of user input. */
+  @JsonProperty("inputTranscription")
+  public abstract Optional<Transcription> inputTranscription();
+
+  /** Optional. Audio transcription of model output. */
+  @JsonProperty("outputTranscription")
+  public abstract Optional<Transcription> outputTranscription();
 
   /** Instantiates a builder for EventMetadata. */
   @ExcludeFromGeneratedCoverageReport
@@ -239,6 +248,42 @@ public abstract class EventMetadata extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearTurnComplete() {
       return turnComplete(Optional.empty());
+    }
+
+    /**
+     * Setter for inputTranscription.
+     *
+     * <p>inputTranscription: Optional. Audio transcription of user input.
+     */
+    @JsonProperty("inputTranscription")
+    public abstract Builder inputTranscription(Transcription inputTranscription);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder inputTranscription(Optional<Transcription> inputTranscription);
+
+    /** Clears the value of inputTranscription field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearInputTranscription() {
+      return inputTranscription(Optional.empty());
+    }
+
+    /**
+     * Setter for outputTranscription.
+     *
+     * <p>outputTranscription: Optional. Audio transcription of model output.
+     */
+    @JsonProperty("outputTranscription")
+    public abstract Builder outputTranscription(Transcription outputTranscription);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder outputTranscription(Optional<Transcription> outputTranscription);
+
+    /** Clears the value of outputTranscription field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearOutputTranscription() {
+      return outputTranscription(Optional.empty());
     }
 
     public abstract EventMetadata build();
