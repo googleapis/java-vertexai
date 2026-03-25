@@ -26,6 +26,7 @@ import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.genai.JsonSerializable;
 import com.google.genai.types.Content;
 import com.google.genai.types.HttpOptions;
+import java.util.Map;
 import java.util.Optional;
 
 /** Config for appending agent engine session event. */
@@ -55,6 +56,10 @@ public abstract class AppendAgentEngineSessionEventConfig extends JsonSerializab
   /** Metadata relating to the session event. */
   @JsonProperty("eventMetadata")
   public abstract Optional<EventMetadata> eventMetadata();
+
+  /** Weakly typed raw event data in proto struct format. */
+  @JsonProperty("rawEvent")
+  public abstract Optional<Map<String, Object>> rawEvent();
 
   /** Instantiates a builder for AppendAgentEngineSessionEventConfig. */
   @ExcludeFromGeneratedCoverageReport
@@ -203,6 +208,24 @@ public abstract class AppendAgentEngineSessionEventConfig extends JsonSerializab
     @CanIgnoreReturnValue
     public Builder clearEventMetadata() {
       return eventMetadata(Optional.empty());
+    }
+
+    /**
+     * Setter for rawEvent.
+     *
+     * <p>rawEvent: Weakly typed raw event data in proto struct format.
+     */
+    @JsonProperty("rawEvent")
+    public abstract Builder rawEvent(Map<String, Object> rawEvent);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder rawEvent(Optional<Map<String, Object>> rawEvent);
+
+    /** Clears the value of rawEvent field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearRawEvent() {
+      return rawEvent(Optional.empty());
     }
 
     public abstract AppendAgentEngineSessionEventConfig build();
