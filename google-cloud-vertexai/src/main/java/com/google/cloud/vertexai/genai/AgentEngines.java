@@ -39,8 +39,6 @@ import com.google.cloud.vertexai.genai.types.QueryAgentEngineConfig;
 import com.google.cloud.vertexai.genai.types.QueryAgentEngineRequestParameters;
 import com.google.cloud.vertexai.genai.types.QueryReasoningEngineResponse;
 import com.google.cloud.vertexai.genai.types.ReasoningEngine;
-import com.google.cloud.vertexai.genai.types.UpdateAgentEngineConfig;
-import com.google.cloud.vertexai.genai.types.UpdateAgentEngineRequestParameters;
 import com.google.genai.ApiClient;
 import com.google.genai.ApiResponse;
 import com.google.genai.Common;
@@ -56,6 +54,7 @@ public final class AgentEngines {
   public final Sessions sessions;
   public final Sandboxes sandboxes;
   public final Memories memories;
+  public final Runtimes runtimes;
 
   final ApiClient apiClient;
 
@@ -64,6 +63,51 @@ public final class AgentEngines {
     this.sessions = new Sessions(apiClient);
     this.sandboxes = new Sandboxes(apiClient);
     this.memories = new Memories(apiClient);
+    this.runtimes = new Runtimes(apiClient);
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode agentEngineOperationFromVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"name"},
+          Common.getValueByPath(fromObject, new String[] {"name"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"metadata"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"metadata"},
+          Common.getValueByPath(fromObject, new String[] {"metadata"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"done"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"done"},
+          Common.getValueByPath(fromObject, new String[] {"done"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"error"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"error"},
+          Common.getValueByPath(fromObject, new String[] {"error"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"response"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"response"},
+          reasoningEngineFromVertex(
+              JsonSerializable.toJsonNode(
+                  Common.getValueByPath(fromObject, new String[] {"response"})),
+              toObject));
+    }
+
+    return toObject;
   }
 
   @ExcludeFromGeneratedCoverageReport

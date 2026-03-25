@@ -26,7 +26,7 @@ import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.genai.JsonSerializable;
 import java.util.Optional;
 
-/** Traffic distribution configuration. */
+/** Traffic distribution configuration for the Reasoning Engine. */
 @AutoValue
 @JsonDeserialize(builder = ReasoningEngineTrafficConfig.Builder.class)
 public abstract class ReasoningEngineTrafficConfig extends JsonSerializable {
