@@ -26,6 +26,7 @@ import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.genai.JsonSerializable;
 import com.google.genai.types.Content;
 import java.time.Instant;
+import java.util.Map;
 import java.util.Optional;
 
 /** A session event. */
@@ -70,6 +71,10 @@ public abstract class SessionEvent extends JsonSerializable {
   /** Required. Timestamp when the event was created on client side. */
   @JsonProperty("timestamp")
   public abstract Optional<Instant> timestamp();
+
+  /** Optional. Weakly typed raw event data in proto struct format. */
+  @JsonProperty("rawEvent")
+  public abstract Optional<Map<String, Object>> rawEvent();
 
   /** Instantiates a builder for SessionEvent. */
   @ExcludeFromGeneratedCoverageReport
@@ -271,6 +276,24 @@ public abstract class SessionEvent extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearTimestamp() {
       return timestamp(Optional.empty());
+    }
+
+    /**
+     * Setter for rawEvent.
+     *
+     * <p>rawEvent: Optional. Weakly typed raw event data in proto struct format.
+     */
+    @JsonProperty("rawEvent")
+    public abstract Builder rawEvent(Map<String, Object> rawEvent);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder rawEvent(Optional<Map<String, Object>> rawEvent);
+
+    /** Clears the value of rawEvent field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearRawEvent() {
+      return rawEvent(Optional.empty());
     }
 
     public abstract SessionEvent build();
