@@ -228,6 +228,14 @@ public abstract class AgentEngineConfig extends JsonSerializable {
   @JsonProperty("agentConfigSource")
   public abstract Optional<ReasoningEngineSpecSourceCodeSpecAgentConfigSource> agentConfigSource();
 
+  /**
+   * Optional. Specifies the configuration for keep-alive probe. Contains configuration on a
+   * specified endpoint that a deployment host should use to keep the container alive based on the
+   * probe settings.
+   */
+  @JsonProperty("keepAliveProbe")
+  public abstract Optional<KeepAliveProbe> keepAliveProbe();
+
   /** The container spec for the Agent Engine. */
   @JsonProperty("containerSpec")
   public abstract Optional<ReasoningEngineSpecContainerSpec> containerSpec();
@@ -1019,6 +1027,38 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearAgentConfigSource() {
       return agentConfigSource(Optional.empty());
+    }
+
+    /**
+     * Setter for keepAliveProbe.
+     *
+     * <p>keepAliveProbe: Optional. Specifies the configuration for keep-alive probe. Contains
+     * configuration on a specified endpoint that a deployment host should use to keep the container
+     * alive based on the probe settings.
+     */
+    @JsonProperty("keepAliveProbe")
+    public abstract Builder keepAliveProbe(KeepAliveProbe keepAliveProbe);
+
+    /**
+     * Setter for keepAliveProbe builder.
+     *
+     * <p>keepAliveProbe: Optional. Specifies the configuration for keep-alive probe. Contains
+     * configuration on a specified endpoint that a deployment host should use to keep the container
+     * alive based on the probe settings.
+     */
+    @CanIgnoreReturnValue
+    public Builder keepAliveProbe(KeepAliveProbe.Builder keepAliveProbeBuilder) {
+      return keepAliveProbe(keepAliveProbeBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder keepAliveProbe(Optional<KeepAliveProbe> keepAliveProbe);
+
+    /** Clears the value of keepAliveProbe field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearKeepAliveProbe() {
+      return keepAliveProbe(Optional.empty());
     }
 
     /**
