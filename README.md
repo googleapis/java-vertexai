@@ -8,6 +8,9 @@
 > [the migration guide](https://cloud.google.com/vertex-ai/generative-ai/docs/deprecations/genai-vertexai-sdk#java)
 > for details.
 
+> **Note:** The `com.google.cloud.vertexai.genai` package and its classes
+> are **experimental**, and may change in future versions.
+
 Java idiomatic SDK for [Vertex AI][product-docs].
 
 [![Maven][maven-version-image]][maven-version-link]
