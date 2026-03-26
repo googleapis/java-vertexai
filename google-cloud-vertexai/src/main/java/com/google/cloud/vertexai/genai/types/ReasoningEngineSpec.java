@@ -95,6 +95,10 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
   @JsonProperty("sourceCodeSpec")
   public abstract Optional<ReasoningEngineSpecSourceCodeSpec> sourceCodeSpec();
 
+  /** Deploy from a container image with a defined entrypoint and commands. */
+  @JsonProperty("containerSpec")
+  public abstract Optional<ReasoningEngineSpecContainerSpec> containerSpec();
+
   /** Instantiates a builder for ReasoningEngineSpec. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -360,6 +364,34 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearSourceCodeSpec() {
       return sourceCodeSpec(Optional.empty());
+    }
+
+    /**
+     * Setter for containerSpec.
+     *
+     * <p>containerSpec: Deploy from a container image with a defined entrypoint and commands.
+     */
+    @JsonProperty("containerSpec")
+    public abstract Builder containerSpec(ReasoningEngineSpecContainerSpec containerSpec);
+
+    /**
+     * Setter for containerSpec builder.
+     *
+     * <p>containerSpec: Deploy from a container image with a defined entrypoint and commands.
+     */
+    @CanIgnoreReturnValue
+    public Builder containerSpec(ReasoningEngineSpecContainerSpec.Builder containerSpecBuilder) {
+      return containerSpec(containerSpecBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder containerSpec(Optional<ReasoningEngineSpecContainerSpec> containerSpec);
+
+    /** Clears the value of containerSpec field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearContainerSpec() {
+      return containerSpec(Optional.empty());
     }
 
     public abstract ReasoningEngineSpec build();
