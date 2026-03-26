@@ -363,7 +363,7 @@ public final class Sessions {
     return JsonSerializable.fromJsonNode(responseNode, AgentEngineSessionOperation.class);
   }
 
-  AgentEngineSessionOperation privateCreate(
+  public AgentEngineSessionOperation privateCreate(
       String name, String userId, CreateAgentEngineSessionConfig config) {
     BuiltRequest builtRequest = buildRequestForPrivateCreate(name, userId, config);
 
@@ -577,7 +577,7 @@ public final class Sessions {
     return JsonSerializable.fromJsonNode(responseNode, ListReasoningEnginesSessionsResponse.class);
   }
 
-  ListReasoningEnginesSessionsResponse privateList(
+  public ListReasoningEnginesSessionsResponse privateList(
       String name, ListAgentEngineSessionsConfig config) {
     BuiltRequest builtRequest = buildRequestForPrivateList(name, config);
 
@@ -650,7 +650,7 @@ public final class Sessions {
     return JsonSerializable.fromJsonNode(responseNode, AgentEngineSessionOperation.class);
   }
 
-  AgentEngineSessionOperation privateGetSessionOperation(
+  public AgentEngineSessionOperation privateGetSessionOperation(
       String operationName, GetAgentEngineOperationConfig config) {
     BuiltRequest builtRequest = buildRequestForPrivateGetSessionOperation(operationName, config);
 
@@ -722,7 +722,8 @@ public final class Sessions {
     return JsonSerializable.fromJsonNode(responseNode, AgentEngineSessionOperation.class);
   }
 
-  AgentEngineSessionOperation privateUpdate(String name, UpdateAgentEngineSessionConfig config) {
+  public AgentEngineSessionOperation privateUpdate(
+      String name, UpdateAgentEngineSessionConfig config) {
     BuiltRequest builtRequest = buildRequestForPrivateUpdate(name, config);
 
     try (ApiResponse response =

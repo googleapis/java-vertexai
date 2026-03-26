@@ -342,7 +342,7 @@ public final class SessionEvents {
     return JsonSerializable.fromJsonNode(responseNode, ListAgentEngineSessionEventsResponse.class);
   }
 
-  ListAgentEngineSessionEventsResponse privateList(
+  public ListAgentEngineSessionEventsResponse privateList(
       String name, ListAgentEngineSessionEventsConfig config) {
     BuiltRequest builtRequest = buildRequestForPrivateList(name, config);
 
