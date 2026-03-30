@@ -96,6 +96,13 @@ public final class Sessions {
           Common.getValueByPath(fromObject, new String[] {"labels"}));
     }
 
+    if (Common.getValueByPath(fromObject, new String[] {"sessionId"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"_query", "sessionId"},
+          Common.getValueByPath(fromObject, new String[] {"sessionId"}));
+    }
+
     return toObject;
   }
 
@@ -257,6 +264,13 @@ public final class Sessions {
           parentObject,
           new String[] {"labels"},
           Common.getValueByPath(fromObject, new String[] {"labels"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"sessionId"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"_query", "sessionId"},
+          Common.getValueByPath(fromObject, new String[] {"sessionId"}));
     }
 
     if (Common.getValueByPath(fromObject, new String[] {"updateMask"}) != null) {
