@@ -28,9 +28,8 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * The image spec for building an image (within a single build step).
- *
- * <p>It is based on the config file (i.e. Dockerfile) in the source directory.
+ * The image spec for building an image (within a single build step), based on the config file (i.e.
+ * Dockerfile) in the source directory.
  */
 @AutoValue
 @JsonDeserialize(builder = ReasoningEngineSpecSourceCodeSpecImageSpec.Builder.class)
