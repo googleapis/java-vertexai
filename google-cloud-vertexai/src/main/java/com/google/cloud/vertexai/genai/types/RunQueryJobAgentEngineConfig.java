@@ -39,9 +39,14 @@ public abstract class RunQueryJobAgentEngineConfig extends JsonSerializable {
   @JsonProperty("query")
   public abstract Optional<String> query();
 
-  /** The GCS bucket to use for the query. */
-  @JsonProperty("gcsBucket")
-  public abstract Optional<String> gcsBucket();
+  /**
+   * The GCS URI to use for the output. If it is a file, the system use this file to store the
+   * response. If it represents a directory, the system automatically generate a file for the
+   * response. In both cases, the input query will be stored in the same directory under the same
+   * file name prefix as the output file.
+   */
+  @JsonProperty("outputGcsUri")
+  public abstract Optional<String> outputGcsUri();
 
   /** Instantiates a builder for RunQueryJobAgentEngineConfig. */
   @ExcludeFromGeneratedCoverageReport
@@ -100,21 +105,24 @@ public abstract class RunQueryJobAgentEngineConfig extends JsonSerializable {
     }
 
     /**
-     * Setter for gcsBucket.
+     * Setter for outputGcsUri.
      *
-     * <p>gcsBucket: The GCS bucket to use for the query.
+     * <p>outputGcsUri: The GCS URI to use for the output. If it is a file, the system use this file
+     * to store the response. If it represents a directory, the system automatically generate a file
+     * for the response. In both cases, the input query will be stored in the same directory under
+     * the same file name prefix as the output file.
      */
-    @JsonProperty("gcsBucket")
-    public abstract Builder gcsBucket(String gcsBucket);
+    @JsonProperty("outputGcsUri")
+    public abstract Builder outputGcsUri(String outputGcsUri);
 
     @ExcludeFromGeneratedCoverageReport
-    abstract Builder gcsBucket(Optional<String> gcsBucket);
+    abstract Builder outputGcsUri(Optional<String> outputGcsUri);
 
-    /** Clears the value of gcsBucket field. */
+    /** Clears the value of outputGcsUri field. */
     @ExcludeFromGeneratedCoverageReport
     @CanIgnoreReturnValue
-    public Builder clearGcsBucket() {
-      return gcsBucket(Optional.empty());
+    public Builder clearOutputGcsUri() {
+      return outputGcsUri(Optional.empty());
     }
 
     public abstract RunQueryJobAgentEngineConfig build();
