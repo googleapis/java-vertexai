@@ -75,6 +75,15 @@ public abstract class UpdateAgentEngineSessionConfig extends JsonSerializable {
   public abstract Optional<Map<String, String>> labels();
 
   /**
+   * Optional. The user defined ID to use for session, which will become the final component of the
+   * session resource name. If not provided, Vertex AI will generate a value for this ID. This value
+   * may be up to 63 characters, and valid characters are `[a-z0-9-]`. The first character must be a
+   * letter, and the last character must be a letter or number.
+   */
+  @JsonProperty("sessionId")
+  public abstract Optional<String> sessionId();
+
+  /**
    * The update mask to apply. For the `FieldMask` definition, see
    * https://protobuf.dev/reference/protobuf/google.protobuf/#field-mask.
    */
@@ -235,6 +244,27 @@ public abstract class UpdateAgentEngineSessionConfig extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearLabels() {
       return labels(Optional.empty());
+    }
+
+    /**
+     * Setter for sessionId.
+     *
+     * <p>sessionId: Optional. The user defined ID to use for session, which will become the final
+     * component of the session resource name. If not provided, Vertex AI will generate a value for
+     * this ID. This value may be up to 63 characters, and valid characters are `[a-z0-9-]`. The
+     * first character must be a letter, and the last character must be a letter or number.
+     */
+    @JsonProperty("sessionId")
+    public abstract Builder sessionId(String sessionId);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder sessionId(Optional<String> sessionId);
+
+    /** Clears the value of sessionId field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearSessionId() {
+      return sessionId(Optional.empty());
     }
 
     /**
