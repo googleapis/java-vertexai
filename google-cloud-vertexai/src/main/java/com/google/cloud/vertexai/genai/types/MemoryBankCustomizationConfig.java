@@ -67,6 +67,14 @@ public abstract class MemoryBankCustomizationConfig extends JsonSerializable {
   @JsonProperty("consolidationConfig")
   public abstract Optional<MemoryBankCustomizationConfigConsolidationConfig> consolidationConfig();
 
+  /**
+   * Optional. Indicates whether natural language memory generation should be disabled for all
+   * requests. By default, natural language memory generation is enabled. Set this to `true` when
+   * you only want to generate structured memories.
+   */
+  @JsonProperty("disableNaturalLanguageMemories")
+  public abstract Optional<Boolean> disableNaturalLanguageMemories();
+
   /** Instantiates a builder for MemoryBankCustomizationConfig. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -269,6 +277,27 @@ public abstract class MemoryBankCustomizationConfig extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearConsolidationConfig() {
       return consolidationConfig(Optional.empty());
+    }
+
+    /**
+     * Setter for disableNaturalLanguageMemories.
+     *
+     * <p>disableNaturalLanguageMemories: Optional. Indicates whether natural language memory
+     * generation should be disabled for all requests. By default, natural language memory
+     * generation is enabled. Set this to `true` when you only want to generate structured memories.
+     */
+    @JsonProperty("disableNaturalLanguageMemories")
+    public abstract Builder disableNaturalLanguageMemories(boolean disableNaturalLanguageMemories);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder disableNaturalLanguageMemories(
+        Optional<Boolean> disableNaturalLanguageMemories);
+
+    /** Clears the value of disableNaturalLanguageMemories field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearDisableNaturalLanguageMemories() {
+      return disableNaturalLanguageMemories(Optional.empty());
     }
 
     public abstract MemoryBankCustomizationConfig build();

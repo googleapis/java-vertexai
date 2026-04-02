@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
+import com.google.common.collect.ImmutableList;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.genai.JsonSerializable;
 import com.google.genai.types.HttpOptions;
@@ -61,6 +62,15 @@ public abstract class RetrieveAgentEngineMemoriesConfig extends JsonSerializable
    */
   @JsonProperty("filterGroups")
   public abstract Optional<List<MemoryConjunctionFilter>> filterGroups();
+
+  /**
+   * Specifies the types of memories to retrieve. If this field is empty or not provided, the
+   * request will default to retrieving only memories of type `NATURAL_LANGUAGE_COLLECTION`. If
+   * populated, the request will retrieve memories matching any of the specified `MemoryType`
+   * values.
+   */
+  @JsonProperty("memoryTypes")
+  public abstract Optional<List<MemoryType>> memoryTypes();
 
   /** Instantiates a builder for RetrieveAgentEngineMemoriesConfig. */
   @ExcludeFromGeneratedCoverageReport
@@ -185,6 +195,96 @@ public abstract class RetrieveAgentEngineMemoriesConfig extends JsonSerializable
     @CanIgnoreReturnValue
     public Builder clearFilterGroups() {
       return filterGroups(Optional.empty());
+    }
+
+    /**
+     * Setter for memoryTypes.
+     *
+     * <p>memoryTypes: Specifies the types of memories to retrieve. If this field is empty or not
+     * provided, the request will default to retrieving only memories of type
+     * `NATURAL_LANGUAGE_COLLECTION`. If populated, the request will retrieve memories matching any
+     * of the specified `MemoryType` values.
+     */
+    @JsonProperty("memoryTypes")
+    public abstract Builder memoryTypes(List<MemoryType> memoryTypes);
+
+    /**
+     * Setter for memoryTypes.
+     *
+     * <p>memoryTypes: Specifies the types of memories to retrieve. If this field is empty or not
+     * provided, the request will default to retrieving only memories of type
+     * `NATURAL_LANGUAGE_COLLECTION`. If populated, the request will retrieve memories matching any
+     * of the specified `MemoryType` values.
+     */
+    @CanIgnoreReturnValue
+    public Builder memoryTypes(MemoryType... memoryTypes) {
+      return memoryTypes(Arrays.asList(memoryTypes));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder memoryTypes(Optional<List<MemoryType>> memoryTypes);
+
+    /** Clears the value of memoryTypes field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearMemoryTypes() {
+      return memoryTypes(Optional.empty());
+    }
+
+    /**
+     * Setter for memoryTypes given a varargs of strings.
+     *
+     * <p>memoryTypes: Specifies the types of memories to retrieve. If this field is empty or not
+     * provided, the request will default to retrieving only memories of type
+     * `NATURAL_LANGUAGE_COLLECTION`. If populated, the request will retrieve memories matching any
+     * of the specified `MemoryType` values.
+     */
+    @CanIgnoreReturnValue
+    public Builder memoryTypes(String... memoryTypes) {
+      return memoryTypesFromString(Arrays.asList(memoryTypes));
+    }
+
+    /**
+     * Setter for memoryTypes given a varargs of known enums.
+     *
+     * <p>memoryTypes: Specifies the types of memories to retrieve. If this field is empty or not
+     * provided, the request will default to retrieving only memories of type
+     * `NATURAL_LANGUAGE_COLLECTION`. If populated, the request will retrieve memories matching any
+     * of the specified `MemoryType` values.
+     */
+    @CanIgnoreReturnValue
+    public Builder memoryTypes(MemoryType.Known... knownTypes) {
+      return memoryTypesFromKnown(Arrays.asList(knownTypes));
+    }
+
+    /**
+     * Setter for memoryTypes given a list of known enums.
+     *
+     * <p>memoryTypes: Specifies the types of memories to retrieve. If this field is empty or not
+     * provided, the request will default to retrieving only memories of type
+     * `NATURAL_LANGUAGE_COLLECTION`. If populated, the request will retrieve memories matching any
+     * of the specified `MemoryType` values.
+     */
+    @CanIgnoreReturnValue
+    public Builder memoryTypesFromKnown(List<MemoryType.Known> knownTypes) {
+      ImmutableList<MemoryType> listItems =
+          knownTypes.stream().map(MemoryType::new).collect(toImmutableList());
+      return memoryTypes(listItems);
+    }
+
+    /**
+     * Setter for memoryTypes given a list of strings.
+     *
+     * <p>memoryTypes: Specifies the types of memories to retrieve. If this field is empty or not
+     * provided, the request will default to retrieving only memories of type
+     * `NATURAL_LANGUAGE_COLLECTION`. If populated, the request will retrieve memories matching any
+     * of the specified `MemoryType` values.
+     */
+    @CanIgnoreReturnValue
+    public Builder memoryTypesFromString(List<String> memoryTypes) {
+      ImmutableList<MemoryType> listItems =
+          memoryTypes.stream().map(MemoryType::new).collect(toImmutableList());
+      return memoryTypes(listItems);
     }
 
     public abstract RetrieveAgentEngineMemoriesConfig build();

@@ -119,6 +119,18 @@ public abstract class Memory extends JsonSerializable {
   @JsonProperty("updateTime")
   public abstract Optional<Instant> updateTime();
 
+  /**
+   * Optional. Represents the type of the memory. If not set, the `NATURAL_LANGUAGE_COLLECTION` type
+   * is used. If `STRUCTURED_COLLECTION` or `STRUCTURED_PROFILE` is used, then `structured_data`
+   * must be provided.
+   */
+  @JsonProperty("memoryType")
+  public abstract Optional<MemoryType> memoryType();
+
+  /** Optional. Represents the structured content of the memory. */
+  @JsonProperty("structuredContent")
+  public abstract Optional<MemoryStructuredContent> structuredContent();
+
   /** Instantiates a builder for Memory. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -439,6 +451,78 @@ public abstract class Memory extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearUpdateTime() {
       return updateTime(Optional.empty());
+    }
+
+    /**
+     * Setter for memoryType.
+     *
+     * <p>memoryType: Optional. Represents the type of the memory. If not set, the
+     * `NATURAL_LANGUAGE_COLLECTION` type is used. If `STRUCTURED_COLLECTION` or
+     * `STRUCTURED_PROFILE` is used, then `structured_data` must be provided.
+     */
+    @JsonProperty("memoryType")
+    public abstract Builder memoryType(MemoryType memoryType);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder memoryType(Optional<MemoryType> memoryType);
+
+    /** Clears the value of memoryType field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearMemoryType() {
+      return memoryType(Optional.empty());
+    }
+
+    /**
+     * Setter for memoryType given a known enum.
+     *
+     * <p>memoryType: Optional. Represents the type of the memory. If not set, the
+     * `NATURAL_LANGUAGE_COLLECTION` type is used. If `STRUCTURED_COLLECTION` or
+     * `STRUCTURED_PROFILE` is used, then `structured_data` must be provided.
+     */
+    @CanIgnoreReturnValue
+    public Builder memoryType(MemoryType.Known knownType) {
+      return memoryType(new MemoryType(knownType));
+    }
+
+    /**
+     * Setter for memoryType given a string.
+     *
+     * <p>memoryType: Optional. Represents the type of the memory. If not set, the
+     * `NATURAL_LANGUAGE_COLLECTION` type is used. If `STRUCTURED_COLLECTION` or
+     * `STRUCTURED_PROFILE` is used, then `structured_data` must be provided.
+     */
+    @CanIgnoreReturnValue
+    public Builder memoryType(String memoryType) {
+      return memoryType(new MemoryType(memoryType));
+    }
+
+    /**
+     * Setter for structuredContent.
+     *
+     * <p>structuredContent: Optional. Represents the structured content of the memory.
+     */
+    @JsonProperty("structuredContent")
+    public abstract Builder structuredContent(MemoryStructuredContent structuredContent);
+
+    /**
+     * Setter for structuredContent builder.
+     *
+     * <p>structuredContent: Optional. Represents the structured content of the memory.
+     */
+    @CanIgnoreReturnValue
+    public Builder structuredContent(MemoryStructuredContent.Builder structuredContentBuilder) {
+      return structuredContent(structuredContentBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder structuredContent(Optional<MemoryStructuredContent> structuredContent);
+
+    /** Clears the value of structuredContent field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearStructuredContent() {
+      return structuredContent(Optional.empty());
     }
 
     public abstract Memory build();
