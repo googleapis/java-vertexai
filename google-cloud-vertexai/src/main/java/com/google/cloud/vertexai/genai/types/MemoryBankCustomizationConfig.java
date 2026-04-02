@@ -63,6 +63,10 @@ public abstract class MemoryBankCustomizationConfig extends JsonSerializable {
   @JsonProperty("scopeKeys")
   public abstract Optional<List<String>> scopeKeys();
 
+  /** Optional. Represents configuration for customizing how memories are consolidated together. */
+  @JsonProperty("consolidationConfig")
+  public abstract Optional<MemoryBankCustomizationConfigConsolidationConfig> consolidationConfig();
+
   /** Instantiates a builder for MemoryBankCustomizationConfig. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -232,6 +236,39 @@ public abstract class MemoryBankCustomizationConfig extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearScopeKeys() {
       return scopeKeys(Optional.empty());
+    }
+
+    /**
+     * Setter for consolidationConfig.
+     *
+     * <p>consolidationConfig: Optional. Represents configuration for customizing how memories are
+     * consolidated together.
+     */
+    @JsonProperty("consolidationConfig")
+    public abstract Builder consolidationConfig(
+        MemoryBankCustomizationConfigConsolidationConfig consolidationConfig);
+
+    /**
+     * Setter for consolidationConfig builder.
+     *
+     * <p>consolidationConfig: Optional. Represents configuration for customizing how memories are
+     * consolidated together.
+     */
+    @CanIgnoreReturnValue
+    public Builder consolidationConfig(
+        MemoryBankCustomizationConfigConsolidationConfig.Builder consolidationConfigBuilder) {
+      return consolidationConfig(consolidationConfigBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder consolidationConfig(
+        Optional<MemoryBankCustomizationConfigConsolidationConfig> consolidationConfig);
+
+    /** Clears the value of consolidationConfig field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearConsolidationConfig() {
+      return consolidationConfig(Optional.empty());
     }
 
     public abstract MemoryBankCustomizationConfig build();
