@@ -52,12 +52,14 @@ import okhttp3.ResponseBody;
 
 public final class AgentEngines {
   public final Sessions sessions;
+  public final Sandboxes sandboxes;
 
   final ApiClient apiClient;
 
   public AgentEngines(ApiClient apiClient) {
     this.apiClient = apiClient;
     this.sessions = new Sessions(apiClient);
+    this.sandboxes = new Sandboxes(apiClient);
   }
 
   @ExcludeFromGeneratedCoverageReport
