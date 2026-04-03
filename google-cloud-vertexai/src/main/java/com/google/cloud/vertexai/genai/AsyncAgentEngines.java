@@ -39,6 +39,7 @@ import java.util.concurrent.CompletableFuture;
 public final class AsyncAgentEngines {
   public final AsyncSessions sessions;
   public final AsyncSandboxes sandboxes;
+  public final AsyncMemories memories;
 
   AgentEngines agentEngines;
   ApiClient apiClient;
@@ -49,6 +50,7 @@ public final class AsyncAgentEngines {
 
     this.sessions = new AsyncSessions(apiClient);
     this.sandboxes = new AsyncSandboxes(apiClient);
+    this.memories = new AsyncMemories(apiClient);
   }
 
   CompletableFuture<AgentEngineOperation> privateCreate(CreateAgentEngineConfig config) {
