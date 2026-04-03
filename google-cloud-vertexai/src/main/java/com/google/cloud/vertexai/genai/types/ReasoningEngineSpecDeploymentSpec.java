@@ -91,6 +91,19 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
   @JsonProperty("secretEnv")
   public abstract Optional<List<SecretEnvVar>> secretEnv();
 
+  /** Optional. Agent Gateway configuration for the Reasoning Engine deployment. */
+  @JsonProperty("agentGatewayConfig")
+  public abstract Optional<ReasoningEngineSpecDeploymentSpecAgentGatewayConfig>
+      agentGatewayConfig();
+
+  /**
+   * Optional. Specifies the configuration for keep-alive probe. Contains configuration on a
+   * specified endpoint that a deployment host should use to keep the container alive based on the
+   * probe settings.
+   */
+  @JsonProperty("keepAliveProbe")
+  public abstract Optional<KeepAliveProbe> keepAliveProbe();
+
   /** Instantiates a builder for ReasoningEngineSpecDeploymentSpec. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -348,6 +361,71 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
     @CanIgnoreReturnValue
     public Builder clearSecretEnv() {
       return secretEnv(Optional.empty());
+    }
+
+    /**
+     * Setter for agentGatewayConfig.
+     *
+     * <p>agentGatewayConfig: Optional. Agent Gateway configuration for the Reasoning Engine
+     * deployment.
+     */
+    @JsonProperty("agentGatewayConfig")
+    public abstract Builder agentGatewayConfig(
+        ReasoningEngineSpecDeploymentSpecAgentGatewayConfig agentGatewayConfig);
+
+    /**
+     * Setter for agentGatewayConfig builder.
+     *
+     * <p>agentGatewayConfig: Optional. Agent Gateway configuration for the Reasoning Engine
+     * deployment.
+     */
+    @CanIgnoreReturnValue
+    public Builder agentGatewayConfig(
+        ReasoningEngineSpecDeploymentSpecAgentGatewayConfig.Builder agentGatewayConfigBuilder) {
+      return agentGatewayConfig(agentGatewayConfigBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder agentGatewayConfig(
+        Optional<ReasoningEngineSpecDeploymentSpecAgentGatewayConfig> agentGatewayConfig);
+
+    /** Clears the value of agentGatewayConfig field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearAgentGatewayConfig() {
+      return agentGatewayConfig(Optional.empty());
+    }
+
+    /**
+     * Setter for keepAliveProbe.
+     *
+     * <p>keepAliveProbe: Optional. Specifies the configuration for keep-alive probe. Contains
+     * configuration on a specified endpoint that a deployment host should use to keep the container
+     * alive based on the probe settings.
+     */
+    @JsonProperty("keepAliveProbe")
+    public abstract Builder keepAliveProbe(KeepAliveProbe keepAliveProbe);
+
+    /**
+     * Setter for keepAliveProbe builder.
+     *
+     * <p>keepAliveProbe: Optional. Specifies the configuration for keep-alive probe. Contains
+     * configuration on a specified endpoint that a deployment host should use to keep the container
+     * alive based on the probe settings.
+     */
+    @CanIgnoreReturnValue
+    public Builder keepAliveProbe(KeepAliveProbe.Builder keepAliveProbeBuilder) {
+      return keepAliveProbe(keepAliveProbeBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder keepAliveProbe(Optional<KeepAliveProbe> keepAliveProbe);
+
+    /** Clears the value of keepAliveProbe field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearKeepAliveProbe() {
+      return keepAliveProbe(Optional.empty());
     }
 
     public abstract ReasoningEngineSpecDeploymentSpec build();

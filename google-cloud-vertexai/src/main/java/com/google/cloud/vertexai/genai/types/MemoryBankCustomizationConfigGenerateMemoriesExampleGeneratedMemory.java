@@ -36,13 +36,13 @@ import java.util.Optional;
     builder = MemoryBankCustomizationConfigGenerateMemoriesExampleGeneratedMemory.Builder.class)
 public abstract class MemoryBankCustomizationConfigGenerateMemoriesExampleGeneratedMemory
     extends JsonSerializable {
-  /** Required. The fact to generate a memory from. */
+  /** Required. Represents the fact to generate a memory from. */
   @JsonProperty("fact")
   public abstract Optional<String> fact();
 
   /**
-   * Optional. The list of topics that the memory should be associated with. For example, use
-   * `custom_memory_topic_label = "jargon"` if the extracted memory is an example of memory
+   * Optional. Represents the list of topics that the memory should be associated with. For example,
+   * use `custom_memory_topic_label = "jargon"` if the extracted memory is an example of memory
    * extraction for the custom topic `jargon`.
    */
   @JsonProperty("topics")
@@ -77,7 +77,7 @@ public abstract class MemoryBankCustomizationConfigGenerateMemoriesExampleGenera
     /**
      * Setter for fact.
      *
-     * <p>fact: Required. The fact to generate a memory from.
+     * <p>fact: Required. Represents the fact to generate a memory from.
      */
     @JsonProperty("fact")
     public abstract Builder fact(String fact);
@@ -95,9 +95,9 @@ public abstract class MemoryBankCustomizationConfigGenerateMemoriesExampleGenera
     /**
      * Setter for topics.
      *
-     * <p>topics: Optional. The list of topics that the memory should be associated with. For
-     * example, use `custom_memory_topic_label = "jargon"` if the extracted memory is an example of
-     * memory extraction for the custom topic `jargon`.
+     * <p>topics: Optional. Represents the list of topics that the memory should be associated with.
+     * For example, use `custom_memory_topic_label = "jargon"` if the extracted memory is an example
+     * of memory extraction for the custom topic `jargon`.
      */
     @JsonProperty("topics")
     public abstract Builder topics(List<MemoryTopicId> topics);
@@ -105,9 +105,9 @@ public abstract class MemoryBankCustomizationConfigGenerateMemoriesExampleGenera
     /**
      * Setter for topics.
      *
-     * <p>topics: Optional. The list of topics that the memory should be associated with. For
-     * example, use `custom_memory_topic_label = "jargon"` if the extracted memory is an example of
-     * memory extraction for the custom topic `jargon`.
+     * <p>topics: Optional. Represents the list of topics that the memory should be associated with.
+     * For example, use `custom_memory_topic_label = "jargon"` if the extracted memory is an example
+     * of memory extraction for the custom topic `jargon`.
      */
     @CanIgnoreReturnValue
     public Builder topics(MemoryTopicId... topics) {
@@ -117,9 +117,9 @@ public abstract class MemoryBankCustomizationConfigGenerateMemoriesExampleGenera
     /**
      * Setter for topics builder.
      *
-     * <p>topics: Optional. The list of topics that the memory should be associated with. For
-     * example, use `custom_memory_topic_label = "jargon"` if the extracted memory is an example of
-     * memory extraction for the custom topic `jargon`.
+     * <p>topics: Optional. Represents the list of topics that the memory should be associated with.
+     * For example, use `custom_memory_topic_label = "jargon"` if the extracted memory is an example
+     * of memory extraction for the custom topic `jargon`.
      */
     @CanIgnoreReturnValue
     public Builder topics(MemoryTopicId.Builder... topicsBuilders) {

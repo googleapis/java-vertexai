@@ -36,38 +36,38 @@ import java.util.Optional;
 @AutoValue
 @JsonDeserialize(builder = MemoryRevision.Builder.class)
 public abstract class MemoryRevision extends JsonSerializable {
-  /** Output only. Timestamp when this Memory Revision was created. */
+  /** Output only. Represents the timestamp when this Memory Revision was created. */
   @JsonProperty("createTime")
   public abstract Optional<Instant> createTime();
 
-  /** Output only. Timestamp of when this resource is considered expired. */
+  /** Output only. Represents the timestamp of when this resource is considered expired. */
   @JsonProperty("expireTime")
   public abstract Optional<Instant> expireTime();
 
   /**
-   * Output only. The extracted memories from the source content before consolidation when the
-   * memory was updated via GenerateMemories. This information was used to modify an existing Memory
-   * via Consolidation.
+   * Output only. Represents the extracted memories from the source content before consolidation
+   * when the memory was updated via GenerateMemories. This information was used to modify an
+   * existing Memory via Consolidation.
    */
   @JsonProperty("extractedMemories")
   public abstract Optional<List<IntermediateExtractedMemory>> extractedMemories();
 
   /**
-   * Output only. The fact of the Memory Revision. This corresponds to the `fact` field of the
-   * parent Memory at the time of revision creation.
+   * Output only. Represents the fact of the Memory Revision. This corresponds to the `fact` field
+   * of the parent Memory at the time of revision creation.
    */
   @JsonProperty("fact")
   public abstract Optional<String> fact();
 
   /**
-   * Output only. The labels of the Memory Revision. These labels are applied to the MemoryRevision
-   * when it is created based on `GenerateMemoriesRequest.revision_labels`.
+   * Output only. Represents the labels of the Memory Revision. These labels are applied to the
+   * MemoryRevision when it is created based on `GenerateMemoriesRequest.revision_labels`.
    */
   @JsonProperty("labels")
   public abstract Optional<Map<String, String>> labels();
 
   /**
-   * Identifier. The resource name of the Memory Revision. Format:
+   * Identifier. Represents the resource name of the Memory Revision. Format:
    * `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/memories/{memory}/revisions/{memory_revision}`
    */
   @JsonProperty("name")
@@ -94,7 +94,7 @@ public abstract class MemoryRevision extends JsonSerializable {
     /**
      * Setter for createTime.
      *
-     * <p>createTime: Output only. Timestamp when this Memory Revision was created.
+     * <p>createTime: Output only. Represents the timestamp when this Memory Revision was created.
      */
     @JsonProperty("createTime")
     public abstract Builder createTime(Instant createTime);
@@ -112,7 +112,8 @@ public abstract class MemoryRevision extends JsonSerializable {
     /**
      * Setter for expireTime.
      *
-     * <p>expireTime: Output only. Timestamp of when this resource is considered expired.
+     * <p>expireTime: Output only. Represents the timestamp of when this resource is considered
+     * expired.
      */
     @JsonProperty("expireTime")
     public abstract Builder expireTime(Instant expireTime);
@@ -130,9 +131,9 @@ public abstract class MemoryRevision extends JsonSerializable {
     /**
      * Setter for extractedMemories.
      *
-     * <p>extractedMemories: Output only. The extracted memories from the source content before
-     * consolidation when the memory was updated via GenerateMemories. This information was used to
-     * modify an existing Memory via Consolidation.
+     * <p>extractedMemories: Output only. Represents the extracted memories from the source content
+     * before consolidation when the memory was updated via GenerateMemories. This information was
+     * used to modify an existing Memory via Consolidation.
      */
     @JsonProperty("extractedMemories")
     public abstract Builder extractedMemories(List<IntermediateExtractedMemory> extractedMemories);
@@ -140,9 +141,9 @@ public abstract class MemoryRevision extends JsonSerializable {
     /**
      * Setter for extractedMemories.
      *
-     * <p>extractedMemories: Output only. The extracted memories from the source content before
-     * consolidation when the memory was updated via GenerateMemories. This information was used to
-     * modify an existing Memory via Consolidation.
+     * <p>extractedMemories: Output only. Represents the extracted memories from the source content
+     * before consolidation when the memory was updated via GenerateMemories. This information was
+     * used to modify an existing Memory via Consolidation.
      */
     @CanIgnoreReturnValue
     public Builder extractedMemories(IntermediateExtractedMemory... extractedMemories) {
@@ -152,9 +153,9 @@ public abstract class MemoryRevision extends JsonSerializable {
     /**
      * Setter for extractedMemories builder.
      *
-     * <p>extractedMemories: Output only. The extracted memories from the source content before
-     * consolidation when the memory was updated via GenerateMemories. This information was used to
-     * modify an existing Memory via Consolidation.
+     * <p>extractedMemories: Output only. Represents the extracted memories from the source content
+     * before consolidation when the memory was updated via GenerateMemories. This information was
+     * used to modify an existing Memory via Consolidation.
      */
     @CanIgnoreReturnValue
     public Builder extractedMemories(
@@ -179,8 +180,8 @@ public abstract class MemoryRevision extends JsonSerializable {
     /**
      * Setter for fact.
      *
-     * <p>fact: Output only. The fact of the Memory Revision. This corresponds to the `fact` field
-     * of the parent Memory at the time of revision creation.
+     * <p>fact: Output only. Represents the fact of the Memory Revision. This corresponds to the
+     * `fact` field of the parent Memory at the time of revision creation.
      */
     @JsonProperty("fact")
     public abstract Builder fact(String fact);
@@ -198,8 +199,9 @@ public abstract class MemoryRevision extends JsonSerializable {
     /**
      * Setter for labels.
      *
-     * <p>labels: Output only. The labels of the Memory Revision. These labels are applied to the
-     * MemoryRevision when it is created based on `GenerateMemoriesRequest.revision_labels`.
+     * <p>labels: Output only. Represents the labels of the Memory Revision. These labels are
+     * applied to the MemoryRevision when it is created based on
+     * `GenerateMemoriesRequest.revision_labels`.
      */
     @JsonProperty("labels")
     public abstract Builder labels(Map<String, String> labels);
@@ -217,7 +219,7 @@ public abstract class MemoryRevision extends JsonSerializable {
     /**
      * Setter for name.
      *
-     * <p>name: Identifier. The resource name of the Memory Revision. Format:
+     * <p>name: Identifier. Represents the resource name of the Memory Revision. Format:
      * `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/memories/{memory}/revisions/{memory_revision}`
      */
     @JsonProperty("name")

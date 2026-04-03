@@ -42,6 +42,10 @@ public abstract class SandboxEnvironmentConnectionInfo extends JsonSerializable 
   @JsonProperty("sandboxInternalIp")
   public abstract Optional<String> sandboxInternalIp();
 
+  /** Output only. The hostname of the SandboxEnvironment. */
+  @JsonProperty("sandboxHostname")
+  public abstract Optional<String> sandboxHostname();
+
   /** Instantiates a builder for SandboxEnvironmentConnectionInfo. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -115,6 +119,24 @@ public abstract class SandboxEnvironmentConnectionInfo extends JsonSerializable 
     @CanIgnoreReturnValue
     public Builder clearSandboxInternalIp() {
       return sandboxInternalIp(Optional.empty());
+    }
+
+    /**
+     * Setter for sandboxHostname.
+     *
+     * <p>sandboxHostname: Output only. The hostname of the SandboxEnvironment.
+     */
+    @JsonProperty("sandboxHostname")
+    public abstract Builder sandboxHostname(String sandboxHostname);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder sandboxHostname(Optional<String> sandboxHostname);
+
+    /** Clears the value of sandboxHostname field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearSandboxHostname() {
+      return sandboxHostname(Optional.empty());
     }
 
     public abstract SandboxEnvironmentConnectionInfo build();

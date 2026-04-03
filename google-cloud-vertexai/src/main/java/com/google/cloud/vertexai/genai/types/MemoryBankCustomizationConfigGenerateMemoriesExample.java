@@ -41,8 +41,9 @@ public abstract class MemoryBankCustomizationConfigGenerateMemoriesExample
       conversationSource();
 
   /**
-   * Optional. The memories that are expected to be generated from the input conversation. An empty
-   * list indicates that no memories are expected to be generated for the input conversation.
+   * Optional. Represents the memories that are expected to be generated from the input
+   * conversation. An empty list indicates that no memories are expected to be generated for the
+   * input conversation.
    */
   @JsonProperty("generatedMemories")
   public abstract Optional<
@@ -106,9 +107,9 @@ public abstract class MemoryBankCustomizationConfigGenerateMemoriesExample
     /**
      * Setter for generatedMemories.
      *
-     * <p>generatedMemories: Optional. The memories that are expected to be generated from the input
-     * conversation. An empty list indicates that no memories are expected to be generated for the
-     * input conversation.
+     * <p>generatedMemories: Optional. Represents the memories that are expected to be generated
+     * from the input conversation. An empty list indicates that no memories are expected to be
+     * generated for the input conversation.
      */
     @JsonProperty("generatedMemories")
     public abstract Builder generatedMemories(
@@ -118,9 +119,9 @@ public abstract class MemoryBankCustomizationConfigGenerateMemoriesExample
     /**
      * Setter for generatedMemories.
      *
-     * <p>generatedMemories: Optional. The memories that are expected to be generated from the input
-     * conversation. An empty list indicates that no memories are expected to be generated for the
-     * input conversation.
+     * <p>generatedMemories: Optional. Represents the memories that are expected to be generated
+     * from the input conversation. An empty list indicates that no memories are expected to be
+     * generated for the input conversation.
      */
     @CanIgnoreReturnValue
     public Builder generatedMemories(
@@ -131,9 +132,9 @@ public abstract class MemoryBankCustomizationConfigGenerateMemoriesExample
     /**
      * Setter for generatedMemories builder.
      *
-     * <p>generatedMemories: Optional. The memories that are expected to be generated from the input
-     * conversation. An empty list indicates that no memories are expected to be generated for the
-     * input conversation.
+     * <p>generatedMemories: Optional. Represents the memories that are expected to be generated
+     * from the input conversation. An empty list indicates that no memories are expected to be
+     * generated for the input conversation.
      */
     @CanIgnoreReturnValue
     public Builder generatedMemories(

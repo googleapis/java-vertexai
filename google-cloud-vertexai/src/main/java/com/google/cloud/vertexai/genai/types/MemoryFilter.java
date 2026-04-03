@@ -31,21 +31,21 @@ import java.util.Optional;
 @JsonDeserialize(builder = MemoryFilter.Builder.class)
 public abstract class MemoryFilter extends JsonSerializable {
   /**
-   * Key of the filter. For example, "author" would apply to `metadata` entries with the key
-   * "author".
+   * Represents the key of the filter. For example, "author" would apply to `metadata` entries with
+   * the key "author".
    */
   @JsonProperty("key")
   public abstract Optional<String> key();
 
-  /** If true, the filter will be negated. */
+  /** Indicates whether the filter will be negated. */
   @JsonProperty("negate")
   public abstract Optional<Boolean> negate();
 
-  /** Operator to apply to the filter. If not set, then EQUAL will be used. */
+  /** Represents the operator to apply to the filter. If not set, then EQUAL will be used. */
   @JsonProperty("op")
   public abstract Optional<Operator> op();
 
-  /** Value to compare to. */
+  /** Represents the value to compare to. */
   @JsonProperty("value")
   public abstract Optional<MemoryMetadataValue> value();
 
@@ -70,8 +70,8 @@ public abstract class MemoryFilter extends JsonSerializable {
     /**
      * Setter for key.
      *
-     * <p>key: Key of the filter. For example, "author" would apply to `metadata` entries with the
-     * key "author".
+     * <p>key: Represents the key of the filter. For example, "author" would apply to `metadata`
+     * entries with the key "author".
      */
     @JsonProperty("key")
     public abstract Builder key(String key);
@@ -89,7 +89,7 @@ public abstract class MemoryFilter extends JsonSerializable {
     /**
      * Setter for negate.
      *
-     * <p>negate: If true, the filter will be negated.
+     * <p>negate: Indicates whether the filter will be negated.
      */
     @JsonProperty("negate")
     public abstract Builder negate(boolean negate);
@@ -107,7 +107,7 @@ public abstract class MemoryFilter extends JsonSerializable {
     /**
      * Setter for op.
      *
-     * <p>op: Operator to apply to the filter. If not set, then EQUAL will be used.
+     * <p>op: Represents the operator to apply to the filter. If not set, then EQUAL will be used.
      */
     @JsonProperty("op")
     public abstract Builder op(Operator op);
@@ -125,7 +125,7 @@ public abstract class MemoryFilter extends JsonSerializable {
     /**
      * Setter for op given a known enum.
      *
-     * <p>op: Operator to apply to the filter. If not set, then EQUAL will be used.
+     * <p>op: Represents the operator to apply to the filter. If not set, then EQUAL will be used.
      */
     @CanIgnoreReturnValue
     public Builder op(Operator.Known knownType) {
@@ -135,7 +135,7 @@ public abstract class MemoryFilter extends JsonSerializable {
     /**
      * Setter for op given a string.
      *
-     * <p>op: Operator to apply to the filter. If not set, then EQUAL will be used.
+     * <p>op: Represents the operator to apply to the filter. If not set, then EQUAL will be used.
      */
     @CanIgnoreReturnValue
     public Builder op(String op) {
@@ -145,7 +145,7 @@ public abstract class MemoryFilter extends JsonSerializable {
     /**
      * Setter for value.
      *
-     * <p>value: Value to compare to.
+     * <p>value: Represents the value to compare to.
      */
     @JsonProperty("value")
     public abstract Builder value(MemoryMetadataValue value);
@@ -153,7 +153,7 @@ public abstract class MemoryFilter extends JsonSerializable {
     /**
      * Setter for value builder.
      *
-     * <p>value: Value to compare to.
+     * <p>value: Represents the value to compare to.
      */
     @CanIgnoreReturnValue
     public Builder value(MemoryMetadataValue.Builder valueBuilder) {

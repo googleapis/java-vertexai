@@ -32,7 +32,7 @@ import java.util.Optional;
 public abstract class ReasoningEngineContextSpecMemoryBankConfigGenerationConfig
     extends JsonSerializable {
   /**
-   * Required. The model used to generate memories. Format:
+   * Optional. The model used to generate memories. Format:
    * `projects/{project}/locations/{location}/publishers/google/models/{model}`.
    */
   @JsonProperty("model")
@@ -62,7 +62,7 @@ public abstract class ReasoningEngineContextSpecMemoryBankConfigGenerationConfig
     /**
      * Setter for model.
      *
-     * <p>model: Required. The model used to generate memories. Format:
+     * <p>model: Optional. The model used to generate memories. Format:
      * `projects/{project}/locations/{location}/publishers/google/models/{model}`.
      */
     @JsonProperty("model")

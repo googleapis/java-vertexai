@@ -31,13 +31,13 @@ import java.util.Optional;
 @JsonDeserialize(builder = MemoryBankCustomizationConfigMemoryTopicCustomMemoryTopic.Builder.class)
 public abstract class MemoryBankCustomizationConfigMemoryTopicCustomMemoryTopic
     extends JsonSerializable {
-  /** Required. The label of the topic. */
+  /** Required. Represents the label of the topic. */
   @JsonProperty("label")
   public abstract Optional<String> label();
 
   /**
-   * Required. Description of the memory topic. This should explain what information should be
-   * extracted for this topic.
+   * Required. Represents the description of the memory topic. This should explain what information
+   * should be extracted for this topic.
    */
   @JsonProperty("description")
   public abstract Optional<String> description();
@@ -66,7 +66,7 @@ public abstract class MemoryBankCustomizationConfigMemoryTopicCustomMemoryTopic
     /**
      * Setter for label.
      *
-     * <p>label: Required. The label of the topic.
+     * <p>label: Required. Represents the label of the topic.
      */
     @JsonProperty("label")
     public abstract Builder label(String label);
@@ -84,8 +84,8 @@ public abstract class MemoryBankCustomizationConfigMemoryTopicCustomMemoryTopic
     /**
      * Setter for description.
      *
-     * <p>description: Required. Description of the memory topic. This should explain what
-     * information should be extracted for this topic.
+     * <p>description: Required. Represents the description of the memory topic. This should explain
+     * what information should be extracted for this topic.
      */
     @JsonProperty("description")
     public abstract Builder description(String description);

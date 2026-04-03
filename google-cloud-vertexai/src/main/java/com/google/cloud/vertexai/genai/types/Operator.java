@@ -23,12 +23,12 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.google.common.base.Ascii;
 import java.util.Objects;
 
-/** Operator to apply to the filter. If not set, then EQUAL will be used. */
+/** Represents the operator to apply to the filter. If not set, then EQUAL will be used. */
 public class Operator {
 
   /** Enum representing the known values for Operator. */
   public enum Known {
-    /** Unspecified operator. Defaults to EQUAL. */
+    /** Represents an unspecified operator. Defaults to EQUAL. */
     OPERATOR_UNSPECIFIED,
 
     /** Equal to. */
