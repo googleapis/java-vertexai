@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.51.0](https://github.com/googleapis/java-vertexai/compare/v1.50.0...v1.51.0) (2026-04-07)
+
+
+### Features
+
+* Add AgentEngine Memories module ([01da9a3](https://github.com/googleapis/java-vertexai/commit/01da9a3d95789c63940fb02877017b2c32638aa9))
+* Add AgentEngine Memories Revisions module ([7196cad](https://github.com/googleapis/java-vertexai/commit/7196cad2633a9028f937e6a4bff3501c25ee3d83))
+* Add AgentEngine Sandboxes module ([b690152](https://github.com/googleapis/java-vertexai/commit/b6901521c80b25ed988f7d97e200c86f62548739))
+* Add consolidation customization to Memory Bank ([27adf0e](https://github.com/googleapis/java-vertexai/commit/27adf0ea0acffd93763c204aa4b72627e811cdb0))
+* Add session_id to Create Session to allow custom session id ([d6af269](https://github.com/googleapis/java-vertexai/commit/d6af2692fe29388669b5f33632d116f7741e7765))
+* In run_query_job, rename gcs_bucket to gcs_uri and allow the case that user sets the filename for the output. ([dffffd3](https://github.com/googleapis/java-vertexai/commit/dffffd3215d89b40f29e6cbf58cd5820c18d85f6))
+
 ## [1.50.0](https://github.com/googleapis/java-vertexai/compare/v1.49.0...v1.50.0) (2026-03-30)
 
 

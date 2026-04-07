@@ -1,6 +1,6 @@
 # Format:
 # module:released-version:current-version
 
-google-cloud-vertexai:1.50.0:1.51.0-SNAPSHOT
-grpc-google-cloud-vertexai-v1:1.50.0:1.51.0-SNAPSHOT
-proto-google-cloud-vertexai-v1:1.50.0:1.51.0-SNAPSHOT
+google-cloud-vertexai:1.51.0:1.51.0
+grpc-google-cloud-vertexai-v1:1.51.0:1.51.0
+proto-google-cloud-vertexai-v1:1.51.0:1.51.0
