@@ -69,11 +69,13 @@ import java.util.Optional;
 import okhttp3.ResponseBody;
 
 public final class Memories {
+  public final MemoryRevisions revisions;
 
   final ApiClient apiClient;
 
   public Memories(ApiClient apiClient) {
     this.apiClient = apiClient;
+    this.revisions = new MemoryRevisions(apiClient);
   }
 
   @ExcludeFromGeneratedCoverageReport

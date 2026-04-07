@@ -51,6 +51,7 @@ import java.util.concurrent.CompletableFuture;
 
 /** Async module of {@link Memories} */
 public final class AsyncMemories {
+  public final AsyncMemoryRevisions revisions;
 
   Memories memories;
   ApiClient apiClient;
@@ -58,6 +59,8 @@ public final class AsyncMemories {
   public AsyncMemories(ApiClient apiClient) {
     this.apiClient = apiClient;
     this.memories = new Memories(apiClient);
+
+    this.revisions = new AsyncMemoryRevisions(apiClient);
   }
 
   CompletableFuture<AgentEngineMemoryOperation> privateCreate(
