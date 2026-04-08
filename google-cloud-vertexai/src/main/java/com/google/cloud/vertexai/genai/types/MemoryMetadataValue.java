@@ -31,20 +31,21 @@ import java.util.Optional;
 @AutoValue
 @JsonDeserialize(builder = MemoryMetadataValue.Builder.class)
 public abstract class MemoryMetadataValue extends JsonSerializable {
-  /** Boolean value. */
+  /** Represents a boolean value. */
   @JsonProperty("boolValue")
   public abstract Optional<Boolean> boolValue();
 
-  /** Double value. */
+  /** Represents a double value. */
   @JsonProperty("doubleValue")
   public abstract Optional<Double> doubleValue();
 
-  /** String value. */
+  /** Represents a string value. */
   @JsonProperty("stringValue")
   public abstract Optional<String> stringValue();
 
   /**
-   * Timestamp value. When filtering on timestamp values, only the seconds field will be compared.
+   * Represents a timestamp value. When filtering on timestamp values, only the seconds field will
+   * be compared.
    */
   @JsonProperty("timestampValue")
   public abstract Optional<Instant> timestampValue();
@@ -70,7 +71,7 @@ public abstract class MemoryMetadataValue extends JsonSerializable {
     /**
      * Setter for boolValue.
      *
-     * <p>boolValue: Boolean value.
+     * <p>boolValue: Represents a boolean value.
      */
     @JsonProperty("boolValue")
     public abstract Builder boolValue(boolean boolValue);
@@ -88,7 +89,7 @@ public abstract class MemoryMetadataValue extends JsonSerializable {
     /**
      * Setter for doubleValue.
      *
-     * <p>doubleValue: Double value.
+     * <p>doubleValue: Represents a double value.
      */
     @JsonProperty("doubleValue")
     public abstract Builder doubleValue(Double doubleValue);
@@ -106,7 +107,7 @@ public abstract class MemoryMetadataValue extends JsonSerializable {
     /**
      * Setter for stringValue.
      *
-     * <p>stringValue: String value.
+     * <p>stringValue: Represents a string value.
      */
     @JsonProperty("stringValue")
     public abstract Builder stringValue(String stringValue);
@@ -124,8 +125,8 @@ public abstract class MemoryMetadataValue extends JsonSerializable {
     /**
      * Setter for timestampValue.
      *
-     * <p>timestampValue: Timestamp value. When filtering on timestamp values, only the seconds
-     * field will be compared.
+     * <p>timestampValue: Represents a timestamp value. When filtering on timestamp values, only the
+     * seconds field will be compared.
      */
     @JsonProperty("timestampValue")
     public abstract Builder timestampValue(Instant timestampValue);

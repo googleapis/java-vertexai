@@ -30,7 +30,7 @@ import java.util.Optional;
 @AutoValue
 @JsonDeserialize(builder = IntermediateExtractedMemory.Builder.class)
 public abstract class IntermediateExtractedMemory extends JsonSerializable {
-  /** Output only. The fact of the extracted memory. */
+  /** Output only. Represents the fact of the extracted memory. */
   @JsonProperty("fact")
   public abstract Optional<String> fact();
 
@@ -55,7 +55,7 @@ public abstract class IntermediateExtractedMemory extends JsonSerializable {
     /**
      * Setter for fact.
      *
-     * <p>fact: Output only. The fact of the extracted memory.
+     * <p>fact: Output only. Represents the fact of the extracted memory.
      */
     @JsonProperty("fact")
     public abstract Builder fact(String fact);

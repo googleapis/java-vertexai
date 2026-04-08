@@ -34,7 +34,7 @@ import java.util.Optional;
 @AutoValue
 @JsonDeserialize(builder = MemoryConjunctionFilter.Builder.class)
 public abstract class MemoryConjunctionFilter extends JsonSerializable {
-  /** Filters that will combined using AND logic. */
+  /** Represents filters that will be combined using AND logic. */
   @JsonProperty("filters")
   public abstract Optional<List<MemoryFilter>> filters();
 
@@ -59,7 +59,7 @@ public abstract class MemoryConjunctionFilter extends JsonSerializable {
     /**
      * Setter for filters.
      *
-     * <p>filters: Filters that will combined using AND logic.
+     * <p>filters: Represents filters that will be combined using AND logic.
      */
     @JsonProperty("filters")
     public abstract Builder filters(List<MemoryFilter> filters);
@@ -67,7 +67,7 @@ public abstract class MemoryConjunctionFilter extends JsonSerializable {
     /**
      * Setter for filters.
      *
-     * <p>filters: Filters that will combined using AND logic.
+     * <p>filters: Represents filters that will be combined using AND logic.
      */
     @CanIgnoreReturnValue
     public Builder filters(MemoryFilter... filters) {
@@ -77,7 +77,7 @@ public abstract class MemoryConjunctionFilter extends JsonSerializable {
     /**
      * Setter for filters builder.
      *
-     * <p>filters: Filters that will combined using AND logic.
+     * <p>filters: Represents filters that will be combined using AND logic.
      */
     @CanIgnoreReturnValue
     public Builder filters(MemoryFilter.Builder... filtersBuilders) {

@@ -30,35 +30,35 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-/** Configuration for organizing memories for a particular scope. */
+/** Represents configuration for organizing natural language memories for a particular scope. */
 @AutoValue
 @JsonDeserialize(builder = MemoryBankCustomizationConfig.Builder.class)
 public abstract class MemoryBankCustomizationConfig extends JsonSerializable {
   /**
-   * Optional. If true, then the memories will be generated in the third person (i.e. "The user
+   * Optional. Indicates whether the memories will be generated in the third person (i.e. "The user
    * generates memories with Memory Bank."). By default, the memories will be generated in the first
    * person (i.e. "I generate memories with Memory Bank.")
    */
   @JsonProperty("enableThirdPersonMemories")
   public abstract Optional<Boolean> enableThirdPersonMemories();
 
-  /** Optional. Examples of how to generate memories for a particular scope. */
+  /** Optional. Provides examples of how to generate memories for a particular scope. */
   @JsonProperty("generateMemoriesExamples")
   public abstract Optional<List<MemoryBankCustomizationConfigGenerateMemoriesExample>>
       generateMemoriesExamples();
 
   /**
-   * Optional. Topics of information that should be extracted from conversations and stored as
-   * memories. If not set, then Memory Bank's default topics will be used.
+   * Optional. Represents topics of information that should be extracted from conversations and
+   * stored as memories. If not set, then Memory Bank's default topics will be used.
    */
   @JsonProperty("memoryTopics")
   public abstract Optional<List<MemoryBankCustomizationConfigMemoryTopic>> memoryTopics();
 
   /**
-   * Optional. The scope keys (i.e. 'user_id') for which to use this config. A request's scope must
-   * include all of the provided keys for the config to be used (order does not matter). If empty,
-   * then the config will be used for all requests that do not have a more specific config. Only one
-   * default config is allowed per Memory Bank.
+   * Optional. Represents the scope keys (i.e. 'user_id') for which to use this config. A request's
+   * scope must include all of the provided keys for the config to be used (order does not matter).
+   * If empty, then the config will be used for all requests that do not have a more specific
+   * config. Only one default config is allowed per Memory Bank.
    */
   @JsonProperty("scopeKeys")
   public abstract Optional<List<String>> scopeKeys();
@@ -90,9 +90,9 @@ public abstract class MemoryBankCustomizationConfig extends JsonSerializable {
     /**
      * Setter for enableThirdPersonMemories.
      *
-     * <p>enableThirdPersonMemories: Optional. If true, then the memories will be generated in the
-     * third person (i.e. "The user generates memories with Memory Bank."). By default, the memories
-     * will be generated in the first person (i.e. "I generate memories with Memory Bank.")
+     * <p>enableThirdPersonMemories: Optional. Indicates whether the memories will be generated in
+     * the third person (i.e. "The user generates memories with Memory Bank."). By default, the
+     * memories will be generated in the first person (i.e. "I generate memories with Memory Bank.")
      */
     @JsonProperty("enableThirdPersonMemories")
     public abstract Builder enableThirdPersonMemories(boolean enableThirdPersonMemories);
@@ -110,8 +110,8 @@ public abstract class MemoryBankCustomizationConfig extends JsonSerializable {
     /**
      * Setter for generateMemoriesExamples.
      *
-     * <p>generateMemoriesExamples: Optional. Examples of how to generate memories for a particular
-     * scope.
+     * <p>generateMemoriesExamples: Optional. Provides examples of how to generate memories for a
+     * particular scope.
      */
     @JsonProperty("generateMemoriesExamples")
     public abstract Builder generateMemoriesExamples(
@@ -120,8 +120,8 @@ public abstract class MemoryBankCustomizationConfig extends JsonSerializable {
     /**
      * Setter for generateMemoriesExamples.
      *
-     * <p>generateMemoriesExamples: Optional. Examples of how to generate memories for a particular
-     * scope.
+     * <p>generateMemoriesExamples: Optional. Provides examples of how to generate memories for a
+     * particular scope.
      */
     @CanIgnoreReturnValue
     public Builder generateMemoriesExamples(
@@ -132,8 +132,8 @@ public abstract class MemoryBankCustomizationConfig extends JsonSerializable {
     /**
      * Setter for generateMemoriesExamples builder.
      *
-     * <p>generateMemoriesExamples: Optional. Examples of how to generate memories for a particular
-     * scope.
+     * <p>generateMemoriesExamples: Optional. Provides examples of how to generate memories for a
+     * particular scope.
      */
     @CanIgnoreReturnValue
     public Builder generateMemoriesExamples(
@@ -160,8 +160,9 @@ public abstract class MemoryBankCustomizationConfig extends JsonSerializable {
     /**
      * Setter for memoryTopics.
      *
-     * <p>memoryTopics: Optional. Topics of information that should be extracted from conversations
-     * and stored as memories. If not set, then Memory Bank's default topics will be used.
+     * <p>memoryTopics: Optional. Represents topics of information that should be extracted from
+     * conversations and stored as memories. If not set, then Memory Bank's default topics will be
+     * used.
      */
     @JsonProperty("memoryTopics")
     public abstract Builder memoryTopics(
@@ -170,8 +171,9 @@ public abstract class MemoryBankCustomizationConfig extends JsonSerializable {
     /**
      * Setter for memoryTopics.
      *
-     * <p>memoryTopics: Optional. Topics of information that should be extracted from conversations
-     * and stored as memories. If not set, then Memory Bank's default topics will be used.
+     * <p>memoryTopics: Optional. Represents topics of information that should be extracted from
+     * conversations and stored as memories. If not set, then Memory Bank's default topics will be
+     * used.
      */
     @CanIgnoreReturnValue
     public Builder memoryTopics(MemoryBankCustomizationConfigMemoryTopic... memoryTopics) {
@@ -181,8 +183,9 @@ public abstract class MemoryBankCustomizationConfig extends JsonSerializable {
     /**
      * Setter for memoryTopics builder.
      *
-     * <p>memoryTopics: Optional. Topics of information that should be extracted from conversations
-     * and stored as memories. If not set, then Memory Bank's default topics will be used.
+     * <p>memoryTopics: Optional. Represents topics of information that should be extracted from
+     * conversations and stored as memories. If not set, then Memory Bank's default topics will be
+     * used.
      */
     @CanIgnoreReturnValue
     public Builder memoryTopics(
@@ -207,10 +210,10 @@ public abstract class MemoryBankCustomizationConfig extends JsonSerializable {
     /**
      * Setter for scopeKeys.
      *
-     * <p>scopeKeys: Optional. The scope keys (i.e. 'user_id') for which to use this config. A
-     * request's scope must include all of the provided keys for the config to be used (order does
-     * not matter). If empty, then the config will be used for all requests that do not have a more
-     * specific config. Only one default config is allowed per Memory Bank.
+     * <p>scopeKeys: Optional. Represents the scope keys (i.e. 'user_id') for which to use this
+     * config. A request's scope must include all of the provided keys for the config to be used
+     * (order does not matter). If empty, then the config will be used for all requests that do not
+     * have a more specific config. Only one default config is allowed per Memory Bank.
      */
     @JsonProperty("scopeKeys")
     public abstract Builder scopeKeys(List<String> scopeKeys);
@@ -218,10 +221,10 @@ public abstract class MemoryBankCustomizationConfig extends JsonSerializable {
     /**
      * Setter for scopeKeys.
      *
-     * <p>scopeKeys: Optional. The scope keys (i.e. 'user_id') for which to use this config. A
-     * request's scope must include all of the provided keys for the config to be used (order does
-     * not matter). If empty, then the config will be used for all requests that do not have a more
-     * specific config. Only one default config is allowed per Memory Bank.
+     * <p>scopeKeys: Optional. Represents the scope keys (i.e. 'user_id') for which to use this
+     * config. A request's scope must include all of the provided keys for the config to be used
+     * (order does not matter). If empty, then the config will be used for all requests that do not
+     * have a more specific config. Only one default config is allowed per Memory Bank.
      */
     @CanIgnoreReturnValue
     public Builder scopeKeys(String... scopeKeys) {

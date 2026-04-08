@@ -23,27 +23,27 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.google.common.base.Ascii;
 import java.util.Objects;
 
-/** The managed memory topic. */
+/** Represents the managed memory topic. */
 public class ManagedTopicEnum {
 
   /** Enum representing the known values for ManagedTopicEnum. */
   public enum Known {
-    /** Unspecified topic. This value should not be used. */
+    /** Represents an unspecified topic. This value should not be used. */
     MANAGED_TOPIC_ENUM_UNSPECIFIED,
 
     /**
-     * Significant personal information about the User like first names, relationships, hobbies,
-     * important dates.
+     * Represents significant personal information about the User like first names, relationships,
+     * hobbies, important dates.
      */
     USER_PERSONAL_INFO,
 
-    /** Stated or implied likes, dislikes, preferred styles, or patterns. */
+    /** Represents stated or implied likes, dislikes, preferred styles, or patterns. */
     USER_PREFERENCES,
 
-    /** Important milestones or conclusions within the dialogue. */
+    /** Represents important milestones or conclusions within the dialogue. */
     KEY_CONVERSATION_DETAILS,
 
-    /** Information that the user explicitly requested to remember or forget. */
+    /** Represents information that the user explicitly requested to remember or forget. */
     EXPLICIT_INSTRUCTIONS
   }
 

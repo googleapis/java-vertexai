@@ -34,7 +34,7 @@ import java.util.Optional;
         MemoryBankCustomizationConfigGenerateMemoriesExampleConversationSourceEvent.Builder.class)
 public abstract class MemoryBankCustomizationConfigGenerateMemoriesExampleConversationSourceEvent
     extends JsonSerializable {
-  /** Required. The content of the event. */
+  /** Required. Represents the content of the event. */
   @JsonProperty("content")
   public abstract Optional<Content> content();
 
@@ -68,7 +68,7 @@ public abstract class MemoryBankCustomizationConfigGenerateMemoriesExampleConver
     /**
      * Setter for content.
      *
-     * <p>content: Required. The content of the event.
+     * <p>content: Required. Represents the content of the event.
      */
     @JsonProperty("content")
     public abstract Builder content(Content content);

@@ -30,11 +30,11 @@ import java.util.Optional;
 @AutoValue
 @JsonDeserialize(builder = MemoryTopicId.Builder.class)
 public abstract class MemoryTopicId extends JsonSerializable {
-  /** Optional. The custom memory topic label. */
+  /** Optional. Represents the custom memory topic label. */
   @JsonProperty("customMemoryTopicLabel")
   public abstract Optional<String> customMemoryTopicLabel();
 
-  /** Optional. The managed memory topic. */
+  /** Optional. Represents the managed memory topic. */
   @JsonProperty("managedMemoryTopic")
   public abstract Optional<ManagedTopicEnum> managedMemoryTopic();
 
@@ -59,7 +59,7 @@ public abstract class MemoryTopicId extends JsonSerializable {
     /**
      * Setter for customMemoryTopicLabel.
      *
-     * <p>customMemoryTopicLabel: Optional. The custom memory topic label.
+     * <p>customMemoryTopicLabel: Optional. Represents the custom memory topic label.
      */
     @JsonProperty("customMemoryTopicLabel")
     public abstract Builder customMemoryTopicLabel(String customMemoryTopicLabel);
@@ -77,7 +77,7 @@ public abstract class MemoryTopicId extends JsonSerializable {
     /**
      * Setter for managedMemoryTopic.
      *
-     * <p>managedMemoryTopic: Optional. The managed memory topic.
+     * <p>managedMemoryTopic: Optional. Represents the managed memory topic.
      */
     @JsonProperty("managedMemoryTopic")
     public abstract Builder managedMemoryTopic(ManagedTopicEnum managedMemoryTopic);
@@ -95,7 +95,7 @@ public abstract class MemoryTopicId extends JsonSerializable {
     /**
      * Setter for managedMemoryTopic given a known enum.
      *
-     * <p>managedMemoryTopic: Optional. The managed memory topic.
+     * <p>managedMemoryTopic: Optional. Represents the managed memory topic.
      */
     @CanIgnoreReturnValue
     public Builder managedMemoryTopic(ManagedTopicEnum.Known knownType) {
@@ -105,7 +105,7 @@ public abstract class MemoryTopicId extends JsonSerializable {
     /**
      * Setter for managedMemoryTopic given a string.
      *
-     * <p>managedMemoryTopic: Optional. The managed memory topic.
+     * <p>managedMemoryTopic: Optional. Represents the managed memory topic.
      */
     @CanIgnoreReturnValue
     public Builder managedMemoryTopic(String managedMemoryTopic) {

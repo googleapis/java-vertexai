@@ -82,6 +82,10 @@ public abstract class ReasoningEngine extends JsonSerializable {
   @JsonProperty("updateTime")
   public abstract Optional<Instant> updateTime();
 
+  /** Optional. Traffic distribution configuration for the Reasoning Engine. */
+  @JsonProperty("trafficConfig")
+  public abstract Optional<ReasoningEngineTrafficConfig> trafficConfig();
+
   /** Instantiates a builder for ReasoningEngine. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -303,6 +307,34 @@ public abstract class ReasoningEngine extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearUpdateTime() {
       return updateTime(Optional.empty());
+    }
+
+    /**
+     * Setter for trafficConfig.
+     *
+     * <p>trafficConfig: Optional. Traffic distribution configuration for the Reasoning Engine.
+     */
+    @JsonProperty("trafficConfig")
+    public abstract Builder trafficConfig(ReasoningEngineTrafficConfig trafficConfig);
+
+    /**
+     * Setter for trafficConfig builder.
+     *
+     * <p>trafficConfig: Optional. Traffic distribution configuration for the Reasoning Engine.
+     */
+    @CanIgnoreReturnValue
+    public Builder trafficConfig(ReasoningEngineTrafficConfig.Builder trafficConfigBuilder) {
+      return trafficConfig(trafficConfigBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder trafficConfig(Optional<ReasoningEngineTrafficConfig> trafficConfig);
+
+    /** Clears the value of trafficConfig field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearTrafficConfig() {
+      return trafficConfig(Optional.empty());
     }
 
     public abstract ReasoningEngine build();

@@ -31,7 +31,7 @@ import java.util.Optional;
 @JsonDeserialize(builder = MemoryBankCustomizationConfigMemoryTopicManagedMemoryTopic.Builder.class)
 public abstract class MemoryBankCustomizationConfigMemoryTopicManagedMemoryTopic
     extends JsonSerializable {
-  /** Required. The managed topic. */
+  /** Required. Represents the managed topic. */
   @JsonProperty("managedTopicEnum")
   public abstract Optional<ManagedTopicEnum> managedTopicEnum();
 
@@ -59,7 +59,7 @@ public abstract class MemoryBankCustomizationConfigMemoryTopicManagedMemoryTopic
     /**
      * Setter for managedTopicEnum.
      *
-     * <p>managedTopicEnum: Required. The managed topic.
+     * <p>managedTopicEnum: Required. Represents the managed topic.
      */
     @JsonProperty("managedTopicEnum")
     public abstract Builder managedTopicEnum(ManagedTopicEnum managedTopicEnum);
@@ -77,7 +77,7 @@ public abstract class MemoryBankCustomizationConfigMemoryTopicManagedMemoryTopic
     /**
      * Setter for managedTopicEnum given a known enum.
      *
-     * <p>managedTopicEnum: Required. The managed topic.
+     * <p>managedTopicEnum: Required. Represents the managed topic.
      */
     @CanIgnoreReturnValue
     public Builder managedTopicEnum(ManagedTopicEnum.Known knownType) {
@@ -87,7 +87,7 @@ public abstract class MemoryBankCustomizationConfigMemoryTopicManagedMemoryTopic
     /**
      * Setter for managedTopicEnum given a string.
      *
-     * <p>managedTopicEnum: Required. The managed topic.
+     * <p>managedTopicEnum: Required. Represents the managed topic.
      */
     @CanIgnoreReturnValue
     public Builder managedTopicEnum(String managedTopicEnum) {

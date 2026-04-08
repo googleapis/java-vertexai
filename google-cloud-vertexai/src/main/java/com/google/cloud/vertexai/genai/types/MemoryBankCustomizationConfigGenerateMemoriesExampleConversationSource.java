@@ -36,7 +36,7 @@ import java.util.Optional;
     builder = MemoryBankCustomizationConfigGenerateMemoriesExampleConversationSource.Builder.class)
 public abstract class MemoryBankCustomizationConfigGenerateMemoriesExampleConversationSource
     extends JsonSerializable {
-  /** Optional. The input conversation events for the example. */
+  /** Optional. Represents the input conversation events for the example. */
   @JsonProperty("events")
   public abstract Optional<
           List<MemoryBankCustomizationConfigGenerateMemoriesExampleConversationSourceEvent>>
@@ -72,7 +72,7 @@ public abstract class MemoryBankCustomizationConfigGenerateMemoriesExampleConver
     /**
      * Setter for events.
      *
-     * <p>events: Optional. The input conversation events for the example.
+     * <p>events: Optional. Represents the input conversation events for the example.
      */
     @JsonProperty("events")
     public abstract Builder events(
@@ -81,7 +81,7 @@ public abstract class MemoryBankCustomizationConfigGenerateMemoriesExampleConver
     /**
      * Setter for events.
      *
-     * <p>events: Optional. The input conversation events for the example.
+     * <p>events: Optional. Represents the input conversation events for the example.
      */
     @CanIgnoreReturnValue
     public Builder events(
@@ -92,7 +92,7 @@ public abstract class MemoryBankCustomizationConfigGenerateMemoriesExampleConver
     /**
      * Setter for events builder.
      *
-     * <p>events: Optional. The input conversation events for the example.
+     * <p>events: Optional. Represents the input conversation events for the example.
      */
     @CanIgnoreReturnValue
     public Builder events(
