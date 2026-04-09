@@ -259,6 +259,13 @@ public final class Memories {
           Common.getValueByPath(fromObject, new String[] {"metadataMergeStrategy"}));
     }
 
+    if (Common.getValueByPath(fromObject, new String[] {"allowedTopics"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"allowedTopics"},
+          Common.getValueByPath(fromObject, new String[] {"allowedTopics"}));
+    }
+
     return toObject;
   }
 

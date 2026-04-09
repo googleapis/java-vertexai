@@ -18,6 +18,8 @@
 
 package com.google.cloud.vertexai.genai.types;
 
+import static com.google.common.collect.ImmutableList.toImmutableList;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -27,6 +29,8 @@ import com.google.genai.JsonSerializable;
 import com.google.genai.types.HttpOptions;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -84,6 +88,10 @@ public abstract class GenerateAgentEngineMemoriesConfig extends JsonSerializable
   /** Optional. The strategy to use when applying metadata to existing memories. */
   @JsonProperty("metadataMergeStrategy")
   public abstract Optional<MemoryMetadataMergeStrategy> metadataMergeStrategy();
+
+  /** Optional. Restricts memory generation to a subset of memory topics. */
+  @JsonProperty("allowedTopics")
+  public abstract Optional<List<MemoryTopicId>> allowedTopics();
 
   /** Instantiates a builder for GenerateAgentEngineMemoriesConfig. */
   @ExcludeFromGeneratedCoverageReport
@@ -300,6 +308,47 @@ public abstract class GenerateAgentEngineMemoriesConfig extends JsonSerializable
     @CanIgnoreReturnValue
     public Builder metadataMergeStrategy(String metadataMergeStrategy) {
       return metadataMergeStrategy(new MemoryMetadataMergeStrategy(metadataMergeStrategy));
+    }
+
+    /**
+     * Setter for allowedTopics.
+     *
+     * <p>allowedTopics: Optional. Restricts memory generation to a subset of memory topics.
+     */
+    @JsonProperty("allowedTopics")
+    public abstract Builder allowedTopics(List<MemoryTopicId> allowedTopics);
+
+    /**
+     * Setter for allowedTopics.
+     *
+     * <p>allowedTopics: Optional. Restricts memory generation to a subset of memory topics.
+     */
+    @CanIgnoreReturnValue
+    public Builder allowedTopics(MemoryTopicId... allowedTopics) {
+      return allowedTopics(Arrays.asList(allowedTopics));
+    }
+
+    /**
+     * Setter for allowedTopics builder.
+     *
+     * <p>allowedTopics: Optional. Restricts memory generation to a subset of memory topics.
+     */
+    @CanIgnoreReturnValue
+    public Builder allowedTopics(MemoryTopicId.Builder... allowedTopicsBuilders) {
+      return allowedTopics(
+          Arrays.asList(allowedTopicsBuilders).stream()
+              .map(MemoryTopicId.Builder::build)
+              .collect(toImmutableList()));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder allowedTopics(Optional<List<MemoryTopicId>> allowedTopics);
+
+    /** Clears the value of allowedTopics field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearAllowedTopics() {
+      return allowedTopics(Optional.empty());
     }
 
     public abstract GenerateAgentEngineMemoriesConfig build();
