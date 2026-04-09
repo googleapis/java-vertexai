@@ -465,6 +465,13 @@ public final class Memories {
           Common.getValueByPath(fromObject, new String[] {"filterGroups"}));
     }
 
+    if (Common.getValueByPath(fromObject, new String[] {"memoryTypes"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"memoryTypes"},
+          Common.getValueByPath(fromObject, new String[] {"memoryTypes"}));
+    }
+
     return toObject;
   }
 
