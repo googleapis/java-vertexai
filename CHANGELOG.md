@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.52.0](https://github.com/googleapis/java-vertexai/compare/v1.51.0...v1.52.0) (2026-04-10)
+
+
+### Features
+
+* Add subset_topics to Memory Bank GenerateMemories ([3d7e09e](https://github.com/googleapis/java-vertexai/commit/3d7e09e697df3f6b1ed8821a9e71577e2077950d))
+* Add support for agent gateway in agent engine ([fc840bb](https://github.com/googleapis/java-vertexai/commit/fc840bb90f5f0a3b5cade4d183de74e475f93cad))
+
+
+### Documentation
+
+* Add more examples for AgentEngine ([cb3d618](https://github.com/googleapis/java-vertexai/commit/cb3d618617b36f0725e3b581803729017d3c2f58))
+
 ## [1.51.0](https://github.com/googleapis/java-vertexai/compare/v1.50.0...v1.51.0) (2026-04-07)
 
 
