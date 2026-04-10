@@ -12,8 +12,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <!-- {x-version-update:google-cloud-vertexai:current} -->
-    <google-cloud-vertexai.version>1.50.0-SNAPSHOT</google-cloud-vertexai.version>
+    <!-- {x-version-update-start:google-cloud-vertexai:current} -->
+    <google-cloud-vertexai.version>1.52.0-SNAPSHOT</google-cloud-vertexai.version>
     <!-- {x-version-update-end} -->
   </properties>
   <build>
