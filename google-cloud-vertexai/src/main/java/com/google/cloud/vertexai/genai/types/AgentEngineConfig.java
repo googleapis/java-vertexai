@@ -232,6 +232,11 @@ public abstract class AgentEngineConfig extends JsonSerializable {
   @JsonProperty("containerSpec")
   public abstract Optional<ReasoningEngineSpecContainerSpec> containerSpec();
 
+  /** Agent Gateway configuration for a Reasoning Engine deployment. */
+  @JsonProperty("agentGatewayConfig")
+  public abstract Optional<ReasoningEngineSpecDeploymentSpecAgentGatewayConfig>
+      agentGatewayConfig();
+
   /** Instantiates a builder for AgentEngineConfig. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -1047,6 +1052,37 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearContainerSpec() {
       return containerSpec(Optional.empty());
+    }
+
+    /**
+     * Setter for agentGatewayConfig.
+     *
+     * <p>agentGatewayConfig: Agent Gateway configuration for a Reasoning Engine deployment.
+     */
+    @JsonProperty("agentGatewayConfig")
+    public abstract Builder agentGatewayConfig(
+        ReasoningEngineSpecDeploymentSpecAgentGatewayConfig agentGatewayConfig);
+
+    /**
+     * Setter for agentGatewayConfig builder.
+     *
+     * <p>agentGatewayConfig: Agent Gateway configuration for a Reasoning Engine deployment.
+     */
+    @CanIgnoreReturnValue
+    public Builder agentGatewayConfig(
+        ReasoningEngineSpecDeploymentSpecAgentGatewayConfig.Builder agentGatewayConfigBuilder) {
+      return agentGatewayConfig(agentGatewayConfigBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder agentGatewayConfig(
+        Optional<ReasoningEngineSpecDeploymentSpecAgentGatewayConfig> agentGatewayConfig);
+
+    /** Clears the value of agentGatewayConfig field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearAgentGatewayConfig() {
+      return agentGatewayConfig(Optional.empty());
     }
 
     public abstract AgentEngineConfig build();

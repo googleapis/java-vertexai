@@ -159,6 +159,13 @@ public final class AgentEngines {
           Common.getValueByPath(fromObject, new String[] {"pythonVersion"}));
     }
 
+    if (Common.getValueByPath(fromObject, new String[] {"agentGatewayConfig"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"agentGatewayConfig"},
+          Common.getValueByPath(fromObject, new String[] {"agentGatewayConfig"}));
+    }
+
     return toObject;
   }
 
@@ -411,6 +418,13 @@ public final class AgentEngines {
           parentObject,
           new String[] {"pythonVersion"},
           Common.getValueByPath(fromObject, new String[] {"pythonVersion"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"agentGatewayConfig"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"agentGatewayConfig"},
+          Common.getValueByPath(fromObject, new String[] {"agentGatewayConfig"}));
     }
 
     if (Common.getValueByPath(fromObject, new String[] {"updateMask"}) != null) {
