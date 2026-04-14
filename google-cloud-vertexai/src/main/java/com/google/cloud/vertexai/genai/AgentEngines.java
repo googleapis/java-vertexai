@@ -19,6 +19,8 @@
 package com.google.cloud.vertexai.genai;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.cloud.vertexai.genai.types.AgentEngineOperation;
 import com.google.cloud.vertexai.genai.types.CreateAgentEngineConfig;
@@ -65,6 +67,50 @@ public final class AgentEngines {
   }
 
   @ExcludeFromGeneratedCoverageReport
+  ObjectNode agentEngineOperationFromVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"name"},
+          Common.getValueByPath(fromObject, new String[] {"name"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"metadata"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"metadata"},
+          Common.getValueByPath(fromObject, new String[] {"metadata"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"done"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"done"},
+          Common.getValueByPath(fromObject, new String[] {"done"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"error"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"error"},
+          Common.getValueByPath(fromObject, new String[] {"error"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"response"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"response"},
+          reasoningEngineFromVertex(
+              JsonSerializable.toJsonNode(
+                  Common.getValueByPath(fromObject, new String[] {"response"})),
+              toObject));
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
   ObjectNode createAgentEngineConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
     ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
 
@@ -93,7 +139,10 @@ public final class AgentEngines {
       Common.setValueByPath(
           parentObject,
           new String[] {"contextSpec"},
-          Common.getValueByPath(fromObject, new String[] {"contextSpec"}));
+          reasoningEngineContextSpecToVertex(
+              JsonSerializable.toJsonNode(
+                  Common.getValueByPath(fromObject, new String[] {"contextSpec"})),
+              toObject));
     }
 
     if (Common.getValueByPath(fromObject, new String[] {"pscInterfaceConfig"}) != null) {
@@ -276,6 +325,38 @@ public final class AgentEngines {
   }
 
   @ExcludeFromGeneratedCoverageReport
+  ObjectNode listReasoningEnginesResponseFromVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"sdkHttpResponse"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"sdkHttpResponse"},
+          Common.getValueByPath(fromObject, new String[] {"sdkHttpResponse"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"nextPageToken"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"nextPageToken"},
+          Common.getValueByPath(fromObject, new String[] {"nextPageToken"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"reasoningEngines"}) != null) {
+      ArrayNode keyArray =
+          (ArrayNode) Common.getValueByPath(fromObject, new String[] {"reasoningEngines"});
+      ObjectMapper objectMapper = new ObjectMapper();
+      ArrayNode result = objectMapper.createArrayNode();
+
+      for (JsonNode item : keyArray) {
+        result.add(reasoningEngineFromVertex(JsonSerializable.toJsonNode(item), toObject));
+      }
+      Common.setValueByPath(toObject, new String[] {"reasoningEngines"}, result);
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
   ObjectNode queryAgentEngineConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
     ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
 
@@ -326,6 +407,334 @@ public final class AgentEngines {
   }
 
   @ExcludeFromGeneratedCoverageReport
+  ObjectNode reasoningEngineContextSpecFromVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"memoryBankConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"memoryBankConfig"},
+          reasoningEngineContextSpecMemoryBankConfigFromVertex(
+              JsonSerializable.toJsonNode(
+                  Common.getValueByPath(fromObject, new String[] {"memoryBankConfig"})),
+              toObject));
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode reasoningEngineContextSpecMemoryBankConfigFromVertex(
+      JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"customizationConfigs"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"customizationConfigs"},
+          Common.getValueByPath(fromObject, new String[] {"customizationConfigs"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"disableMemoryRevisions"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"disableMemoryRevisions"},
+          Common.getValueByPath(fromObject, new String[] {"disableMemoryRevisions"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"generationConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"generationConfig"},
+          Common.getValueByPath(fromObject, new String[] {"generationConfig"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"similaritySearchConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"similaritySearchConfig"},
+          Common.getValueByPath(fromObject, new String[] {"similaritySearchConfig"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"ttlConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"ttlConfig"},
+          Common.getValueByPath(fromObject, new String[] {"ttlConfig"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"structuredMemoryConfigs"}) != null) {
+      ArrayNode keyArray =
+          (ArrayNode) Common.getValueByPath(fromObject, new String[] {"structuredMemoryConfigs"});
+      ObjectMapper objectMapper = new ObjectMapper();
+      ArrayNode result = objectMapper.createArrayNode();
+
+      for (JsonNode item : keyArray) {
+        result.add(structuredMemoryConfigFromVertex(JsonSerializable.toJsonNode(item), toObject));
+      }
+      Common.setValueByPath(toObject, new String[] {"structuredMemoryConfigs"}, result);
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode reasoningEngineContextSpecMemoryBankConfigToVertex(
+      JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"customizationConfigs"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"customizationConfigs"},
+          Common.getValueByPath(fromObject, new String[] {"customizationConfigs"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"disableMemoryRevisions"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"disableMemoryRevisions"},
+          Common.getValueByPath(fromObject, new String[] {"disableMemoryRevisions"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"generationConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"generationConfig"},
+          Common.getValueByPath(fromObject, new String[] {"generationConfig"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"similaritySearchConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"similaritySearchConfig"},
+          Common.getValueByPath(fromObject, new String[] {"similaritySearchConfig"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"ttlConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"ttlConfig"},
+          Common.getValueByPath(fromObject, new String[] {"ttlConfig"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"structuredMemoryConfigs"}) != null) {
+      ArrayNode keyArray =
+          (ArrayNode) Common.getValueByPath(fromObject, new String[] {"structuredMemoryConfigs"});
+      ObjectMapper objectMapper = new ObjectMapper();
+      ArrayNode result = objectMapper.createArrayNode();
+
+      for (JsonNode item : keyArray) {
+        result.add(structuredMemoryConfigToVertex(JsonSerializable.toJsonNode(item), toObject));
+      }
+      Common.setValueByPath(toObject, new String[] {"structuredMemoryConfigs"}, result);
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode reasoningEngineContextSpecToVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"memoryBankConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"memoryBankConfig"},
+          reasoningEngineContextSpecMemoryBankConfigToVertex(
+              JsonSerializable.toJsonNode(
+                  Common.getValueByPath(fromObject, new String[] {"memoryBankConfig"})),
+              toObject));
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode reasoningEngineFromVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"encryptionSpec"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"encryptionSpec"},
+          Common.getValueByPath(fromObject, new String[] {"encryptionSpec"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"contextSpec"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"contextSpec"},
+          reasoningEngineContextSpecFromVertex(
+              JsonSerializable.toJsonNode(
+                  Common.getValueByPath(fromObject, new String[] {"contextSpec"})),
+              toObject));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"createTime"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"createTime"},
+          Common.getValueByPath(fromObject, new String[] {"createTime"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"description"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"description"},
+          Common.getValueByPath(fromObject, new String[] {"description"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"displayName"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"displayName"},
+          Common.getValueByPath(fromObject, new String[] {"displayName"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"etag"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"etag"},
+          Common.getValueByPath(fromObject, new String[] {"etag"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"labels"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"labels"},
+          Common.getValueByPath(fromObject, new String[] {"labels"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"name"},
+          Common.getValueByPath(fromObject, new String[] {"name"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"spec"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"spec"},
+          Common.getValueByPath(fromObject, new String[] {"spec"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"updateTime"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"updateTime"},
+          Common.getValueByPath(fromObject, new String[] {"updateTime"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"trafficConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"trafficConfig"},
+          Common.getValueByPath(fromObject, new String[] {"trafficConfig"}));
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode structuredMemoryConfigFromVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"schemaConfigs"}) != null) {
+      ArrayNode keyArray =
+          (ArrayNode) Common.getValueByPath(fromObject, new String[] {"schemaConfigs"});
+      ObjectMapper objectMapper = new ObjectMapper();
+      ArrayNode result = objectMapper.createArrayNode();
+
+      for (JsonNode item : keyArray) {
+        result.add(
+            structuredMemorySchemaConfigFromVertex(JsonSerializable.toJsonNode(item), toObject));
+      }
+      Common.setValueByPath(toObject, new String[] {"schemaConfigs"}, result);
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"scopeKeys"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"scopeKeys"},
+          Common.getValueByPath(fromObject, new String[] {"scopeKeys"}));
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode structuredMemoryConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"schemaConfigs"}) != null) {
+      ArrayNode keyArray =
+          (ArrayNode) Common.getValueByPath(fromObject, new String[] {"schemaConfigs"});
+      ObjectMapper objectMapper = new ObjectMapper();
+      ArrayNode result = objectMapper.createArrayNode();
+
+      for (JsonNode item : keyArray) {
+        result.add(
+            structuredMemorySchemaConfigToVertex(JsonSerializable.toJsonNode(item), toObject));
+      }
+      Common.setValueByPath(toObject, new String[] {"schemaConfigs"}, result);
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"scopeKeys"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"scopeKeys"},
+          Common.getValueByPath(fromObject, new String[] {"scopeKeys"}));
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode structuredMemorySchemaConfigFromVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"schema"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"memorySchema"},
+          Common.getValueByPath(fromObject, new String[] {"schema"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"id"}) != null) {
+      Common.setValueByPath(
+          toObject, new String[] {"id"}, Common.getValueByPath(fromObject, new String[] {"id"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"memoryType"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"memoryType"},
+          Common.getValueByPath(fromObject, new String[] {"memoryType"}));
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode structuredMemorySchemaConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"memorySchema"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"schema"},
+          Common.getValueByPath(fromObject, new String[] {"memorySchema"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"id"}) != null) {
+      Common.setValueByPath(
+          toObject, new String[] {"id"}, Common.getValueByPath(fromObject, new String[] {"id"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"memoryType"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"memoryType"},
+          Common.getValueByPath(fromObject, new String[] {"memoryType"}));
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
   ObjectNode updateAgentEngineConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
     ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
 
@@ -354,7 +763,10 @@ public final class AgentEngines {
       Common.setValueByPath(
           parentObject,
           new String[] {"contextSpec"},
-          Common.getValueByPath(fromObject, new String[] {"contextSpec"}));
+          reasoningEngineContextSpecToVertex(
+              JsonSerializable.toJsonNode(
+                  Common.getValueByPath(fromObject, new String[] {"contextSpec"})),
+              toObject));
     }
 
     if (Common.getValueByPath(fromObject, new String[] {"pscInterfaceConfig"}) != null) {
@@ -509,6 +921,10 @@ public final class AgentEngines {
 
     JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
 
+    if (this.apiClient.vertexAI()) {
+      responseNode = agentEngineOperationFromVertex(responseNode, null);
+    }
+
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
           "This method is only supported in the Vertex AI client.");
@@ -655,6 +1071,10 @@ public final class AgentEngines {
 
     JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
 
+    if (this.apiClient.vertexAI()) {
+      responseNode = reasoningEngineFromVertex(responseNode, null);
+    }
+
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
           "This method is only supported in the Vertex AI client.");
@@ -722,6 +1142,10 @@ public final class AgentEngines {
     }
 
     JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+
+    if (this.apiClient.vertexAI()) {
+      responseNode = listReasoningEnginesResponseFromVertex(responseNode, null);
+    }
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -794,6 +1218,10 @@ public final class AgentEngines {
     }
 
     JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+
+    if (this.apiClient.vertexAI()) {
+      responseNode = agentEngineOperationFromVertex(responseNode, null);
+    }
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -937,6 +1365,10 @@ public final class AgentEngines {
     }
 
     JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+
+    if (this.apiClient.vertexAI()) {
+      responseNode = agentEngineOperationFromVertex(responseNode, null);
+    }
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(

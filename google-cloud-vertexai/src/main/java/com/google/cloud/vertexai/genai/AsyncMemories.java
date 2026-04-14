@@ -40,6 +40,8 @@ import com.google.cloud.vertexai.genai.types.RetrieveAgentEngineMemoriesConfig;
 import com.google.cloud.vertexai.genai.types.RetrieveMemoriesRequestSimilaritySearchParams;
 import com.google.cloud.vertexai.genai.types.RetrieveMemoriesRequestSimpleRetrievalParams;
 import com.google.cloud.vertexai.genai.types.RetrieveMemoriesResponse;
+import com.google.cloud.vertexai.genai.types.RetrieveMemoryProfilesConfig;
+import com.google.cloud.vertexai.genai.types.RetrieveProfilesResponse;
 import com.google.cloud.vertexai.genai.types.RollbackAgentEngineMemoryConfig;
 import com.google.cloud.vertexai.genai.types.UpdateAgentEngineMemoryConfig;
 import com.google.genai.ApiClient;
@@ -186,6 +188,20 @@ public final class AsyncMemories {
             response -> {
               try (ApiResponse res = response) {
                 return memories.processResponseForPrivateRetrieve(res, config);
+              }
+            });
+  }
+
+  public CompletableFuture<RetrieveProfilesResponse> retrieveProfiles(
+      String name, Map<String, String> scope, RetrieveMemoryProfilesConfig config) {
+
+    BuiltRequest builtRequest = memories.buildRequestForRetrieveProfiles(name, scope, config);
+    return this.apiClient
+        .asyncRequest("post", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())
+        .thenApplyAsync(
+            response -> {
+              try (ApiResponse res = response) {
+                return memories.processResponseForRetrieveProfiles(res, config);
               }
             });
   }

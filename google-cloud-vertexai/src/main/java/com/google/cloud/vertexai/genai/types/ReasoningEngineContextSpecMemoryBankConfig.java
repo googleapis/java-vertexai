@@ -63,6 +63,10 @@ public abstract class ReasoningEngineContextSpecMemoryBankConfig extends JsonSer
   @JsonProperty("ttlConfig")
   public abstract Optional<ReasoningEngineContextSpecMemoryBankConfigTtlConfig> ttlConfig();
 
+  /** Optional. Configuration for organizing structured memories for a particular scope. */
+  @JsonProperty("structuredMemoryConfigs")
+  public abstract Optional<List<StructuredMemoryConfig>> structuredMemoryConfigs();
+
   /** Instantiates a builder for ReasoningEngineContextSpecMemoryBankConfig. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -254,6 +258,53 @@ public abstract class ReasoningEngineContextSpecMemoryBankConfig extends JsonSer
     @CanIgnoreReturnValue
     public Builder clearTtlConfig() {
       return ttlConfig(Optional.empty());
+    }
+
+    /**
+     * Setter for structuredMemoryConfigs.
+     *
+     * <p>structuredMemoryConfigs: Optional. Configuration for organizing structured memories for a
+     * particular scope.
+     */
+    @JsonProperty("structuredMemoryConfigs")
+    public abstract Builder structuredMemoryConfigs(
+        List<StructuredMemoryConfig> structuredMemoryConfigs);
+
+    /**
+     * Setter for structuredMemoryConfigs.
+     *
+     * <p>structuredMemoryConfigs: Optional. Configuration for organizing structured memories for a
+     * particular scope.
+     */
+    @CanIgnoreReturnValue
+    public Builder structuredMemoryConfigs(StructuredMemoryConfig... structuredMemoryConfigs) {
+      return structuredMemoryConfigs(Arrays.asList(structuredMemoryConfigs));
+    }
+
+    /**
+     * Setter for structuredMemoryConfigs builder.
+     *
+     * <p>structuredMemoryConfigs: Optional. Configuration for organizing structured memories for a
+     * particular scope.
+     */
+    @CanIgnoreReturnValue
+    public Builder structuredMemoryConfigs(
+        StructuredMemoryConfig.Builder... structuredMemoryConfigsBuilders) {
+      return structuredMemoryConfigs(
+          Arrays.asList(structuredMemoryConfigsBuilders).stream()
+              .map(StructuredMemoryConfig.Builder::build)
+              .collect(toImmutableList()));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder structuredMemoryConfigs(
+        Optional<List<StructuredMemoryConfig>> structuredMemoryConfigs);
+
+    /** Clears the value of structuredMemoryConfigs field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearStructuredMemoryConfigs() {
+      return structuredMemoryConfigs(Optional.empty());
     }
 
     public abstract ReasoningEngineContextSpecMemoryBankConfig build();

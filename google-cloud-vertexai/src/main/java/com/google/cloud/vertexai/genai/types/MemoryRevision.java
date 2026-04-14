@@ -73,6 +73,12 @@ public abstract class MemoryRevision extends JsonSerializable {
   @JsonProperty("name")
   public abstract Optional<String> name();
 
+  /**
+   * Output only. Represents the structured value of the memory at the time of revision creation.
+   */
+  @JsonProperty("structuredData")
+  public abstract Optional<Map<String, Object>> structuredData();
+
   /** Instantiates a builder for MemoryRevision. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -233,6 +239,25 @@ public abstract class MemoryRevision extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearName() {
       return name(Optional.empty());
+    }
+
+    /**
+     * Setter for structuredData.
+     *
+     * <p>structuredData: Output only. Represents the structured value of the memory at the time of
+     * revision creation.
+     */
+    @JsonProperty("structuredData")
+    public abstract Builder structuredData(Map<String, Object> structuredData);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder structuredData(Optional<Map<String, Object>> structuredData);
+
+    /** Clears the value of structuredData field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearStructuredData() {
+      return structuredData(Optional.empty());
     }
 
     public abstract MemoryRevision build();
