@@ -31,10 +31,14 @@ import com.google.cloud.vertexai.genai.types.GenerateMemoriesRequestDirectMemori
 import com.google.cloud.vertexai.genai.types.GenerateMemoriesRequestVertexSessionSource;
 import com.google.cloud.vertexai.genai.types.GetAgentEngineMemoryConfig;
 import com.google.cloud.vertexai.genai.types.GetAgentEngineOperationConfig;
+import com.google.cloud.vertexai.genai.types.IngestEventsConfig;
+import com.google.cloud.vertexai.genai.types.IngestionDirectContentsSource;
 import com.google.cloud.vertexai.genai.types.ListAgentEngineMemoryConfig;
 import com.google.cloud.vertexai.genai.types.ListReasoningEnginesMemoriesResponse;
 import com.google.cloud.vertexai.genai.types.Memory;
+import com.google.cloud.vertexai.genai.types.MemoryBankIngestEventsOperation;
 import com.google.cloud.vertexai.genai.types.MemoryConjunctionFilter;
+import com.google.cloud.vertexai.genai.types.MemoryGenerationTriggerConfig;
 import com.google.cloud.vertexai.genai.types.PurgeAgentEngineMemoriesConfig;
 import com.google.cloud.vertexai.genai.types.RetrieveAgentEngineMemoriesConfig;
 import com.google.cloud.vertexai.genai.types.RetrieveMemoriesRequestSimilaritySearchParams;
@@ -124,6 +128,27 @@ public final class AsyncMemories {
             response -> {
               try (ApiResponse res = response) {
                 return memories.processResponseForGet(res, config);
+              }
+            });
+  }
+
+  CompletableFuture<MemoryBankIngestEventsOperation> privateIngestEvents(
+      String name,
+      String streamId,
+      IngestionDirectContentsSource directContentsSource,
+      Map<String, String> scope,
+      MemoryGenerationTriggerConfig generationTriggerConfig,
+      IngestEventsConfig config) {
+
+    BuiltRequest builtRequest =
+        memories.buildRequestForPrivateIngestEvents(
+            name, streamId, directContentsSource, scope, generationTriggerConfig, config);
+    return this.apiClient
+        .asyncRequest("post", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())
+        .thenApplyAsync(
+            response -> {
+              try (ApiResponse res = response) {
+                return memories.processResponseForPrivateIngestEvents(res, config);
               }
             });
   }

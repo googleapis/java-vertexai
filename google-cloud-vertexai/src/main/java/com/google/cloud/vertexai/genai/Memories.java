@@ -39,11 +39,16 @@ import com.google.cloud.vertexai.genai.types.GetAgentEngineMemoryConfig;
 import com.google.cloud.vertexai.genai.types.GetAgentEngineMemoryOperationParameters;
 import com.google.cloud.vertexai.genai.types.GetAgentEngineMemoryRequestParameters;
 import com.google.cloud.vertexai.genai.types.GetAgentEngineOperationConfig;
+import com.google.cloud.vertexai.genai.types.IngestEventsConfig;
+import com.google.cloud.vertexai.genai.types.IngestEventsRequestParameters;
+import com.google.cloud.vertexai.genai.types.IngestionDirectContentsSource;
 import com.google.cloud.vertexai.genai.types.ListAgentEngineMemoryConfig;
 import com.google.cloud.vertexai.genai.types.ListAgentEngineMemoryRequestParameters;
 import com.google.cloud.vertexai.genai.types.ListReasoningEnginesMemoriesResponse;
 import com.google.cloud.vertexai.genai.types.Memory;
+import com.google.cloud.vertexai.genai.types.MemoryBankIngestEventsOperation;
 import com.google.cloud.vertexai.genai.types.MemoryConjunctionFilter;
+import com.google.cloud.vertexai.genai.types.MemoryGenerationTriggerConfig;
 import com.google.cloud.vertexai.genai.types.PurgeAgentEngineMemoriesConfig;
 import com.google.cloud.vertexai.genai.types.PurgeAgentEngineMemoriesRequestParameters;
 import com.google.cloud.vertexai.genai.types.RetrieveAgentEngineMemoriesConfig;
@@ -359,6 +364,69 @@ public final class Memories {
           toObject,
           new String[] {"_url", "name"},
           Common.getValueByPath(fromObject, new String[] {"name"}));
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode ingestEventsConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+
+    if (Common.getValueByPath(fromObject, new String[] {"forceFlush"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"forceFlush"},
+          Common.getValueByPath(fromObject, new String[] {"forceFlush"}));
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode ingestEventsRequestParametersToVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"_url", "name"},
+          Common.getValueByPath(fromObject, new String[] {"name"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"streamId"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"streamId"},
+          Common.getValueByPath(fromObject, new String[] {"streamId"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"directContentsSource"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"directContentsSource"},
+          Common.getValueByPath(fromObject, new String[] {"directContentsSource"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"scope"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"scope"},
+          Common.getValueByPath(fromObject, new String[] {"scope"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"generationTriggerConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"generationTriggerConfig"},
+          Common.getValueByPath(fromObject, new String[] {"generationTriggerConfig"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
+      JsonNode unused =
+          ingestEventsConfigToVertex(
+              JsonSerializable.toJsonNode(
+                  Common.getValueByPath(fromObject, new String[] {"config"})),
+              toObject);
     }
 
     return toObject;
@@ -1005,6 +1073,103 @@ public final class Memories {
         this.apiClient.request(
             "get", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())) {
       return processResponseForGet(response, config);
+    }
+  }
+
+  /** A shared buildRequest method for both sync and async methods. */
+  BuiltRequest buildRequestForPrivateIngestEvents(
+      String name,
+      String streamId,
+      IngestionDirectContentsSource directContentsSource,
+      Map<String, String> scope,
+      MemoryGenerationTriggerConfig generationTriggerConfig,
+      IngestEventsConfig config) {
+
+    IngestEventsRequestParameters.Builder parameterBuilder =
+        IngestEventsRequestParameters.builder();
+
+    if (!Common.isZero(name)) {
+      parameterBuilder.name(name);
+    }
+    if (!Common.isZero(streamId)) {
+      parameterBuilder.streamId(streamId);
+    }
+    if (!Common.isZero(directContentsSource)) {
+      parameterBuilder.directContentsSource(directContentsSource);
+    }
+    if (!Common.isZero(scope)) {
+      parameterBuilder.scope(scope);
+    }
+    if (!Common.isZero(generationTriggerConfig)) {
+      parameterBuilder.generationTriggerConfig(generationTriggerConfig);
+    }
+    if (!Common.isZero(config)) {
+      parameterBuilder.config(config);
+    }
+    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+
+    ObjectNode body;
+    String path;
+    if (this.apiClient.vertexAI()) {
+      body = ingestEventsRequestParametersToVertex(parameterNode, null);
+      path = Common.formatMap("{name}/memories:ingestEvents", body.get("_url"));
+    } else {
+      throw new UnsupportedOperationException(
+          "This method is only supported in the Vertex AI client.");
+    }
+    body.remove("_url");
+
+    JsonNode queryParams = body.get("_query");
+    if (queryParams != null) {
+      body.remove("_query");
+      path = String.format("%s?%s", path, Common.urlEncode((ObjectNode) queryParams));
+    }
+
+    // TODO: Remove the hack that removes config.
+    Optional<HttpOptions> requestHttpOptions = Optional.empty();
+    if (config != null) {
+      requestHttpOptions = config.httpOptions();
+    }
+
+    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+  }
+
+  /** A shared processResponse function for both sync and async methods. */
+  MemoryBankIngestEventsOperation processResponseForPrivateIngestEvents(
+      ApiResponse response, IngestEventsConfig config) {
+    ResponseBody responseBody = response.getBody();
+    String responseString;
+    try {
+      responseString = responseBody.string();
+    } catch (IOException e) {
+      throw new GenAiIOException("Failed to read HTTP response.", e);
+    }
+
+    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+
+    if (!this.apiClient.vertexAI()) {
+      throw new UnsupportedOperationException(
+          "This method is only supported in the Vertex AI client.");
+    }
+
+    return JsonSerializable.fromJsonNode(responseNode, MemoryBankIngestEventsOperation.class);
+  }
+
+  public MemoryBankIngestEventsOperation privateIngestEvents(
+      String name,
+      String streamId,
+      IngestionDirectContentsSource directContentsSource,
+      Map<String, String> scope,
+      MemoryGenerationTriggerConfig generationTriggerConfig,
+      IngestEventsConfig config) {
+    BuiltRequest builtRequest =
+        buildRequestForPrivateIngestEvents(
+            name, streamId, directContentsSource, scope, generationTriggerConfig, config);
+
+    try (ApiResponse response =
+        this.apiClient.request(
+            "post", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())) {
+      return processResponseForPrivateIngestEvents(response, config);
     }
   }
 

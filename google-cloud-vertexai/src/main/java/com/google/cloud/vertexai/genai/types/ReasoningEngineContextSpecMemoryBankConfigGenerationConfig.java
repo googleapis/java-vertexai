@@ -38,6 +38,13 @@ public abstract class ReasoningEngineContextSpecMemoryBankConfigGenerationConfig
   @JsonProperty("model")
   public abstract Optional<String> model();
 
+  /**
+   * Optional. Specifies the default trigger configuration for generating memories using
+   * `IngestEvents`.
+   */
+  @JsonProperty("generationTriggerConfig")
+  public abstract Optional<MemoryGenerationTriggerConfig> generationTriggerConfig();
+
   /** Instantiates a builder for ReasoningEngineContextSpecMemoryBankConfigGenerationConfig. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -76,6 +83,39 @@ public abstract class ReasoningEngineContextSpecMemoryBankConfigGenerationConfig
     @CanIgnoreReturnValue
     public Builder clearModel() {
       return model(Optional.empty());
+    }
+
+    /**
+     * Setter for generationTriggerConfig.
+     *
+     * <p>generationTriggerConfig: Optional. Specifies the default trigger configuration for
+     * generating memories using `IngestEvents`.
+     */
+    @JsonProperty("generationTriggerConfig")
+    public abstract Builder generationTriggerConfig(
+        MemoryGenerationTriggerConfig generationTriggerConfig);
+
+    /**
+     * Setter for generationTriggerConfig builder.
+     *
+     * <p>generationTriggerConfig: Optional. Specifies the default trigger configuration for
+     * generating memories using `IngestEvents`.
+     */
+    @CanIgnoreReturnValue
+    public Builder generationTriggerConfig(
+        MemoryGenerationTriggerConfig.Builder generationTriggerConfigBuilder) {
+      return generationTriggerConfig(generationTriggerConfigBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder generationTriggerConfig(
+        Optional<MemoryGenerationTriggerConfig> generationTriggerConfig);
+
+    /** Clears the value of generationTriggerConfig field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearGenerationTriggerConfig() {
+      return generationTriggerConfig(Optional.empty());
     }
 
     public abstract ReasoningEngineContextSpecMemoryBankConfigGenerationConfig build();
