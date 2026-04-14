@@ -237,6 +237,14 @@ public abstract class AgentEngineConfig extends JsonSerializable {
   public abstract Optional<ReasoningEngineSpecDeploymentSpecAgentGatewayConfig>
       agentGatewayConfig();
 
+  /**
+   * Optional. Specifies the configuration for keep-alive probe. Contains configuration on a
+   * specified endpoint that a deployment host should use to keep the container alive based on the
+   * probe settings.
+   */
+  @JsonProperty("keepAliveProbe")
+  public abstract Optional<KeepAliveProbe> keepAliveProbe();
+
   /** Instantiates a builder for AgentEngineConfig. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -1083,6 +1091,38 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearAgentGatewayConfig() {
       return agentGatewayConfig(Optional.empty());
+    }
+
+    /**
+     * Setter for keepAliveProbe.
+     *
+     * <p>keepAliveProbe: Optional. Specifies the configuration for keep-alive probe. Contains
+     * configuration on a specified endpoint that a deployment host should use to keep the container
+     * alive based on the probe settings.
+     */
+    @JsonProperty("keepAliveProbe")
+    public abstract Builder keepAliveProbe(KeepAliveProbe keepAliveProbe);
+
+    /**
+     * Setter for keepAliveProbe builder.
+     *
+     * <p>keepAliveProbe: Optional. Specifies the configuration for keep-alive probe. Contains
+     * configuration on a specified endpoint that a deployment host should use to keep the container
+     * alive based on the probe settings.
+     */
+    @CanIgnoreReturnValue
+    public Builder keepAliveProbe(KeepAliveProbe.Builder keepAliveProbeBuilder) {
+      return keepAliveProbe(keepAliveProbeBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder keepAliveProbe(Optional<KeepAliveProbe> keepAliveProbe);
+
+    /** Clears the value of keepAliveProbe field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearKeepAliveProbe() {
+      return keepAliveProbe(Optional.empty());
     }
 
     public abstract AgentEngineConfig build();

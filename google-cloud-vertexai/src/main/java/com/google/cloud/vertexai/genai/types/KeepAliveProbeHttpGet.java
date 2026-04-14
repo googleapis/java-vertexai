@@ -30,7 +30,7 @@ import java.util.Optional;
 @AutoValue
 @JsonDeserialize(builder = KeepAliveProbeHttpGet.Builder.class)
 public abstract class KeepAliveProbeHttpGet extends JsonSerializable {
-  /** Required. Specifies the path of the HTTP GET request (e.g., `"/is_busy"`). */
+  /** Required. Specifies the path of the HTTP GET request (e.g., "/is_busy"). */
   @JsonProperty("path")
   public abstract Optional<String> path();
 
@@ -59,7 +59,7 @@ public abstract class KeepAliveProbeHttpGet extends JsonSerializable {
     /**
      * Setter for path.
      *
-     * <p>path: Required. Specifies the path of the HTTP GET request (e.g., `"/is_busy"`).
+     * <p>path: Required. Specifies the path of the HTTP GET request (e.g., "/is_busy").
      */
     @JsonProperty("path")
     public abstract Builder path(String path);
