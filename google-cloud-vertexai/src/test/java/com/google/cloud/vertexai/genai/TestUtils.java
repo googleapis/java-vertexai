@@ -26,13 +26,12 @@ public final class TestUtils {
   /** Creates a client given the vertexAI and replayId. Can be used in replay tests. */
   public static Client createClient(boolean vertexAI, String replayId) {
     String clientMode = System.getenv("GOOGLE_GENAI_CLIENT_MODE");
-    // TODO(b/491838117): Add vertex_sdk_genai_replays to base root replay directory.
+
     DebugConfig debugConfig =
         new DebugConfig(
             clientMode == null ? "replay" : clientMode,
             "",
-            System.getenv(
-                "GOOGLE_GENAI_REPLAYS_DIRECTORY")); // + "/tests/vertex_sdk_genai_replays");
+            System.getenv("GOOGLE_GENAI_REPLAYS_DIRECTORY") + "/tests/vertex_sdk_genai_replays");
 
     Client.Builder clientBuilder = Client.builder().debugConfig(debugConfig);
 
