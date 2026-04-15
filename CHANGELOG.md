@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.52.0](https://github.com/googleapis/java-vertexai/compare/v1.51.0...v1.52.0) (2026-04-14)
+
+
+### Features
+
+* Add Agent Engine-level configuration for generation_trigger_config. ([5f80eac](https://github.com/googleapis/java-vertexai/commit/5f80eac9d41d7ed07c5f3723b6d0f69095a3fe10))
+* Add ingest_events method for Memory Bank. ([5f80eac](https://github.com/googleapis/java-vertexai/commit/5f80eac9d41d7ed07c5f3723b6d0f69095a3fe10))
+* Add memory_types filter to RetrieveMemories ([9f3174b](https://github.com/googleapis/java-vertexai/commit/9f3174b43cac81b75017c5ac5dd73553808c359d))
+* Add RetrieveProfiles. ([9f3174b](https://github.com/googleapis/java-vertexai/commit/9f3174b43cac81b75017c5ac5dd73553808c359d))
+* Add structured data and context to MemoryRevision. ([9f3174b](https://github.com/googleapis/java-vertexai/commit/9f3174b43cac81b75017c5ac5dd73553808c359d))
+* Add structured data and memory type to Memory. ([9f3174b](https://github.com/googleapis/java-vertexai/commit/9f3174b43cac81b75017c5ac5dd73553808c359d))
+* Add subset_topics to Memory Bank GenerateMemories ([3d7e09e](https://github.com/googleapis/java-vertexai/commit/3d7e09e697df3f6b1ed8821a9e71577e2077950d))
+* Add support for agent gateway in agent engine ([fc840bb](https://github.com/googleapis/java-vertexai/commit/fc840bb90f5f0a3b5cade4d183de74e475f93cad))
+* add support for keep alive probe in agent engines ([080977f](https://github.com/googleapis/java-vertexai/commit/080977f4d39229aec98cc3b3417626af8ff4d7b7))
+* Adds cancel_query_job to SDK for agent engine long running async tasks. ([15a2401](https://github.com/googleapis/java-vertexai/commit/15a2401032dbdf6da279848b7e927cd43181910a))
+
+
+### Documentation
+
+* Add more examples for AgentEngine ([cb3d618](https://github.com/googleapis/java-vertexai/commit/cb3d618617b36f0725e3b581803729017d3c2f58))
+
 ## [1.51.0](https://github.com/googleapis/java-vertexai/compare/v1.50.0...v1.51.0) (2026-04-07)
 
 
