@@ -5,7 +5,7 @@
 
   <groupId>com.google.cloud.vertexai.genai.examples</groupId>
   <artifactId>google-vertexai-examples</artifactId>
-  <version>1.52.0</version><!-- {x-version-update:google-cloud-vertexai:current} -->
+  <version>1.53.0-SNAPSHOT</version><!-- {x-version-update:google-cloud-vertexai:current} -->
   <name>google-vertexai-examples</name>
 
   <properties>
@@ -13,7 +13,7 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <!-- {x-version-update-start:google-cloud-vertexai:current} -->
-    <google-cloud-vertexai.version>1.52.0</google-cloud-vertexai.version>
+    <google-cloud-vertexai.version>1.53.0-SNAPSHOT</google-cloud-vertexai.version>
     <!-- {x-version-update-end} -->
   </properties>
   <build>
