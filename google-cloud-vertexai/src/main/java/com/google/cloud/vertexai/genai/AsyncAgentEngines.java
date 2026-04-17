@@ -29,7 +29,6 @@ import com.google.cloud.vertexai.genai.types.ListReasoningEnginesResponse;
 import com.google.cloud.vertexai.genai.types.QueryAgentEngineConfig;
 import com.google.cloud.vertexai.genai.types.QueryReasoningEngineResponse;
 import com.google.cloud.vertexai.genai.types.ReasoningEngine;
-import com.google.cloud.vertexai.genai.types.UpdateAgentEngineConfig;
 import com.google.genai.ApiClient;
 import com.google.genai.ApiResponse;
 import com.google.genai.Common.BuiltRequest;
@@ -40,6 +39,7 @@ public final class AsyncAgentEngines {
   public final AsyncSessions sessions;
   public final AsyncSandboxes sandboxes;
   public final AsyncMemories memories;
+  public final AsyncRuntimes runtimes;
 
   AgentEngines agentEngines;
   ApiClient apiClient;
@@ -51,6 +51,7 @@ public final class AsyncAgentEngines {
     this.sessions = new AsyncSessions(apiClient);
     this.sandboxes = new AsyncSandboxes(apiClient);
     this.memories = new AsyncMemories(apiClient);
+    this.runtimes = new AsyncRuntimes(apiClient);
   }
 
   CompletableFuture<AgentEngineOperation> privateCreate(CreateAgentEngineConfig config) {
@@ -132,20 +133,6 @@ public final class AsyncAgentEngines {
             response -> {
               try (ApiResponse res = response) {
                 return agentEngines.processResponseForPrivateQuery(res, config);
-              }
-            });
-  }
-
-  CompletableFuture<AgentEngineOperation> privateUpdate(
-      String name, UpdateAgentEngineConfig config) {
-
-    BuiltRequest builtRequest = agentEngines.buildRequestForPrivateUpdate(name, config);
-    return this.apiClient
-        .asyncRequest("patch", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())
-        .thenApplyAsync(
-            response -> {
-              try (ApiResponse res = response) {
-                return agentEngines.processResponseForPrivateUpdate(res, config);
               }
             });
   }
