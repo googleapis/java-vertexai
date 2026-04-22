@@ -889,7 +889,8 @@ public final class AgentEngines {
       path = Common.formatMap("reasoningEngines", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
     body.remove("_url");
 
@@ -927,7 +928,8 @@ public final class AgentEngines {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, AgentEngineOperation.class);
@@ -968,7 +970,8 @@ public final class AgentEngines {
       path = Common.formatMap("{name}", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
     body.remove("_url");
 
@@ -1002,7 +1005,8 @@ public final class AgentEngines {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, DeleteAgentEngineOperation.class);
@@ -1040,7 +1044,8 @@ public final class AgentEngines {
       path = Common.formatMap("{name}", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
     body.remove("_url");
 
@@ -1077,7 +1082,8 @@ public final class AgentEngines {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, ReasoningEngine.class);
@@ -1111,7 +1117,8 @@ public final class AgentEngines {
       path = Common.formatMap("reasoningEngines", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
     body.remove("_url");
 
@@ -1149,7 +1156,8 @@ public final class AgentEngines {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, ListReasoningEnginesResponse.class);
@@ -1187,7 +1195,8 @@ public final class AgentEngines {
       path = Common.formatMap("{operationName}", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
     body.remove("_url");
 
@@ -1225,7 +1234,8 @@ public final class AgentEngines {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, AgentEngineOperation.class);
@@ -1263,7 +1273,8 @@ public final class AgentEngines {
       path = Common.formatMap("{name}:query", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
     body.remove("_url");
 
@@ -1297,7 +1308,8 @@ public final class AgentEngines {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, QueryReasoningEngineResponse.class);
@@ -1334,7 +1346,8 @@ public final class AgentEngines {
       path = Common.formatMap("{name}", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
     body.remove("_url");
 
@@ -1372,7 +1385,8 @@ public final class AgentEngines {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, AgentEngineOperation.class);

@@ -337,7 +337,8 @@ public final class Sessions {
       path = Common.formatMap("{name}/sessions", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
     body.remove("_url");
 
@@ -371,7 +372,8 @@ public final class Sessions {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, AgentEngineSessionOperation.class);
@@ -409,7 +411,8 @@ public final class Sessions {
       path = Common.formatMap("{name}", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
     body.remove("_url");
 
@@ -443,7 +446,8 @@ public final class Sessions {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, DeleteAgentEngineSessionOperation.class);
@@ -481,7 +485,8 @@ public final class Sessions {
       path = Common.formatMap("{name}", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
     body.remove("_url");
 
@@ -514,7 +519,8 @@ public final class Sessions {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, Session.class);
@@ -551,7 +557,8 @@ public final class Sessions {
       path = Common.formatMap("{name}/sessions", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
     body.remove("_url");
 
@@ -585,7 +592,8 @@ public final class Sessions {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, ListReasoningEnginesSessionsResponse.class);
@@ -624,7 +632,8 @@ public final class Sessions {
       path = Common.formatMap("{operationName}", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
     body.remove("_url");
 
@@ -658,7 +667,8 @@ public final class Sessions {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, AgentEngineSessionOperation.class);
@@ -696,7 +706,8 @@ public final class Sessions {
       path = Common.formatMap("{name}", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
     body.remove("_url");
 
@@ -730,7 +741,8 @@ public final class Sessions {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Vertex AI client.");
+          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
+              + " as Vertex AI) client.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, AgentEngineSessionOperation.class);
