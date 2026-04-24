@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.google.cloud</groupId>
+  <artifactId>google-cloud-agentplatform</artifactId>
+  <version>1.53.0-SNAPSHOT</version><!-- {x-version-update:google-cloud-vertexai:current} -->
+  <packaging>jar</packaging>
+  <name>google-cloud-agentplatform</name>
+  <description>
+    Java idiomatic SDK for the Gemini Enterprise Agent Platform APIs.
+  </description>
+  <parent>
+    <groupId>com.google.cloud</groupId>
+    <artifactId>google-cloud-vertexai-parent</artifactId>
+    <version>1.53.0-SNAPSHOT</version><!-- {x-version-update:google-cloud-vertexai:current} -->
+  </parent>
+  <properties>
+    <site.installationModule>google-cloud-agentplatform</site.installationModule>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>com.google.genai</groupId>
+      <artifactId>google-genai</artifactId>
+      <version>1.47.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.api</groupId>
+      <artifactId>gax</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.auth</groupId>
+      <artifactId>google-auth-library-oauth2-http</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.errorprone</groupId>
+      <artifactId>error_prone_annotations</artifactId>
+    </dependency>
+    <!-- Test dependencies -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.truth</groupId>
+      <artifactId>truth</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
