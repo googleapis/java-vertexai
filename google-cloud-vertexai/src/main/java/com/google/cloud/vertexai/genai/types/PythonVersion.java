@@ -25,15 +25,12 @@ import java.util.Objects;
 
 /**
  * The Python version to be used for the Agent Engine. If not specified, it will use the current
- * Python version of the environment. Supported versions: "3.9", "3.10", "3.11", "3.12", "3.13",
- * "3.14".
+ * Python version of the environment. Supported versions: "3.10", "3.11", "3.12", "3.13", "3.14".
  */
 public class PythonVersion {
 
   /** Enum representing the known values for PythonVersion. */
   public enum Known {
-    VALUE_3_9("3.9"),
-
     VALUE_3_10("3.10"),
 
     VALUE_3_11("3.11"),

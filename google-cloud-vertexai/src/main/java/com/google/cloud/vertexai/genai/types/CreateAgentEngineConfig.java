@@ -158,8 +158,7 @@ public abstract class CreateAgentEngineConfig extends JsonSerializable {
 
   /**
    * The Python version to be used for the Agent Engine. If not specified, it will use the current
-   * Python version of the environment. Supported versions: "3.9", "3.10", "3.11", "3.12", "3.13",
-   * "3.14".
+   * Python version of the environment. Supported versions: "3.10", "3.11", "3.12", "3.13", "3.14".
    */
   @JsonProperty("pythonVersion")
   public abstract Optional<PythonVersion> pythonVersion();
@@ -679,8 +678,8 @@ public abstract class CreateAgentEngineConfig extends JsonSerializable {
      * Setter for pythonVersion.
      *
      * <p>pythonVersion: The Python version to be used for the Agent Engine. If not specified, it
-     * will use the current Python version of the environment. Supported versions: "3.9", "3.10",
-     * "3.11", "3.12", "3.13", "3.14".
+     * will use the current Python version of the environment. Supported versions: "3.10", "3.11",
+     * "3.12", "3.13", "3.14".
      */
     @JsonProperty("pythonVersion")
     public abstract Builder pythonVersion(PythonVersion pythonVersion);
@@ -699,8 +698,8 @@ public abstract class CreateAgentEngineConfig extends JsonSerializable {
      * Setter for pythonVersion given a known enum.
      *
      * <p>pythonVersion: The Python version to be used for the Agent Engine. If not specified, it
-     * will use the current Python version of the environment. Supported versions: "3.9", "3.10",
-     * "3.11", "3.12", "3.13", "3.14".
+     * will use the current Python version of the environment. Supported versions: "3.10", "3.11",
+     * "3.12", "3.13", "3.14".
      */
     @CanIgnoreReturnValue
     public Builder pythonVersion(PythonVersion.Known knownType) {
@@ -711,8 +710,8 @@ public abstract class CreateAgentEngineConfig extends JsonSerializable {
      * Setter for pythonVersion given a string.
      *
      * <p>pythonVersion: The Python version to be used for the Agent Engine. If not specified, it
-     * will use the current Python version of the environment. Supported versions: "3.9", "3.10",
-     * "3.11", "3.12", "3.13", "3.14".
+     * will use the current Python version of the environment. Supported versions: "3.10", "3.11",
+     * "3.12", "3.13", "3.14".
      */
     @CanIgnoreReturnValue
     public Builder pythonVersion(String pythonVersion) {
