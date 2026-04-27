@@ -46,6 +46,10 @@ public abstract class SandboxEnvironmentConnectionInfo extends JsonSerializable 
   @JsonProperty("sandboxHostname")
   public abstract Optional<String> sandboxHostname();
 
+  /** Output only. The routing token for the SandboxEnvironment. */
+  @JsonProperty("routingToken")
+  public abstract Optional<String> routingToken();
+
   /** Instantiates a builder for SandboxEnvironmentConnectionInfo. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -137,6 +141,24 @@ public abstract class SandboxEnvironmentConnectionInfo extends JsonSerializable 
     @CanIgnoreReturnValue
     public Builder clearSandboxHostname() {
       return sandboxHostname(Optional.empty());
+    }
+
+    /**
+     * Setter for routingToken.
+     *
+     * <p>routingToken: Output only. The routing token for the SandboxEnvironment.
+     */
+    @JsonProperty("routingToken")
+    public abstract Builder routingToken(String routingToken);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder routingToken(Optional<String> routingToken);
+
+    /** Clears the value of routingToken field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearRoutingToken() {
+      return routingToken(Optional.empty());
     }
 
     public abstract SandboxEnvironmentConnectionInfo build();

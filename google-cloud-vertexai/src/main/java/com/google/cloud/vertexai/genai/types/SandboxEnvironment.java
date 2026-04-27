@@ -71,6 +71,34 @@ public abstract class SandboxEnvironment extends JsonSerializable {
   @JsonProperty("updateTime")
   public abstract Optional<Instant> updateTime();
 
+  /** Output only. The resource name of the latest snapshot taken for this SandboxEnvironment. */
+  @JsonProperty("latestSandboxEnvironmentSnapshot")
+  public abstract Optional<String> latestSandboxEnvironmentSnapshot();
+
+  /**
+   * Optional. Owner information for this sandbox environment. A Sandbox can only be restored from a
+   * snapshot that belongs to the same owner. If not set, sandbox will be created as the default
+   * owner.
+   */
+  @JsonProperty("owner")
+  public abstract Optional<String> owner();
+
+  /**
+   * Optional. The resource name of the SandboxEnvironmentSnapshot to use for creating this
+   * SandboxEnvironment. Format:
+   * `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/sandboxEnvironmentSnapshots/{sandbox_environment_snapshot}`
+   */
+  @JsonProperty("sandboxEnvironmentSnapshot")
+  public abstract Optional<String> sandboxEnvironmentSnapshot();
+
+  /**
+   * Optional. The name of the SandboxEnvironmentTemplate specified in the parent Agent Engine
+   * resource that this SandboxEnvironment is created from. Only one of
+   * `sandbox_environment_template` and `spec` should be set.
+   */
+  @JsonProperty("sandboxEnvironmentTemplate")
+  public abstract Optional<String> sandboxEnvironmentTemplate();
+
   /** Instantiates a builder for SandboxEnvironment. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -291,6 +319,87 @@ public abstract class SandboxEnvironment extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearUpdateTime() {
       return updateTime(Optional.empty());
+    }
+
+    /**
+     * Setter for latestSandboxEnvironmentSnapshot.
+     *
+     * <p>latestSandboxEnvironmentSnapshot: Output only. The resource name of the latest snapshot
+     * taken for this SandboxEnvironment.
+     */
+    @JsonProperty("latestSandboxEnvironmentSnapshot")
+    public abstract Builder latestSandboxEnvironmentSnapshot(
+        String latestSandboxEnvironmentSnapshot);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder latestSandboxEnvironmentSnapshot(
+        Optional<String> latestSandboxEnvironmentSnapshot);
+
+    /** Clears the value of latestSandboxEnvironmentSnapshot field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearLatestSandboxEnvironmentSnapshot() {
+      return latestSandboxEnvironmentSnapshot(Optional.empty());
+    }
+
+    /**
+     * Setter for owner.
+     *
+     * <p>owner: Optional. Owner information for this sandbox environment. A Sandbox can only be
+     * restored from a snapshot that belongs to the same owner. If not set, sandbox will be created
+     * as the default owner.
+     */
+    @JsonProperty("owner")
+    public abstract Builder owner(String owner);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder owner(Optional<String> owner);
+
+    /** Clears the value of owner field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearOwner() {
+      return owner(Optional.empty());
+    }
+
+    /**
+     * Setter for sandboxEnvironmentSnapshot.
+     *
+     * <p>sandboxEnvironmentSnapshot: Optional. The resource name of the SandboxEnvironmentSnapshot
+     * to use for creating this SandboxEnvironment. Format:
+     * `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/sandboxEnvironmentSnapshots/{sandbox_environment_snapshot}`
+     */
+    @JsonProperty("sandboxEnvironmentSnapshot")
+    public abstract Builder sandboxEnvironmentSnapshot(String sandboxEnvironmentSnapshot);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder sandboxEnvironmentSnapshot(Optional<String> sandboxEnvironmentSnapshot);
+
+    /** Clears the value of sandboxEnvironmentSnapshot field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearSandboxEnvironmentSnapshot() {
+      return sandboxEnvironmentSnapshot(Optional.empty());
+    }
+
+    /**
+     * Setter for sandboxEnvironmentTemplate.
+     *
+     * <p>sandboxEnvironmentTemplate: Optional. The name of the SandboxEnvironmentTemplate specified
+     * in the parent Agent Engine resource that this SandboxEnvironment is created from. Only one of
+     * `sandbox_environment_template` and `spec` should be set.
+     */
+    @JsonProperty("sandboxEnvironmentTemplate")
+    public abstract Builder sandboxEnvironmentTemplate(String sandboxEnvironmentTemplate);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder sandboxEnvironmentTemplate(Optional<String> sandboxEnvironmentTemplate);
+
+    /** Clears the value of sandboxEnvironmentTemplate field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearSandboxEnvironmentTemplate() {
+      return sandboxEnvironmentTemplate(Optional.empty());
     }
 
     public abstract SandboxEnvironment build();

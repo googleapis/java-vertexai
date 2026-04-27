@@ -63,7 +63,7 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
 
   /**
    * Optional. The minimum number of application instances that will be kept running at all times.
-   * Defaults to 1. Range: [0, 10].
+   * Defaults to 1. Range: [0, 75].
    */
   @JsonProperty("minInstances")
   public abstract Optional<Integer> minInstances();
@@ -250,7 +250,7 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
      * Setter for minInstances.
      *
      * <p>minInstances: Optional. The minimum number of application instances that will be kept
-     * running at all times. Defaults to 1. Range: [0, 10].
+     * running at all times. Defaults to 1. Range: [0, 75].
      */
     @JsonProperty("minInstances")
     public abstract Builder minInstances(Integer minInstances);
