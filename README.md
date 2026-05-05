@@ -2,6 +2,7 @@
 
 > **Note:** The Gemini Enterprise Agent Platform was formerly known as
 > Vertex AI.
+
 > **Note:** The `com.google.agentplatform` package and its classes
 > are **experimental**, and may change in future versions.
 
@@ -16,6 +17,7 @@
   <artifactId>google-cloud-agentplatform</artifactId>
   <version>1.52.0</version>
 </dependency>
+```
 <!-- {x-version-update-end} -->
 
 ## Authentication
