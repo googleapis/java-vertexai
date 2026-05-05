@@ -52,6 +52,29 @@ public abstract class CreateAgentEngineSandboxConfig extends JsonSerializable {
   @JsonProperty("ttl")
   public abstract Optional<Duration> ttl();
 
+  /**
+   * The name of the sandbox environment template to create the sandbox from. The sandbox
+   * environment template should be in the format:
+   * projects/{project}/locations/{location}/agentEngines/{agent_engine}/sandboxEnvironmentTemplates/{sandbox_environment_template}
+   */
+  @JsonProperty("sandboxEnvironmentTemplate")
+  public abstract Optional<String> sandboxEnvironmentTemplate();
+
+  /**
+   * The name of the sandbox environment snapshot to restore the sandbox from. The sandbox
+   * environment snapshot should be in the format:
+   * projects/{project}/locations/{location}/agentEngines/{agent_engine}/sandboxEnvironmentSnapshots/{sandbox_environment_snapshot}
+   */
+  @JsonProperty("sandboxEnvironmentSnapshot")
+  public abstract Optional<String> sandboxEnvironmentSnapshot();
+
+  /**
+   * Owner information for this sandbox environment. A sandbox can only be restored from a snapshot
+   * belonging to the same owner.
+   */
+  @JsonProperty("owner")
+  public abstract Optional<String> owner();
+
   /** Instantiates a builder for CreateAgentEngineSandboxConfig. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -160,6 +183,65 @@ public abstract class CreateAgentEngineSandboxConfig extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearTtl() {
       return ttl(Optional.empty());
+    }
+
+    /**
+     * Setter for sandboxEnvironmentTemplate.
+     *
+     * <p>sandboxEnvironmentTemplate: The name of the sandbox environment template to create the
+     * sandbox from. The sandbox environment template should be in the format:
+     * projects/{project}/locations/{location}/agentEngines/{agent_engine}/sandboxEnvironmentTemplates/{sandbox_environment_template}
+     */
+    @JsonProperty("sandboxEnvironmentTemplate")
+    public abstract Builder sandboxEnvironmentTemplate(String sandboxEnvironmentTemplate);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder sandboxEnvironmentTemplate(Optional<String> sandboxEnvironmentTemplate);
+
+    /** Clears the value of sandboxEnvironmentTemplate field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearSandboxEnvironmentTemplate() {
+      return sandboxEnvironmentTemplate(Optional.empty());
+    }
+
+    /**
+     * Setter for sandboxEnvironmentSnapshot.
+     *
+     * <p>sandboxEnvironmentSnapshot: The name of the sandbox environment snapshot to restore the
+     * sandbox from. The sandbox environment snapshot should be in the format:
+     * projects/{project}/locations/{location}/agentEngines/{agent_engine}/sandboxEnvironmentSnapshots/{sandbox_environment_snapshot}
+     */
+    @JsonProperty("sandboxEnvironmentSnapshot")
+    public abstract Builder sandboxEnvironmentSnapshot(String sandboxEnvironmentSnapshot);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder sandboxEnvironmentSnapshot(Optional<String> sandboxEnvironmentSnapshot);
+
+    /** Clears the value of sandboxEnvironmentSnapshot field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearSandboxEnvironmentSnapshot() {
+      return sandboxEnvironmentSnapshot(Optional.empty());
+    }
+
+    /**
+     * Setter for owner.
+     *
+     * <p>owner: Owner information for this sandbox environment. A sandbox can only be restored from
+     * a snapshot belonging to the same owner.
+     */
+    @JsonProperty("owner")
+    public abstract Builder owner(String owner);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder owner(Optional<String> owner);
+
+    /** Clears the value of owner field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearOwner() {
+      return owner(Optional.empty());
     }
 
     public abstract CreateAgentEngineSandboxConfig build();

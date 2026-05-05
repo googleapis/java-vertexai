@@ -84,6 +84,27 @@ public final class Sandboxes {
           Common.getValueByPath(fromObject, new String[] {"ttl"}));
     }
 
+    if (Common.getValueByPath(fromObject, new String[] {"sandboxEnvironmentTemplate"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"sandboxEnvironmentTemplate"},
+          Common.getValueByPath(fromObject, new String[] {"sandboxEnvironmentTemplate"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"sandboxEnvironmentSnapshot"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"sandboxEnvironmentSnapshot"},
+          Common.getValueByPath(fromObject, new String[] {"sandboxEnvironmentSnapshot"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"owner"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"owner"},
+          Common.getValueByPath(fromObject, new String[] {"owner"}));
+    }
+
     return toObject;
   }
 
