@@ -44,10 +44,9 @@ public final class Client implements AutoCloseable {
     }
   }
 
-  // TODO(tangmatthew): Automate revisions to the SDK version.
-  // {x-version-update-start:google-cloud-vertexai:released}
-  private static final String SDK_VERSION = "1.51.0";
-  // {x-version-update-end:google-cloud-vertexai:released}
+  // {x-version-update-start:google-cloud-agentplatform:released}
+  private static final String SDK_VERSION = "0.0.0";
+  // {x-version-update-end:google-cloud-agentplatform:released}
   private static final ImmutableMap<String, String> TRACKING_HEADERS;
   private static final Logger logger = Logger.getLogger(Client.class.getName());
   private static final AtomicBoolean initializedWarningShown = new AtomicBoolean(false);
