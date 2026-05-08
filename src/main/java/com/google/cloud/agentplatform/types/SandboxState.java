@@ -23,40 +23,51 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.google.common.base.Ascii;
 import java.util.Objects;
 
-/** Output only. The state of the revision. */
-public class State {
+/** Output only. The runtime state of the SandboxEnvironment. */
+public class SandboxState {
 
-  /** Enum representing the known values for State. */
+  /** Enum representing the known values for SandboxState. */
   public enum Known {
-    /** The unspecified state. */
+    /** The default value. This value is unused. */
     STATE_UNSPECIFIED,
 
-    /** Is deployed and ready to be used. */
-    ACTIVE,
+    /** Runtime resources are being allocated for the sandbox environment. */
+    STATE_PROVISIONING,
 
-    /** Is deprecated, may not be used, only preserved for historical purposes. */
-    DEPRECATED
+    /** Sandbox runtime is ready for serving. */
+    STATE_RUNNING,
+
+    /** Sandbox runtime is halted, performing tear down tasks. */
+    STATE_DEPROVISIONING,
+
+    /** Sandbox has terminated with underlying runtime failure. */
+    STATE_TERMINATED,
+
+    /** Sandbox runtime has been deleted. */
+    STATE_DELETED,
+
+    SANDBOX_STATE_UNSPECIFIED
   }
 
-  private Known stateEnum;
+  private Known sandboxStateEnum;
   private final String value;
 
   @JsonCreator
-  public State(String value) {
+  public SandboxState(String value) {
     this.value = value;
-    for (Known stateEnum : Known.values()) {
-      if (Ascii.equalsIgnoreCase(stateEnum.toString(), value)) {
-        this.stateEnum = stateEnum;
+    for (Known sandboxStateEnum : Known.values()) {
+      if (Ascii.equalsIgnoreCase(sandboxStateEnum.toString(), value)) {
+        this.sandboxStateEnum = sandboxStateEnum;
         break;
       }
     }
-    if (this.stateEnum == null) {
-      this.stateEnum = Known.STATE_UNSPECIFIED;
+    if (this.sandboxStateEnum == null) {
+      this.sandboxStateEnum = Known.SANDBOX_STATE_UNSPECIFIED;
     }
   }
 
-  public State(Known knownValue) {
-    this.stateEnum = knownValue;
+  public SandboxState(Known knownValue) {
+    this.sandboxStateEnum = knownValue;
     this.value = knownValue.toString();
   }
 
@@ -78,16 +89,17 @@ public class State {
       return false;
     }
 
-    if (!(o instanceof State)) {
+    if (!(o instanceof SandboxState)) {
       return false;
     }
 
-    State other = (State) o;
+    SandboxState other = (SandboxState) o;
 
-    if (this.stateEnum != Known.STATE_UNSPECIFIED && other.stateEnum != Known.STATE_UNSPECIFIED) {
-      return this.stateEnum == other.stateEnum;
-    } else if (this.stateEnum == Known.STATE_UNSPECIFIED
-        && other.stateEnum == Known.STATE_UNSPECIFIED) {
+    if (this.sandboxStateEnum != Known.SANDBOX_STATE_UNSPECIFIED
+        && other.sandboxStateEnum != Known.SANDBOX_STATE_UNSPECIFIED) {
+      return this.sandboxStateEnum == other.sandboxStateEnum;
+    } else if (this.sandboxStateEnum == Known.SANDBOX_STATE_UNSPECIFIED
+        && other.sandboxStateEnum == Known.SANDBOX_STATE_UNSPECIFIED) {
       return this.value.equals(other.value);
     }
     return false;
@@ -96,8 +108,8 @@ public class State {
   @ExcludeFromGeneratedCoverageReport
   @Override
   public int hashCode() {
-    if (this.stateEnum != Known.STATE_UNSPECIFIED) {
-      return this.stateEnum.hashCode();
+    if (this.sandboxStateEnum != Known.SANDBOX_STATE_UNSPECIFIED) {
+      return this.sandboxStateEnum.hashCode();
     } else {
       return Objects.hashCode(this.value);
     }
@@ -105,6 +117,6 @@ public class State {
 
   @ExcludeFromGeneratedCoverageReport
   public Known knownEnum() {
-    return this.stateEnum;
+    return this.sandboxStateEnum;
   }
 }

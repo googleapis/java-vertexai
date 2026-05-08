@@ -58,7 +58,7 @@ public abstract class SandboxEnvironment extends JsonSerializable {
 
   /** Output only. The runtime state of the SandboxEnvironment. */
   @JsonProperty("state")
-  public abstract Optional<State> state();
+  public abstract Optional<SandboxState> state();
 
   /**
    * Optional. Input only. The TTL for the sandbox environment. The expiration time is computed: now
@@ -251,10 +251,10 @@ public abstract class SandboxEnvironment extends JsonSerializable {
      * <p>state: Output only. The runtime state of the SandboxEnvironment.
      */
     @JsonProperty("state")
-    public abstract Builder state(State state);
+    public abstract Builder state(SandboxState state);
 
     @ExcludeFromGeneratedCoverageReport
-    abstract Builder state(Optional<State> state);
+    abstract Builder state(Optional<SandboxState> state);
 
     /** Clears the value of state field. */
     @ExcludeFromGeneratedCoverageReport
@@ -269,8 +269,8 @@ public abstract class SandboxEnvironment extends JsonSerializable {
      * <p>state: Output only. The runtime state of the SandboxEnvironment.
      */
     @CanIgnoreReturnValue
-    public Builder state(State.Known knownType) {
-      return state(new State(knownType));
+    public Builder state(SandboxState.Known knownType) {
+      return state(new SandboxState(knownType));
     }
 
     /**
@@ -280,7 +280,7 @@ public abstract class SandboxEnvironment extends JsonSerializable {
      */
     @CanIgnoreReturnValue
     public Builder state(String state) {
-      return state(new State(state));
+      return state(new SandboxState(state));
     }
 
     /**
