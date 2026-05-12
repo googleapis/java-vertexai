@@ -786,8 +786,8 @@ public final class Memories {
       path = Common.formatMap("{name}/memories", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
     body.remove("_url");
 
@@ -821,8 +821,8 @@ public final class Memories {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, AgentEngineMemoryOperation.class);
@@ -860,8 +860,8 @@ public final class Memories {
       path = Common.formatMap("{name}", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
     body.remove("_url");
 
@@ -895,8 +895,8 @@ public final class Memories {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, DeleteAgentEngineMemoryOperation.class);
@@ -952,8 +952,8 @@ public final class Memories {
       path = Common.formatMap("{name}/memories:generate", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
     body.remove("_url");
 
@@ -987,8 +987,8 @@ public final class Memories {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, AgentEngineGenerateMemoriesOperation.class);
@@ -1033,8 +1033,8 @@ public final class Memories {
       path = Common.formatMap("{name}", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
     body.remove("_url");
 
@@ -1067,8 +1067,8 @@ public final class Memories {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, Memory.class);
@@ -1123,8 +1123,8 @@ public final class Memories {
       path = Common.formatMap("{name}/memories:ingestEvents", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
     body.remove("_url");
 
@@ -1158,8 +1158,8 @@ public final class Memories {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, MemoryBankIngestEventsOperation.class);
@@ -1204,8 +1204,8 @@ public final class Memories {
       path = Common.formatMap("{name}/memories", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
     body.remove("_url");
 
@@ -1239,8 +1239,8 @@ public final class Memories {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, ListReasoningEnginesMemoriesResponse.class);
@@ -1279,8 +1279,8 @@ public final class Memories {
       path = Common.formatMap("{operationName}", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
     body.remove("_url");
 
@@ -1314,8 +1314,8 @@ public final class Memories {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, AgentEngineMemoryOperation.class);
@@ -1354,8 +1354,8 @@ public final class Memories {
       path = Common.formatMap("{operationName}", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
     body.remove("_url");
 
@@ -1389,8 +1389,8 @@ public final class Memories {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, AgentEngineGenerateMemoriesOperation.class);
@@ -1443,8 +1443,8 @@ public final class Memories {
       path = Common.formatMap("{name}/memories:retrieve", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
     body.remove("_url");
 
@@ -1478,8 +1478,8 @@ public final class Memories {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, RetrieveMemoriesResponse.class);
@@ -1527,8 +1527,8 @@ public final class Memories {
       path = Common.formatMap("{name}/memories:retrieveProfiles", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
     body.remove("_url");
 
@@ -1562,8 +1562,8 @@ public final class Memories {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, RetrieveProfilesResponse.class);
@@ -1605,8 +1605,8 @@ public final class Memories {
       path = Common.formatMap("{name}:rollback", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
     body.remove("_url");
 
@@ -1640,8 +1640,8 @@ public final class Memories {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, AgentEngineRollbackMemoryOperation.class);
@@ -1686,8 +1686,8 @@ public final class Memories {
       path = Common.formatMap("{name}", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
     body.remove("_url");
 
@@ -1721,8 +1721,8 @@ public final class Memories {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, AgentEngineMemoryOperation.class);
@@ -1774,8 +1774,8 @@ public final class Memories {
       path = Common.formatMap("{name}/memories:purge", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
     body.remove("_url");
 
@@ -1809,8 +1809,8 @@ public final class Memories {
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
-          "This method is only supported in the Gemini Enterprise Agent Platform (previously known"
-              + " as Vertex AI) client.");
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
     }
 
     return JsonSerializable.fromJsonNode(responseNode, AgentEnginePurgeMemoriesOperation.class);
