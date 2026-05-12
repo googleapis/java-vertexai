@@ -37,8 +37,6 @@
 ### Bug Fixes
 
 * Fix name collision on SandboxEnvironment.state by renaming enum to SandboxState ([bb442c8](https://github.com/googleapis/java-vertexai/commit/bb442c8d7d1e77ee0349b92ea5223040ccf24fa6))
-* Fix pom file build for Java 25 ([ebdd232](https://github.com/googleapis/java-vertexai/commit/ebdd23289712a15d6e07a81245df1fa7283d2f33))
-* Removing Python 3.9 support due to EOL ([f267fec](https://github.com/googleapis/java-vertexai/commit/f267fec5e8f5e5fd6867462e177c6175218ce4b2))
 
 
 ### Documentation
