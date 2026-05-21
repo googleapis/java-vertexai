@@ -31,20 +31,20 @@ import java.util.Optional;
 @AutoValue
 @JsonDeserialize(builder = MemoryGenerationTriggerConfigGenerationTriggerRule.Builder.class)
 public abstract class MemoryGenerationTriggerConfigGenerationTriggerRule extends JsonSerializable {
-  /** Specifies to trigger generation when the event count reaches this limit. */
+  /** Optional. Specifies to trigger generation when the event count reaches this limit. */
   @JsonProperty("eventCount")
   public abstract Optional<Integer> eventCount();
 
   /**
-   * Specifies to trigger generation at a fixed interval. The duration must have a minute-level
-   * granularity.
+   * Optional. Specifies to trigger generation at a fixed interval. The duration must have a
+   * minute-level granularity.
    */
   @JsonProperty("fixedInterval")
   public abstract Optional<Duration> fixedInterval();
 
   /**
-   * Specifies to trigger generation if the stream is inactive for the specified duration after the
-   * most recent event. The duration must have a minute-level granularity.
+   * Optional. Specifies to trigger generation if the stream is inactive for the specified duration
+   * after the most recent event. The duration must have a minute-level granularity.
    */
   @JsonProperty("idleDuration")
   public abstract Optional<Duration> idleDuration();
@@ -73,7 +73,8 @@ public abstract class MemoryGenerationTriggerConfigGenerationTriggerRule extends
     /**
      * Setter for eventCount.
      *
-     * <p>eventCount: Specifies to trigger generation when the event count reaches this limit.
+     * <p>eventCount: Optional. Specifies to trigger generation when the event count reaches this
+     * limit.
      */
     @JsonProperty("eventCount")
     public abstract Builder eventCount(Integer eventCount);
@@ -91,8 +92,8 @@ public abstract class MemoryGenerationTriggerConfigGenerationTriggerRule extends
     /**
      * Setter for fixedInterval.
      *
-     * <p>fixedInterval: Specifies to trigger generation at a fixed interval. The duration must have
-     * a minute-level granularity.
+     * <p>fixedInterval: Optional. Specifies to trigger generation at a fixed interval. The duration
+     * must have a minute-level granularity.
      */
     @JsonProperty("fixedInterval")
     public abstract Builder fixedInterval(Duration fixedInterval);
@@ -110,8 +111,9 @@ public abstract class MemoryGenerationTriggerConfigGenerationTriggerRule extends
     /**
      * Setter for idleDuration.
      *
-     * <p>idleDuration: Specifies to trigger generation if the stream is inactive for the specified
-     * duration after the most recent event. The duration must have a minute-level granularity.
+     * <p>idleDuration: Optional. Specifies to trigger generation if the stream is inactive for the
+     * specified duration after the most recent event. The duration must have a minute-level
+     * granularity.
      */
     @JsonProperty("idleDuration")
     public abstract Builder idleDuration(Duration idleDuration);

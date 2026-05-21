@@ -39,7 +39,7 @@ public abstract class ReasoningEngineSpecPackageSpec extends JsonSerializable {
   public abstract Optional<String> pickleObjectGcsUri();
 
   /**
-   * Optional. The Python version. Supported values are 3.9, 3.10, 3.11, 3.12, 3.13, 3.14. If not
+   * Optional. The Python version. Supported values are 3.10, 3.11, 3.12, 3.13, 3.14. If not
    * specified, the default value is 3.10.
    */
   @JsonProperty("pythonVersion")
@@ -109,8 +109,8 @@ public abstract class ReasoningEngineSpecPackageSpec extends JsonSerializable {
     /**
      * Setter for pythonVersion.
      *
-     * <p>pythonVersion: Optional. The Python version. Supported values are 3.9, 3.10, 3.11, 3.12,
-     * 3.13, 3.14. If not specified, the default value is 3.10.
+     * <p>pythonVersion: Optional. The Python version. Supported values are 3.10, 3.11, 3.12, 3.13,
+     * 3.14. If not specified, the default value is 3.10.
      */
     @JsonProperty("pythonVersion")
     public abstract Builder pythonVersion(String pythonVersion);

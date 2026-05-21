@@ -55,7 +55,7 @@ public abstract class ReasoningEngineSpecSourceCodeSpecPythonSpec extends JsonSe
   public abstract Optional<String> requirementsFile();
 
   /**
-   * Optional. The version of Python to use. Support version includes 3.9, 3.10, 3.11, 3.12, 3.13,
+   * Optional. The version of Python to use. Supported versions include 3.10, 3.11, 3.12, 3.13,
    * 3.14. If not specified, default value is 3.10.
    */
   @JsonProperty("version")
@@ -145,7 +145,7 @@ public abstract class ReasoningEngineSpecSourceCodeSpecPythonSpec extends JsonSe
     /**
      * Setter for version.
      *
-     * <p>version: Optional. The version of Python to use. Support version includes 3.9, 3.10, 3.11,
+     * <p>version: Optional. The version of Python to use. Supported versions include 3.10, 3.11,
      * 3.12, 3.13, 3.14. If not specified, default value is 3.10.
      */
     @JsonProperty("version")
