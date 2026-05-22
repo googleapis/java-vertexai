@@ -1,4 +1,4 @@
 # Format:
 # module:released-version:current-version
 
-google-cloud-agentplatform:0.1.0:0.2.0-SNAPSHOT
+google-cloud-agentplatform:0.2.0:0.2.0

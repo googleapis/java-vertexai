@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/googleapis/java-vertexai/compare/v0.1.0...v0.2.0) (2026-05-22)
+
+
+### Features
+
+* add new fields ([1beb7dc](https://github.com/googleapis/java-vertexai/commit/1beb7dc9a4254155b9a2cfc92964b4309de9c3df))
+
 ## 0.1.0 (2026-05-11)
 
 
