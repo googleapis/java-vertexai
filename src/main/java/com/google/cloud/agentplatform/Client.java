@@ -45,7 +45,7 @@ public final class Client implements AutoCloseable {
   }
 
   // {x-version-update-start:google-cloud-agentplatform:released}
-  private static final String SDK_VERSION = "0.1.0";
+  private static final String SDK_VERSION = "0.2.0";
   // {x-version-update-end:google-cloud-agentplatform:released}
   private static final ImmutableMap<String, String> TRACKING_HEADERS;
   private static final Logger logger = Logger.getLogger(Client.class.getName());
