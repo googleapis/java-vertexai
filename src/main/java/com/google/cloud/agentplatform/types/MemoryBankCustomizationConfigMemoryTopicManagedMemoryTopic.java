@@ -67,13 +67,6 @@ public abstract class MemoryBankCustomizationConfigMemoryTopicManagedMemoryTopic
     @ExcludeFromGeneratedCoverageReport
     abstract Builder managedTopicEnum(Optional<ManagedTopicEnum> managedTopicEnum);
 
-    /** Clears the value of managedTopicEnum field. */
-    @ExcludeFromGeneratedCoverageReport
-    @CanIgnoreReturnValue
-    public Builder clearManagedTopicEnum() {
-      return managedTopicEnum(Optional.empty());
-    }
-
     /**
      * Setter for managedTopicEnum given a known enum.
      *
@@ -92,6 +85,13 @@ public abstract class MemoryBankCustomizationConfigMemoryTopicManagedMemoryTopic
     @CanIgnoreReturnValue
     public Builder managedTopicEnum(String managedTopicEnum) {
       return managedTopicEnum(new ManagedTopicEnum(managedTopicEnum));
+    }
+
+    /** Clears the value of managedTopicEnum field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearManagedTopicEnum() {
+      return managedTopicEnum(Optional.empty());
     }
 
     public abstract MemoryBankCustomizationConfigMemoryTopicManagedMemoryTopic build();

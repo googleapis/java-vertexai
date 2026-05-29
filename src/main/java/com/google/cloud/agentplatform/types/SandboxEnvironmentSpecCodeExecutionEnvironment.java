@@ -70,13 +70,6 @@ public abstract class SandboxEnvironmentSpecCodeExecutionEnvironment extends Jso
     @ExcludeFromGeneratedCoverageReport
     abstract Builder codeLanguage(Optional<Language> codeLanguage);
 
-    /** Clears the value of codeLanguage field. */
-    @ExcludeFromGeneratedCoverageReport
-    @CanIgnoreReturnValue
-    public Builder clearCodeLanguage() {
-      return codeLanguage(Optional.empty());
-    }
-
     /**
      * Setter for codeLanguage given a known enum.
      *
@@ -97,6 +90,13 @@ public abstract class SandboxEnvironmentSpecCodeExecutionEnvironment extends Jso
       return codeLanguage(new Language(codeLanguage));
     }
 
+    /** Clears the value of codeLanguage field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearCodeLanguage() {
+      return codeLanguage(Optional.empty());
+    }
+
     /**
      * Setter for machineConfig.
      *
@@ -107,13 +107,6 @@ public abstract class SandboxEnvironmentSpecCodeExecutionEnvironment extends Jso
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder machineConfig(Optional<MachineConfig> machineConfig);
-
-    /** Clears the value of machineConfig field. */
-    @ExcludeFromGeneratedCoverageReport
-    @CanIgnoreReturnValue
-    public Builder clearMachineConfig() {
-      return machineConfig(Optional.empty());
-    }
 
     /**
      * Setter for machineConfig given a known enum.
@@ -133,6 +126,13 @@ public abstract class SandboxEnvironmentSpecCodeExecutionEnvironment extends Jso
     @CanIgnoreReturnValue
     public Builder machineConfig(String machineConfig) {
       return machineConfig(new MachineConfig(machineConfig));
+    }
+
+    /** Clears the value of machineConfig field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearMachineConfig() {
+      return machineConfig(Optional.empty());
     }
 
     public abstract SandboxEnvironmentSpecCodeExecutionEnvironment build();

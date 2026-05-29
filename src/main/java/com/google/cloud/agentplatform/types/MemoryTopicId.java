@@ -85,13 +85,6 @@ public abstract class MemoryTopicId extends JsonSerializable {
     @ExcludeFromGeneratedCoverageReport
     abstract Builder managedMemoryTopic(Optional<ManagedTopicEnum> managedMemoryTopic);
 
-    /** Clears the value of managedMemoryTopic field. */
-    @ExcludeFromGeneratedCoverageReport
-    @CanIgnoreReturnValue
-    public Builder clearManagedMemoryTopic() {
-      return managedMemoryTopic(Optional.empty());
-    }
-
     /**
      * Setter for managedMemoryTopic given a known enum.
      *
@@ -110,6 +103,13 @@ public abstract class MemoryTopicId extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder managedMemoryTopic(String managedMemoryTopic) {
       return managedMemoryTopic(new ManagedTopicEnum(managedMemoryTopic));
+    }
+
+    /** Clears the value of managedMemoryTopic field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearManagedMemoryTopic() {
+      return managedMemoryTopic(Optional.empty());
     }
 
     public abstract MemoryTopicId build();

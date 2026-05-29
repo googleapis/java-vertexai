@@ -646,13 +646,6 @@ public abstract class UpdateAgentEngineConfig extends JsonSerializable {
     @ExcludeFromGeneratedCoverageReport
     abstract Builder agentFramework(Optional<AgentFramework> agentFramework);
 
-    /** Clears the value of agentFramework field. */
-    @ExcludeFromGeneratedCoverageReport
-    @CanIgnoreReturnValue
-    public Builder clearAgentFramework() {
-      return agentFramework(Optional.empty());
-    }
-
     /**
      * Setter for agentFramework given a known enum.
      *
@@ -681,6 +674,13 @@ public abstract class UpdateAgentEngineConfig extends JsonSerializable {
       return agentFramework(new AgentFramework(agentFramework));
     }
 
+    /** Clears the value of agentFramework field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearAgentFramework() {
+      return agentFramework(Optional.empty());
+    }
+
     /**
      * Setter for pythonVersion.
      *
@@ -693,13 +693,6 @@ public abstract class UpdateAgentEngineConfig extends JsonSerializable {
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder pythonVersion(Optional<PythonVersion> pythonVersion);
-
-    /** Clears the value of pythonVersion field. */
-    @ExcludeFromGeneratedCoverageReport
-    @CanIgnoreReturnValue
-    public Builder clearPythonVersion() {
-      return pythonVersion(Optional.empty());
-    }
 
     /**
      * Setter for pythonVersion given a known enum.
@@ -723,6 +716,13 @@ public abstract class UpdateAgentEngineConfig extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder pythonVersion(String pythonVersion) {
       return pythonVersion(new PythonVersion(pythonVersion));
+    }
+
+    /** Clears the value of pythonVersion field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearPythonVersion() {
+      return pythonVersion(Optional.empty());
     }
 
     /**

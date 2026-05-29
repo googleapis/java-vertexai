@@ -256,13 +256,6 @@ public abstract class SandboxEnvironment extends JsonSerializable {
     @ExcludeFromGeneratedCoverageReport
     abstract Builder state(Optional<SandboxState> state);
 
-    /** Clears the value of state field. */
-    @ExcludeFromGeneratedCoverageReport
-    @CanIgnoreReturnValue
-    public Builder clearState() {
-      return state(Optional.empty());
-    }
-
     /**
      * Setter for state given a known enum.
      *
@@ -281,6 +274,13 @@ public abstract class SandboxEnvironment extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder state(String state) {
       return state(new SandboxState(state));
+    }
+
+    /** Clears the value of state field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearState() {
+      return state(Optional.empty());
     }
 
     /**

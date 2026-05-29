@@ -281,13 +281,6 @@ public abstract class GenerateAgentEngineMemoriesConfig extends JsonSerializable
     abstract Builder metadataMergeStrategy(
         Optional<MemoryMetadataMergeStrategy> metadataMergeStrategy);
 
-    /** Clears the value of metadataMergeStrategy field. */
-    @ExcludeFromGeneratedCoverageReport
-    @CanIgnoreReturnValue
-    public Builder clearMetadataMergeStrategy() {
-      return metadataMergeStrategy(Optional.empty());
-    }
-
     /**
      * Setter for metadataMergeStrategy given a known enum.
      *
@@ -308,6 +301,13 @@ public abstract class GenerateAgentEngineMemoriesConfig extends JsonSerializable
     @CanIgnoreReturnValue
     public Builder metadataMergeStrategy(String metadataMergeStrategy) {
       return metadataMergeStrategy(new MemoryMetadataMergeStrategy(metadataMergeStrategy));
+    }
+
+    /** Clears the value of metadataMergeStrategy field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearMetadataMergeStrategy() {
+      return metadataMergeStrategy(Optional.empty());
     }
 
     /**

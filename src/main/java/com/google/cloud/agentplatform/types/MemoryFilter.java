@@ -115,13 +115,6 @@ public abstract class MemoryFilter extends JsonSerializable {
     @ExcludeFromGeneratedCoverageReport
     abstract Builder op(Optional<Operator> op);
 
-    /** Clears the value of op field. */
-    @ExcludeFromGeneratedCoverageReport
-    @CanIgnoreReturnValue
-    public Builder clearOp() {
-      return op(Optional.empty());
-    }
-
     /**
      * Setter for op given a known enum.
      *
@@ -140,6 +133,13 @@ public abstract class MemoryFilter extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder op(String op) {
       return op(new Operator(op));
+    }
+
+    /** Clears the value of op field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearOp() {
+      return op(Optional.empty());
     }
 
     /**

@@ -107,13 +107,6 @@ public abstract class GenerateMemoriesResponseGeneratedMemory extends JsonSerial
     @ExcludeFromGeneratedCoverageReport
     abstract Builder action(Optional<GenerateMemoriesResponseGeneratedMemoryAction> action);
 
-    /** Clears the value of action field. */
-    @ExcludeFromGeneratedCoverageReport
-    @CanIgnoreReturnValue
-    public Builder clearAction() {
-      return action(Optional.empty());
-    }
-
     /**
      * Setter for action given a known enum.
      *
@@ -132,6 +125,13 @@ public abstract class GenerateMemoriesResponseGeneratedMemory extends JsonSerial
     @CanIgnoreReturnValue
     public Builder action(String action) {
       return action(new GenerateMemoriesResponseGeneratedMemoryAction(action));
+    }
+
+    /** Clears the value of action field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearAction() {
+      return action(Optional.empty());
     }
 
     /**

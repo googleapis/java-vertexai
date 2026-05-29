@@ -101,13 +101,6 @@ public abstract class SchemaPromptSpecAppBuilderData extends JsonSerializable {
     @ExcludeFromGeneratedCoverageReport
     abstract Builder framework(Optional<Framework> framework);
 
-    /** Clears the value of framework field. */
-    @ExcludeFromGeneratedCoverageReport
-    @CanIgnoreReturnValue
-    public Builder clearFramework() {
-      return framework(Optional.empty());
-    }
-
     /**
      * Setter for framework given a known enum.
      *
@@ -126,6 +119,13 @@ public abstract class SchemaPromptSpecAppBuilderData extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder framework(String framework) {
       return framework(new Framework(framework));
+    }
+
+    /** Clears the value of framework field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearFramework() {
+      return framework(Optional.empty());
     }
 
     /**

@@ -250,13 +250,6 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
     @ExcludeFromGeneratedCoverageReport
     abstract Builder identityType(Optional<IdentityType> identityType);
 
-    /** Clears the value of identityType field. */
-    @ExcludeFromGeneratedCoverageReport
-    @CanIgnoreReturnValue
-    public Builder clearIdentityType() {
-      return identityType(Optional.empty());
-    }
-
     /**
      * Setter for identityType given a known enum.
      *
@@ -279,6 +272,13 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder identityType(String identityType) {
       return identityType(new IdentityType(identityType));
+    }
+
+    /** Clears the value of identityType field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearIdentityType() {
+      return identityType(Optional.empty());
     }
 
     /**

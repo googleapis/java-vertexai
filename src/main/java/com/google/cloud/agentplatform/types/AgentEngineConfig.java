@@ -459,13 +459,6 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     @ExcludeFromGeneratedCoverageReport
     abstract Builder identityType(Optional<IdentityType> identityType);
 
-    /** Clears the value of identityType field. */
-    @ExcludeFromGeneratedCoverageReport
-    @CanIgnoreReturnValue
-    public Builder clearIdentityType() {
-      return identityType(Optional.empty());
-    }
-
     /**
      * Setter for identityType given a known enum.
      *
@@ -484,6 +477,13 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder identityType(String identityType) {
       return identityType(new IdentityType(identityType));
+    }
+
+    /** Clears the value of identityType field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearIdentityType() {
+      return identityType(Optional.empty());
     }
 
     /**
@@ -666,13 +666,6 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     @ExcludeFromGeneratedCoverageReport
     abstract Builder agentServerMode(Optional<AgentServerMode> agentServerMode);
 
-    /** Clears the value of agentServerMode field. */
-    @ExcludeFromGeneratedCoverageReport
-    @CanIgnoreReturnValue
-    public Builder clearAgentServerMode() {
-      return agentServerMode(Optional.empty());
-    }
-
     /**
      * Setter for agentServerMode given a known enum.
      *
@@ -691,6 +684,13 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder agentServerMode(String agentServerMode) {
       return agentServerMode(new AgentServerMode(agentServerMode));
+    }
+
+    /** Clears the value of agentServerMode field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearAgentServerMode() {
+      return agentServerMode(Optional.empty());
     }
 
     /**
@@ -874,13 +874,6 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     @ExcludeFromGeneratedCoverageReport
     abstract Builder agentFramework(Optional<AgentFramework> agentFramework);
 
-    /** Clears the value of agentFramework field. */
-    @ExcludeFromGeneratedCoverageReport
-    @CanIgnoreReturnValue
-    public Builder clearAgentFramework() {
-      return agentFramework(Optional.empty());
-    }
-
     /**
      * Setter for agentFramework given a known enum.
      *
@@ -909,6 +902,13 @@ public abstract class AgentEngineConfig extends JsonSerializable {
       return agentFramework(new AgentFramework(agentFramework));
     }
 
+    /** Clears the value of agentFramework field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearAgentFramework() {
+      return agentFramework(Optional.empty());
+    }
+
     /**
      * Setter for pythonVersion.
      *
@@ -921,13 +921,6 @@ public abstract class AgentEngineConfig extends JsonSerializable {
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder pythonVersion(Optional<PythonVersion> pythonVersion);
-
-    /** Clears the value of pythonVersion field. */
-    @ExcludeFromGeneratedCoverageReport
-    @CanIgnoreReturnValue
-    public Builder clearPythonVersion() {
-      return pythonVersion(Optional.empty());
-    }
 
     /**
      * Setter for pythonVersion given a known enum.
@@ -951,6 +944,13 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder pythonVersion(String pythonVersion) {
       return pythonVersion(new PythonVersion(pythonVersion));
+    }
+
+    /** Clears the value of pythonVersion field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearPythonVersion() {
+      return pythonVersion(Optional.empty());
     }
 
     /**

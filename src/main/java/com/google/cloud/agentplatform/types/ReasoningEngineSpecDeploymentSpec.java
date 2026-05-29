@@ -136,13 +136,6 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
     @ExcludeFromGeneratedCoverageReport
     abstract Builder agentServerMode(Optional<AgentServerMode> agentServerMode);
 
-    /** Clears the value of agentServerMode field. */
-    @ExcludeFromGeneratedCoverageReport
-    @CanIgnoreReturnValue
-    public Builder clearAgentServerMode() {
-      return agentServerMode(Optional.empty());
-    }
-
     /**
      * Setter for agentServerMode given a known enum.
      *
@@ -161,6 +154,13 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
     @CanIgnoreReturnValue
     public Builder agentServerMode(String agentServerMode) {
       return agentServerMode(new AgentServerMode(agentServerMode));
+    }
+
+    /** Clears the value of agentServerMode field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearAgentServerMode() {
+      return agentServerMode(Optional.empty());
     }
 
     /**

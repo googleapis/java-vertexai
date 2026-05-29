@@ -118,13 +118,6 @@ public abstract class StructuredMemorySchemaConfig extends JsonSerializable {
     @ExcludeFromGeneratedCoverageReport
     abstract Builder memoryType(Optional<MemoryType> memoryType);
 
-    /** Clears the value of memoryType field. */
-    @ExcludeFromGeneratedCoverageReport
-    @CanIgnoreReturnValue
-    public Builder clearMemoryType() {
-      return memoryType(Optional.empty());
-    }
-
     /**
      * Setter for memoryType given a known enum.
      *
@@ -145,6 +138,13 @@ public abstract class StructuredMemorySchemaConfig extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder memoryType(String memoryType) {
       return memoryType(new MemoryType(memoryType));
+    }
+
+    /** Clears the value of memoryType field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearMemoryType() {
+      return memoryType(Optional.empty());
     }
 
     public abstract StructuredMemorySchemaConfig build();
