@@ -51,7 +51,7 @@ public abstract class CreateAgentEngineSessionConfig extends JsonSerializable {
   public abstract Optional<Boolean> waitForCompletion();
 
   /**
-   * Optional. Input only. The TTL for this resource.
+   * Optional. Input only. The TTL for this resource. It must be positive.
    *
    * <p>The expiration time is computed: now + TTL.
    */
@@ -178,7 +178,7 @@ public abstract class CreateAgentEngineSessionConfig extends JsonSerializable {
     /**
      * Setter for ttl.
      *
-     * <p>ttl: Optional. Input only. The TTL for this resource.
+     * <p>ttl: Optional. Input only. The TTL for this resource. It must be positive.
      *
      * <p>The expiration time is computed: now + TTL.
      */
