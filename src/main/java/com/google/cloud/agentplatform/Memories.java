@@ -380,6 +380,48 @@ public final class Memories {
           Common.getValueByPath(fromObject, new String[] {"forceFlush"}));
     }
 
+    if (Common.getValueByPath(fromObject, new String[] {"revisionLabels"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"revisionLabels"},
+          Common.getValueByPath(fromObject, new String[] {"revisionLabels"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"revisionExpireTime"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"revisionExpireTime"},
+          Common.getValueByPath(fromObject, new String[] {"revisionExpireTime"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"revisionTtl"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"revisionTtl"},
+          Common.getValueByPath(fromObject, new String[] {"revisionTtl"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"disableMemoryRevisions"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"disableMemoryRevisions"},
+          Common.getValueByPath(fromObject, new String[] {"disableMemoryRevisions"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"metadata"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"metadata"},
+          Common.getValueByPath(fromObject, new String[] {"metadata"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"metadataMergeStrategy"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"metadataMergeStrategy"},
+          Common.getValueByPath(fromObject, new String[] {"metadataMergeStrategy"}));
+    }
+
     return toObject;
   }
 

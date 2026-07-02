@@ -49,6 +49,10 @@ public abstract class MemoryGenerationTriggerConfigGenerationTriggerRule extends
   @JsonProperty("idleDuration")
   public abstract Optional<Duration> idleDuration();
 
+  /** Optional. Re-include the last N already-processed events in the next window. */
+  @JsonProperty("overlapEventCount")
+  public abstract Optional<Integer> overlapEventCount();
+
   /** Instantiates a builder for MemoryGenerationTriggerConfigGenerationTriggerRule. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -126,6 +130,25 @@ public abstract class MemoryGenerationTriggerConfigGenerationTriggerRule extends
     @CanIgnoreReturnValue
     public Builder clearIdleDuration() {
       return idleDuration(Optional.empty());
+    }
+
+    /**
+     * Setter for overlapEventCount.
+     *
+     * <p>overlapEventCount: Optional. Re-include the last N already-processed events in the next
+     * window.
+     */
+    @JsonProperty("overlapEventCount")
+    public abstract Builder overlapEventCount(Integer overlapEventCount);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder overlapEventCount(Optional<Integer> overlapEventCount);
+
+    /** Clears the value of overlapEventCount field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearOverlapEventCount() {
+      return overlapEventCount(Optional.empty());
     }
 
     public abstract MemoryGenerationTriggerConfigGenerationTriggerRule build();
