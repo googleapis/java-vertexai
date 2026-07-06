@@ -27,7 +27,7 @@ import com.google.genai.JsonSerializable;
 import com.google.genai.types.Content;
 import java.util.Optional;
 
-/** None */
+/** */
 @AutoValue
 @JsonDeserialize(builder = GenerateMemoriesRequestDirectContentsSourceEvent.Builder.class)
 public abstract class GenerateMemoriesRequestDirectContentsSourceEvent extends JsonSerializable {
