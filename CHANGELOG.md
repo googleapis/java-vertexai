@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.3.0](https://github.com/googleapis/java-vertexai/compare/v0.2.0...v0.3.0) (2026-07-06)
+
+
+### Features
+
+* Add response_format and Translation_config in GenerationConfig ([19e22e6](https://github.com/googleapis/java-vertexai/commit/19e22e6b88eb4788d051f6d2b7a2261e2f5fab5a))
+* Add revision_labels, revision_expire_time, revision_ttl, disable_memory_revisions, metadata, metadata_merge_strategy and overlap_event_count to Memory Bank IngestEvents API ([2dda057](https://github.com/googleapis/java-vertexai/commit/2dda05790073fbd00ac90b0aae9d5ac9cb939b75))
+* Add Tool.exa_ai_search for Gemini Enterprise API ([19e22e6](https://github.com/googleapis/java-vertexai/commit/19e22e6b88eb4788d051f6d2b7a2261e2f5fab5a))
+
+
+### Documentation
+
+* fix typos across docstrings ([2d9beea](https://github.com/googleapis/java-vertexai/commit/2d9beea29a906170f4a4c7f0922a6194892be535))
+
 ## [0.2.0](https://github.com/googleapis/java-vertexai/compare/v0.1.0...v0.2.0) (2026-05-22)
 
 
