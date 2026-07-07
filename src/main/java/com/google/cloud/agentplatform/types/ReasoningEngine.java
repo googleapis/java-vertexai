@@ -86,6 +86,19 @@ public abstract class ReasoningEngine extends JsonSerializable {
   @JsonProperty("trafficConfig")
   public abstract Optional<ReasoningEngineTrafficConfig> trafficConfig();
 
+  /** Optional. The experiment config used to control which features to enable in this API call. */
+  @JsonProperty("experimentConfig")
+  public abstract Optional<ExperimentConfig> experimentConfig();
+
+  /** Optional. Configures garbage collection of Runtime Revisions. */
+  @JsonProperty("revisionGarbageCollectionStrategy")
+  public abstract Optional<ReasoningEngineRevisionGarbageCollectionStrategy>
+      revisionGarbageCollectionStrategy();
+
+  /** Output only. The URL of the reasoning engine. */
+  @JsonProperty("url")
+  public abstract Optional<String> url();
+
   /** Instantiates a builder for ReasoningEngine. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -335,6 +348,89 @@ public abstract class ReasoningEngine extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearTrafficConfig() {
       return trafficConfig(Optional.empty());
+    }
+
+    /**
+     * Setter for experimentConfig.
+     *
+     * <p>experimentConfig: Optional. The experiment config used to control which features to enable
+     * in this API call.
+     */
+    @JsonProperty("experimentConfig")
+    public abstract Builder experimentConfig(ExperimentConfig experimentConfig);
+
+    /**
+     * Setter for experimentConfig builder.
+     *
+     * <p>experimentConfig: Optional. The experiment config used to control which features to enable
+     * in this API call.
+     */
+    @CanIgnoreReturnValue
+    public Builder experimentConfig(ExperimentConfig.Builder experimentConfigBuilder) {
+      return experimentConfig(experimentConfigBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder experimentConfig(Optional<ExperimentConfig> experimentConfig);
+
+    /** Clears the value of experimentConfig field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearExperimentConfig() {
+      return experimentConfig(Optional.empty());
+    }
+
+    /**
+     * Setter for revisionGarbageCollectionStrategy.
+     *
+     * <p>revisionGarbageCollectionStrategy: Optional. Configures garbage collection of Runtime
+     * Revisions.
+     */
+    @JsonProperty("revisionGarbageCollectionStrategy")
+    public abstract Builder revisionGarbageCollectionStrategy(
+        ReasoningEngineRevisionGarbageCollectionStrategy revisionGarbageCollectionStrategy);
+
+    /**
+     * Setter for revisionGarbageCollectionStrategy builder.
+     *
+     * <p>revisionGarbageCollectionStrategy: Optional. Configures garbage collection of Runtime
+     * Revisions.
+     */
+    @CanIgnoreReturnValue
+    public Builder revisionGarbageCollectionStrategy(
+        ReasoningEngineRevisionGarbageCollectionStrategy.Builder
+            revisionGarbageCollectionStrategyBuilder) {
+      return revisionGarbageCollectionStrategy(revisionGarbageCollectionStrategyBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder revisionGarbageCollectionStrategy(
+        Optional<ReasoningEngineRevisionGarbageCollectionStrategy>
+            revisionGarbageCollectionStrategy);
+
+    /** Clears the value of revisionGarbageCollectionStrategy field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearRevisionGarbageCollectionStrategy() {
+      return revisionGarbageCollectionStrategy(Optional.empty());
+    }
+
+    /**
+     * Setter for url.
+     *
+     * <p>url: Output only. The URL of the reasoning engine.
+     */
+    @JsonProperty("url")
+    public abstract Builder url(String url);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder url(Optional<String> url);
+
+    /** Clears the value of url field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearUrl() {
+      return url(Optional.empty());
     }
 
     public abstract ReasoningEngine build();

@@ -25,6 +25,7 @@ import com.google.auto.value.AutoValue;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.genai.JsonSerializable;
 import com.google.genai.types.Content;
+import java.time.Instant;
 import java.util.Optional;
 
 /** */
@@ -34,6 +35,10 @@ public abstract class GenerateMemoriesRequestDirectContentsSourceEvent extends J
   /** Required. A single piece of content from which to generate memories. */
   @JsonProperty("content")
   public abstract Optional<Content> content();
+
+  /** Optional. The time at which the event occurred. */
+  @JsonProperty("eventTime")
+  public abstract Optional<Instant> eventTime();
 
   /** Instantiates a builder for GenerateMemoriesRequestDirectContentsSourceEvent. */
   @ExcludeFromGeneratedCoverageReport
@@ -72,6 +77,24 @@ public abstract class GenerateMemoriesRequestDirectContentsSourceEvent extends J
     @CanIgnoreReturnValue
     public Builder clearContent() {
       return content(Optional.empty());
+    }
+
+    /**
+     * Setter for eventTime.
+     *
+     * <p>eventTime: Optional. The time at which the event occurred.
+     */
+    @JsonProperty("eventTime")
+    public abstract Builder eventTime(Instant eventTime);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder eventTime(Optional<Instant> eventTime);
+
+    /** Clears the value of eventTime field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearEventTime() {
+      return eventTime(Optional.empty());
     }
 
     public abstract GenerateMemoriesRequestDirectContentsSourceEvent build();

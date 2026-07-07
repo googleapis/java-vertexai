@@ -65,6 +65,25 @@ public abstract class EventActions extends JsonSerializable {
   @JsonProperty("transferAgent")
   public abstract Optional<String> transferAgent();
 
+  /**
+   * Optional. If set, the event transfers to the specified agent. This field is intended to replace
+   * 'transfer_agent'. Not in use pending data migration.
+   */
+  @JsonProperty("transferToAgent")
+  public abstract Optional<String> transferToAgent();
+
+  /** Optional. A dict of tool confirmation requested by this event, keyed by function call id. */
+  @JsonProperty("requestedToolConfirmations")
+  public abstract Optional<Map<String, Object>> requestedToolConfirmations();
+
+  /** Optional. If true, the current agent has finished its current run. */
+  @JsonProperty("endOfAgent")
+  public abstract Optional<Boolean> endOfAgent();
+
+  /** Optional. The agent state at the current event. */
+  @JsonProperty("agentState")
+  public abstract Optional<Map<String, Object>> agentState();
+
   /** Instantiates a builder for EventActions. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -194,6 +213,82 @@ public abstract class EventActions extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearTransferAgent() {
       return transferAgent(Optional.empty());
+    }
+
+    /**
+     * Setter for transferToAgent.
+     *
+     * <p>transferToAgent: Optional. If set, the event transfers to the specified agent. This field
+     * is intended to replace 'transfer_agent'. Not in use pending data migration.
+     */
+    @JsonProperty("transferToAgent")
+    public abstract Builder transferToAgent(String transferToAgent);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder transferToAgent(Optional<String> transferToAgent);
+
+    /** Clears the value of transferToAgent field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearTransferToAgent() {
+      return transferToAgent(Optional.empty());
+    }
+
+    /**
+     * Setter for requestedToolConfirmations.
+     *
+     * <p>requestedToolConfirmations: Optional. A dict of tool confirmation requested by this event,
+     * keyed by function call id.
+     */
+    @JsonProperty("requestedToolConfirmations")
+    public abstract Builder requestedToolConfirmations(
+        Map<String, Object> requestedToolConfirmations);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder requestedToolConfirmations(
+        Optional<Map<String, Object>> requestedToolConfirmations);
+
+    /** Clears the value of requestedToolConfirmations field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearRequestedToolConfirmations() {
+      return requestedToolConfirmations(Optional.empty());
+    }
+
+    /**
+     * Setter for endOfAgent.
+     *
+     * <p>endOfAgent: Optional. If true, the current agent has finished its current run.
+     */
+    @JsonProperty("endOfAgent")
+    public abstract Builder endOfAgent(boolean endOfAgent);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder endOfAgent(Optional<Boolean> endOfAgent);
+
+    /** Clears the value of endOfAgent field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearEndOfAgent() {
+      return endOfAgent(Optional.empty());
+    }
+
+    /**
+     * Setter for agentState.
+     *
+     * <p>agentState: Optional. The agent state at the current event.
+     */
+    @JsonProperty("agentState")
+    public abstract Builder agentState(Map<String, Object> agentState);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder agentState(Optional<Map<String, Object>> agentState);
+
+    /** Clears the value of agentState field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearAgentState() {
+      return agentState(Optional.empty());
     }
 
     public abstract EventActions build();

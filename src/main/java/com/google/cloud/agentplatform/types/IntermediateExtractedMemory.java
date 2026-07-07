@@ -46,6 +46,13 @@ public abstract class IntermediateExtractedMemory extends JsonSerializable {
   @JsonProperty("context")
   public abstract Optional<String> context();
 
+  /**
+   * Output only. Indicates that the extracted memory originated from an explicit instruction to
+   * remember or forget information.
+   */
+  @JsonProperty("isExplicit")
+  public abstract Optional<Boolean> isExplicit();
+
   /** Instantiates a builder for IntermediateExtractedMemory. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -117,6 +124,25 @@ public abstract class IntermediateExtractedMemory extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearContext() {
       return context(Optional.empty());
+    }
+
+    /**
+     * Setter for isExplicit.
+     *
+     * <p>isExplicit: Output only. Indicates that the extracted memory originated from an explicit
+     * instruction to remember or forget information.
+     */
+    @JsonProperty("isExplicit")
+    public abstract Builder isExplicit(boolean isExplicit);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder isExplicit(Optional<Boolean> isExplicit);
+
+    /** Clears the value of isExplicit field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearIsExplicit() {
+      return isExplicit(Optional.empty());
     }
 
     public abstract IntermediateExtractedMemory build();

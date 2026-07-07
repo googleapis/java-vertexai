@@ -135,6 +135,10 @@ public abstract class Memory extends JsonSerializable {
   @JsonProperty("structuredContent")
   public abstract Optional<MemoryStructuredContent> structuredContent();
 
+  /** Optional. Deprecated: Use `structured_content` instead. */
+  @JsonProperty("structuredData")
+  public abstract Optional<Map<String, Object>> structuredData();
+
   /** Instantiates a builder for Memory. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -529,6 +533,24 @@ public abstract class Memory extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearStructuredContent() {
       return structuredContent(Optional.empty());
+    }
+
+    /**
+     * Setter for structuredData.
+     *
+     * <p>structuredData: Optional. Deprecated: Use `structured_content` instead.
+     */
+    @JsonProperty("structuredData")
+    public abstract Builder structuredData(Map<String, Object> structuredData);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder structuredData(Optional<Map<String, Object>> structuredData);
+
+    /** Clears the value of structuredData field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearStructuredData() {
+      return structuredData(Optional.empty());
     }
 
     public abstract Memory build();

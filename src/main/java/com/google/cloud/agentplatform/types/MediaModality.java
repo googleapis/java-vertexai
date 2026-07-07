@@ -23,40 +23,51 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.google.common.base.Ascii;
 import java.util.Objects;
 
-/** Output only. The state of the session. */
-public class State {
+/** The modality that this token count applies to. */
+public class MediaModality {
 
-  /** Enum representing the known values for State. */
+  /** Enum representing the known values for MediaModality. */
   public enum Known {
-    /** State unspecified. */
-    STATE_UNSPECIFIED,
+    /** When a modality is not specified, it is treated as `TEXT`. */
+    MODALITY_UNSPECIFIED,
 
-    /** The session is idle. */
-    SESSION_IDLE,
+    /** The `Part` contains plain text. */
+    TEXT,
 
-    /** The session is in progress. */
-    SESSION_IN_PROGRESS
+    /** The `Part` contains an image. */
+    IMAGE,
+
+    /** The `Part` contains a video. */
+    VIDEO,
+
+    /** The `Part` contains audio. */
+    AUDIO,
+
+    /** The `Part` contains a document, such as a PDF. */
+    DOCUMENT,
+
+    MEDIA_MODALITY_UNSPECIFIED
   }
 
-  private Known stateEnum;
+  private Known mediaModalityEnum;
   private final String value;
 
   @JsonCreator
-  public State(String value) {
+  public MediaModality(String value) {
     this.value = value;
-    for (Known stateEnum : Known.values()) {
-      if (Ascii.equalsIgnoreCase(stateEnum.toString(), value)) {
-        this.stateEnum = stateEnum;
+    for (Known mediaModalityEnum : Known.values()) {
+      if (Ascii.equalsIgnoreCase(mediaModalityEnum.toString(), value)) {
+        this.mediaModalityEnum = mediaModalityEnum;
         break;
       }
     }
-    if (this.stateEnum == null) {
-      this.stateEnum = Known.STATE_UNSPECIFIED;
+    if (this.mediaModalityEnum == null) {
+      this.mediaModalityEnum = Known.MEDIA_MODALITY_UNSPECIFIED;
     }
   }
 
-  public State(Known knownValue) {
-    this.stateEnum = knownValue;
+  public MediaModality(Known knownValue) {
+    this.mediaModalityEnum = knownValue;
     this.value = knownValue.toString();
   }
 
@@ -78,16 +89,17 @@ public class State {
       return false;
     }
 
-    if (!(o instanceof State)) {
+    if (!(o instanceof MediaModality)) {
       return false;
     }
 
-    State other = (State) o;
+    MediaModality other = (MediaModality) o;
 
-    if (this.stateEnum != Known.STATE_UNSPECIFIED && other.stateEnum != Known.STATE_UNSPECIFIED) {
-      return this.stateEnum == other.stateEnum;
-    } else if (this.stateEnum == Known.STATE_UNSPECIFIED
-        && other.stateEnum == Known.STATE_UNSPECIFIED) {
+    if (this.mediaModalityEnum != Known.MEDIA_MODALITY_UNSPECIFIED
+        && other.mediaModalityEnum != Known.MEDIA_MODALITY_UNSPECIFIED) {
+      return this.mediaModalityEnum == other.mediaModalityEnum;
+    } else if (this.mediaModalityEnum == Known.MEDIA_MODALITY_UNSPECIFIED
+        && other.mediaModalityEnum == Known.MEDIA_MODALITY_UNSPECIFIED) {
       return this.value.equals(other.value);
     }
     return false;
@@ -96,8 +108,8 @@ public class State {
   @ExcludeFromGeneratedCoverageReport
   @Override
   public int hashCode() {
-    if (this.stateEnum != Known.STATE_UNSPECIFIED) {
-      return this.stateEnum.hashCode();
+    if (this.mediaModalityEnum != Known.MEDIA_MODALITY_UNSPECIFIED) {
+      return this.mediaModalityEnum.hashCode();
     } else {
       return Objects.hashCode(this.value);
     }
@@ -105,6 +117,6 @@ public class State {
 
   @ExcludeFromGeneratedCoverageReport
   public Known knownEnum() {
-    return this.stateEnum;
+    return this.mediaModalityEnum;
   }
 }

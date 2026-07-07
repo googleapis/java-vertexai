@@ -45,6 +45,13 @@ public abstract class ReasoningEngineContextSpecMemoryBankConfigGenerationConfig
   @JsonProperty("generationTriggerConfig")
   public abstract Optional<MemoryGenerationTriggerConfig> generationTriggerConfig();
 
+  /**
+   * Optional. A custom prompt to use for extracting memories from conversations. If not set, a
+   * default prompt will be used.
+   */
+  @JsonProperty("memoryExtractionInstructions")
+  public abstract Optional<String> memoryExtractionInstructions();
+
   /** Instantiates a builder for ReasoningEngineContextSpecMemoryBankConfigGenerationConfig. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -116,6 +123,25 @@ public abstract class ReasoningEngineContextSpecMemoryBankConfigGenerationConfig
     @CanIgnoreReturnValue
     public Builder clearGenerationTriggerConfig() {
       return generationTriggerConfig(Optional.empty());
+    }
+
+    /**
+     * Setter for memoryExtractionInstructions.
+     *
+     * <p>memoryExtractionInstructions: Optional. A custom prompt to use for extracting memories
+     * from conversations. If not set, a default prompt will be used.
+     */
+    @JsonProperty("memoryExtractionInstructions")
+    public abstract Builder memoryExtractionInstructions(String memoryExtractionInstructions);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder memoryExtractionInstructions(Optional<String> memoryExtractionInstructions);
+
+    /** Clears the value of memoryExtractionInstructions field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearMemoryExtractionInstructions() {
+      return memoryExtractionInstructions(Optional.empty());
     }
 
     public abstract ReasoningEngineContextSpecMemoryBankConfigGenerationConfig build();
