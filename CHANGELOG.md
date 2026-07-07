@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.0](https://github.com/googleapis/java-vertexai/compare/v0.2.0...v0.3.0) (2026-07-06)
+
+
+### Features
+
+* Add revision_labels, revision_expire_time, revision_ttl, disable_memory_revisions, metadata, metadata_merge_strategy and overlap_event_count to Memory Bank IngestEvents API ([2dda057](https://github.com/googleapis/java-vertexai/commit/2dda05790073fbd00ac90b0aae9d5ac9cb939b75))
+
+
+### Documentation
+
+* fix typos across docstrings ([2d9beea](https://github.com/googleapis/java-vertexai/commit/2d9beea29a906170f4a4c7f0922a6194892be535))
+
 ## [0.2.0](https://github.com/googleapis/java-vertexai/compare/v0.1.0...v0.2.0) (2026-05-22)
 
 
