@@ -27,7 +27,7 @@ import com.google.genai.JsonSerializable;
 import com.google.genai.types.HttpOptions;
 import java.util.Optional;
 
-/** */
+/** None */
 @AutoValue
 @JsonDeserialize(builder = GetAgentEngineOperationConfig.Builder.class)
 public abstract class GetAgentEngineOperationConfig extends JsonSerializable {
