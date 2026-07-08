@@ -38,6 +38,10 @@ public abstract class MemoryTopicId extends JsonSerializable {
   @JsonProperty("managedMemoryTopic")
   public abstract Optional<ManagedTopicEnum> managedMemoryTopic();
 
+  /** Optional. Deprecated: Use `schema_id` in top-level protos instead. */
+  @JsonProperty("schemaId")
+  public abstract Optional<String> schemaId();
+
   /** Instantiates a builder for MemoryTopicId. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -110,6 +114,24 @@ public abstract class MemoryTopicId extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder managedMemoryTopic(String managedMemoryTopic) {
       return managedMemoryTopic(new ManagedTopicEnum(managedMemoryTopic));
+    }
+
+    /**
+     * Setter for schemaId.
+     *
+     * <p>schemaId: Optional. Deprecated: Use `schema_id` in top-level protos instead.
+     */
+    @JsonProperty("schemaId")
+    public abstract Builder schemaId(String schemaId);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder schemaId(Optional<String> schemaId);
+
+    /** Clears the value of schemaId field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearSchemaId() {
+      return schemaId(Optional.empty());
     }
 
     public abstract MemoryTopicId build();

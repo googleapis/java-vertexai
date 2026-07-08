@@ -23,40 +23,46 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.google.common.base.Ascii;
 import java.util.Objects;
 
-/** Output only. The state of the session. */
-public class State {
+/** Output only. The traffic type for this request. */
+public class TrafficType {
 
-  /** Enum representing the known values for State. */
+  /** Enum representing the known values for TrafficType. */
   public enum Known {
-    /** State unspecified. */
-    STATE_UNSPECIFIED,
+    /** Unspecified request traffic type. */
+    TRAFFIC_TYPE_UNSPECIFIED,
 
-    /** The session is idle. */
-    SESSION_IDLE,
+    /** Type for Pay-As-You-Go traffic. */
+    ON_DEMAND,
 
-    /** The session is in progress. */
-    SESSION_IN_PROGRESS
+    /** Type for Priority Pay-As-You-Go traffic. */
+    ON_DEMAND_PRIORITY,
+
+    /** Type for Flex traffic. */
+    ON_DEMAND_FLEX,
+
+    /** Type for Provisioned Throughput traffic. */
+    PROVISIONED_THROUGHPUT
   }
 
-  private Known stateEnum;
+  private Known trafficTypeEnum;
   private final String value;
 
   @JsonCreator
-  public State(String value) {
+  public TrafficType(String value) {
     this.value = value;
-    for (Known stateEnum : Known.values()) {
-      if (Ascii.equalsIgnoreCase(stateEnum.toString(), value)) {
-        this.stateEnum = stateEnum;
+    for (Known trafficTypeEnum : Known.values()) {
+      if (Ascii.equalsIgnoreCase(trafficTypeEnum.toString(), value)) {
+        this.trafficTypeEnum = trafficTypeEnum;
         break;
       }
     }
-    if (this.stateEnum == null) {
-      this.stateEnum = Known.STATE_UNSPECIFIED;
+    if (this.trafficTypeEnum == null) {
+      this.trafficTypeEnum = Known.TRAFFIC_TYPE_UNSPECIFIED;
     }
   }
 
-  public State(Known knownValue) {
-    this.stateEnum = knownValue;
+  public TrafficType(Known knownValue) {
+    this.trafficTypeEnum = knownValue;
     this.value = knownValue.toString();
   }
 
@@ -78,16 +84,17 @@ public class State {
       return false;
     }
 
-    if (!(o instanceof State)) {
+    if (!(o instanceof TrafficType)) {
       return false;
     }
 
-    State other = (State) o;
+    TrafficType other = (TrafficType) o;
 
-    if (this.stateEnum != Known.STATE_UNSPECIFIED && other.stateEnum != Known.STATE_UNSPECIFIED) {
-      return this.stateEnum == other.stateEnum;
-    } else if (this.stateEnum == Known.STATE_UNSPECIFIED
-        && other.stateEnum == Known.STATE_UNSPECIFIED) {
+    if (this.trafficTypeEnum != Known.TRAFFIC_TYPE_UNSPECIFIED
+        && other.trafficTypeEnum != Known.TRAFFIC_TYPE_UNSPECIFIED) {
+      return this.trafficTypeEnum == other.trafficTypeEnum;
+    } else if (this.trafficTypeEnum == Known.TRAFFIC_TYPE_UNSPECIFIED
+        && other.trafficTypeEnum == Known.TRAFFIC_TYPE_UNSPECIFIED) {
       return this.value.equals(other.value);
     }
     return false;
@@ -96,8 +103,8 @@ public class State {
   @ExcludeFromGeneratedCoverageReport
   @Override
   public int hashCode() {
-    if (this.stateEnum != Known.STATE_UNSPECIFIED) {
-      return this.stateEnum.hashCode();
+    if (this.trafficTypeEnum != Known.TRAFFIC_TYPE_UNSPECIFIED) {
+      return this.trafficTypeEnum.hashCode();
     } else {
       return Objects.hashCode(this.value);
     }
@@ -105,6 +112,6 @@ public class State {
 
   @ExcludeFromGeneratedCoverageReport
   public Known knownEnum() {
-    return this.stateEnum;
+    return this.trafficTypeEnum;
   }
 }

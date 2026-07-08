@@ -34,6 +34,13 @@ public abstract class ReasoningEngineContextSpec extends JsonSerializable {
   @JsonProperty("memoryBankConfig")
   public abstract Optional<ReasoningEngineContextSpecMemoryBankConfig> memoryBankConfig();
 
+  /**
+   * Optional. Specification for an Example Store, which manages few-shot examples for the Agent
+   * Engine.
+   */
+  @JsonProperty("exampleStoreConfig")
+  public abstract Optional<ReasoningEngineContextSpecExampleStoreConfig> exampleStoreConfig();
+
   /** Instantiates a builder for ReasoningEngineContextSpec. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -83,6 +90,39 @@ public abstract class ReasoningEngineContextSpec extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearMemoryBankConfig() {
       return memoryBankConfig(Optional.empty());
+    }
+
+    /**
+     * Setter for exampleStoreConfig.
+     *
+     * <p>exampleStoreConfig: Optional. Specification for an Example Store, which manages few-shot
+     * examples for the Agent Engine.
+     */
+    @JsonProperty("exampleStoreConfig")
+    public abstract Builder exampleStoreConfig(
+        ReasoningEngineContextSpecExampleStoreConfig exampleStoreConfig);
+
+    /**
+     * Setter for exampleStoreConfig builder.
+     *
+     * <p>exampleStoreConfig: Optional. Specification for an Example Store, which manages few-shot
+     * examples for the Agent Engine.
+     */
+    @CanIgnoreReturnValue
+    public Builder exampleStoreConfig(
+        ReasoningEngineContextSpecExampleStoreConfig.Builder exampleStoreConfigBuilder) {
+      return exampleStoreConfig(exampleStoreConfigBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder exampleStoreConfig(
+        Optional<ReasoningEngineContextSpecExampleStoreConfig> exampleStoreConfig);
+
+    /** Clears the value of exampleStoreConfig field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearExampleStoreConfig() {
+      return exampleStoreConfig(Optional.empty());
     }
 
     public abstract ReasoningEngineContextSpec build();

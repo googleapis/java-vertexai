@@ -26,6 +26,8 @@ import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.genai.JsonSerializable;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -80,6 +82,28 @@ public abstract class Session extends JsonSerializable {
   /** Required. Immutable. String id provided by the user */
   @JsonProperty("userId")
   public abstract Optional<String> userId();
+
+  /**
+   * Output only. The resource names of the Agents that interacted within the session. Each resource
+   * name has the format: `projects/{project}/locations/{location}/agents/{agent}`.
+   */
+  @JsonProperty("agents")
+  public abstract Optional<List<String>> agents();
+
+  /**
+   * The default limit of the number of steps each child Run can contain. Default to 20 if not
+   * specified.
+   */
+  @JsonProperty("defaultRunStepLimit")
+  public abstract Optional<Long> defaultRunStepLimit();
+
+  /** Output only. The state of the session. */
+  @JsonProperty("state")
+  public abstract Optional<State> state();
+
+  /** Optional. Custom metadata for the session. */
+  @JsonProperty("customMetadata")
+  public abstract Optional<Map<String, Object>> customMetadata();
 
   /** Instantiates a builder for Session. */
   @ExcludeFromGeneratedCoverageReport
@@ -265,6 +289,111 @@ public abstract class Session extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearUserId() {
       return userId(Optional.empty());
+    }
+
+    /**
+     * Setter for agents.
+     *
+     * <p>agents: Output only. The resource names of the Agents that interacted within the session.
+     * Each resource name has the format: `projects/{project}/locations/{location}/agents/{agent}`.
+     */
+    @JsonProperty("agents")
+    public abstract Builder agents(List<String> agents);
+
+    /**
+     * Setter for agents.
+     *
+     * <p>agents: Output only. The resource names of the Agents that interacted within the session.
+     * Each resource name has the format: `projects/{project}/locations/{location}/agents/{agent}`.
+     */
+    @CanIgnoreReturnValue
+    public Builder agents(String... agents) {
+      return agents(Arrays.asList(agents));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder agents(Optional<List<String>> agents);
+
+    /** Clears the value of agents field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearAgents() {
+      return agents(Optional.empty());
+    }
+
+    /**
+     * Setter for defaultRunStepLimit.
+     *
+     * <p>defaultRunStepLimit: The default limit of the number of steps each child Run can contain.
+     * Default to 20 if not specified.
+     */
+    @JsonProperty("defaultRunStepLimit")
+    public abstract Builder defaultRunStepLimit(Long defaultRunStepLimit);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder defaultRunStepLimit(Optional<Long> defaultRunStepLimit);
+
+    /** Clears the value of defaultRunStepLimit field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearDefaultRunStepLimit() {
+      return defaultRunStepLimit(Optional.empty());
+    }
+
+    /**
+     * Setter for state.
+     *
+     * <p>state: Output only. The state of the session.
+     */
+    @JsonProperty("state")
+    public abstract Builder state(State state);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder state(Optional<State> state);
+
+    /** Clears the value of state field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearState() {
+      return state(Optional.empty());
+    }
+
+    /**
+     * Setter for state given a known enum.
+     *
+     * <p>state: Output only. The state of the session.
+     */
+    @CanIgnoreReturnValue
+    public Builder state(State.Known knownType) {
+      return state(new State(knownType));
+    }
+
+    /**
+     * Setter for state given a string.
+     *
+     * <p>state: Output only. The state of the session.
+     */
+    @CanIgnoreReturnValue
+    public Builder state(String state) {
+      return state(new State(state));
+    }
+
+    /**
+     * Setter for customMetadata.
+     *
+     * <p>customMetadata: Optional. Custom metadata for the session.
+     */
+    @JsonProperty("customMetadata")
+    public abstract Builder customMetadata(Map<String, Object> customMetadata);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder customMetadata(Optional<Map<String, Object>> customMetadata);
+
+    /** Clears the value of customMetadata field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearCustomMetadata() {
+      return customMetadata(Optional.empty());
     }
 
     public abstract Session build();

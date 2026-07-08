@@ -19,14 +19,25 @@
 package com.google.cloud.agentplatform.types;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.genai.JsonSerializable;
+import java.util.Optional;
 
 /** The computer use environment with customized settings. */
 @AutoValue
 @JsonDeserialize(builder = SandboxEnvironmentSpecComputerUseEnvironment.Builder.class)
 public abstract class SandboxEnvironmentSpecComputerUseEnvironment extends JsonSerializable {
+  /**
+   * Optional. The Artifact Registry Docker image URI (e.g.,
+   * us-docker.dev.pkg/my-proj/my-repo/my-image:my-tag). When unspecified, the default Computer Use
+   * container image will be used.
+   */
+  @JsonProperty("imageUri")
+  public abstract Optional<String> imageUri();
+
   /** Instantiates a builder for SandboxEnvironmentSpecComputerUseEnvironment. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -46,6 +57,26 @@ public abstract class SandboxEnvironmentSpecComputerUseEnvironment extends JsonS
     @JsonCreator
     private static Builder create() {
       return new AutoValue_SandboxEnvironmentSpecComputerUseEnvironment.Builder();
+    }
+
+    /**
+     * Setter for imageUri.
+     *
+     * <p>imageUri: Optional. The Artifact Registry Docker image URI (e.g.,
+     * us-docker.dev.pkg/my-proj/my-repo/my-image:my-tag). When unspecified, the default Computer
+     * Use container image will be used.
+     */
+    @JsonProperty("imageUri")
+    public abstract Builder imageUri(String imageUri);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder imageUri(Optional<String> imageUri);
+
+    /** Clears the value of imageUri field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearImageUri() {
+      return imageUri(Optional.empty());
     }
 
     public abstract SandboxEnvironmentSpecComputerUseEnvironment build();

@@ -53,6 +53,10 @@ public abstract class MemoryGenerationTriggerConfigGenerationTriggerRule extends
   @JsonProperty("overlapEventCount")
   public abstract Optional<Integer> overlapEventCount();
 
+  /** Optional. Specifies to trigger generation when the token count reaches this limit. */
+  @JsonProperty("tokenLimit")
+  public abstract Optional<Integer> tokenLimit();
+
   /** Instantiates a builder for MemoryGenerationTriggerConfigGenerationTriggerRule. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -149,6 +153,25 @@ public abstract class MemoryGenerationTriggerConfigGenerationTriggerRule extends
     @CanIgnoreReturnValue
     public Builder clearOverlapEventCount() {
       return overlapEventCount(Optional.empty());
+    }
+
+    /**
+     * Setter for tokenLimit.
+     *
+     * <p>tokenLimit: Optional. Specifies to trigger generation when the token count reaches this
+     * limit.
+     */
+    @JsonProperty("tokenLimit")
+    public abstract Builder tokenLimit(Integer tokenLimit);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder tokenLimit(Optional<Integer> tokenLimit);
+
+    /** Clears the value of tokenLimit field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearTokenLimit() {
+      return tokenLimit(Optional.empty());
     }
 
     public abstract MemoryGenerationTriggerConfigGenerationTriggerRule build();

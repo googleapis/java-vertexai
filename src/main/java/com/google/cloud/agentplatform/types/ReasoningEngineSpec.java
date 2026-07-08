@@ -99,6 +99,23 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
   @JsonProperty("containerSpec")
   public abstract Optional<ReasoningEngineSpecContainerSpec> containerSpec();
 
+  /**
+   * Optional. The resource name of the linked ExampleStore. At query time, examples can be used to
+   * guide the performance of the agent by providing the expected response or demonstrating when and
+   * how tools should be called. Format:
+   * `projects/{project}/locations/{location}/exampleStores/{example_store}`
+   */
+  @JsonProperty("exampleStore")
+  public abstract Optional<String> exampleStore();
+
+  /** Output only. Boolean signifying if this agent engine has a runtime currently or not. */
+  @JsonProperty("runtimeActive")
+  public abstract Optional<Boolean> runtimeActive();
+
+  /** Optional. Configuration for building container image. */
+  @JsonProperty("buildSpec")
+  public abstract Optional<ReasoningEngineSpecBuildSpec> buildSpec();
+
   /** Instantiates a builder for ReasoningEngineSpec. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -392,6 +409,74 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearContainerSpec() {
       return containerSpec(Optional.empty());
+    }
+
+    /**
+     * Setter for exampleStore.
+     *
+     * <p>exampleStore: Optional. The resource name of the linked ExampleStore. At query time,
+     * examples can be used to guide the performance of the agent by providing the expected response
+     * or demonstrating when and how tools should be called. Format:
+     * `projects/{project}/locations/{location}/exampleStores/{example_store}`
+     */
+    @JsonProperty("exampleStore")
+    public abstract Builder exampleStore(String exampleStore);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder exampleStore(Optional<String> exampleStore);
+
+    /** Clears the value of exampleStore field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearExampleStore() {
+      return exampleStore(Optional.empty());
+    }
+
+    /**
+     * Setter for runtimeActive.
+     *
+     * <p>runtimeActive: Output only. Boolean signifying if this agent engine has a runtime
+     * currently or not.
+     */
+    @JsonProperty("runtimeActive")
+    public abstract Builder runtimeActive(boolean runtimeActive);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder runtimeActive(Optional<Boolean> runtimeActive);
+
+    /** Clears the value of runtimeActive field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearRuntimeActive() {
+      return runtimeActive(Optional.empty());
+    }
+
+    /**
+     * Setter for buildSpec.
+     *
+     * <p>buildSpec: Optional. Configuration for building container image.
+     */
+    @JsonProperty("buildSpec")
+    public abstract Builder buildSpec(ReasoningEngineSpecBuildSpec buildSpec);
+
+    /**
+     * Setter for buildSpec builder.
+     *
+     * <p>buildSpec: Optional. Configuration for building container image.
+     */
+    @CanIgnoreReturnValue
+    public Builder buildSpec(ReasoningEngineSpecBuildSpec.Builder buildSpecBuilder) {
+      return buildSpec(buildSpecBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder buildSpec(Optional<ReasoningEngineSpecBuildSpec> buildSpec);
+
+    /** Clears the value of buildSpec field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearBuildSpec() {
+      return buildSpec(Optional.empty());
     }
 
     public abstract ReasoningEngineSpec build();

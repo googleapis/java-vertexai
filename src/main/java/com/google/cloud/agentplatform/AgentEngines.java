@@ -419,6 +419,13 @@ public final class AgentEngines {
               toObject));
     }
 
+    if (Common.getValueByPath(fromObject, new String[] {"exampleStoreConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"exampleStoreConfig"},
+          Common.getValueByPath(fromObject, new String[] {"exampleStoreConfig"}));
+    }
+
     return toObject;
   }
 
@@ -543,6 +550,13 @@ public final class AgentEngines {
               toObject));
     }
 
+    if (Common.getValueByPath(fromObject, new String[] {"exampleStoreConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"exampleStoreConfig"},
+          Common.getValueByPath(fromObject, new String[] {"exampleStoreConfig"}));
+    }
+
     return toObject;
   }
 
@@ -627,6 +641,26 @@ public final class AgentEngines {
           toObject,
           new String[] {"trafficConfig"},
           Common.getValueByPath(fromObject, new String[] {"trafficConfig"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"experimentConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"experimentConfig"},
+          Common.getValueByPath(fromObject, new String[] {"experimentConfig"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"revisionGarbageCollectionStrategy"})
+        != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"revisionGarbageCollectionStrategy"},
+          Common.getValueByPath(fromObject, new String[] {"revisionGarbageCollectionStrategy"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"url"}) != null) {
+      Common.setValueByPath(
+          toObject, new String[] {"url"}, Common.getValueByPath(fromObject, new String[] {"url"}));
     }
 
     return toObject;

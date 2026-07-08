@@ -87,6 +87,14 @@ public abstract class EventMetadata extends JsonSerializable {
   @JsonProperty("outputTranscription")
   public abstract Optional<Transcription> outputTranscription();
 
+  /** Optional. Citation metadata for the response. */
+  @JsonProperty("citationMetadata")
+  public abstract Optional<CitationMetadata> citationMetadata();
+
+  /** Optional. Usage metadata for the response. */
+  @JsonProperty("usageMetadata")
+  public abstract Optional<UsageMetadata> usageMetadata();
+
   /** Instantiates a builder for EventMetadata. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -284,6 +292,62 @@ public abstract class EventMetadata extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearOutputTranscription() {
       return outputTranscription(Optional.empty());
+    }
+
+    /**
+     * Setter for citationMetadata.
+     *
+     * <p>citationMetadata: Optional. Citation metadata for the response.
+     */
+    @JsonProperty("citationMetadata")
+    public abstract Builder citationMetadata(CitationMetadata citationMetadata);
+
+    /**
+     * Setter for citationMetadata builder.
+     *
+     * <p>citationMetadata: Optional. Citation metadata for the response.
+     */
+    @CanIgnoreReturnValue
+    public Builder citationMetadata(CitationMetadata.Builder citationMetadataBuilder) {
+      return citationMetadata(citationMetadataBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder citationMetadata(Optional<CitationMetadata> citationMetadata);
+
+    /** Clears the value of citationMetadata field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearCitationMetadata() {
+      return citationMetadata(Optional.empty());
+    }
+
+    /**
+     * Setter for usageMetadata.
+     *
+     * <p>usageMetadata: Optional. Usage metadata for the response.
+     */
+    @JsonProperty("usageMetadata")
+    public abstract Builder usageMetadata(UsageMetadata usageMetadata);
+
+    /**
+     * Setter for usageMetadata builder.
+     *
+     * <p>usageMetadata: Optional. Usage metadata for the response.
+     */
+    @CanIgnoreReturnValue
+    public Builder usageMetadata(UsageMetadata.Builder usageMetadataBuilder) {
+      return usageMetadata(usageMetadataBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder usageMetadata(Optional<UsageMetadata> usageMetadata);
+
+    /** Clears the value of usageMetadata field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearUsageMetadata() {
+      return usageMetadata(Optional.empty());
     }
 
     public abstract EventMetadata build();

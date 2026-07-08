@@ -104,6 +104,10 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
   @JsonProperty("keepAliveProbe")
   public abstract Optional<KeepAliveProbe> keepAliveProbe();
 
+  /** Optional. If true, the Reasoning Engine will be deployed with a dedicated ingress endpoint. */
+  @JsonProperty("dedicatedIngressEndpointEnabled")
+  public abstract Optional<Boolean> dedicatedIngressEndpointEnabled();
+
   /** Instantiates a builder for ReasoningEngineSpecDeploymentSpec. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -426,6 +430,27 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
     @CanIgnoreReturnValue
     public Builder clearKeepAliveProbe() {
       return keepAliveProbe(Optional.empty());
+    }
+
+    /**
+     * Setter for dedicatedIngressEndpointEnabled.
+     *
+     * <p>dedicatedIngressEndpointEnabled: Optional. If true, the Reasoning Engine will be deployed
+     * with a dedicated ingress endpoint.
+     */
+    @JsonProperty("dedicatedIngressEndpointEnabled")
+    public abstract Builder dedicatedIngressEndpointEnabled(
+        boolean dedicatedIngressEndpointEnabled);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder dedicatedIngressEndpointEnabled(
+        Optional<Boolean> dedicatedIngressEndpointEnabled);
+
+    /** Clears the value of dedicatedIngressEndpointEnabled field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearDedicatedIngressEndpointEnabled() {
+      return dedicatedIngressEndpointEnabled(Optional.empty());
     }
 
     public abstract ReasoningEngineSpecDeploymentSpec build();
