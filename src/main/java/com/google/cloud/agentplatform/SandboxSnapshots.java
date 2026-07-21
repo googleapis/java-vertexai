@@ -20,25 +20,20 @@ package com.google.cloud.agentplatform;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.google.cloud.agentplatform.types.AgentEngineSandboxOperation;
-import com.google.cloud.agentplatform.types.Chunk;
-import com.google.cloud.agentplatform.types.CreateAgentEngineSandboxConfig;
-import com.google.cloud.agentplatform.types.CreateAgentEngineSandboxRequestParameters;
-import com.google.cloud.agentplatform.types.DeleteAgentEngineSandboxConfig;
-import com.google.cloud.agentplatform.types.DeleteAgentEngineSandboxOperation;
-import com.google.cloud.agentplatform.types.DeleteAgentEngineSandboxRequestParameters;
-import com.google.cloud.agentplatform.types.ExecuteCodeAgentEngineSandboxConfig;
-import com.google.cloud.agentplatform.types.ExecuteCodeAgentEngineSandboxRequestParameters;
-import com.google.cloud.agentplatform.types.ExecuteSandboxEnvironmentResponse;
+import com.google.cloud.agentplatform.types.AgentEngineSandboxSnapshotOperation;
+import com.google.cloud.agentplatform.types.CreateAgentEngineSandboxSnapshotConfig;
+import com.google.cloud.agentplatform.types.CreateSandboxEnvironmentSnapshotRequestParameters;
+import com.google.cloud.agentplatform.types.DeleteSandboxEnvironmentSnapshotConfig;
+import com.google.cloud.agentplatform.types.DeleteSandboxEnvironmentSnapshotOperation;
+import com.google.cloud.agentplatform.types.DeleteSandboxEnvironmentSnapshotRequestParameters;
 import com.google.cloud.agentplatform.types.GetAgentEngineOperationConfig;
-import com.google.cloud.agentplatform.types.GetAgentEngineSandboxConfig;
-import com.google.cloud.agentplatform.types.GetAgentEngineSandboxOperationParameters;
-import com.google.cloud.agentplatform.types.GetAgentEngineSandboxRequestParameters;
-import com.google.cloud.agentplatform.types.ListAgentEngineSandboxesConfig;
-import com.google.cloud.agentplatform.types.ListAgentEngineSandboxesRequestParameters;
-import com.google.cloud.agentplatform.types.ListAgentEngineSandboxesResponse;
-import com.google.cloud.agentplatform.types.SandboxEnvironment;
-import com.google.cloud.agentplatform.types.SandboxEnvironmentSpec;
+import com.google.cloud.agentplatform.types.GetAgentEngineSandboxSnapshotOperationParameters;
+import com.google.cloud.agentplatform.types.GetSandboxEnvironmentSnapshotConfig;
+import com.google.cloud.agentplatform.types.GetSandboxEnvironmentSnapshotRequestParameters;
+import com.google.cloud.agentplatform.types.ListSandboxEnvironmentSnapshotsConfig;
+import com.google.cloud.agentplatform.types.ListSandboxEnvironmentSnapshotsRequestParameters;
+import com.google.cloud.agentplatform.types.ListSandboxEnvironmentSnapshotsResponse;
+import com.google.cloud.agentplatform.types.SandboxEnvironmentSnapshot;
 import com.google.genai.ApiClient;
 import com.google.genai.ApiResponse;
 import com.google.genai.Common;
@@ -47,24 +42,20 @@ import com.google.genai.JsonSerializable;
 import com.google.genai.errors.GenAiIOException;
 import com.google.genai.types.HttpOptions;
 import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
 import okhttp3.ResponseBody;
 
-public final class Sandboxes {
-  public final SandboxTemplates templates;
-  public final SandboxSnapshots snapshots;
+public final class SandboxSnapshots {
 
   final ApiClient apiClient;
 
-  public Sandboxes(ApiClient apiClient) {
+  public SandboxSnapshots(ApiClient apiClient) {
     this.apiClient = apiClient;
-    this.templates = new SandboxTemplates(apiClient);
-    this.snapshots = new SandboxSnapshots(apiClient);
   }
 
   @ExcludeFromGeneratedCoverageReport
-  ObjectNode createAgentEngineSandboxConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
+  ObjectNode createAgentEngineSandboxSnapshotConfigToVertex(
+      JsonNode fromObject, ObjectNode parentObject) {
     ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
 
     if (Common.getValueByPath(fromObject, new String[] {"displayName"}) != null) {
@@ -74,11 +65,11 @@ public final class Sandboxes {
           Common.getValueByPath(fromObject, new String[] {"displayName"}));
     }
 
-    if (Common.getValueByPath(fromObject, new String[] {"description"}) != null) {
+    if (Common.getValueByPath(fromObject, new String[] {"owner"}) != null) {
       Common.setValueByPath(
           parentObject,
-          new String[] {"description"},
-          Common.getValueByPath(fromObject, new String[] {"description"}));
+          new String[] {"owner"},
+          Common.getValueByPath(fromObject, new String[] {"owner"}));
     }
 
     if (Common.getValueByPath(fromObject, new String[] {"ttl"}) != null) {
@@ -88,61 +79,35 @@ public final class Sandboxes {
           Common.getValueByPath(fromObject, new String[] {"ttl"}));
     }
 
-    if (Common.getValueByPath(fromObject, new String[] {"sandboxEnvironmentTemplate"}) != null) {
-      Common.setValueByPath(
-          parentObject,
-          new String[] {"sandboxEnvironmentTemplate"},
-          Common.getValueByPath(fromObject, new String[] {"sandboxEnvironmentTemplate"}));
-    }
-
-    if (Common.getValueByPath(fromObject, new String[] {"sandboxEnvironmentSnapshot"}) != null) {
-      Common.setValueByPath(
-          parentObject,
-          new String[] {"sandboxEnvironmentSnapshot"},
-          Common.getValueByPath(fromObject, new String[] {"sandboxEnvironmentSnapshot"}));
-    }
-
-    if (Common.getValueByPath(fromObject, new String[] {"owner"}) != null) {
-      Common.setValueByPath(
-          parentObject,
-          new String[] {"owner"},
-          Common.getValueByPath(fromObject, new String[] {"owner"}));
-    }
-
     return toObject;
   }
 
   @ExcludeFromGeneratedCoverageReport
-  ObjectNode createAgentEngineSandboxRequestParametersToVertex(
+  ObjectNode createSandboxEnvironmentSnapshotRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
     ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
-    if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
+    if (Common.getValueByPath(fromObject, new String[] {"sourceSandboxEnvironmentName"}) != null) {
       Common.setValueByPath(
           toObject,
           new String[] {"_url", "name"},
-          Common.getValueByPath(fromObject, new String[] {"name"}));
-    }
-
-    if (Common.getValueByPath(fromObject, new String[] {"spec"}) != null) {
-      Common.setValueByPath(
-          toObject,
-          new String[] {"spec"},
-          Common.getValueByPath(fromObject, new String[] {"spec"}));
+          Common.getValueByPath(fromObject, new String[] {"sourceSandboxEnvironmentName"}));
     }
 
     if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
-      JsonNode unused =
-          createAgentEngineSandboxConfigToVertex(
+      Common.setValueByPath(
+          toObject,
+          new String[] {"config"},
+          createAgentEngineSandboxSnapshotConfigToVertex(
               JsonSerializable.toJsonNode(
                   Common.getValueByPath(fromObject, new String[] {"config"})),
-              toObject);
+              toObject));
     }
 
     return toObject;
   }
 
   @ExcludeFromGeneratedCoverageReport
-  ObjectNode deleteAgentEngineSandboxRequestParametersToVertex(
+  ObjectNode deleteSandboxEnvironmentSnapshotRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
     ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
@@ -156,28 +121,7 @@ public final class Sandboxes {
   }
 
   @ExcludeFromGeneratedCoverageReport
-  ObjectNode executeCodeAgentEngineSandboxRequestParametersToVertex(
-      JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
-    if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
-      Common.setValueByPath(
-          toObject,
-          new String[] {"_url", "name"},
-          Common.getValueByPath(fromObject, new String[] {"name"}));
-    }
-
-    if (Common.getValueByPath(fromObject, new String[] {"inputs"}) != null) {
-      Common.setValueByPath(
-          toObject,
-          new String[] {"inputs"},
-          Common.getValueByPath(fromObject, new String[] {"inputs"}));
-    }
-
-    return toObject;
-  }
-
-  @ExcludeFromGeneratedCoverageReport
-  ObjectNode getAgentEngineSandboxOperationParametersToVertex(
+  ObjectNode getAgentEngineSandboxSnapshotOperationParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
     ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"operationName"}) != null) {
@@ -191,7 +135,7 @@ public final class Sandboxes {
   }
 
   @ExcludeFromGeneratedCoverageReport
-  ObjectNode getAgentEngineSandboxRequestParametersToVertex(
+  ObjectNode getSandboxEnvironmentSnapshotRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
     ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
@@ -205,7 +149,8 @@ public final class Sandboxes {
   }
 
   @ExcludeFromGeneratedCoverageReport
-  ObjectNode listAgentEngineSandboxesConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
+  ObjectNode listSandboxEnvironmentSnapshotsConfigToVertex(
+      JsonNode fromObject, ObjectNode parentObject) {
     ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
 
     if (Common.getValueByPath(fromObject, new String[] {"pageSize"}) != null) {
@@ -233,7 +178,7 @@ public final class Sandboxes {
   }
 
   @ExcludeFromGeneratedCoverageReport
-  ObjectNode listAgentEngineSandboxesRequestParametersToVertex(
+  ObjectNode listSandboxEnvironmentSnapshotsRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
     ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
@@ -245,7 +190,7 @@ public final class Sandboxes {
 
     if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
       JsonNode unused =
-          listAgentEngineSandboxesConfigToVertex(
+          listSandboxEnvironmentSnapshotsConfigToVertex(
               JsonSerializable.toJsonNode(
                   Common.getValueByPath(fromObject, new String[] {"config"})),
               toObject);
@@ -256,16 +201,13 @@ public final class Sandboxes {
 
   /** A shared buildRequest method for both sync and async methods. */
   BuiltRequest buildRequestForPrivateCreate(
-      String name, SandboxEnvironmentSpec spec, CreateAgentEngineSandboxConfig config) {
+      String sourceSandboxEnvironmentName, CreateAgentEngineSandboxSnapshotConfig config) {
 
-    CreateAgentEngineSandboxRequestParameters.Builder parameterBuilder =
-        CreateAgentEngineSandboxRequestParameters.builder();
+    CreateSandboxEnvironmentSnapshotRequestParameters.Builder parameterBuilder =
+        CreateSandboxEnvironmentSnapshotRequestParameters.builder();
 
-    if (!Common.isZero(name)) {
-      parameterBuilder.name(name);
-    }
-    if (!Common.isZero(spec)) {
-      parameterBuilder.spec(spec);
+    if (!Common.isZero(sourceSandboxEnvironmentName)) {
+      parameterBuilder.sourceSandboxEnvironmentName(sourceSandboxEnvironmentName);
     }
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
@@ -275,8 +217,8 @@ public final class Sandboxes {
     ObjectNode body;
     String path;
     if (this.apiClient.vertexAI()) {
-      body = createAgentEngineSandboxRequestParametersToVertex(parameterNode, null);
-      path = Common.formatMap("{name}/sandboxEnvironments", body.get("_url"));
+      body = createSandboxEnvironmentSnapshotRequestParametersToVertex(parameterNode, null);
+      path = Common.formatMap("{name}:snapshot", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
           "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
@@ -300,8 +242,8 @@ public final class Sandboxes {
   }
 
   /** A shared processResponse function for both sync and async methods. */
-  AgentEngineSandboxOperation processResponseForPrivateCreate(
-      ApiResponse response, CreateAgentEngineSandboxConfig config) {
+  AgentEngineSandboxSnapshotOperation processResponseForPrivateCreate(
+      ApiResponse response, CreateAgentEngineSandboxSnapshotConfig config) {
     ResponseBody responseBody = response.getBody();
     String responseString;
     try {
@@ -318,12 +260,12 @@ public final class Sandboxes {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, AgentEngineSandboxOperation.class);
+    return JsonSerializable.fromJsonNode(responseNode, AgentEngineSandboxSnapshotOperation.class);
   }
 
-  public AgentEngineSandboxOperation privateCreate(
-      String name, SandboxEnvironmentSpec spec, CreateAgentEngineSandboxConfig config) {
-    BuiltRequest builtRequest = buildRequestForPrivateCreate(name, spec, config);
+  AgentEngineSandboxSnapshotOperation privateCreate(
+      String sourceSandboxEnvironmentName, CreateAgentEngineSandboxSnapshotConfig config) {
+    BuiltRequest builtRequest = buildRequestForPrivateCreate(sourceSandboxEnvironmentName, config);
 
     try (ApiResponse response =
         this.apiClient.request(
@@ -333,10 +275,11 @@ public final class Sandboxes {
   }
 
   /** A shared buildRequest method for both sync and async methods. */
-  BuiltRequest buildRequestForPrivateDelete(String name, DeleteAgentEngineSandboxConfig config) {
+  BuiltRequest buildRequestForPrivateDelete(
+      String name, DeleteSandboxEnvironmentSnapshotConfig config) {
 
-    DeleteAgentEngineSandboxRequestParameters.Builder parameterBuilder =
-        DeleteAgentEngineSandboxRequestParameters.builder();
+    DeleteSandboxEnvironmentSnapshotRequestParameters.Builder parameterBuilder =
+        DeleteSandboxEnvironmentSnapshotRequestParameters.builder();
 
     if (!Common.isZero(name)) {
       parameterBuilder.name(name);
@@ -349,7 +292,7 @@ public final class Sandboxes {
     ObjectNode body;
     String path;
     if (this.apiClient.vertexAI()) {
-      body = deleteAgentEngineSandboxRequestParametersToVertex(parameterNode, null);
+      body = deleteSandboxEnvironmentSnapshotRequestParametersToVertex(parameterNode, null);
       path = Common.formatMap("{name}", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
@@ -374,8 +317,8 @@ public final class Sandboxes {
   }
 
   /** A shared processResponse function for both sync and async methods. */
-  DeleteAgentEngineSandboxOperation processResponseForPrivateDelete(
-      ApiResponse response, DeleteAgentEngineSandboxConfig config) {
+  DeleteSandboxEnvironmentSnapshotOperation processResponseForPrivateDelete(
+      ApiResponse response, DeleteSandboxEnvironmentSnapshotConfig config) {
     ResponseBody responseBody = response.getBody();
     String responseString;
     try {
@@ -392,11 +335,12 @@ public final class Sandboxes {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, DeleteAgentEngineSandboxOperation.class);
+    return JsonSerializable.fromJsonNode(
+        responseNode, DeleteSandboxEnvironmentSnapshotOperation.class);
   }
 
-  public DeleteAgentEngineSandboxOperation privateDelete(
-      String name, DeleteAgentEngineSandboxConfig config) {
+  DeleteSandboxEnvironmentSnapshotOperation privateDelete(
+      String name, DeleteSandboxEnvironmentSnapshotConfig config) {
     BuiltRequest builtRequest = buildRequestForPrivateDelete(name, config);
 
     try (ApiResponse response =
@@ -407,88 +351,10 @@ public final class Sandboxes {
   }
 
   /** A shared buildRequest method for both sync and async methods. */
-  BuiltRequest buildRequestForPrivateExecuteCode(
-      String name, List<Chunk> inputs, ExecuteCodeAgentEngineSandboxConfig config) {
+  BuiltRequest buildRequestForPrivateGet(String name, GetSandboxEnvironmentSnapshotConfig config) {
 
-    ExecuteCodeAgentEngineSandboxRequestParameters.Builder parameterBuilder =
-        ExecuteCodeAgentEngineSandboxRequestParameters.builder();
-
-    if (!Common.isZero(name)) {
-      parameterBuilder.name(name);
-    }
-    if (!Common.isZero(inputs)) {
-      parameterBuilder.inputs(inputs);
-    }
-    if (!Common.isZero(config)) {
-      parameterBuilder.config(config);
-    }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
-
-    ObjectNode body;
-    String path;
-    if (this.apiClient.vertexAI()) {
-      body = executeCodeAgentEngineSandboxRequestParametersToVertex(parameterNode, null);
-      path = Common.formatMap("{name}/:execute", body.get("_url"));
-    } else {
-      throw new UnsupportedOperationException(
-          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
-              + " Developer API mode.");
-    }
-    body.remove("_url");
-
-    JsonNode queryParams = body.get("_query");
-    if (queryParams != null) {
-      body.remove("_query");
-      path = String.format("%s?%s", path, Common.urlEncode((ObjectNode) queryParams));
-    }
-
-    // TODO: Remove the hack that removes config.
-    Optional<HttpOptions> requestHttpOptions = Optional.empty();
-    if (config != null) {
-      requestHttpOptions = config.httpOptions();
-    }
-
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
-  }
-
-  /** A shared processResponse function for both sync and async methods. */
-  ExecuteSandboxEnvironmentResponse processResponseForPrivateExecuteCode(
-      ApiResponse response, ExecuteCodeAgentEngineSandboxConfig config) {
-    ResponseBody responseBody = response.getBody();
-    String responseString;
-    try {
-      responseString = responseBody.string();
-    } catch (IOException e) {
-      throw new GenAiIOException("Failed to read HTTP response.", e);
-    }
-
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
-
-    if (!this.apiClient.vertexAI()) {
-      throw new UnsupportedOperationException(
-          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
-              + " Developer API mode.");
-    }
-
-    return JsonSerializable.fromJsonNode(responseNode, ExecuteSandboxEnvironmentResponse.class);
-  }
-
-  public ExecuteSandboxEnvironmentResponse privateExecuteCode(
-      String name, List<Chunk> inputs, ExecuteCodeAgentEngineSandboxConfig config) {
-    BuiltRequest builtRequest = buildRequestForPrivateExecuteCode(name, inputs, config);
-
-    try (ApiResponse response =
-        this.apiClient.request(
-            "post", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())) {
-      return processResponseForPrivateExecuteCode(response, config);
-    }
-  }
-
-  /** A shared buildRequest method for both sync and async methods. */
-  BuiltRequest buildRequestForPrivateGet(String name, GetAgentEngineSandboxConfig config) {
-
-    GetAgentEngineSandboxRequestParameters.Builder parameterBuilder =
-        GetAgentEngineSandboxRequestParameters.builder();
+    GetSandboxEnvironmentSnapshotRequestParameters.Builder parameterBuilder =
+        GetSandboxEnvironmentSnapshotRequestParameters.builder();
 
     if (!Common.isZero(name)) {
       parameterBuilder.name(name);
@@ -501,7 +367,7 @@ public final class Sandboxes {
     ObjectNode body;
     String path;
     if (this.apiClient.vertexAI()) {
-      body = getAgentEngineSandboxRequestParametersToVertex(parameterNode, null);
+      body = getSandboxEnvironmentSnapshotRequestParametersToVertex(parameterNode, null);
       path = Common.formatMap("{name}", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
@@ -526,8 +392,8 @@ public final class Sandboxes {
   }
 
   /** A shared processResponse function for both sync and async methods. */
-  SandboxEnvironment processResponseForPrivateGet(
-      ApiResponse response, GetAgentEngineSandboxConfig config) {
+  SandboxEnvironmentSnapshot processResponseForPrivateGet(
+      ApiResponse response, GetSandboxEnvironmentSnapshotConfig config) {
     ResponseBody responseBody = response.getBody();
     String responseString;
     try {
@@ -544,10 +410,10 @@ public final class Sandboxes {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, SandboxEnvironment.class);
+    return JsonSerializable.fromJsonNode(responseNode, SandboxEnvironmentSnapshot.class);
   }
 
-  public SandboxEnvironment privateGet(String name, GetAgentEngineSandboxConfig config) {
+  SandboxEnvironmentSnapshot privateGet(String name, GetSandboxEnvironmentSnapshotConfig config) {
     BuiltRequest builtRequest = buildRequestForPrivateGet(name, config);
 
     try (ApiResponse response =
@@ -558,10 +424,11 @@ public final class Sandboxes {
   }
 
   /** A shared buildRequest method for both sync and async methods. */
-  BuiltRequest buildRequestForPrivateList(String name, ListAgentEngineSandboxesConfig config) {
+  BuiltRequest buildRequestForPrivateList(
+      String name, ListSandboxEnvironmentSnapshotsConfig config) {
 
-    ListAgentEngineSandboxesRequestParameters.Builder parameterBuilder =
-        ListAgentEngineSandboxesRequestParameters.builder();
+    ListSandboxEnvironmentSnapshotsRequestParameters.Builder parameterBuilder =
+        ListSandboxEnvironmentSnapshotsRequestParameters.builder();
 
     if (!Common.isZero(name)) {
       parameterBuilder.name(name);
@@ -574,8 +441,8 @@ public final class Sandboxes {
     ObjectNode body;
     String path;
     if (this.apiClient.vertexAI()) {
-      body = listAgentEngineSandboxesRequestParametersToVertex(parameterNode, null);
-      path = Common.formatMap("{name}/sandboxEnvironments", body.get("_url"));
+      body = listSandboxEnvironmentSnapshotsRequestParametersToVertex(parameterNode, null);
+      path = Common.formatMap("{name}/sandboxEnvironmentSnapshots", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
           "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
@@ -599,8 +466,8 @@ public final class Sandboxes {
   }
 
   /** A shared processResponse function for both sync and async methods. */
-  ListAgentEngineSandboxesResponse processResponseForPrivateList(
-      ApiResponse response, ListAgentEngineSandboxesConfig config) {
+  ListSandboxEnvironmentSnapshotsResponse processResponseForPrivateList(
+      ApiResponse response, ListSandboxEnvironmentSnapshotsConfig config) {
     ResponseBody responseBody = response.getBody();
     String responseString;
     try {
@@ -617,11 +484,12 @@ public final class Sandboxes {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, ListAgentEngineSandboxesResponse.class);
+    return JsonSerializable.fromJsonNode(
+        responseNode, ListSandboxEnvironmentSnapshotsResponse.class);
   }
 
-  public ListAgentEngineSandboxesResponse privateList(
-      String name, ListAgentEngineSandboxesConfig config) {
+  ListSandboxEnvironmentSnapshotsResponse privateList(
+      String name, ListSandboxEnvironmentSnapshotsConfig config) {
     BuiltRequest builtRequest = buildRequestForPrivateList(name, config);
 
     try (ApiResponse response =
@@ -632,11 +500,11 @@ public final class Sandboxes {
   }
 
   /** A shared buildRequest method for both sync and async methods. */
-  BuiltRequest buildRequestForPrivateGetSandboxOperation(
+  BuiltRequest buildRequestForGetSandboxSnapshotOperation(
       String operationName, GetAgentEngineOperationConfig config) {
 
-    GetAgentEngineSandboxOperationParameters.Builder parameterBuilder =
-        GetAgentEngineSandboxOperationParameters.builder();
+    GetAgentEngineSandboxSnapshotOperationParameters.Builder parameterBuilder =
+        GetAgentEngineSandboxSnapshotOperationParameters.builder();
 
     if (!Common.isZero(operationName)) {
       parameterBuilder.operationName(operationName);
@@ -649,7 +517,7 @@ public final class Sandboxes {
     ObjectNode body;
     String path;
     if (this.apiClient.vertexAI()) {
-      body = getAgentEngineSandboxOperationParametersToVertex(parameterNode, null);
+      body = getAgentEngineSandboxSnapshotOperationParametersToVertex(parameterNode, null);
       path = Common.formatMap("{operationName}", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
@@ -674,7 +542,7 @@ public final class Sandboxes {
   }
 
   /** A shared processResponse function for both sync and async methods. */
-  AgentEngineSandboxOperation processResponseForPrivateGetSandboxOperation(
+  AgentEngineSandboxSnapshotOperation processResponseForGetSandboxSnapshotOperation(
       ApiResponse response, GetAgentEngineOperationConfig config) {
     ResponseBody responseBody = response.getBody();
     String responseString;
@@ -692,17 +560,17 @@ public final class Sandboxes {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, AgentEngineSandboxOperation.class);
+    return JsonSerializable.fromJsonNode(responseNode, AgentEngineSandboxSnapshotOperation.class);
   }
 
-  public AgentEngineSandboxOperation privateGetSandboxOperation(
+  public AgentEngineSandboxSnapshotOperation getSandboxSnapshotOperation(
       String operationName, GetAgentEngineOperationConfig config) {
-    BuiltRequest builtRequest = buildRequestForPrivateGetSandboxOperation(operationName, config);
+    BuiltRequest builtRequest = buildRequestForGetSandboxSnapshotOperation(operationName, config);
 
     try (ApiResponse response =
         this.apiClient.request(
             "get", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())) {
-      return processResponseForPrivateGetSandboxOperation(response, config);
+      return processResponseForGetSandboxSnapshotOperation(response, config);
     }
   }
 }
