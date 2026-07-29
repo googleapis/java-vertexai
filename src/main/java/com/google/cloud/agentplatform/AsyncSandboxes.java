@@ -39,6 +39,8 @@ import java.util.concurrent.CompletableFuture;
 
 /** Async module of {@link Sandboxes} */
 public final class AsyncSandboxes {
+  public final AsyncSandboxTemplates templates;
+  public final AsyncSandboxSnapshots snapshots;
 
   Sandboxes sandboxes;
   ApiClient apiClient;
@@ -46,6 +48,9 @@ public final class AsyncSandboxes {
   public AsyncSandboxes(ApiClient apiClient) {
     this.apiClient = apiClient;
     this.sandboxes = new Sandboxes(apiClient);
+
+    this.templates = new AsyncSandboxTemplates(apiClient);
+    this.snapshots = new AsyncSandboxSnapshots(apiClient);
   }
 
   CompletableFuture<AgentEngineSandboxOperation> privateCreate(
