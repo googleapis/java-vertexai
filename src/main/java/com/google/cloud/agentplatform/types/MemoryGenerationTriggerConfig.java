@@ -26,7 +26,7 @@ import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.genai.JsonSerializable;
 import java.util.Optional;
 
-/** The configuration for triggering memory generation for ingested events. */
+/** Represents configuration for triggering generation. */
 @AutoValue
 @JsonDeserialize(builder = MemoryGenerationTriggerConfig.Builder.class)
 public abstract class MemoryGenerationTriggerConfig extends JsonSerializable {

@@ -55,7 +55,6 @@ import okhttp3.ResponseBody;
 public final class AgentEngines {
   public final Sessions sessions;
   public final Sandboxes sandboxes;
-  public final Memories memories;
 
   final ApiClient apiClient;
 
@@ -63,7 +62,6 @@ public final class AgentEngines {
     this.apiClient = apiClient;
     this.sessions = new Sessions(apiClient);
     this.sandboxes = new Sandboxes(apiClient);
-    this.memories = new Memories(apiClient);
   }
 
   @ExcludeFromGeneratedCoverageReport
