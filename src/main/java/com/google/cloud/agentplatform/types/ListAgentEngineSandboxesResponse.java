@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import com.google.genai.Common;
 import com.google.genai.JsonSerializable;
 import com.google.genai.types.HttpResponse;
 import java.util.Arrays;
@@ -151,6 +152,6 @@ public abstract class ListAgentEngineSandboxesResponse extends JsonSerializable 
   /** Deserializes a JSON string to a ListAgentEngineSandboxesResponse object. */
   @ExcludeFromGeneratedCoverageReport
   public static ListAgentEngineSandboxesResponse fromJson(String jsonString) {
-    return JsonSerializable.fromJsonString(jsonString, ListAgentEngineSandboxesResponse.class);
+    return Common.fromJsonString(jsonString, ListAgentEngineSandboxesResponse.class);
   }
 }

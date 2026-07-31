@@ -38,7 +38,6 @@ import com.google.genai.ApiClient;
 import com.google.genai.ApiResponse;
 import com.google.genai.Common;
 import com.google.genai.Common.BuiltRequest;
-import com.google.genai.JsonSerializable;
 import com.google.genai.errors.GenAiIOException;
 import com.google.genai.types.HttpOptions;
 import java.io.IOException;
@@ -56,7 +55,7 @@ public final class SandboxSnapshots {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode createAgentEngineSandboxSnapshotConfigToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
 
     if (Common.getValueByPath(fromObject, new String[] {"displayName"}) != null) {
       Common.setValueByPath(
@@ -85,7 +84,7 @@ public final class SandboxSnapshots {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode createSandboxEnvironmentSnapshotRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"sourceSandboxEnvironmentName"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -96,8 +95,7 @@ public final class SandboxSnapshots {
     if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
       JsonNode unused =
           createAgentEngineSandboxSnapshotConfigToVertex(
-              JsonSerializable.toJsonNode(
-                  Common.getValueByPath(fromObject, new String[] {"config"})),
+              Common.toJsonNode(Common.getValueByPath(fromObject, new String[] {"config"})),
               toObject);
     }
 
@@ -107,7 +105,7 @@ public final class SandboxSnapshots {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode deleteSandboxEnvironmentSnapshotRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -121,7 +119,7 @@ public final class SandboxSnapshots {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode getAgentEngineSandboxSnapshotOperationParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"operationName"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -135,7 +133,7 @@ public final class SandboxSnapshots {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode getSandboxEnvironmentSnapshotRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -149,7 +147,7 @@ public final class SandboxSnapshots {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode listSandboxEnvironmentSnapshotsConfigToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
 
     if (Common.getValueByPath(fromObject, new String[] {"pageSize"}) != null) {
       Common.setValueByPath(
@@ -178,7 +176,7 @@ public final class SandboxSnapshots {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode listSandboxEnvironmentSnapshotsRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -189,8 +187,7 @@ public final class SandboxSnapshots {
     if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
       JsonNode unused =
           listSandboxEnvironmentSnapshotsConfigToVertex(
-              JsonSerializable.toJsonNode(
-                  Common.getValueByPath(fromObject, new String[] {"config"})),
+              Common.toJsonNode(Common.getValueByPath(fromObject, new String[] {"config"})),
               toObject);
     }
 
@@ -210,7 +207,7 @@ public final class SandboxSnapshots {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -236,7 +233,7 @@ public final class SandboxSnapshots {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -250,7 +247,7 @@ public final class SandboxSnapshots {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -258,7 +255,7 @@ public final class SandboxSnapshots {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, AgentEngineSandboxSnapshotOperation.class);
+    return Common.fromJsonNode(responseNode, AgentEngineSandboxSnapshotOperation.class);
   }
 
   public AgentEngineSandboxSnapshotOperation privateCreate(
@@ -285,7 +282,7 @@ public final class SandboxSnapshots {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -311,7 +308,7 @@ public final class SandboxSnapshots {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -325,7 +322,7 @@ public final class SandboxSnapshots {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -333,8 +330,7 @@ public final class SandboxSnapshots {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(
-        responseNode, DeleteSandboxEnvironmentSnapshotOperation.class);
+    return Common.fromJsonNode(responseNode, DeleteSandboxEnvironmentSnapshotOperation.class);
   }
 
   public DeleteSandboxEnvironmentSnapshotOperation privateDelete(
@@ -360,7 +356,7 @@ public final class SandboxSnapshots {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -386,7 +382,7 @@ public final class SandboxSnapshots {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -400,7 +396,7 @@ public final class SandboxSnapshots {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -408,7 +404,7 @@ public final class SandboxSnapshots {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, SandboxEnvironmentSnapshot.class);
+    return Common.fromJsonNode(responseNode, SandboxEnvironmentSnapshot.class);
   }
 
   public SandboxEnvironmentSnapshot privateGet(
@@ -435,7 +431,7 @@ public final class SandboxSnapshots {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -461,7 +457,7 @@ public final class SandboxSnapshots {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -475,7 +471,7 @@ public final class SandboxSnapshots {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -483,8 +479,7 @@ public final class SandboxSnapshots {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(
-        responseNode, ListSandboxEnvironmentSnapshotsResponse.class);
+    return Common.fromJsonNode(responseNode, ListSandboxEnvironmentSnapshotsResponse.class);
   }
 
   public ListSandboxEnvironmentSnapshotsResponse privateList(
@@ -511,7 +506,7 @@ public final class SandboxSnapshots {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -537,7 +532,7 @@ public final class SandboxSnapshots {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -551,7 +546,7 @@ public final class SandboxSnapshots {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -559,7 +554,7 @@ public final class SandboxSnapshots {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, AgentEngineSandboxSnapshotOperation.class);
+    return Common.fromJsonNode(responseNode, AgentEngineSandboxSnapshotOperation.class);
   }
 
   public AgentEngineSandboxSnapshotOperation getSandboxSnapshotOperation(

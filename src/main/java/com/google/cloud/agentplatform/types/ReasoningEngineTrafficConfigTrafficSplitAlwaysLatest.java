@@ -21,6 +21,7 @@ package com.google.cloud.agentplatform.types;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
+import com.google.genai.Common;
 import com.google.genai.JsonSerializable;
 
 /** Traffic distribution configuration, where all traffic is sent to the latest Runtime Revision. */
@@ -57,7 +58,7 @@ public abstract class ReasoningEngineTrafficConfigTrafficSplitAlwaysLatest
    */
   @ExcludeFromGeneratedCoverageReport
   public static ReasoningEngineTrafficConfigTrafficSplitAlwaysLatest fromJson(String jsonString) {
-    return JsonSerializable.fromJsonString(
+    return Common.fromJsonString(
         jsonString, ReasoningEngineTrafficConfigTrafficSplitAlwaysLatest.class);
   }
 }

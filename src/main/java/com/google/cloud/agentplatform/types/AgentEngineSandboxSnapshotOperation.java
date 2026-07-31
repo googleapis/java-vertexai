@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import com.google.genai.Common;
 import com.google.genai.JsonSerializable;
 import java.util.Map;
 import java.util.Optional;
@@ -196,6 +197,6 @@ public abstract class AgentEngineSandboxSnapshotOperation extends JsonSerializab
   /** Deserializes a JSON string to a AgentEngineSandboxSnapshotOperation object. */
   @ExcludeFromGeneratedCoverageReport
   public static AgentEngineSandboxSnapshotOperation fromJson(String jsonString) {
-    return JsonSerializable.fromJsonString(jsonString, AgentEngineSandboxSnapshotOperation.class);
+    return Common.fromJsonString(jsonString, AgentEngineSandboxSnapshotOperation.class);
   }
 }

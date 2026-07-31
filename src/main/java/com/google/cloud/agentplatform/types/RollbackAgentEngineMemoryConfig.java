@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import com.google.genai.Common;
 import com.google.genai.JsonSerializable;
 import com.google.genai.types.HttpOptions;
 import java.util.Optional;
@@ -101,6 +102,6 @@ public abstract class RollbackAgentEngineMemoryConfig extends JsonSerializable {
   /** Deserializes a JSON string to a RollbackAgentEngineMemoryConfig object. */
   @ExcludeFromGeneratedCoverageReport
   public static RollbackAgentEngineMemoryConfig fromJson(String jsonString) {
-    return JsonSerializable.fromJsonString(jsonString, RollbackAgentEngineMemoryConfig.class);
+    return Common.fromJsonString(jsonString, RollbackAgentEngineMemoryConfig.class);
   }
 }

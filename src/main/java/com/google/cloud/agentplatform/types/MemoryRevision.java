@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import com.google.genai.Common;
 import com.google.genai.JsonSerializable;
 import java.time.Instant;
 import java.util.Arrays;
@@ -266,6 +267,6 @@ public abstract class MemoryRevision extends JsonSerializable {
   /** Deserializes a JSON string to a MemoryRevision object. */
   @ExcludeFromGeneratedCoverageReport
   public static MemoryRevision fromJson(String jsonString) {
-    return JsonSerializable.fromJsonString(jsonString, MemoryRevision.class);
+    return Common.fromJsonString(jsonString, MemoryRevision.class);
   }
 }

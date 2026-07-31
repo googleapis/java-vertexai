@@ -45,7 +45,6 @@ import com.google.genai.ApiClient;
 import com.google.genai.ApiResponse;
 import com.google.genai.Common;
 import com.google.genai.Common.BuiltRequest;
-import com.google.genai.JsonSerializable;
 import com.google.genai.errors.GenAiIOException;
 import com.google.genai.types.HttpOptions;
 import java.io.IOException;
@@ -68,7 +67,7 @@ public final class AgentEngines {
 
   @ExcludeFromGeneratedCoverageReport
   ObjectNode agentEngineOperationFromVertex(JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -102,8 +101,7 @@ public final class AgentEngines {
           toObject,
           new String[] {"response"},
           reasoningEngineFromVertex(
-              JsonSerializable.toJsonNode(
-                  Common.getValueByPath(fromObject, new String[] {"response"})),
+              Common.toJsonNode(Common.getValueByPath(fromObject, new String[] {"response"})),
               toObject));
     }
 
@@ -112,7 +110,7 @@ public final class AgentEngines {
 
   @ExcludeFromGeneratedCoverageReport
   ObjectNode createAgentEngineConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
 
     if (Common.getValueByPath(fromObject, new String[] {"displayName"}) != null) {
       Common.setValueByPath(
@@ -140,8 +138,7 @@ public final class AgentEngines {
           parentObject,
           new String[] {"contextSpec"},
           reasoningEngineContextSpecToVertex(
-              JsonSerializable.toJsonNode(
-                  Common.getValueByPath(fromObject, new String[] {"contextSpec"})),
+              Common.toJsonNode(Common.getValueByPath(fromObject, new String[] {"contextSpec"})),
               toObject));
     }
 
@@ -221,12 +218,11 @@ public final class AgentEngines {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode createAgentEngineRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
       JsonNode unused =
           createAgentEngineConfigToVertex(
-              JsonSerializable.toJsonNode(
-                  Common.getValueByPath(fromObject, new String[] {"config"})),
+              Common.toJsonNode(Common.getValueByPath(fromObject, new String[] {"config"})),
               toObject);
     }
 
@@ -236,7 +232,7 @@ public final class AgentEngines {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode deleteAgentEngineRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -257,7 +253,7 @@ public final class AgentEngines {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode getAgentEngineOperationParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"operationName"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -270,7 +266,7 @@ public final class AgentEngines {
 
   @ExcludeFromGeneratedCoverageReport
   ObjectNode getAgentEngineRequestParametersToVertex(JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -283,7 +279,7 @@ public final class AgentEngines {
 
   @ExcludeFromGeneratedCoverageReport
   ObjectNode listAgentEngineConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
 
     if (Common.getValueByPath(fromObject, new String[] {"pageSize"}) != null) {
       Common.setValueByPath(
@@ -312,12 +308,11 @@ public final class AgentEngines {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode listAgentEngineRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
       JsonNode unused =
           listAgentEngineConfigToVertex(
-              JsonSerializable.toJsonNode(
-                  Common.getValueByPath(fromObject, new String[] {"config"})),
+              Common.toJsonNode(Common.getValueByPath(fromObject, new String[] {"config"})),
               toObject);
     }
 
@@ -326,7 +321,7 @@ public final class AgentEngines {
 
   @ExcludeFromGeneratedCoverageReport
   ObjectNode listReasoningEnginesResponseFromVertex(JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"sdkHttpResponse"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -348,7 +343,7 @@ public final class AgentEngines {
       ArrayNode result = objectMapper.createArrayNode();
 
       for (JsonNode item : keyArray) {
-        result.add(reasoningEngineFromVertex(JsonSerializable.toJsonNode(item), toObject));
+        result.add(reasoningEngineFromVertex(Common.toJsonNode(item), toObject));
       }
       Common.setValueByPath(toObject, new String[] {"reasoningEngines"}, result);
     }
@@ -358,7 +353,7 @@ public final class AgentEngines {
 
   @ExcludeFromGeneratedCoverageReport
   ObjectNode queryAgentEngineConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
 
     if (Common.getValueByPath(fromObject, new String[] {"classMethod"}) != null) {
       Common.setValueByPath(
@@ -387,7 +382,7 @@ public final class AgentEngines {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode queryAgentEngineRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -398,8 +393,7 @@ public final class AgentEngines {
     if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
       JsonNode unused =
           queryAgentEngineConfigToVertex(
-              JsonSerializable.toJsonNode(
-                  Common.getValueByPath(fromObject, new String[] {"config"})),
+              Common.toJsonNode(Common.getValueByPath(fromObject, new String[] {"config"})),
               toObject);
     }
 
@@ -408,13 +402,13 @@ public final class AgentEngines {
 
   @ExcludeFromGeneratedCoverageReport
   ObjectNode reasoningEngineContextSpecFromVertex(JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"memoryBankConfig"}) != null) {
       Common.setValueByPath(
           toObject,
           new String[] {"memoryBankConfig"},
           reasoningEngineContextSpecMemoryBankConfigFromVertex(
-              JsonSerializable.toJsonNode(
+              Common.toJsonNode(
                   Common.getValueByPath(fromObject, new String[] {"memoryBankConfig"})),
               toObject));
     }
@@ -425,7 +419,7 @@ public final class AgentEngines {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode reasoningEngineContextSpecMemoryBankConfigFromVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"customizationConfigs"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -468,7 +462,7 @@ public final class AgentEngines {
       ArrayNode result = objectMapper.createArrayNode();
 
       for (JsonNode item : keyArray) {
-        result.add(structuredMemoryConfigFromVertex(JsonSerializable.toJsonNode(item), toObject));
+        result.add(structuredMemoryConfigFromVertex(Common.toJsonNode(item), toObject));
       }
       Common.setValueByPath(toObject, new String[] {"structuredMemoryConfigs"}, result);
     }
@@ -479,7 +473,7 @@ public final class AgentEngines {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode reasoningEngineContextSpecMemoryBankConfigToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"customizationConfigs"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -522,7 +516,7 @@ public final class AgentEngines {
       ArrayNode result = objectMapper.createArrayNode();
 
       for (JsonNode item : keyArray) {
-        result.add(structuredMemoryConfigToVertex(JsonSerializable.toJsonNode(item), toObject));
+        result.add(structuredMemoryConfigToVertex(Common.toJsonNode(item), toObject));
       }
       Common.setValueByPath(toObject, new String[] {"structuredMemoryConfigs"}, result);
     }
@@ -532,13 +526,13 @@ public final class AgentEngines {
 
   @ExcludeFromGeneratedCoverageReport
   ObjectNode reasoningEngineContextSpecToVertex(JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"memoryBankConfig"}) != null) {
       Common.setValueByPath(
           toObject,
           new String[] {"memoryBankConfig"},
           reasoningEngineContextSpecMemoryBankConfigToVertex(
-              JsonSerializable.toJsonNode(
+              Common.toJsonNode(
                   Common.getValueByPath(fromObject, new String[] {"memoryBankConfig"})),
               toObject));
     }
@@ -548,7 +542,7 @@ public final class AgentEngines {
 
   @ExcludeFromGeneratedCoverageReport
   ObjectNode reasoningEngineFromVertex(JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"encryptionSpec"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -561,8 +555,7 @@ public final class AgentEngines {
           toObject,
           new String[] {"contextSpec"},
           reasoningEngineContextSpecFromVertex(
-              JsonSerializable.toJsonNode(
-                  Common.getValueByPath(fromObject, new String[] {"contextSpec"})),
+              Common.toJsonNode(Common.getValueByPath(fromObject, new String[] {"contextSpec"})),
               toObject));
     }
 
@@ -634,7 +627,7 @@ public final class AgentEngines {
 
   @ExcludeFromGeneratedCoverageReport
   ObjectNode structuredMemoryConfigFromVertex(JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"schemaConfigs"}) != null) {
       ArrayNode keyArray =
           (ArrayNode) Common.getValueByPath(fromObject, new String[] {"schemaConfigs"});
@@ -642,8 +635,7 @@ public final class AgentEngines {
       ArrayNode result = objectMapper.createArrayNode();
 
       for (JsonNode item : keyArray) {
-        result.add(
-            structuredMemorySchemaConfigFromVertex(JsonSerializable.toJsonNode(item), toObject));
+        result.add(structuredMemorySchemaConfigFromVertex(Common.toJsonNode(item), toObject));
       }
       Common.setValueByPath(toObject, new String[] {"schemaConfigs"}, result);
     }
@@ -660,7 +652,7 @@ public final class AgentEngines {
 
   @ExcludeFromGeneratedCoverageReport
   ObjectNode structuredMemoryConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"schemaConfigs"}) != null) {
       ArrayNode keyArray =
           (ArrayNode) Common.getValueByPath(fromObject, new String[] {"schemaConfigs"});
@@ -668,8 +660,7 @@ public final class AgentEngines {
       ArrayNode result = objectMapper.createArrayNode();
 
       for (JsonNode item : keyArray) {
-        result.add(
-            structuredMemorySchemaConfigToVertex(JsonSerializable.toJsonNode(item), toObject));
+        result.add(structuredMemorySchemaConfigToVertex(Common.toJsonNode(item), toObject));
       }
       Common.setValueByPath(toObject, new String[] {"schemaConfigs"}, result);
     }
@@ -686,7 +677,7 @@ public final class AgentEngines {
 
   @ExcludeFromGeneratedCoverageReport
   ObjectNode structuredMemorySchemaConfigFromVertex(JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"schema"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -711,7 +702,7 @@ public final class AgentEngines {
 
   @ExcludeFromGeneratedCoverageReport
   ObjectNode structuredMemorySchemaConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"memorySchema"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -736,7 +727,7 @@ public final class AgentEngines {
 
   @ExcludeFromGeneratedCoverageReport
   ObjectNode updateAgentEngineConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
 
     if (Common.getValueByPath(fromObject, new String[] {"displayName"}) != null) {
       Common.setValueByPath(
@@ -764,8 +755,7 @@ public final class AgentEngines {
           parentObject,
           new String[] {"contextSpec"},
           reasoningEngineContextSpecToVertex(
-              JsonSerializable.toJsonNode(
-                  Common.getValueByPath(fromObject, new String[] {"contextSpec"})),
+              Common.toJsonNode(Common.getValueByPath(fromObject, new String[] {"contextSpec"})),
               toObject));
     }
 
@@ -852,7 +842,7 @@ public final class AgentEngines {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode updateAgentEngineRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -863,8 +853,7 @@ public final class AgentEngines {
     if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
       JsonNode unused =
           updateAgentEngineConfigToVertex(
-              JsonSerializable.toJsonNode(
-                  Common.getValueByPath(fromObject, new String[] {"config"})),
+              Common.toJsonNode(Common.getValueByPath(fromObject, new String[] {"config"})),
               toObject);
     }
 
@@ -880,7 +869,7 @@ public final class AgentEngines {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -906,7 +895,7 @@ public final class AgentEngines {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -920,7 +909,7 @@ public final class AgentEngines {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (this.apiClient.vertexAI()) {
       responseNode = agentEngineOperationFromVertex(responseNode, null);
@@ -932,7 +921,7 @@ public final class AgentEngines {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, AgentEngineOperation.class);
+    return Common.fromJsonNode(responseNode, AgentEngineOperation.class);
   }
 
   public AgentEngineOperation privateCreate(CreateAgentEngineConfig config) {
@@ -961,7 +950,7 @@ public final class AgentEngines {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -987,7 +976,7 @@ public final class AgentEngines {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -1001,7 +990,7 @@ public final class AgentEngines {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -1009,7 +998,7 @@ public final class AgentEngines {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, DeleteAgentEngineOperation.class);
+    return Common.fromJsonNode(responseNode, DeleteAgentEngineOperation.class);
   }
 
   public DeleteAgentEngineOperation privateDelete(
@@ -1035,7 +1024,7 @@ public final class AgentEngines {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -1061,7 +1050,7 @@ public final class AgentEngines {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -1074,7 +1063,7 @@ public final class AgentEngines {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (this.apiClient.vertexAI()) {
       responseNode = reasoningEngineFromVertex(responseNode, null);
@@ -1086,7 +1075,7 @@ public final class AgentEngines {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, ReasoningEngine.class);
+    return Common.fromJsonNode(responseNode, ReasoningEngine.class);
   }
 
   public ReasoningEngine privateGet(String name, GetAgentEngineConfig config) {
@@ -1108,7 +1097,7 @@ public final class AgentEngines {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -1134,7 +1123,7 @@ public final class AgentEngines {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -1148,7 +1137,7 @@ public final class AgentEngines {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (this.apiClient.vertexAI()) {
       responseNode = listReasoningEnginesResponseFromVertex(responseNode, null);
@@ -1160,7 +1149,7 @@ public final class AgentEngines {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, ListReasoningEnginesResponse.class);
+    return Common.fromJsonNode(responseNode, ListReasoningEnginesResponse.class);
   }
 
   public ListReasoningEnginesResponse privateList(ListAgentEngineConfig config) {
@@ -1186,7 +1175,7 @@ public final class AgentEngines {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -1212,7 +1201,7 @@ public final class AgentEngines {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -1226,7 +1215,7 @@ public final class AgentEngines {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (this.apiClient.vertexAI()) {
       responseNode = agentEngineOperationFromVertex(responseNode, null);
@@ -1238,7 +1227,7 @@ public final class AgentEngines {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, AgentEngineOperation.class);
+    return Common.fromJsonNode(responseNode, AgentEngineOperation.class);
   }
 
   public AgentEngineOperation privateGetAgentOperation(
@@ -1264,7 +1253,7 @@ public final class AgentEngines {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -1290,7 +1279,7 @@ public final class AgentEngines {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -1304,7 +1293,7 @@ public final class AgentEngines {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -1312,7 +1301,7 @@ public final class AgentEngines {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, QueryReasoningEngineResponse.class);
+    return Common.fromJsonNode(responseNode, QueryReasoningEngineResponse.class);
   }
 
   public QueryReasoningEngineResponse privateQuery(String name, QueryAgentEngineConfig config) {
@@ -1337,7 +1326,7 @@ public final class AgentEngines {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -1363,7 +1352,7 @@ public final class AgentEngines {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -1377,7 +1366,7 @@ public final class AgentEngines {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (this.apiClient.vertexAI()) {
       responseNode = agentEngineOperationFromVertex(responseNode, null);
@@ -1389,7 +1378,7 @@ public final class AgentEngines {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, AgentEngineOperation.class);
+    return Common.fromJsonNode(responseNode, AgentEngineOperation.class);
   }
 
   public AgentEngineOperation privateUpdate(String name, UpdateAgentEngineConfig config) {

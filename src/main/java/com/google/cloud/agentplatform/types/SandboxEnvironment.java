@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import com.google.genai.Common;
 import com.google.genai.JsonSerializable;
 import java.time.Duration;
 import java.time.Instant;
@@ -406,6 +407,6 @@ public abstract class SandboxEnvironment extends JsonSerializable {
   /** Deserializes a JSON string to a SandboxEnvironment object. */
   @ExcludeFromGeneratedCoverageReport
   public static SandboxEnvironment fromJson(String jsonString) {
-    return JsonSerializable.fromJsonString(jsonString, SandboxEnvironment.class);
+    return Common.fromJsonString(jsonString, SandboxEnvironment.class);
   }
 }

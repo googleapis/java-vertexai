@@ -21,6 +21,7 @@ package com.google.cloud.agentplatform.types;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
+import com.google.genai.Common;
 import com.google.genai.JsonSerializable;
 
 /** The computer use environment with customized settings. */
@@ -54,7 +55,6 @@ public abstract class SandboxEnvironmentSpecComputerUseEnvironment extends JsonS
   /** Deserializes a JSON string to a SandboxEnvironmentSpecComputerUseEnvironment object. */
   @ExcludeFromGeneratedCoverageReport
   public static SandboxEnvironmentSpecComputerUseEnvironment fromJson(String jsonString) {
-    return JsonSerializable.fromJsonString(
-        jsonString, SandboxEnvironmentSpecComputerUseEnvironment.class);
+    return Common.fromJsonString(jsonString, SandboxEnvironmentSpecComputerUseEnvironment.class);
   }
 }

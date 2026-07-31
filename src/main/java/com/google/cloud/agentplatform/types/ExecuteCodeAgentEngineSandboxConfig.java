@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import com.google.genai.Common;
 import com.google.genai.JsonSerializable;
 import com.google.genai.types.HttpOptions;
 import java.util.Optional;
@@ -80,6 +81,6 @@ public abstract class ExecuteCodeAgentEngineSandboxConfig extends JsonSerializab
   /** Deserializes a JSON string to a ExecuteCodeAgentEngineSandboxConfig object. */
   @ExcludeFromGeneratedCoverageReport
   public static ExecuteCodeAgentEngineSandboxConfig fromJson(String jsonString) {
-    return JsonSerializable.fromJsonString(jsonString, ExecuteCodeAgentEngineSandboxConfig.class);
+    return Common.fromJsonString(jsonString, ExecuteCodeAgentEngineSandboxConfig.class);
   }
 }

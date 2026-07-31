@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import com.google.genai.Common;
 import com.google.genai.JsonSerializable;
 import java.util.Map;
 import java.util.Optional;
@@ -161,6 +162,6 @@ public abstract class DeleteAgentEngineOperation extends JsonSerializable {
   /** Deserializes a JSON string to a DeleteAgentEngineOperation object. */
   @ExcludeFromGeneratedCoverageReport
   public static DeleteAgentEngineOperation fromJson(String jsonString) {
-    return JsonSerializable.fromJsonString(jsonString, DeleteAgentEngineOperation.class);
+    return Common.fromJsonString(jsonString, DeleteAgentEngineOperation.class);
   }
 }

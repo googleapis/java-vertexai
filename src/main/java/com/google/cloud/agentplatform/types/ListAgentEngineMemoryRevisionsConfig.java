@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import com.google.genai.Common;
 import com.google.genai.JsonSerializable;
 import com.google.genai.types.HttpOptions;
 import java.util.Optional;
@@ -150,6 +151,6 @@ public abstract class ListAgentEngineMemoryRevisionsConfig extends JsonSerializa
   /** Deserializes a JSON string to a ListAgentEngineMemoryRevisionsConfig object. */
   @ExcludeFromGeneratedCoverageReport
   public static ListAgentEngineMemoryRevisionsConfig fromJson(String jsonString) {
-    return JsonSerializable.fromJsonString(jsonString, ListAgentEngineMemoryRevisionsConfig.class);
+    return Common.fromJsonString(jsonString, ListAgentEngineMemoryRevisionsConfig.class);
   }
 }

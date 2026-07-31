@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import com.google.genai.Common;
 import com.google.genai.JsonSerializable;
 import com.google.genai.types.EncryptionSpec;
 import com.google.genai.types.HttpOptions;
@@ -834,6 +835,6 @@ public abstract class UpdateAgentEngineConfig extends JsonSerializable {
   /** Deserializes a JSON string to a UpdateAgentEngineConfig object. */
   @ExcludeFromGeneratedCoverageReport
   public static UpdateAgentEngineConfig fromJson(String jsonString) {
-    return JsonSerializable.fromJsonString(jsonString, UpdateAgentEngineConfig.class);
+    return Common.fromJsonString(jsonString, UpdateAgentEngineConfig.class);
   }
 }

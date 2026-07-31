@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import com.google.genai.Common;
 import com.google.genai.JsonSerializable;
 import com.google.genai.types.GroundingMetadata;
 import com.google.genai.types.Transcription;
@@ -292,6 +293,6 @@ public abstract class EventMetadata extends JsonSerializable {
   /** Deserializes a JSON string to a EventMetadata object. */
   @ExcludeFromGeneratedCoverageReport
   public static EventMetadata fromJson(String jsonString) {
-    return JsonSerializable.fromJsonString(jsonString, EventMetadata.class);
+    return Common.fromJsonString(jsonString, EventMetadata.class);
   }
 }
