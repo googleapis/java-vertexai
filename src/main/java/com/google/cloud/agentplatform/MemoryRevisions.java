@@ -20,11 +20,11 @@ package com.google.cloud.agentplatform;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.google.cloud.agentplatform.types.GetAgentEngineMemoryRevisionConfig;
-import com.google.cloud.agentplatform.types.GetAgentEngineMemoryRevisionRequestParameters;
-import com.google.cloud.agentplatform.types.ListAgentEngineMemoryRevisionsConfig;
-import com.google.cloud.agentplatform.types.ListAgentEngineMemoryRevisionsRequestParameters;
-import com.google.cloud.agentplatform.types.ListAgentEngineMemoryRevisionsResponse;
+import com.google.cloud.agentplatform.types.GetMemoryRevisionConfig;
+import com.google.cloud.agentplatform.types.GetMemoryRevisionRequestParameters;
+import com.google.cloud.agentplatform.types.ListMemoryRevisionsConfig;
+import com.google.cloud.agentplatform.types.ListMemoryRevisionsRequestParameters;
+import com.google.cloud.agentplatform.types.ListMemoryRevisionsResponse;
 import com.google.cloud.agentplatform.types.MemoryRevision;
 import com.google.genai.ApiClient;
 import com.google.genai.ApiResponse;
@@ -46,7 +46,7 @@ public final class MemoryRevisions {
   }
 
   @ExcludeFromGeneratedCoverageReport
-  ObjectNode getAgentEngineMemoryRevisionRequestParametersToVertex(
+  ObjectNode getMemoryRevisionRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
     ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
@@ -60,8 +60,7 @@ public final class MemoryRevisions {
   }
 
   @ExcludeFromGeneratedCoverageReport
-  ObjectNode listAgentEngineMemoryRevisionsConfigToVertex(
-      JsonNode fromObject, ObjectNode parentObject) {
+  ObjectNode listMemoryRevisionsConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
     ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
 
     if (Common.getValueByPath(fromObject, new String[] {"pageSize"}) != null) {
@@ -89,7 +88,7 @@ public final class MemoryRevisions {
   }
 
   @ExcludeFromGeneratedCoverageReport
-  ObjectNode listAgentEngineMemoryRevisionsRequestParametersToVertex(
+  ObjectNode listMemoryRevisionsRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
     ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
@@ -101,7 +100,7 @@ public final class MemoryRevisions {
 
     if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
       JsonNode unused =
-          listAgentEngineMemoryRevisionsConfigToVertex(
+          listMemoryRevisionsConfigToVertex(
               JsonSerializable.toJsonNode(
                   Common.getValueByPath(fromObject, new String[] {"config"})),
               toObject);
@@ -111,10 +110,10 @@ public final class MemoryRevisions {
   }
 
   /** A shared buildRequest method for both sync and async methods. */
-  BuiltRequest buildRequestForGet(String name, GetAgentEngineMemoryRevisionConfig config) {
+  BuiltRequest buildRequestForGet(String name, GetMemoryRevisionConfig config) {
 
-    GetAgentEngineMemoryRevisionRequestParameters.Builder parameterBuilder =
-        GetAgentEngineMemoryRevisionRequestParameters.builder();
+    GetMemoryRevisionRequestParameters.Builder parameterBuilder =
+        GetMemoryRevisionRequestParameters.builder();
 
     if (!Common.isZero(name)) {
       parameterBuilder.name(name);
@@ -127,7 +126,7 @@ public final class MemoryRevisions {
     ObjectNode body;
     String path;
     if (this.apiClient.vertexAI()) {
-      body = getAgentEngineMemoryRevisionRequestParametersToVertex(parameterNode, null);
+      body = getMemoryRevisionRequestParametersToVertex(parameterNode, null);
       path = Common.formatMap("{name}", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
@@ -152,8 +151,7 @@ public final class MemoryRevisions {
   }
 
   /** A shared processResponse function for both sync and async methods. */
-  MemoryRevision processResponseForGet(
-      ApiResponse response, GetAgentEngineMemoryRevisionConfig config) {
+  MemoryRevision processResponseForGet(ApiResponse response, GetMemoryRevisionConfig config) {
     ResponseBody responseBody = response.getBody();
     String responseString;
     try {
@@ -173,7 +171,7 @@ public final class MemoryRevisions {
     return JsonSerializable.fromJsonNode(responseNode, MemoryRevision.class);
   }
 
-  public MemoryRevision get(String name, GetAgentEngineMemoryRevisionConfig config) {
+  public MemoryRevision get(String name, GetMemoryRevisionConfig config) {
     BuiltRequest builtRequest = buildRequestForGet(name, config);
 
     try (ApiResponse response =
@@ -184,11 +182,10 @@ public final class MemoryRevisions {
   }
 
   /** A shared buildRequest method for both sync and async methods. */
-  BuiltRequest buildRequestForPrivateList(
-      String name, ListAgentEngineMemoryRevisionsConfig config) {
+  BuiltRequest buildRequestForPrivateList(String name, ListMemoryRevisionsConfig config) {
 
-    ListAgentEngineMemoryRevisionsRequestParameters.Builder parameterBuilder =
-        ListAgentEngineMemoryRevisionsRequestParameters.builder();
+    ListMemoryRevisionsRequestParameters.Builder parameterBuilder =
+        ListMemoryRevisionsRequestParameters.builder();
 
     if (!Common.isZero(name)) {
       parameterBuilder.name(name);
@@ -201,7 +198,7 @@ public final class MemoryRevisions {
     ObjectNode body;
     String path;
     if (this.apiClient.vertexAI()) {
-      body = listAgentEngineMemoryRevisionsRequestParametersToVertex(parameterNode, null);
+      body = listMemoryRevisionsRequestParametersToVertex(parameterNode, null);
       path = Common.formatMap("{name}/revisions", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
@@ -226,8 +223,8 @@ public final class MemoryRevisions {
   }
 
   /** A shared processResponse function for both sync and async methods. */
-  ListAgentEngineMemoryRevisionsResponse processResponseForPrivateList(
-      ApiResponse response, ListAgentEngineMemoryRevisionsConfig config) {
+  ListMemoryRevisionsResponse processResponseForPrivateList(
+      ApiResponse response, ListMemoryRevisionsConfig config) {
     ResponseBody responseBody = response.getBody();
     String responseString;
     try {
@@ -244,12 +241,10 @@ public final class MemoryRevisions {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(
-        responseNode, ListAgentEngineMemoryRevisionsResponse.class);
+    return JsonSerializable.fromJsonNode(responseNode, ListMemoryRevisionsResponse.class);
   }
 
-  public ListAgentEngineMemoryRevisionsResponse privateList(
-      String name, ListAgentEngineMemoryRevisionsConfig config) {
+  public ListMemoryRevisionsResponse privateList(String name, ListMemoryRevisionsConfig config) {
     BuiltRequest builtRequest = buildRequestForPrivateList(name, config);
 
     try (ApiResponse response =
