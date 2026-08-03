@@ -118,8 +118,7 @@ public final class AsyncSessions {
             });
   }
 
-  CompletableFuture<AgentEngineSessionOperation> privateUpdate(
-      String name, UpdateAgentEngineSessionConfig config) {
+  CompletableFuture<Session> privateUpdate(String name, UpdateAgentEngineSessionConfig config) {
 
     BuiltRequest builtRequest = sessions.buildRequestForPrivateUpdate(name, config);
     return this.apiClient
