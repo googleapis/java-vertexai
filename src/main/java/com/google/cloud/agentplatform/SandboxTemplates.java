@@ -38,7 +38,6 @@ import com.google.genai.ApiClient;
 import com.google.genai.ApiResponse;
 import com.google.genai.Common;
 import com.google.genai.Common.BuiltRequest;
-import com.google.genai.JsonSerializable;
 import com.google.genai.errors.GenAiIOException;
 import com.google.genai.types.HttpOptions;
 import java.io.IOException;
@@ -56,7 +55,7 @@ public final class SandboxTemplates {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode createSandboxEnvironmentTemplateConfigToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
 
     if (Common.getValueByPath(fromObject, new String[] {"customContainerEnvironment"}) != null) {
       Common.setValueByPath(
@@ -85,7 +84,7 @@ public final class SandboxTemplates {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode createSandboxEnvironmentTemplateRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -103,8 +102,7 @@ public final class SandboxTemplates {
     if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
       JsonNode unused =
           createSandboxEnvironmentTemplateConfigToVertex(
-              JsonSerializable.toJsonNode(
-                  Common.getValueByPath(fromObject, new String[] {"config"})),
+              Common.toJsonNode(Common.getValueByPath(fromObject, new String[] {"config"})),
               toObject);
     }
 
@@ -114,7 +112,7 @@ public final class SandboxTemplates {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode deleteSandboxEnvironmentTemplateRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -128,7 +126,7 @@ public final class SandboxTemplates {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode getSandboxEnvironmentTemplateOperationParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"operationName"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -142,7 +140,7 @@ public final class SandboxTemplates {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode getSandboxEnvironmentTemplateRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -156,7 +154,7 @@ public final class SandboxTemplates {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode listSandboxEnvironmentTemplatesConfigToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
 
     if (Common.getValueByPath(fromObject, new String[] {"pageSize"}) != null) {
       Common.setValueByPath(
@@ -185,7 +183,7 @@ public final class SandboxTemplates {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode listSandboxEnvironmentTemplatesRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -196,8 +194,7 @@ public final class SandboxTemplates {
     if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
       JsonNode unused =
           listSandboxEnvironmentTemplatesConfigToVertex(
-              JsonSerializable.toJsonNode(
-                  Common.getValueByPath(fromObject, new String[] {"config"})),
+              Common.toJsonNode(Common.getValueByPath(fromObject, new String[] {"config"})),
               toObject);
     }
 
@@ -220,7 +217,7 @@ public final class SandboxTemplates {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -246,7 +243,7 @@ public final class SandboxTemplates {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -260,7 +257,7 @@ public final class SandboxTemplates {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -268,7 +265,7 @@ public final class SandboxTemplates {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, SandboxEnvironmentTemplateOperation.class);
+    return Common.fromJsonNode(responseNode, SandboxEnvironmentTemplateOperation.class);
   }
 
   public SandboxEnvironmentTemplateOperation privateCreate(
@@ -295,7 +292,7 @@ public final class SandboxTemplates {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -321,7 +318,7 @@ public final class SandboxTemplates {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -335,7 +332,7 @@ public final class SandboxTemplates {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -343,8 +340,7 @@ public final class SandboxTemplates {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(
-        responseNode, DeleteSandboxEnvironmentTemplateOperation.class);
+    return Common.fromJsonNode(responseNode, DeleteSandboxEnvironmentTemplateOperation.class);
   }
 
   public DeleteSandboxEnvironmentTemplateOperation privateDelete(
@@ -370,7 +366,7 @@ public final class SandboxTemplates {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -396,7 +392,7 @@ public final class SandboxTemplates {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -410,7 +406,7 @@ public final class SandboxTemplates {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -418,7 +414,7 @@ public final class SandboxTemplates {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, SandboxEnvironmentTemplate.class);
+    return Common.fromJsonNode(responseNode, SandboxEnvironmentTemplate.class);
   }
 
   public SandboxEnvironmentTemplate privateGet(
@@ -445,7 +441,7 @@ public final class SandboxTemplates {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -471,7 +467,7 @@ public final class SandboxTemplates {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -485,7 +481,7 @@ public final class SandboxTemplates {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -493,8 +489,7 @@ public final class SandboxTemplates {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(
-        responseNode, ListSandboxEnvironmentTemplatesResponse.class);
+    return Common.fromJsonNode(responseNode, ListSandboxEnvironmentTemplatesResponse.class);
   }
 
   public ListSandboxEnvironmentTemplatesResponse privateList(
@@ -521,7 +516,7 @@ public final class SandboxTemplates {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -547,7 +542,7 @@ public final class SandboxTemplates {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -561,7 +556,7 @@ public final class SandboxTemplates {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -569,7 +564,7 @@ public final class SandboxTemplates {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, SandboxEnvironmentTemplateOperation.class);
+    return Common.fromJsonNode(responseNode, SandboxEnvironmentTemplateOperation.class);
   }
 
   public SandboxEnvironmentTemplateOperation getSandboxEnvironmentTemplateOperation(

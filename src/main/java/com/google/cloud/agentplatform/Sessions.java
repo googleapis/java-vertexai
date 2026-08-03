@@ -40,7 +40,6 @@ import com.google.genai.ApiClient;
 import com.google.genai.ApiResponse;
 import com.google.genai.Common;
 import com.google.genai.Common.BuiltRequest;
-import com.google.genai.JsonSerializable;
 import com.google.genai.errors.GenAiIOException;
 import com.google.genai.types.HttpOptions;
 import java.io.IOException;
@@ -59,7 +58,7 @@ public final class Sessions {
 
   @ExcludeFromGeneratedCoverageReport
   ObjectNode createAgentEngineSessionConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
 
     if (Common.getValueByPath(fromObject, new String[] {"displayName"}) != null) {
       Common.setValueByPath(
@@ -109,7 +108,7 @@ public final class Sessions {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode createAgentEngineSessionRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -127,8 +126,7 @@ public final class Sessions {
     if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
       JsonNode unused =
           createAgentEngineSessionConfigToVertex(
-              JsonSerializable.toJsonNode(
-                  Common.getValueByPath(fromObject, new String[] {"config"})),
+              Common.toJsonNode(Common.getValueByPath(fromObject, new String[] {"config"})),
               toObject);
     }
 
@@ -138,7 +136,7 @@ public final class Sessions {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode deleteAgentEngineSessionRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -152,7 +150,7 @@ public final class Sessions {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode getAgentEngineSessionOperationParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"operationName"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -166,7 +164,7 @@ public final class Sessions {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode getAgentEngineSessionRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -179,7 +177,7 @@ public final class Sessions {
 
   @ExcludeFromGeneratedCoverageReport
   ObjectNode listAgentEngineSessionsConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
 
     if (Common.getValueByPath(fromObject, new String[] {"pageSize"}) != null) {
       Common.setValueByPath(
@@ -208,7 +206,7 @@ public final class Sessions {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode listAgentEngineSessionsRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -219,8 +217,7 @@ public final class Sessions {
     if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
       JsonNode unused =
           listAgentEngineSessionsConfigToVertex(
-              JsonSerializable.toJsonNode(
-                  Common.getValueByPath(fromObject, new String[] {"config"})),
+              Common.toJsonNode(Common.getValueByPath(fromObject, new String[] {"config"})),
               toObject);
     }
 
@@ -229,7 +226,7 @@ public final class Sessions {
 
   @ExcludeFromGeneratedCoverageReport
   ObjectNode updateAgentEngineSessionConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
 
     if (Common.getValueByPath(fromObject, new String[] {"displayName"}) != null) {
       Common.setValueByPath(
@@ -293,7 +290,7 @@ public final class Sessions {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode updateAgentEngineSessionRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -304,8 +301,7 @@ public final class Sessions {
     if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
       JsonNode unused =
           updateAgentEngineSessionConfigToVertex(
-              JsonSerializable.toJsonNode(
-                  Common.getValueByPath(fromObject, new String[] {"config"})),
+              Common.toJsonNode(Common.getValueByPath(fromObject, new String[] {"config"})),
               toObject);
     }
 
@@ -328,7 +324,7 @@ public final class Sessions {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -354,7 +350,7 @@ public final class Sessions {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -368,7 +364,7 @@ public final class Sessions {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -376,7 +372,7 @@ public final class Sessions {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, AgentEngineSessionOperation.class);
+    return Common.fromJsonNode(responseNode, AgentEngineSessionOperation.class);
   }
 
   public AgentEngineSessionOperation privateCreate(
@@ -402,7 +398,7 @@ public final class Sessions {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -428,7 +424,7 @@ public final class Sessions {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -442,7 +438,7 @@ public final class Sessions {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -450,7 +446,7 @@ public final class Sessions {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, DeleteAgentEngineSessionOperation.class);
+    return Common.fromJsonNode(responseNode, DeleteAgentEngineSessionOperation.class);
   }
 
   public DeleteAgentEngineSessionOperation delete(
@@ -476,7 +472,7 @@ public final class Sessions {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -502,7 +498,7 @@ public final class Sessions {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -515,7 +511,7 @@ public final class Sessions {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -523,7 +519,7 @@ public final class Sessions {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, Session.class);
+    return Common.fromJsonNode(responseNode, Session.class);
   }
 
   public Session get(String name, GetAgentEngineSessionConfig config) {
@@ -548,7 +544,7 @@ public final class Sessions {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -574,7 +570,7 @@ public final class Sessions {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -588,7 +584,7 @@ public final class Sessions {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -596,7 +592,7 @@ public final class Sessions {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, ListReasoningEnginesSessionsResponse.class);
+    return Common.fromJsonNode(responseNode, ListReasoningEnginesSessionsResponse.class);
   }
 
   public ListReasoningEnginesSessionsResponse privateList(
@@ -623,7 +619,7 @@ public final class Sessions {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -649,7 +645,7 @@ public final class Sessions {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -663,7 +659,7 @@ public final class Sessions {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -671,7 +667,7 @@ public final class Sessions {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, AgentEngineSessionOperation.class);
+    return Common.fromJsonNode(responseNode, AgentEngineSessionOperation.class);
   }
 
   public AgentEngineSessionOperation privateGetSessionOperation(
@@ -697,7 +693,7 @@ public final class Sessions {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -723,7 +719,7 @@ public final class Sessions {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -737,7 +733,7 @@ public final class Sessions {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -745,7 +741,7 @@ public final class Sessions {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, AgentEngineSessionOperation.class);
+    return Common.fromJsonNode(responseNode, AgentEngineSessionOperation.class);
   }
 
   public AgentEngineSessionOperation privateUpdate(

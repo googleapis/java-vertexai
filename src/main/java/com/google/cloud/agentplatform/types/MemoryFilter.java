@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import com.google.genai.Common;
 import com.google.genai.JsonSerializable;
 import java.util.Optional;
 
@@ -176,6 +177,6 @@ public abstract class MemoryFilter extends JsonSerializable {
   /** Deserializes a JSON string to a MemoryFilter object. */
   @ExcludeFromGeneratedCoverageReport
   public static MemoryFilter fromJson(String jsonString) {
-    return JsonSerializable.fromJsonString(jsonString, MemoryFilter.class);
+    return Common.fromJsonString(jsonString, MemoryFilter.class);
   }
 }

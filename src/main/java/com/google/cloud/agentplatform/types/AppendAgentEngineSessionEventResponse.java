@@ -21,6 +21,7 @@ package com.google.cloud.agentplatform.types;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
+import com.google.genai.Common;
 import com.google.genai.JsonSerializable;
 
 /** Response for appending agent engine session event. */
@@ -54,6 +55,6 @@ public abstract class AppendAgentEngineSessionEventResponse extends JsonSerializ
   /** Deserializes a JSON string to a AppendAgentEngineSessionEventResponse object. */
   @ExcludeFromGeneratedCoverageReport
   public static AppendAgentEngineSessionEventResponse fromJson(String jsonString) {
-    return JsonSerializable.fromJsonString(jsonString, AppendAgentEngineSessionEventResponse.class);
+    return Common.fromJsonString(jsonString, AppendAgentEngineSessionEventResponse.class);
   }
 }

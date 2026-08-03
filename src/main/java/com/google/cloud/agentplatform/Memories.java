@@ -67,7 +67,6 @@ import com.google.genai.ApiClient;
 import com.google.genai.ApiResponse;
 import com.google.genai.Common;
 import com.google.genai.Common.BuiltRequest;
-import com.google.genai.JsonSerializable;
 import com.google.genai.errors.GenAiIOException;
 import com.google.genai.types.HttpOptions;
 import java.io.IOException;
@@ -88,7 +87,7 @@ public final class Memories {
 
   @ExcludeFromGeneratedCoverageReport
   ObjectNode agentEngineMemoryConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
 
     if (Common.getValueByPath(fromObject, new String[] {"displayName"}) != null) {
       Common.setValueByPath(
@@ -166,7 +165,7 @@ public final class Memories {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode createAgentEngineMemoryRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -191,8 +190,7 @@ public final class Memories {
     if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
       JsonNode unused =
           agentEngineMemoryConfigToVertex(
-              JsonSerializable.toJsonNode(
-                  Common.getValueByPath(fromObject, new String[] {"config"})),
+              Common.toJsonNode(Common.getValueByPath(fromObject, new String[] {"config"})),
               toObject);
     }
 
@@ -202,7 +200,7 @@ public final class Memories {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode deleteAgentEngineMemoryRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -216,7 +214,7 @@ public final class Memories {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode generateAgentEngineMemoriesConfigToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
 
     if (Common.getValueByPath(fromObject, new String[] {"disableConsolidation"}) != null) {
       Common.setValueByPath(
@@ -280,7 +278,7 @@ public final class Memories {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode generateAgentEngineMemoriesRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -319,8 +317,7 @@ public final class Memories {
     if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
       JsonNode unused =
           generateAgentEngineMemoriesConfigToVertex(
-              JsonSerializable.toJsonNode(
-                  Common.getValueByPath(fromObject, new String[] {"config"})),
+              Common.toJsonNode(Common.getValueByPath(fromObject, new String[] {"config"})),
               toObject);
     }
 
@@ -330,7 +327,7 @@ public final class Memories {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode getAgentEngineGenerateMemoriesOperationParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"operationName"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -344,7 +341,7 @@ public final class Memories {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode getAgentEngineMemoryOperationParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"operationName"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -358,7 +355,7 @@ public final class Memories {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode getAgentEngineMemoryRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -371,7 +368,7 @@ public final class Memories {
 
   @ExcludeFromGeneratedCoverageReport
   ObjectNode ingestEventsConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
 
     if (Common.getValueByPath(fromObject, new String[] {"forceFlush"}) != null) {
       Common.setValueByPath(
@@ -427,7 +424,7 @@ public final class Memories {
 
   @ExcludeFromGeneratedCoverageReport
   ObjectNode ingestEventsRequestParametersToVertex(JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -466,8 +463,7 @@ public final class Memories {
     if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
       JsonNode unused =
           ingestEventsConfigToVertex(
-              JsonSerializable.toJsonNode(
-                  Common.getValueByPath(fromObject, new String[] {"config"})),
+              Common.toJsonNode(Common.getValueByPath(fromObject, new String[] {"config"})),
               toObject);
     }
 
@@ -476,7 +472,7 @@ public final class Memories {
 
   @ExcludeFromGeneratedCoverageReport
   ObjectNode listAgentEngineMemoryConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
 
     if (Common.getValueByPath(fromObject, new String[] {"pageSize"}) != null) {
       Common.setValueByPath(
@@ -512,7 +508,7 @@ public final class Memories {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode listAgentEngineMemoryRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -523,8 +519,7 @@ public final class Memories {
     if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
       JsonNode unused =
           listAgentEngineMemoryConfigToVertex(
-              JsonSerializable.toJsonNode(
-                  Common.getValueByPath(fromObject, new String[] {"config"})),
+              Common.toJsonNode(Common.getValueByPath(fromObject, new String[] {"config"})),
               toObject);
     }
 
@@ -534,7 +529,7 @@ public final class Memories {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode purgeAgentEngineMemoriesRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -569,7 +564,7 @@ public final class Memories {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode retrieveAgentEngineMemoriesConfigToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
 
     if (Common.getValueByPath(fromObject, new String[] {"filter"}) != null) {
       Common.setValueByPath(
@@ -598,7 +593,7 @@ public final class Memories {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode retrieveAgentEngineMemoriesRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -630,8 +625,7 @@ public final class Memories {
     if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
       JsonNode unused =
           retrieveAgentEngineMemoriesConfigToVertex(
-              JsonSerializable.toJsonNode(
-                  Common.getValueByPath(fromObject, new String[] {"config"})),
+              Common.toJsonNode(Common.getValueByPath(fromObject, new String[] {"config"})),
               toObject);
     }
 
@@ -641,7 +635,7 @@ public final class Memories {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode retrieveMemoryProfilesRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -662,7 +656,7 @@ public final class Memories {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode rollbackAgentEngineMemoryRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -682,7 +676,7 @@ public final class Memories {
 
   @ExcludeFromGeneratedCoverageReport
   ObjectNode updateAgentEngineMemoryConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
 
     if (Common.getValueByPath(fromObject, new String[] {"displayName"}) != null) {
       Common.setValueByPath(
@@ -767,7 +761,7 @@ public final class Memories {
   @ExcludeFromGeneratedCoverageReport
   ObjectNode updateAgentEngineMemoryRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
-    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    ObjectNode toObject = Common.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
       Common.setValueByPath(
           toObject,
@@ -792,8 +786,7 @@ public final class Memories {
     if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
       JsonNode unused =
           updateAgentEngineMemoryConfigToVertex(
-              JsonSerializable.toJsonNode(
-                  Common.getValueByPath(fromObject, new String[] {"config"})),
+              Common.toJsonNode(Common.getValueByPath(fromObject, new String[] {"config"})),
               toObject);
     }
 
@@ -819,7 +812,7 @@ public final class Memories {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -845,7 +838,7 @@ public final class Memories {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -859,7 +852,7 @@ public final class Memories {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -867,7 +860,7 @@ public final class Memories {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, AgentEngineMemoryOperation.class);
+    return Common.fromJsonNode(responseNode, AgentEngineMemoryOperation.class);
   }
 
   public AgentEngineMemoryOperation privateCreate(
@@ -893,7 +886,7 @@ public final class Memories {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -919,7 +912,7 @@ public final class Memories {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -933,7 +926,7 @@ public final class Memories {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -941,7 +934,7 @@ public final class Memories {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, DeleteAgentEngineMemoryOperation.class);
+    return Common.fromJsonNode(responseNode, DeleteAgentEngineMemoryOperation.class);
   }
 
   public DeleteAgentEngineMemoryOperation delete(
@@ -985,7 +978,7 @@ public final class Memories {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -1011,7 +1004,7 @@ public final class Memories {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -1025,7 +1018,7 @@ public final class Memories {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -1033,7 +1026,7 @@ public final class Memories {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, AgentEngineGenerateMemoriesOperation.class);
+    return Common.fromJsonNode(responseNode, AgentEngineGenerateMemoriesOperation.class);
   }
 
   public AgentEngineGenerateMemoriesOperation privateGenerate(
@@ -1066,7 +1059,7 @@ public final class Memories {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -1092,7 +1085,7 @@ public final class Memories {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -1105,7 +1098,7 @@ public final class Memories {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -1113,7 +1106,7 @@ public final class Memories {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, Memory.class);
+    return Common.fromJsonNode(responseNode, Memory.class);
   }
 
   public Memory get(String name, GetAgentEngineMemoryConfig config) {
@@ -1156,7 +1149,7 @@ public final class Memories {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -1182,7 +1175,7 @@ public final class Memories {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -1196,7 +1189,7 @@ public final class Memories {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -1204,7 +1197,7 @@ public final class Memories {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, MemoryBankIngestEventsOperation.class);
+    return Common.fromJsonNode(responseNode, MemoryBankIngestEventsOperation.class);
   }
 
   public MemoryBankIngestEventsOperation privateIngestEvents(
@@ -1237,7 +1230,7 @@ public final class Memories {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -1263,7 +1256,7 @@ public final class Memories {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -1277,7 +1270,7 @@ public final class Memories {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -1285,7 +1278,7 @@ public final class Memories {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, ListReasoningEnginesMemoriesResponse.class);
+    return Common.fromJsonNode(responseNode, ListReasoningEnginesMemoriesResponse.class);
   }
 
   public ListReasoningEnginesMemoriesResponse privateList(
@@ -1312,7 +1305,7 @@ public final class Memories {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -1338,7 +1331,7 @@ public final class Memories {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -1352,7 +1345,7 @@ public final class Memories {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -1360,7 +1353,7 @@ public final class Memories {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, AgentEngineMemoryOperation.class);
+    return Common.fromJsonNode(responseNode, AgentEngineMemoryOperation.class);
   }
 
   public AgentEngineMemoryOperation privateGetMemoryOperation(
@@ -1387,7 +1380,7 @@ public final class Memories {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -1413,7 +1406,7 @@ public final class Memories {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -1427,7 +1420,7 @@ public final class Memories {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -1435,7 +1428,7 @@ public final class Memories {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, AgentEngineGenerateMemoriesOperation.class);
+    return Common.fromJsonNode(responseNode, AgentEngineGenerateMemoriesOperation.class);
   }
 
   public AgentEngineGenerateMemoriesOperation privateGetGenerateMemoriesOperation(
@@ -1476,7 +1469,7 @@ public final class Memories {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -1502,7 +1495,7 @@ public final class Memories {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -1516,7 +1509,7 @@ public final class Memories {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -1524,7 +1517,7 @@ public final class Memories {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, RetrieveMemoriesResponse.class);
+    return Common.fromJsonNode(responseNode, RetrieveMemoriesResponse.class);
   }
 
   public RetrieveMemoriesResponse privateRetrieve(
@@ -1560,7 +1553,7 @@ public final class Memories {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -1586,7 +1579,7 @@ public final class Memories {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -1600,7 +1593,7 @@ public final class Memories {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -1608,7 +1601,7 @@ public final class Memories {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, RetrieveProfilesResponse.class);
+    return Common.fromJsonNode(responseNode, RetrieveProfilesResponse.class);
   }
 
   public RetrieveProfilesResponse retrieveProfiles(
@@ -1638,7 +1631,7 @@ public final class Memories {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -1664,7 +1657,7 @@ public final class Memories {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -1678,7 +1671,7 @@ public final class Memories {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -1686,7 +1679,7 @@ public final class Memories {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, AgentEngineRollbackMemoryOperation.class);
+    return Common.fromJsonNode(responseNode, AgentEngineRollbackMemoryOperation.class);
   }
 
   public AgentEngineRollbackMemoryOperation privateRollback(
@@ -1719,7 +1712,7 @@ public final class Memories {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -1745,7 +1738,7 @@ public final class Memories {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -1759,7 +1752,7 @@ public final class Memories {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -1767,7 +1760,7 @@ public final class Memories {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, AgentEngineMemoryOperation.class);
+    return Common.fromJsonNode(responseNode, AgentEngineMemoryOperation.class);
   }
 
   public AgentEngineMemoryOperation privateUpdate(
@@ -1807,7 +1800,7 @@ public final class Memories {
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
-    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+    JsonNode parameterNode = Common.toJsonNode(parameterBuilder.build());
 
     ObjectNode body;
     String path;
@@ -1833,7 +1826,7 @@ public final class Memories {
       requestHttpOptions = config.httpOptions();
     }
 
-    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+    return new BuiltRequest(path, Common.toJsonString(body), requestHttpOptions);
   }
 
   /** A shared processResponse function for both sync and async methods. */
@@ -1847,7 +1840,7 @@ public final class Memories {
       throw new GenAiIOException("Failed to read HTTP response.", e);
     }
 
-    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+    JsonNode responseNode = Common.stringToJsonNode(responseString);
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
@@ -1855,7 +1848,7 @@ public final class Memories {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, AgentEnginePurgeMemoriesOperation.class);
+    return Common.fromJsonNode(responseNode, AgentEnginePurgeMemoriesOperation.class);
   }
 
   public AgentEnginePurgeMemoriesOperation privatePurge(

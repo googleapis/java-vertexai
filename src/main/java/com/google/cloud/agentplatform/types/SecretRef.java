@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import com.google.genai.Common;
 import com.google.genai.JsonSerializable;
 import java.util.Optional;
 
@@ -105,6 +106,6 @@ public abstract class SecretRef extends JsonSerializable {
   /** Deserializes a JSON string to a SecretRef object. */
   @ExcludeFromGeneratedCoverageReport
   public static SecretRef fromJson(String jsonString) {
-    return JsonSerializable.fromJsonString(jsonString, SecretRef.class);
+    return Common.fromJsonString(jsonString, SecretRef.class);
   }
 }

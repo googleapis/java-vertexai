@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import com.google.genai.Common;
 import com.google.genai.JsonSerializable;
 import com.google.genai.types.HttpOptions;
 import java.util.Optional;
@@ -146,6 +147,6 @@ public abstract class ListSandboxEnvironmentSnapshotsConfig extends JsonSerializ
   /** Deserializes a JSON string to a ListSandboxEnvironmentSnapshotsConfig object. */
   @ExcludeFromGeneratedCoverageReport
   public static ListSandboxEnvironmentSnapshotsConfig fromJson(String jsonString) {
-    return JsonSerializable.fromJsonString(jsonString, ListSandboxEnvironmentSnapshotsConfig.class);
+    return Common.fromJsonString(jsonString, ListSandboxEnvironmentSnapshotsConfig.class);
   }
 }

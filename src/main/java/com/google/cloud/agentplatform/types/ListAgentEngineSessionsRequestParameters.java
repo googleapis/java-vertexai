@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.api.core.InternalApi;
 import com.google.auto.value.AutoValue;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import com.google.genai.Common;
 import com.google.genai.JsonSerializable;
 import java.util.Optional;
 
@@ -113,7 +114,6 @@ public abstract class ListAgentEngineSessionsRequestParameters extends JsonSeria
   /** Deserializes a JSON string to a ListAgentEngineSessionsRequestParameters object. */
   @ExcludeFromGeneratedCoverageReport
   public static ListAgentEngineSessionsRequestParameters fromJson(String jsonString) {
-    return JsonSerializable.fromJsonString(
-        jsonString, ListAgentEngineSessionsRequestParameters.class);
+    return Common.fromJsonString(jsonString, ListAgentEngineSessionsRequestParameters.class);
   }
 }

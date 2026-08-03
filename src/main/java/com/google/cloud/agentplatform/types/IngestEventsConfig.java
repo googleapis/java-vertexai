@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import com.google.genai.Common;
 import com.google.genai.JsonSerializable;
 import com.google.genai.types.HttpOptions;
 import java.time.Duration;
@@ -304,6 +305,6 @@ public abstract class IngestEventsConfig extends JsonSerializable {
   /** Deserializes a JSON string to a IngestEventsConfig object. */
   @ExcludeFromGeneratedCoverageReport
   public static IngestEventsConfig fromJson(String jsonString) {
-    return JsonSerializable.fromJsonString(jsonString, IngestEventsConfig.class);
+    return Common.fromJsonString(jsonString, IngestEventsConfig.class);
   }
 }

@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import com.google.genai.Common;
 import com.google.genai.JsonSerializable;
 import com.google.genai.types.HttpOptions;
 import java.time.Duration;
@@ -357,6 +358,6 @@ public abstract class GenerateAgentEngineMemoriesConfig extends JsonSerializable
   /** Deserializes a JSON string to a GenerateAgentEngineMemoriesConfig object. */
   @ExcludeFromGeneratedCoverageReport
   public static GenerateAgentEngineMemoriesConfig fromJson(String jsonString) {
-    return JsonSerializable.fromJsonString(jsonString, GenerateAgentEngineMemoriesConfig.class);
+    return Common.fromJsonString(jsonString, GenerateAgentEngineMemoriesConfig.class);
   }
 }

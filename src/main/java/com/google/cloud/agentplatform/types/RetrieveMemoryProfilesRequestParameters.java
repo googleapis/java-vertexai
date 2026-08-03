@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.api.core.InternalApi;
 import com.google.auto.value.AutoValue;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import com.google.genai.Common;
 import com.google.genai.JsonSerializable;
 import java.util.Map;
 import java.util.Optional;
@@ -144,7 +145,6 @@ public abstract class RetrieveMemoryProfilesRequestParameters extends JsonSerial
   /** Deserializes a JSON string to a RetrieveMemoryProfilesRequestParameters object. */
   @ExcludeFromGeneratedCoverageReport
   public static RetrieveMemoryProfilesRequestParameters fromJson(String jsonString) {
-    return JsonSerializable.fromJsonString(
-        jsonString, RetrieveMemoryProfilesRequestParameters.class);
+    return Common.fromJsonString(jsonString, RetrieveMemoryProfilesRequestParameters.class);
   }
 }

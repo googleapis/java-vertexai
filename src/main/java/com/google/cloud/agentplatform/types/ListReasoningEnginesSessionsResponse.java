@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import com.google.genai.Common;
 import com.google.genai.JsonSerializable;
 import com.google.genai.types.HttpResponse;
 import java.util.Arrays;
@@ -151,6 +152,6 @@ public abstract class ListReasoningEnginesSessionsResponse extends JsonSerializa
   /** Deserializes a JSON string to a ListReasoningEnginesSessionsResponse object. */
   @ExcludeFromGeneratedCoverageReport
   public static ListReasoningEnginesSessionsResponse fromJson(String jsonString) {
-    return JsonSerializable.fromJsonString(jsonString, ListReasoningEnginesSessionsResponse.class);
+    return Common.fromJsonString(jsonString, ListReasoningEnginesSessionsResponse.class);
   }
 }

@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.api.core.InternalApi;
 import com.google.auto.value.AutoValue;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import com.google.genai.Common;
 import com.google.genai.JsonSerializable;
 import java.util.Optional;
 
@@ -113,7 +114,6 @@ public abstract class DeleteAgentEngineSessionRequestParameters extends JsonSeri
   /** Deserializes a JSON string to a DeleteAgentEngineSessionRequestParameters object. */
   @ExcludeFromGeneratedCoverageReport
   public static DeleteAgentEngineSessionRequestParameters fromJson(String jsonString) {
-    return JsonSerializable.fromJsonString(
-        jsonString, DeleteAgentEngineSessionRequestParameters.class);
+    return Common.fromJsonString(jsonString, DeleteAgentEngineSessionRequestParameters.class);
   }
 }
