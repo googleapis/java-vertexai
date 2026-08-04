@@ -28,12 +28,12 @@ import com.google.genai.JsonSerializable;
 import java.util.Map;
 import java.util.Optional;
 
-/** Parameters for purging agent engine memories. */
+/** Parameters for ingesting events to Memory Bank. */
 @AutoValue
 @InternalApi
 @JsonDeserialize(builder = IngestEventsRequestParameters.Builder.class)
 public abstract class IngestEventsRequestParameters extends JsonSerializable {
-  /** Name of the Agent Engine to ingest events into. */
+  /** Name of the Memory Bank to ingest events into. */
   @JsonProperty("name")
   public abstract Optional<String> name();
 
@@ -85,7 +85,7 @@ public abstract class IngestEventsRequestParameters extends JsonSerializable {
     /**
      * Setter for name.
      *
-     * <p>name: Name of the Agent Engine to ingest events into.
+     * <p>name: Name of the Memory Bank to ingest events into.
      */
     @JsonProperty("name")
     public abstract Builder name(String name);

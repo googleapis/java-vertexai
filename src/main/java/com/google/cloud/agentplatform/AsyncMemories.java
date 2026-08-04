@@ -18,36 +18,32 @@
 
 package com.google.cloud.agentplatform;
 
-import com.google.cloud.agentplatform.types.AgentEngineGenerateMemoriesOperation;
-import com.google.cloud.agentplatform.types.AgentEngineMemoryConfig;
-import com.google.cloud.agentplatform.types.AgentEngineMemoryOperation;
-import com.google.cloud.agentplatform.types.AgentEnginePurgeMemoriesOperation;
-import com.google.cloud.agentplatform.types.AgentEngineRollbackMemoryOperation;
-import com.google.cloud.agentplatform.types.DeleteAgentEngineMemoryConfig;
-import com.google.cloud.agentplatform.types.DeleteAgentEngineMemoryOperation;
-import com.google.cloud.agentplatform.types.GenerateAgentEngineMemoriesConfig;
+import com.google.cloud.agentplatform.types.DeleteMemoryConfig;
+import com.google.cloud.agentplatform.types.DeleteMemoryOperation;
+import com.google.cloud.agentplatform.types.GenerateMemoriesConfig;
+import com.google.cloud.agentplatform.types.GenerateMemoriesOperation;
 import com.google.cloud.agentplatform.types.GenerateMemoriesRequestDirectContentsSource;
 import com.google.cloud.agentplatform.types.GenerateMemoriesRequestDirectMemoriesSource;
 import com.google.cloud.agentplatform.types.GenerateMemoriesRequestVertexSessionSource;
-import com.google.cloud.agentplatform.types.GetAgentEngineMemoryConfig;
-import com.google.cloud.agentplatform.types.GetAgentEngineOperationConfig;
-import com.google.cloud.agentplatform.types.IngestEventsConfig;
-import com.google.cloud.agentplatform.types.IngestionDirectContentsSource;
-import com.google.cloud.agentplatform.types.ListAgentEngineMemoryConfig;
-import com.google.cloud.agentplatform.types.ListReasoningEnginesMemoriesResponse;
+import com.google.cloud.agentplatform.types.GetMemoryBankOperationConfig;
+import com.google.cloud.agentplatform.types.GetMemoryConfig;
+import com.google.cloud.agentplatform.types.ListMemoriesConfig;
+import com.google.cloud.agentplatform.types.ListMemoriesResponse;
 import com.google.cloud.agentplatform.types.Memory;
-import com.google.cloud.agentplatform.types.MemoryBankIngestEventsOperation;
+import com.google.cloud.agentplatform.types.MemoryConfig;
 import com.google.cloud.agentplatform.types.MemoryConjunctionFilter;
-import com.google.cloud.agentplatform.types.MemoryGenerationTriggerConfig;
-import com.google.cloud.agentplatform.types.PurgeAgentEngineMemoriesConfig;
-import com.google.cloud.agentplatform.types.RetrieveAgentEngineMemoriesConfig;
+import com.google.cloud.agentplatform.types.MemoryOperation;
+import com.google.cloud.agentplatform.types.PurgeMemoriesConfig;
+import com.google.cloud.agentplatform.types.PurgeMemoriesOperation;
+import com.google.cloud.agentplatform.types.RetrieveMemoriesConfig;
 import com.google.cloud.agentplatform.types.RetrieveMemoriesRequestSimilaritySearchParams;
 import com.google.cloud.agentplatform.types.RetrieveMemoriesRequestSimpleRetrievalParams;
 import com.google.cloud.agentplatform.types.RetrieveMemoriesResponse;
 import com.google.cloud.agentplatform.types.RetrieveMemoryProfilesConfig;
 import com.google.cloud.agentplatform.types.RetrieveProfilesResponse;
-import com.google.cloud.agentplatform.types.RollbackAgentEngineMemoryConfig;
-import com.google.cloud.agentplatform.types.UpdateAgentEngineMemoryConfig;
+import com.google.cloud.agentplatform.types.RollbackMemoryConfig;
+import com.google.cloud.agentplatform.types.RollbackMemoryOperation;
+import com.google.cloud.agentplatform.types.UpdateMemoryConfig;
 import com.google.genai.ApiClient;
 import com.google.genai.ApiResponse;
 import com.google.genai.Common.BuiltRequest;
@@ -69,8 +65,8 @@ public final class AsyncMemories {
     this.revisions = new AsyncMemoryRevisions(apiClient);
   }
 
-  CompletableFuture<AgentEngineMemoryOperation> privateCreate(
-      String name, String fact, Map<String, String> scope, AgentEngineMemoryConfig config) {
+  CompletableFuture<MemoryOperation> privateCreate(
+      String name, String fact, Map<String, String> scope, MemoryConfig config) {
 
     BuiltRequest builtRequest = memories.buildRequestForPrivateCreate(name, fact, scope, config);
     return this.apiClient
@@ -83,8 +79,7 @@ public final class AsyncMemories {
             });
   }
 
-  public CompletableFuture<DeleteAgentEngineMemoryOperation> delete(
-      String name, DeleteAgentEngineMemoryConfig config) {
+  public CompletableFuture<DeleteMemoryOperation> delete(String name, DeleteMemoryConfig config) {
 
     BuiltRequest builtRequest = memories.buildRequestForDelete(name, config);
     return this.apiClient
@@ -98,13 +93,13 @@ public final class AsyncMemories {
             });
   }
 
-  CompletableFuture<AgentEngineGenerateMemoriesOperation> privateGenerate(
+  CompletableFuture<GenerateMemoriesOperation> privateGenerate(
       String name,
       GenerateMemoriesRequestVertexSessionSource vertexSessionSource,
       GenerateMemoriesRequestDirectContentsSource directContentsSource,
       GenerateMemoriesRequestDirectMemoriesSource directMemoriesSource,
       Map<String, String> scope,
-      GenerateAgentEngineMemoriesConfig config) {
+      GenerateMemoriesConfig config) {
 
     BuiltRequest builtRequest =
         memories.buildRequestForPrivateGenerate(
@@ -119,7 +114,7 @@ public final class AsyncMemories {
             });
   }
 
-  public CompletableFuture<Memory> get(String name, GetAgentEngineMemoryConfig config) {
+  public CompletableFuture<Memory> get(String name, GetMemoryConfig config) {
 
     BuiltRequest builtRequest = memories.buildRequestForGet(name, config);
     return this.apiClient
@@ -132,29 +127,7 @@ public final class AsyncMemories {
             });
   }
 
-  CompletableFuture<MemoryBankIngestEventsOperation> privateIngestEvents(
-      String name,
-      String streamId,
-      IngestionDirectContentsSource directContentsSource,
-      Map<String, String> scope,
-      MemoryGenerationTriggerConfig generationTriggerConfig,
-      IngestEventsConfig config) {
-
-    BuiltRequest builtRequest =
-        memories.buildRequestForPrivateIngestEvents(
-            name, streamId, directContentsSource, scope, generationTriggerConfig, config);
-    return this.apiClient
-        .asyncRequest("post", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())
-        .thenApplyAsync(
-            response -> {
-              try (ApiResponse res = response) {
-                return memories.processResponseForPrivateIngestEvents(res, config);
-              }
-            });
-  }
-
-  CompletableFuture<ListReasoningEnginesMemoriesResponse> privateList(
-      String name, ListAgentEngineMemoryConfig config) {
+  CompletableFuture<ListMemoriesResponse> privateList(String name, ListMemoriesConfig config) {
 
     BuiltRequest builtRequest = memories.buildRequestForPrivateList(name, config);
     return this.apiClient
@@ -167,8 +140,8 @@ public final class AsyncMemories {
             });
   }
 
-  CompletableFuture<AgentEngineMemoryOperation> privateGetMemoryOperation(
-      String operationName, GetAgentEngineOperationConfig config) {
+  CompletableFuture<MemoryOperation> privateGetMemoryOperation(
+      String operationName, GetMemoryBankOperationConfig config) {
 
     BuiltRequest builtRequest =
         memories.buildRequestForPrivateGetMemoryOperation(operationName, config);
@@ -182,8 +155,8 @@ public final class AsyncMemories {
             });
   }
 
-  CompletableFuture<AgentEngineGenerateMemoriesOperation> privateGetGenerateMemoriesOperation(
-      String operationName, GetAgentEngineOperationConfig config) {
+  CompletableFuture<GenerateMemoriesOperation> privateGetGenerateMemoriesOperation(
+      String operationName, GetMemoryBankOperationConfig config) {
 
     BuiltRequest builtRequest =
         memories.buildRequestForPrivateGetGenerateMemoriesOperation(operationName, config);
@@ -202,7 +175,7 @@ public final class AsyncMemories {
       Map<String, String> scope,
       RetrieveMemoriesRequestSimilaritySearchParams similaritySearchParams,
       RetrieveMemoriesRequestSimpleRetrievalParams simpleRetrievalParams,
-      RetrieveAgentEngineMemoriesConfig config) {
+      RetrieveMemoriesConfig config) {
 
     BuiltRequest builtRequest =
         memories.buildRequestForPrivateRetrieve(
@@ -231,8 +204,8 @@ public final class AsyncMemories {
             });
   }
 
-  CompletableFuture<AgentEngineRollbackMemoryOperation> privateRollback(
-      String name, String targetRevisionId, RollbackAgentEngineMemoryConfig config) {
+  CompletableFuture<RollbackMemoryOperation> privateRollback(
+      String name, String targetRevisionId, RollbackMemoryConfig config) {
 
     BuiltRequest builtRequest =
         memories.buildRequestForPrivateRollback(name, targetRevisionId, config);
@@ -246,8 +219,8 @@ public final class AsyncMemories {
             });
   }
 
-  CompletableFuture<AgentEngineMemoryOperation> privateUpdate(
-      String name, String fact, Map<String, String> scope, UpdateAgentEngineMemoryConfig config) {
+  CompletableFuture<MemoryOperation> privateUpdate(
+      String name, String fact, Map<String, String> scope, UpdateMemoryConfig config) {
 
     BuiltRequest builtRequest = memories.buildRequestForPrivateUpdate(name, fact, scope, config);
     return this.apiClient
@@ -260,12 +233,12 @@ public final class AsyncMemories {
             });
   }
 
-  CompletableFuture<AgentEnginePurgeMemoriesOperation> privatePurge(
+  CompletableFuture<PurgeMemoriesOperation> privatePurge(
       String name,
       String filter,
       List<MemoryConjunctionFilter> filterGroups,
       boolean force,
-      PurgeAgentEngineMemoriesConfig config) {
+      PurgeMemoriesConfig config) {
 
     BuiltRequest builtRequest =
         memories.buildRequestForPrivatePurge(name, filter, filterGroups, force, config);
