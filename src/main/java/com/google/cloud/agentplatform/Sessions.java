@@ -727,7 +727,7 @@ public final class Sessions {
   }
 
   /** A shared processResponse function for both sync and async methods. */
-  AgentEngineSessionOperation processResponseForPrivateUpdate(
+  Session processResponseForPrivateUpdate(
       ApiResponse response, UpdateAgentEngineSessionConfig config) {
     ResponseBody responseBody = response.getBody();
     String responseString;
@@ -745,11 +745,10 @@ public final class Sessions {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, AgentEngineSessionOperation.class);
+    return JsonSerializable.fromJsonNode(responseNode, Session.class);
   }
 
-  public AgentEngineSessionOperation privateUpdate(
-      String name, UpdateAgentEngineSessionConfig config) {
+  public Session privateUpdate(String name, UpdateAgentEngineSessionConfig config) {
     BuiltRequest builtRequest = buildRequestForPrivateUpdate(name, config);
 
     try (ApiResponse response =

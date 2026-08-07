@@ -41,6 +41,7 @@ import com.google.cloud.agentplatform.types.CreateAgentEngineConfig;
 import com.google.cloud.agentplatform.types.DeleteAgentEngineOperation;
 import com.google.cloud.agentplatform.types.DeleteAgentEngineSessionOperation;
 import com.google.cloud.agentplatform.types.ListReasoningEnginesSessionsResponse;
+import com.google.cloud.agentplatform.types.Session;
 import com.google.cloud.agentplatform.types.UpdateAgentEngineSessionConfig;
 import com.google.common.collect.ImmutableMap;
 
@@ -101,7 +102,7 @@ public final class AgentEngineSessions {
 
       // 3. Update session
       System.out.println("\n--- Updating session ---");
-      AgentEngineSessionOperation updateOp =
+      Session updatedSession =
           client.agentEngines.sessions.privateUpdate(
               sessionName,
               UpdateAgentEngineSessionConfig.builder()
@@ -109,15 +110,6 @@ public final class AgentEngineSessions {
                   .userId("user_123")
                   .build());
 
-      while (!updateOp.done().filter(Boolean::booleanValue).isPresent()) {
-        try {
-          Thread.sleep(5000);
-          updateOp =
-              client.agentEngines.sessions.privateGetSessionOperation(updateOp.name().get(), null);
-        } catch (InterruptedException e) {
-          Thread.currentThread().interrupt();
-        }
-      }
       System.out.println("Updated session display name.");
 
       // 4. Delete session

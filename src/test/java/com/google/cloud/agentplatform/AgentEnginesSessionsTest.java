@@ -22,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import com.google.cloud.agentplatform.types.AgentEngineSessionOperation;
 import com.google.cloud.agentplatform.types.DeleteAgentEngineSessionOperation;
 import com.google.cloud.agentplatform.types.ListReasoningEnginesSessionsResponse;
+import com.google.cloud.agentplatform.types.Session;
 import com.google.cloud.agentplatform.types.UpdateAgentEngineSessionConfig;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
@@ -81,7 +82,7 @@ public class AgentEnginesSessionsTest {
         TestUtils.createClient(
             true, "ae_session_private_update/test_private_update_session.vertex.json");
 
-    AgentEngineSessionOperation operation =
+    Session session =
         client.agentEngines.sessions.privateUpdate(
             "reasoningEngines/2886612747586371584/sessions/3080649749292908544",
             UpdateAgentEngineSessionConfig.builder()
@@ -89,7 +90,7 @@ public class AgentEnginesSessionsTest {
                 .userId("test-user-id")
                 .build());
 
-    assertNotNull(operation.name());
+    assertNotNull(session.name());
   }
 
   @Test
