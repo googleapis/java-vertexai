@@ -18,9 +18,9 @@
 
 package com.google.cloud.agentplatform;
 
-import com.google.cloud.agentplatform.types.GetMemoryRevisionConfig;
-import com.google.cloud.agentplatform.types.ListMemoryRevisionsConfig;
-import com.google.cloud.agentplatform.types.ListMemoryRevisionsResponse;
+import com.google.cloud.agentplatform.types.GetAgentEngineMemoryRevisionConfig;
+import com.google.cloud.agentplatform.types.ListAgentEngineMemoryRevisionsConfig;
+import com.google.cloud.agentplatform.types.ListAgentEngineMemoryRevisionsResponse;
 import com.google.cloud.agentplatform.types.MemoryRevision;
 import com.google.genai.ApiClient;
 import com.google.genai.ApiResponse;
@@ -38,7 +38,8 @@ public final class AsyncMemoryRevisions {
     this.memoryRevisions = new MemoryRevisions(apiClient);
   }
 
-  public CompletableFuture<MemoryRevision> get(String name, GetMemoryRevisionConfig config) {
+  public CompletableFuture<MemoryRevision> get(
+      String name, GetAgentEngineMemoryRevisionConfig config) {
 
     BuiltRequest builtRequest = memoryRevisions.buildRequestForGet(name, config);
     return this.apiClient
@@ -51,8 +52,8 @@ public final class AsyncMemoryRevisions {
             });
   }
 
-  CompletableFuture<ListMemoryRevisionsResponse> privateList(
-      String name, ListMemoryRevisionsConfig config) {
+  CompletableFuture<ListAgentEngineMemoryRevisionsResponse> privateList(
+      String name, ListAgentEngineMemoryRevisionsConfig config) {
 
     BuiltRequest builtRequest = memoryRevisions.buildRequestForPrivateList(name, config);
     return this.apiClient

@@ -28,53 +28,62 @@ import com.google.genai.JsonSerializable;
 import java.util.Map;
 import java.util.Optional;
 
-/** Parameters for retrieving agent engine memory profiles. */
+/** Parameters for creating Agent Engine Memories. */
 @AutoValue
 @InternalApi
-@JsonDeserialize(builder = RetrieveMemoryProfilesRequestParameters.Builder.class)
-public abstract class RetrieveMemoryProfilesRequestParameters extends JsonSerializable {
-  /** Name of the agent engine to retrieve memory profiles from. */
+@JsonDeserialize(builder = CreateAgentEngineMemoryRequestParameters.Builder.class)
+public abstract class CreateAgentEngineMemoryRequestParameters extends JsonSerializable {
+  /** Name of the agent engine to create the memory under. */
   @JsonProperty("name")
   public abstract Optional<String> name();
 
   /**
-   * The scope of the memories to retrieve.
+   * The fact of the memory.
    *
-   * <p>A memory must have exactly the same scope as the scope provided here to be retrieved (i.e.
-   * same keys and values). Order does not matter, but it is case-sensitive.
+   * <p>This is the semantic knowledge extracted from the source content).
+   */
+  @JsonProperty("fact")
+  public abstract Optional<String> fact();
+
+  /**
+   * The scope of the memory.
+   *
+   * <p>Memories are isolated within their scope. The scope is defined when creating or generating
+   * memories. Up to 5 key-value pairs are accepted, and scope values cannot contain the wildcard
+   * character '*'.
    */
   @JsonProperty("scope")
   public abstract Optional<Map<String, String>> scope();
 
   /** */
   @JsonProperty("config")
-  public abstract Optional<RetrieveMemoryProfilesConfig> config();
+  public abstract Optional<AgentEngineMemoryConfig> config();
 
-  /** Instantiates a builder for RetrieveMemoryProfilesRequestParameters. */
+  /** Instantiates a builder for CreateAgentEngineMemoryRequestParameters. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
-    return new AutoValue_RetrieveMemoryProfilesRequestParameters.Builder();
+    return new AutoValue_CreateAgentEngineMemoryRequestParameters.Builder();
   }
 
   /** Creates a builder with the same values as this instance. */
   public abstract Builder toBuilder();
 
-  /** Builder for RetrieveMemoryProfilesRequestParameters. */
+  /** Builder for CreateAgentEngineMemoryRequestParameters. */
   @AutoValue.Builder
   public abstract static class Builder {
     /**
-     * For internal usage. Please use `RetrieveMemoryProfilesRequestParameters.builder()` for
+     * For internal usage. Please use `CreateAgentEngineMemoryRequestParameters.builder()` for
      * instantiation.
      */
     @JsonCreator
     private static Builder create() {
-      return new AutoValue_RetrieveMemoryProfilesRequestParameters.Builder();
+      return new AutoValue_CreateAgentEngineMemoryRequestParameters.Builder();
     }
 
     /**
      * Setter for name.
      *
-     * <p>name: Name of the agent engine to retrieve memory profiles from.
+     * <p>name: Name of the agent engine to create the memory under.
      */
     @JsonProperty("name")
     public abstract Builder name(String name);
@@ -90,12 +99,33 @@ public abstract class RetrieveMemoryProfilesRequestParameters extends JsonSerial
     }
 
     /**
+     * Setter for fact.
+     *
+     * <p>fact: The fact of the memory.
+     *
+     * <p>This is the semantic knowledge extracted from the source content).
+     */
+    @JsonProperty("fact")
+    public abstract Builder fact(String fact);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder fact(Optional<String> fact);
+
+    /** Clears the value of fact field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearFact() {
+      return fact(Optional.empty());
+    }
+
+    /**
      * Setter for scope.
      *
-     * <p>scope: The scope of the memories to retrieve.
+     * <p>scope: The scope of the memory.
      *
-     * <p>A memory must have exactly the same scope as the scope provided here to be retrieved (i.e.
-     * same keys and values). Order does not matter, but it is case-sensitive.
+     * <p>Memories are isolated within their scope. The scope is defined when creating or generating
+     * memories. Up to 5 key-value pairs are accepted, and scope values cannot contain the wildcard
+     * character '*'.
      */
     @JsonProperty("scope")
     public abstract Builder scope(Map<String, String> scope);
@@ -116,7 +146,7 @@ public abstract class RetrieveMemoryProfilesRequestParameters extends JsonSerial
      * <p>config:
      */
     @JsonProperty("config")
-    public abstract Builder config(RetrieveMemoryProfilesConfig config);
+    public abstract Builder config(AgentEngineMemoryConfig config);
 
     /**
      * Setter for config builder.
@@ -124,12 +154,12 @@ public abstract class RetrieveMemoryProfilesRequestParameters extends JsonSerial
      * <p>config:
      */
     @CanIgnoreReturnValue
-    public Builder config(RetrieveMemoryProfilesConfig.Builder configBuilder) {
+    public Builder config(AgentEngineMemoryConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
 
     @ExcludeFromGeneratedCoverageReport
-    abstract Builder config(Optional<RetrieveMemoryProfilesConfig> config);
+    abstract Builder config(Optional<AgentEngineMemoryConfig> config);
 
     /** Clears the value of config field. */
     @ExcludeFromGeneratedCoverageReport
@@ -138,13 +168,13 @@ public abstract class RetrieveMemoryProfilesRequestParameters extends JsonSerial
       return config(Optional.empty());
     }
 
-    public abstract RetrieveMemoryProfilesRequestParameters build();
+    public abstract CreateAgentEngineMemoryRequestParameters build();
   }
 
-  /** Deserializes a JSON string to a RetrieveMemoryProfilesRequestParameters object. */
+  /** Deserializes a JSON string to a CreateAgentEngineMemoryRequestParameters object. */
   @ExcludeFromGeneratedCoverageReport
-  public static RetrieveMemoryProfilesRequestParameters fromJson(String jsonString) {
+  public static CreateAgentEngineMemoryRequestParameters fromJson(String jsonString) {
     return JsonSerializable.fromJsonString(
-        jsonString, RetrieveMemoryProfilesRequestParameters.class);
+        jsonString, CreateAgentEngineMemoryRequestParameters.class);
   }
 }
