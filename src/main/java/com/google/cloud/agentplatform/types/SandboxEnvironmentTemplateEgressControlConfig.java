@@ -18,12 +18,16 @@
 
 package com.google.cloud.agentplatform.types;
 
+import static com.google.common.collect.ImmutableList.toImmutableList;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.genai.JsonSerializable;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 /** Configuration for egress control of sandbox instances. */
@@ -33,6 +37,25 @@ public abstract class SandboxEnvironmentTemplateEgressControlConfig extends Json
   /** Optional. Whether to allow internet access. */
   @JsonProperty("internetAccess")
   public abstract Optional<Boolean> internetAccess();
+
+  /** Optional. The customer VPC network that sandbox egress is routed into. */
+  @JsonProperty("customerVpcNetwork")
+  public abstract Optional<String> customerVpcNetwork();
+
+  /**
+   * Optional. DNS peering configurations that allow sandbox egress to resolve customer-internal
+   * domains via the customer VPC.
+   */
+  @JsonProperty("dnsPeeringConfigs")
+  public abstract Optional<List<SandboxEnvironmentTemplateEgressControlConfigDnsPeeringConfig>>
+      dnsPeeringConfigs();
+
+  /**
+   * Optional. The name of the customer VPC NetworkAttachment used to draw a PSC interface IP into
+   * the customer VPC for sandbox egress.
+   */
+  @JsonProperty("networkAttachment")
+  public abstract Optional<String> networkAttachment();
 
   /** Instantiates a builder for SandboxEnvironmentTemplateEgressControlConfig. */
   @ExcludeFromGeneratedCoverageReport
@@ -71,6 +94,93 @@ public abstract class SandboxEnvironmentTemplateEgressControlConfig extends Json
     @CanIgnoreReturnValue
     public Builder clearInternetAccess() {
       return internetAccess(Optional.empty());
+    }
+
+    /**
+     * Setter for customerVpcNetwork.
+     *
+     * <p>customerVpcNetwork: Optional. The customer VPC network that sandbox egress is routed into.
+     */
+    @JsonProperty("customerVpcNetwork")
+    public abstract Builder customerVpcNetwork(String customerVpcNetwork);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder customerVpcNetwork(Optional<String> customerVpcNetwork);
+
+    /** Clears the value of customerVpcNetwork field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearCustomerVpcNetwork() {
+      return customerVpcNetwork(Optional.empty());
+    }
+
+    /**
+     * Setter for dnsPeeringConfigs.
+     *
+     * <p>dnsPeeringConfigs: Optional. DNS peering configurations that allow sandbox egress to
+     * resolve customer-internal domains via the customer VPC.
+     */
+    @JsonProperty("dnsPeeringConfigs")
+    public abstract Builder dnsPeeringConfigs(
+        List<SandboxEnvironmentTemplateEgressControlConfigDnsPeeringConfig> dnsPeeringConfigs);
+
+    /**
+     * Setter for dnsPeeringConfigs.
+     *
+     * <p>dnsPeeringConfigs: Optional. DNS peering configurations that allow sandbox egress to
+     * resolve customer-internal domains via the customer VPC.
+     */
+    @CanIgnoreReturnValue
+    public Builder dnsPeeringConfigs(
+        SandboxEnvironmentTemplateEgressControlConfigDnsPeeringConfig... dnsPeeringConfigs) {
+      return dnsPeeringConfigs(Arrays.asList(dnsPeeringConfigs));
+    }
+
+    /**
+     * Setter for dnsPeeringConfigs builder.
+     *
+     * <p>dnsPeeringConfigs: Optional. DNS peering configurations that allow sandbox egress to
+     * resolve customer-internal domains via the customer VPC.
+     */
+    @CanIgnoreReturnValue
+    public Builder dnsPeeringConfigs(
+        SandboxEnvironmentTemplateEgressControlConfigDnsPeeringConfig.Builder...
+            dnsPeeringConfigsBuilders) {
+      return dnsPeeringConfigs(
+          Arrays.asList(dnsPeeringConfigsBuilders).stream()
+              .map(SandboxEnvironmentTemplateEgressControlConfigDnsPeeringConfig.Builder::build)
+              .collect(toImmutableList()));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder dnsPeeringConfigs(
+        Optional<List<SandboxEnvironmentTemplateEgressControlConfigDnsPeeringConfig>>
+            dnsPeeringConfigs);
+
+    /** Clears the value of dnsPeeringConfigs field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearDnsPeeringConfigs() {
+      return dnsPeeringConfigs(Optional.empty());
+    }
+
+    /**
+     * Setter for networkAttachment.
+     *
+     * <p>networkAttachment: Optional. The name of the customer VPC NetworkAttachment used to draw a
+     * PSC interface IP into the customer VPC for sandbox egress.
+     */
+    @JsonProperty("networkAttachment")
+    public abstract Builder networkAttachment(String networkAttachment);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder networkAttachment(Optional<String> networkAttachment);
+
+    /** Clears the value of networkAttachment field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearNetworkAttachment() {
+      return networkAttachment(Optional.empty());
     }
 
     public abstract SandboxEnvironmentTemplateEgressControlConfig build();

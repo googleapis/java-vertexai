@@ -32,7 +32,10 @@ public class DefaultContainerCategory {
     DEFAULT_CONTAINER_CATEGORY_UNSPECIFIED,
 
     /** The default container image for Computer Use. */
-    DEFAULT_CONTAINER_CATEGORY_COMPUTER_USE
+    DEFAULT_CONTAINER_CATEGORY_COMPUTER_USE,
+
+    /** The default container image for Shell Sandbox. */
+    DEFAULT_CONTAINER_CATEGORY_SHELL_SANDBOX
   }
 
   private Known defaultContainerCategoryEnum;

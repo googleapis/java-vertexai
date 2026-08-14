@@ -38,6 +38,10 @@ public abstract class ReasoningEngineSpecContainerSpec extends JsonSerializable 
   @JsonProperty("imageUri")
   public abstract Optional<String> imageUri();
 
+  /** Optional. The port the container listens on. Defaults to 8080 if unset. */
+  @JsonProperty("port")
+  public abstract Optional<Integer> port();
+
   /** Instantiates a builder for ReasoningEngineSpecContainerSpec. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -77,6 +81,24 @@ public abstract class ReasoningEngineSpecContainerSpec extends JsonSerializable 
     @CanIgnoreReturnValue
     public Builder clearImageUri() {
       return imageUri(Optional.empty());
+    }
+
+    /**
+     * Setter for port.
+     *
+     * <p>port: Optional. The port the container listens on. Defaults to 8080 if unset.
+     */
+    @JsonProperty("port")
+    public abstract Builder port(Integer port);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder port(Optional<Integer> port);
+
+    /** Clears the value of port field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearPort() {
+      return port(Optional.empty());
     }
 
     public abstract ReasoningEngineSpecContainerSpec build();
