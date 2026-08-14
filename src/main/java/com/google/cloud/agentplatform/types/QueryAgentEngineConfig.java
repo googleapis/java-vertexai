@@ -75,6 +75,9 @@ public abstract class QueryAgentEngineConfig extends JsonSerializable {
     public abstract Builder httpOptions(HttpOptions httpOptions);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<HttpOptions> httpOptions();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder httpOptions(Optional<HttpOptions> httpOptions);
 
     /** Clears the value of httpOptions field. */
@@ -93,6 +96,9 @@ public abstract class QueryAgentEngineConfig extends JsonSerializable {
     public abstract Builder classMethod(String classMethod);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> classMethod();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder classMethod(Optional<String> classMethod);
 
     /** Clears the value of classMethod field. */
@@ -108,7 +114,18 @@ public abstract class QueryAgentEngineConfig extends JsonSerializable {
      * <p>input: The input to the class method.
      */
     @JsonProperty("input")
-    public abstract Builder input(Map<String, Object> input);
+    @CanIgnoreReturnValue
+    public Builder input(Map<String, Object> input) {
+      if (input().isPresent()) {
+        Map<String, Object> map = new java.util.HashMap<>(input().get());
+        map.putAll(input);
+        return input(java.util.Optional.of(map));
+      }
+      return input(java.util.Optional.of(input));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, Object>> input();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder input(Optional<Map<String, Object>> input);
@@ -127,6 +144,9 @@ public abstract class QueryAgentEngineConfig extends JsonSerializable {
      */
     @JsonProperty("includeAllFields")
     public abstract Builder includeAllFields(boolean includeAllFields);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Boolean> includeAllFields();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder includeAllFields(Optional<Boolean> includeAllFields);

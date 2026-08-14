@@ -78,6 +78,9 @@ public abstract class RetrieveMemoriesRequestSimilaritySearchParams extends Json
     public abstract Builder searchQuery(String searchQuery);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> searchQuery();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder searchQuery(Optional<String> searchQuery);
 
     /** Clears the value of searchQuery field. */
@@ -96,6 +99,9 @@ public abstract class RetrieveMemoriesRequestSimilaritySearchParams extends Json
      */
     @JsonProperty("topK")
     public abstract Builder topK(Integer topK);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Integer> topK();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder topK(Optional<Integer> topK);

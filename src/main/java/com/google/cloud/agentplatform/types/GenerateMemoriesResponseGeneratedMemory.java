@@ -87,6 +87,9 @@ public abstract class GenerateMemoriesResponseGeneratedMemory extends JsonSerial
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Memory> memory();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder memory(Optional<Memory> memory);
 
     /** Clears the value of memory field. */
@@ -103,6 +106,9 @@ public abstract class GenerateMemoriesResponseGeneratedMemory extends JsonSerial
      */
     @JsonProperty("action")
     public abstract Builder action(GenerateMemoriesResponseGeneratedMemoryAction action);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<GenerateMemoriesResponseGeneratedMemoryAction> action();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder action(Optional<GenerateMemoriesResponseGeneratedMemoryAction> action);
@@ -144,6 +150,9 @@ public abstract class GenerateMemoriesResponseGeneratedMemory extends JsonSerial
      */
     @JsonProperty("previousRevision")
     public abstract Builder previousRevision(String previousRevision);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> previousRevision();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder previousRevision(Optional<String> previousRevision);

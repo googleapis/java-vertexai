@@ -76,6 +76,9 @@ public abstract class CreateAgentEngineRequestParameters extends JsonSerializabl
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<CreateAgentEngineConfig> config();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<CreateAgentEngineConfig> config);
 
     /** Clears the value of config field. */

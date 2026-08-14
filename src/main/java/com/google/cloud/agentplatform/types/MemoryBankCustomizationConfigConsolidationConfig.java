@@ -70,6 +70,9 @@ public abstract class MemoryBankCustomizationConfigConsolidationConfig extends J
     public abstract Builder revisionsPerCandidateCount(Integer revisionsPerCandidateCount);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Integer> revisionsPerCandidateCount();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder revisionsPerCandidateCount(Optional<Integer> revisionsPerCandidateCount);
 
     /** Clears the value of revisionsPerCandidateCount field. */

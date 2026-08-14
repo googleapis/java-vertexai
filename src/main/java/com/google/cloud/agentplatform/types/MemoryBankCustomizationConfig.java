@@ -106,6 +106,9 @@ public abstract class MemoryBankCustomizationConfig extends JsonSerializable {
     public abstract Builder enableThirdPersonMemories(boolean enableThirdPersonMemories);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Boolean> enableThirdPersonMemories();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder enableThirdPersonMemories(Optional<Boolean> enableThirdPersonMemories);
 
     /** Clears the value of enableThirdPersonMemories field. */
@@ -122,8 +125,17 @@ public abstract class MemoryBankCustomizationConfig extends JsonSerializable {
      * particular scope.
      */
     @JsonProperty("generateMemoriesExamples")
-    public abstract Builder generateMemoriesExamples(
-        List<MemoryBankCustomizationConfigGenerateMemoriesExample> generateMemoriesExamples);
+    @CanIgnoreReturnValue
+    public Builder generateMemoriesExamples(
+        List<MemoryBankCustomizationConfigGenerateMemoriesExample> generateMemoriesExamples) {
+      if (generateMemoriesExamples().isPresent()) {
+        List<MemoryBankCustomizationConfigGenerateMemoriesExample> list =
+            new java.util.ArrayList<>(generateMemoriesExamples().get());
+        list.addAll(generateMemoriesExamples);
+        return generateMemoriesExamples(java.util.Optional.of(list));
+      }
+      return generateMemoriesExamples(java.util.Optional.of(generateMemoriesExamples));
+    }
 
     /**
      * Setter for generateMemoriesExamples.
@@ -154,6 +166,10 @@ public abstract class MemoryBankCustomizationConfig extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<MemoryBankCustomizationConfigGenerateMemoriesExample>>
+        generateMemoriesExamples();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder generateMemoriesExamples(
         Optional<List<MemoryBankCustomizationConfigGenerateMemoriesExample>>
             generateMemoriesExamples);
@@ -173,8 +189,16 @@ public abstract class MemoryBankCustomizationConfig extends JsonSerializable {
      * used.
      */
     @JsonProperty("memoryTopics")
-    public abstract Builder memoryTopics(
-        List<MemoryBankCustomizationConfigMemoryTopic> memoryTopics);
+    @CanIgnoreReturnValue
+    public Builder memoryTopics(List<MemoryBankCustomizationConfigMemoryTopic> memoryTopics) {
+      if (memoryTopics().isPresent()) {
+        List<MemoryBankCustomizationConfigMemoryTopic> list =
+            new java.util.ArrayList<>(memoryTopics().get());
+        list.addAll(memoryTopics);
+        return memoryTopics(java.util.Optional.of(list));
+      }
+      return memoryTopics(java.util.Optional.of(memoryTopics));
+    }
 
     /**
      * Setter for memoryTopics.
@@ -205,6 +229,9 @@ public abstract class MemoryBankCustomizationConfig extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<MemoryBankCustomizationConfigMemoryTopic>> memoryTopics();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder memoryTopics(
         Optional<List<MemoryBankCustomizationConfigMemoryTopic>> memoryTopics);
 
@@ -224,7 +251,15 @@ public abstract class MemoryBankCustomizationConfig extends JsonSerializable {
      * have a more specific config. Only one default config is allowed per Memory Bank.
      */
     @JsonProperty("scopeKeys")
-    public abstract Builder scopeKeys(List<String> scopeKeys);
+    @CanIgnoreReturnValue
+    public Builder scopeKeys(List<String> scopeKeys) {
+      if (scopeKeys().isPresent()) {
+        List<String> list = new java.util.ArrayList<>(scopeKeys().get());
+        list.addAll(scopeKeys);
+        return scopeKeys(java.util.Optional.of(list));
+      }
+      return scopeKeys(java.util.Optional.of(scopeKeys));
+    }
 
     /**
      * Setter for scopeKeys.
@@ -238,6 +273,9 @@ public abstract class MemoryBankCustomizationConfig extends JsonSerializable {
     public Builder scopeKeys(String... scopeKeys) {
       return scopeKeys(Arrays.asList(scopeKeys));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<String>> scopeKeys();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder scopeKeys(Optional<List<String>> scopeKeys);
@@ -272,6 +310,9 @@ public abstract class MemoryBankCustomizationConfig extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<MemoryBankCustomizationConfigConsolidationConfig> consolidationConfig();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder consolidationConfig(
         Optional<MemoryBankCustomizationConfigConsolidationConfig> consolidationConfig);
 
@@ -291,6 +332,9 @@ public abstract class MemoryBankCustomizationConfig extends JsonSerializable {
      */
     @JsonProperty("disableNaturalLanguageMemories")
     public abstract Builder disableNaturalLanguageMemories(boolean disableNaturalLanguageMemories);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Boolean> disableNaturalLanguageMemories();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder disableNaturalLanguageMemories(

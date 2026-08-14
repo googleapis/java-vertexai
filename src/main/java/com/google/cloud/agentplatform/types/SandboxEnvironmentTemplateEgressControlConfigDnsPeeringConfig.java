@@ -87,6 +87,9 @@ public abstract class SandboxEnvironmentTemplateEgressControlConfigDnsPeeringCon
     public abstract Builder domain(String domain);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> domain();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder domain(Optional<String> domain);
 
     /** Clears the value of domain field. */
@@ -106,6 +109,9 @@ public abstract class SandboxEnvironmentTemplateEgressControlConfigDnsPeeringCon
     public abstract Builder targetNetwork(String targetNetwork);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> targetNetwork();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder targetNetwork(Optional<String> targetNetwork);
 
     /** Clears the value of targetNetwork field. */
@@ -123,6 +129,9 @@ public abstract class SandboxEnvironmentTemplateEgressControlConfigDnsPeeringCon
      */
     @JsonProperty("targetProject")
     public abstract Builder targetProject(String targetProject);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> targetProject();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder targetProject(Optional<String> targetProject);

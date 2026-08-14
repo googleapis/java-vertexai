@@ -61,6 +61,9 @@ public abstract class PurgeMemoriesResponse extends JsonSerializable {
     public abstract Builder purgeCount(Integer purgeCount);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Integer> purgeCount();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder purgeCount(Optional<Integer> purgeCount);
 
     /** Clears the value of purgeCount field. */

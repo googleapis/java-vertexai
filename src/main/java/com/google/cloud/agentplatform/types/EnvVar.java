@@ -71,6 +71,9 @@ public abstract class EnvVar extends JsonSerializable {
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -91,6 +94,9 @@ public abstract class EnvVar extends JsonSerializable {
      */
     @JsonProperty("value")
     public abstract Builder value(String value);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> value();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder value(Optional<String> value);

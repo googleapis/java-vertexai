@@ -64,7 +64,18 @@ public abstract class Metadata extends JsonSerializable {
      * the keys.
      */
     @JsonProperty("attributes")
-    public abstract Builder attributes(Map<String, byte[]> attributes);
+    @CanIgnoreReturnValue
+    public Builder attributes(Map<String, byte[]> attributes) {
+      if (attributes().isPresent()) {
+        Map<String, byte[]> map = new java.util.HashMap<>(attributes().get());
+        map.putAll(attributes);
+        return attributes(java.util.Optional.of(map));
+      }
+      return attributes(java.util.Optional.of(attributes));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, byte[]>> attributes();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder attributes(Optional<Map<String, byte[]>> attributes);

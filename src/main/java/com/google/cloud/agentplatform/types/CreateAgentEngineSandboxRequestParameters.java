@@ -74,6 +74,9 @@ public abstract class CreateAgentEngineSandboxRequestParameters extends JsonSeri
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -102,6 +105,9 @@ public abstract class CreateAgentEngineSandboxRequestParameters extends JsonSeri
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<SandboxEnvironmentSpec> spec();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder spec(Optional<SandboxEnvironmentSpec> spec);
 
     /** Clears the value of spec field. */
@@ -128,6 +134,9 @@ public abstract class CreateAgentEngineSandboxRequestParameters extends JsonSeri
     public Builder config(CreateAgentEngineSandboxConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<CreateAgentEngineSandboxConfig> config();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<CreateAgentEngineSandboxConfig> config);

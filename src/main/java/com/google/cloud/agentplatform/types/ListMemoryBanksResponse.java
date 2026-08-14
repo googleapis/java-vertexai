@@ -62,7 +62,15 @@ public abstract class ListMemoryBanksResponse extends JsonSerializable {
      * <p>memoryBanks: The list of Memory Banks.
      */
     @JsonProperty("memoryBanks")
-    public abstract Builder memoryBanks(List<MemoryBank> memoryBanks);
+    @CanIgnoreReturnValue
+    public Builder memoryBanks(List<MemoryBank> memoryBanks) {
+      if (memoryBanks().isPresent()) {
+        List<MemoryBank> list = new java.util.ArrayList<>(memoryBanks().get());
+        list.addAll(memoryBanks);
+        return memoryBanks(java.util.Optional.of(list));
+      }
+      return memoryBanks(java.util.Optional.of(memoryBanks));
+    }
 
     /**
      * Setter for memoryBanks.
@@ -86,6 +94,9 @@ public abstract class ListMemoryBanksResponse extends JsonSerializable {
               .map(MemoryBank.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<MemoryBank>> memoryBanks();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder memoryBanks(Optional<List<MemoryBank>> memoryBanks);

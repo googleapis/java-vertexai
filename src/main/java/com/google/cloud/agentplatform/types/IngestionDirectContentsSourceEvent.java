@@ -80,6 +80,9 @@ public abstract class IngestionDirectContentsSourceEvent extends JsonSerializabl
     public abstract Builder content(Content content);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Content> content();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder content(Optional<Content> content);
 
     /** Clears the value of content field. */
@@ -97,6 +100,9 @@ public abstract class IngestionDirectContentsSourceEvent extends JsonSerializabl
      */
     @JsonProperty("eventId")
     public abstract Builder eventId(String eventId);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> eventId();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder eventId(Optional<String> eventId);
@@ -117,6 +123,9 @@ public abstract class IngestionDirectContentsSourceEvent extends JsonSerializabl
      */
     @JsonProperty("eventTime")
     public abstract Builder eventTime(Instant eventTime);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Instant> eventTime();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder eventTime(Optional<Instant> eventTime);

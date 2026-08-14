@@ -85,6 +85,9 @@ public abstract class ReasoningEngineSpecSourceCodeSpecDeveloperConnectConfig
     public abstract Builder gitRepositoryLink(String gitRepositoryLink);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> gitRepositoryLink();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder gitRepositoryLink(Optional<String> gitRepositoryLink);
 
     /** Clears the value of gitRepositoryLink field. */
@@ -101,6 +104,9 @@ public abstract class ReasoningEngineSpecSourceCodeSpecDeveloperConnectConfig
      */
     @JsonProperty("dir")
     public abstract Builder dir(String dir);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> dir();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder dir(Optional<String> dir);
@@ -120,6 +126,9 @@ public abstract class ReasoningEngineSpecSourceCodeSpecDeveloperConnectConfig
      */
     @JsonProperty("revision")
     public abstract Builder revision(String revision);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> revision();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder revision(Optional<String> revision);

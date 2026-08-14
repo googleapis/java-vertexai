@@ -83,6 +83,9 @@ public abstract class MemoryBankCustomizationConfigGenerateMemoriesExampleGenera
     public abstract Builder fact(String fact);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> fact();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder fact(Optional<String> fact);
 
     /** Clears the value of fact field. */
@@ -100,7 +103,15 @@ public abstract class MemoryBankCustomizationConfigGenerateMemoriesExampleGenera
      * of memory extraction for the custom topic `jargon`.
      */
     @JsonProperty("topics")
-    public abstract Builder topics(List<MemoryTopicId> topics);
+    @CanIgnoreReturnValue
+    public Builder topics(List<MemoryTopicId> topics) {
+      if (topics().isPresent()) {
+        List<MemoryTopicId> list = new java.util.ArrayList<>(topics().get());
+        list.addAll(topics);
+        return topics(java.util.Optional.of(list));
+      }
+      return topics(java.util.Optional.of(topics));
+    }
 
     /**
      * Setter for topics.
@@ -128,6 +139,9 @@ public abstract class MemoryBankCustomizationConfigGenerateMemoriesExampleGenera
               .map(MemoryTopicId.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<MemoryTopicId>> topics();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder topics(Optional<List<MemoryTopicId>> topics);

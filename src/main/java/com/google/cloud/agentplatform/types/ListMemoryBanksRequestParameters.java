@@ -76,6 +76,9 @@ public abstract class ListMemoryBanksRequestParameters extends JsonSerializable 
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ListMemoryBanksConfig> config();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<ListMemoryBanksConfig> config);
 
     /** Clears the value of config field. */

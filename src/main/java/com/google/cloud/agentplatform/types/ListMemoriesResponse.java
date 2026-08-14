@@ -74,6 +74,9 @@ public abstract class ListMemoriesResponse extends JsonSerializable {
     public abstract Builder sdkHttpResponse(HttpResponse sdkHttpResponse);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<HttpResponse> sdkHttpResponse();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder sdkHttpResponse(Optional<HttpResponse> sdkHttpResponse);
 
     /** Clears the value of sdkHttpResponse field. */
@@ -92,6 +95,9 @@ public abstract class ListMemoriesResponse extends JsonSerializable {
     public abstract Builder nextPageToken(String nextPageToken);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> nextPageToken();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder nextPageToken(Optional<String> nextPageToken);
 
     /** Clears the value of nextPageToken field. */
@@ -107,7 +113,15 @@ public abstract class ListMemoriesResponse extends JsonSerializable {
      * <p>memories: List of memories.
      */
     @JsonProperty("memories")
-    public abstract Builder memories(List<Memory> memories);
+    @CanIgnoreReturnValue
+    public Builder memories(List<Memory> memories) {
+      if (memories().isPresent()) {
+        List<Memory> list = new java.util.ArrayList<>(memories().get());
+        list.addAll(memories);
+        return memories(java.util.Optional.of(list));
+      }
+      return memories(java.util.Optional.of(memories));
+    }
 
     /**
      * Setter for memories.
@@ -131,6 +145,9 @@ public abstract class ListMemoriesResponse extends JsonSerializable {
               .map(Memory.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<Memory>> memories();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder memories(Optional<List<Memory>> memories);

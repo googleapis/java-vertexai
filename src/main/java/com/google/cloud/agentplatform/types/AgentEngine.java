@@ -70,6 +70,9 @@ public abstract class AgentEngine extends JsonSerializable {
     public abstract Builder apiClient(Object apiClient);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Object> apiClient();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder apiClient(Optional<Object> apiClient);
 
     /** Clears the value of apiClient field. */
@@ -86,6 +89,9 @@ public abstract class AgentEngine extends JsonSerializable {
      */
     @JsonIgnore
     public abstract Builder apiAsyncClient(Object apiAsyncClient);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Object> apiAsyncClient();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder apiAsyncClient(Optional<Object> apiAsyncClient);
@@ -114,6 +120,9 @@ public abstract class AgentEngine extends JsonSerializable {
     public Builder apiResource(ReasoningEngine.Builder apiResourceBuilder) {
       return apiResource(apiResourceBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngine> apiResource();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder apiResource(Optional<ReasoningEngine> apiResource);

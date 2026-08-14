@@ -70,6 +70,9 @@ public abstract class GetAgentEngineSandboxOperationParameters extends JsonSeria
     public abstract Builder operationName(String operationName);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> operationName();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder operationName(Optional<String> operationName);
 
     /** Clears the value of operationName field. */
@@ -96,6 +99,9 @@ public abstract class GetAgentEngineSandboxOperationParameters extends JsonSeria
     public Builder config(GetAgentEngineOperationConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<GetAgentEngineOperationConfig> config();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<GetAgentEngineOperationConfig> config);

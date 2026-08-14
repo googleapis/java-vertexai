@@ -70,6 +70,9 @@ public abstract class SandboxEnvironmentTemplateDefaultContainerEnvironment
         DefaultContainerCategory defaultContainerCategory);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<DefaultContainerCategory> defaultContainerCategory();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder defaultContainerCategory(
         Optional<DefaultContainerCategory> defaultContainerCategory);
 
@@ -118,6 +121,9 @@ public abstract class SandboxEnvironmentTemplateDefaultContainerEnvironment
         SandboxEnvironmentTemplateResourceRequirements.Builder resourcesBuilder) {
       return resources(resourcesBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<SandboxEnvironmentTemplateResourceRequirements> resources();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder resources(Optional<SandboxEnvironmentTemplateResourceRequirements> resources);

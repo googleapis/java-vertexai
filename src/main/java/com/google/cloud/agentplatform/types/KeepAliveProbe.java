@@ -81,6 +81,9 @@ public abstract class KeepAliveProbe extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<KeepAliveProbeHttpGet> httpGet();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder httpGet(Optional<KeepAliveProbeHttpGet> httpGet);
 
     /** Clears the value of httpGet field. */
@@ -98,6 +101,9 @@ public abstract class KeepAliveProbe extends JsonSerializable {
      */
     @JsonProperty("maxSeconds")
     public abstract Builder maxSeconds(Integer maxSeconds);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Integer> maxSeconds();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder maxSeconds(Optional<Integer> maxSeconds);

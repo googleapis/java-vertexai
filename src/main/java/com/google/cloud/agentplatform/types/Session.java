@@ -108,6 +108,9 @@ public abstract class Session extends JsonSerializable {
     public abstract Builder createTime(Instant createTime);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Instant> createTime();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder createTime(Optional<Instant> createTime);
 
     /** Clears the value of createTime field. */
@@ -124,6 +127,9 @@ public abstract class Session extends JsonSerializable {
      */
     @JsonProperty("displayName")
     public abstract Builder displayName(String displayName);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> displayName();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder displayName(Optional<String> displayName);
@@ -146,6 +152,9 @@ public abstract class Session extends JsonSerializable {
     public abstract Builder expireTime(Instant expireTime);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Instant> expireTime();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder expireTime(Optional<Instant> expireTime);
 
     /** Clears the value of expireTime field. */
@@ -164,7 +173,18 @@ public abstract class Session extends JsonSerializable {
      * See https://goo.gl/xmQnxf for more information and examples of labels.
      */
     @JsonProperty("labels")
-    public abstract Builder labels(Map<String, String> labels);
+    @CanIgnoreReturnValue
+    public Builder labels(Map<String, String> labels) {
+      if (labels().isPresent()) {
+        Map<String, String> map = new java.util.HashMap<>(labels().get());
+        map.putAll(labels);
+        return labels(java.util.Optional.of(map));
+      }
+      return labels(java.util.Optional.of(labels));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, String>> labels();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder labels(Optional<Map<String, String>> labels);
@@ -186,6 +206,9 @@ public abstract class Session extends JsonSerializable {
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -201,7 +224,18 @@ public abstract class Session extends JsonSerializable {
      * <p>sessionState: Optional. Session specific memory which stores key conversation points.
      */
     @JsonProperty("sessionState")
-    public abstract Builder sessionState(Map<String, Object> sessionState);
+    @CanIgnoreReturnValue
+    public Builder sessionState(Map<String, Object> sessionState) {
+      if (sessionState().isPresent()) {
+        Map<String, Object> map = new java.util.HashMap<>(sessionState().get());
+        map.putAll(sessionState);
+        return sessionState(java.util.Optional.of(map));
+      }
+      return sessionState(java.util.Optional.of(sessionState));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, Object>> sessionState();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder sessionState(Optional<Map<String, Object>> sessionState);
@@ -222,6 +256,9 @@ public abstract class Session extends JsonSerializable {
     public abstract Builder ttl(Duration ttl);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Duration> ttl();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder ttl(Optional<Duration> ttl);
 
     /** Clears the value of ttl field. */
@@ -240,6 +277,9 @@ public abstract class Session extends JsonSerializable {
     public abstract Builder updateTime(Instant updateTime);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Instant> updateTime();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder updateTime(Optional<Instant> updateTime);
 
     /** Clears the value of updateTime field. */
@@ -256,6 +296,9 @@ public abstract class Session extends JsonSerializable {
      */
     @JsonProperty("userId")
     public abstract Builder userId(String userId);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> userId();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder userId(Optional<String> userId);

@@ -77,6 +77,9 @@ public abstract class RetrieveMemoriesRequestSimpleRetrievalParams extends JsonS
     public abstract Builder pageSize(Integer pageSize);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Integer> pageSize();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder pageSize(Optional<Integer> pageSize);
 
     /** Clears the value of pageSize field. */
@@ -94,6 +97,9 @@ public abstract class RetrieveMemoriesRequestSimpleRetrievalParams extends JsonS
      */
     @JsonProperty("pageToken")
     public abstract Builder pageToken(String pageToken);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> pageToken();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder pageToken(Optional<String> pageToken);

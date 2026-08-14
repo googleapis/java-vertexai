@@ -82,6 +82,9 @@ public abstract class SandboxEnvironmentSpec extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<SandboxEnvironmentSpecCodeExecutionEnvironment> codeExecutionEnvironment();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder codeExecutionEnvironment(
         Optional<SandboxEnvironmentSpecCodeExecutionEnvironment> codeExecutionEnvironment);
 
@@ -113,6 +116,9 @@ public abstract class SandboxEnvironmentSpec extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<SandboxEnvironmentSpecComputerUseEnvironment> computerUseEnvironment();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder computerUseEnvironment(
         Optional<SandboxEnvironmentSpecComputerUseEnvironment> computerUseEnvironment);
 
@@ -142,6 +148,9 @@ public abstract class SandboxEnvironmentSpec extends JsonSerializable {
         SandboxEnvironmentSpecShellEnvironment.Builder shellEnvironmentBuilder) {
       return shellEnvironment(shellEnvironmentBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<SandboxEnvironmentSpecShellEnvironment> shellEnvironment();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder shellEnvironment(

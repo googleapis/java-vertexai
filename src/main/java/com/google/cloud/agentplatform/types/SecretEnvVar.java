@@ -68,6 +68,9 @@ public abstract class SecretEnvVar extends JsonSerializable {
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -96,6 +99,9 @@ public abstract class SecretEnvVar extends JsonSerializable {
     public Builder secretRef(SecretRef.Builder secretRefBuilder) {
       return secretRef(secretRefBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<SecretRef> secretRef();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder secretRef(Optional<SecretRef> secretRef);

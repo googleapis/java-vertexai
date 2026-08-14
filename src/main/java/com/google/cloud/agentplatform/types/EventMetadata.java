@@ -114,6 +114,9 @@ public abstract class EventMetadata extends JsonSerializable {
     public abstract Builder groundingMetadata(GroundingMetadata groundingMetadata);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<GroundingMetadata> groundingMetadata();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder groundingMetadata(Optional<GroundingMetadata> groundingMetadata);
 
     /** Clears the value of groundingMetadata field. */
@@ -134,6 +137,9 @@ public abstract class EventMetadata extends JsonSerializable {
     public abstract Builder branch(String branch);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> branch();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder branch(Optional<String> branch);
 
     /** Clears the value of branch field. */
@@ -149,7 +155,18 @@ public abstract class EventMetadata extends JsonSerializable {
      * <p>customMetadata: The custom metadata of the LlmResponse.
      */
     @JsonProperty("customMetadata")
-    public abstract Builder customMetadata(Map<String, Object> customMetadata);
+    @CanIgnoreReturnValue
+    public Builder customMetadata(Map<String, Object> customMetadata) {
+      if (customMetadata().isPresent()) {
+        Map<String, Object> map = new java.util.HashMap<>(customMetadata().get());
+        map.putAll(customMetadata);
+        return customMetadata(java.util.Optional.of(map));
+      }
+      return customMetadata(java.util.Optional.of(customMetadata));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, Object>> customMetadata();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder customMetadata(Optional<Map<String, Object>> customMetadata);
@@ -171,6 +188,9 @@ public abstract class EventMetadata extends JsonSerializable {
     public abstract Builder interrupted(boolean interrupted);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Boolean> interrupted();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder interrupted(Optional<Boolean> interrupted);
 
     /** Clears the value of interrupted field. */
@@ -188,7 +208,15 @@ public abstract class EventMetadata extends JsonSerializable {
      * call event.
      */
     @JsonProperty("longRunningToolIds")
-    public abstract Builder longRunningToolIds(List<String> longRunningToolIds);
+    @CanIgnoreReturnValue
+    public Builder longRunningToolIds(List<String> longRunningToolIds) {
+      if (longRunningToolIds().isPresent()) {
+        List<String> list = new java.util.ArrayList<>(longRunningToolIds().get());
+        list.addAll(longRunningToolIds);
+        return longRunningToolIds(java.util.Optional.of(list));
+      }
+      return longRunningToolIds(java.util.Optional.of(longRunningToolIds));
+    }
 
     /**
      * Setter for longRunningToolIds.
@@ -201,6 +229,9 @@ public abstract class EventMetadata extends JsonSerializable {
     public Builder longRunningToolIds(String... longRunningToolIds) {
       return longRunningToolIds(Arrays.asList(longRunningToolIds));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<String>> longRunningToolIds();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder longRunningToolIds(Optional<List<String>> longRunningToolIds);
@@ -222,6 +253,9 @@ public abstract class EventMetadata extends JsonSerializable {
     public abstract Builder partial(boolean partial);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Boolean> partial();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder partial(Optional<Boolean> partial);
 
     /** Clears the value of partial field. */
@@ -239,6 +273,9 @@ public abstract class EventMetadata extends JsonSerializable {
      */
     @JsonProperty("turnComplete")
     public abstract Builder turnComplete(boolean turnComplete);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Boolean> turnComplete();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder turnComplete(Optional<Boolean> turnComplete);
@@ -259,6 +296,9 @@ public abstract class EventMetadata extends JsonSerializable {
     public abstract Builder inputTranscription(Transcription inputTranscription);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Transcription> inputTranscription();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder inputTranscription(Optional<Transcription> inputTranscription);
 
     /** Clears the value of inputTranscription field. */
@@ -275,6 +315,9 @@ public abstract class EventMetadata extends JsonSerializable {
      */
     @JsonProperty("outputTranscription")
     public abstract Builder outputTranscription(Transcription outputTranscription);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Transcription> outputTranscription();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder outputTranscription(Optional<Transcription> outputTranscription);

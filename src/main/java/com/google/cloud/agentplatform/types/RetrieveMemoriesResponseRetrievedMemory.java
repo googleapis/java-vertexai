@@ -72,6 +72,9 @@ public abstract class RetrieveMemoriesResponseRetrievedMemory extends JsonSerial
     public abstract Builder distance(Double distance);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Double> distance();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder distance(Optional<Double> distance);
 
     /** Clears the value of distance field. */
@@ -98,6 +101,9 @@ public abstract class RetrieveMemoriesResponseRetrievedMemory extends JsonSerial
     public Builder memory(Memory.Builder memoryBuilder) {
       return memory(memoryBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Memory> memory();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder memory(Optional<Memory> memory);

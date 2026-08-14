@@ -91,6 +91,9 @@ public abstract class AppendAgentEngineSessionEventConfig extends JsonSerializab
     public abstract Builder httpOptions(HttpOptions httpOptions);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<HttpOptions> httpOptions();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder httpOptions(Optional<HttpOptions> httpOptions);
 
     /** Clears the value of httpOptions field. */
@@ -107,6 +110,9 @@ public abstract class AppendAgentEngineSessionEventConfig extends JsonSerializab
      */
     @JsonProperty("content")
     public abstract Builder content(Content content);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Content> content();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder content(Optional<Content> content);
@@ -137,6 +143,9 @@ public abstract class AppendAgentEngineSessionEventConfig extends JsonSerializab
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<EventActions> actions();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder actions(Optional<EventActions> actions);
 
     /** Clears the value of actions field. */
@@ -155,6 +164,9 @@ public abstract class AppendAgentEngineSessionEventConfig extends JsonSerializab
     public abstract Builder errorCode(String errorCode);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> errorCode();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder errorCode(Optional<String> errorCode);
 
     /** Clears the value of errorCode field. */
@@ -171,6 +183,9 @@ public abstract class AppendAgentEngineSessionEventConfig extends JsonSerializab
      */
     @JsonProperty("errorMessage")
     public abstract Builder errorMessage(String errorMessage);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> errorMessage();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder errorMessage(Optional<String> errorMessage);
@@ -201,6 +216,9 @@ public abstract class AppendAgentEngineSessionEventConfig extends JsonSerializab
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<EventMetadata> eventMetadata();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder eventMetadata(Optional<EventMetadata> eventMetadata);
 
     /** Clears the value of eventMetadata field. */
@@ -216,7 +234,18 @@ public abstract class AppendAgentEngineSessionEventConfig extends JsonSerializab
      * <p>rawEvent: Weakly typed raw event data in proto struct format.
      */
     @JsonProperty("rawEvent")
-    public abstract Builder rawEvent(Map<String, Object> rawEvent);
+    @CanIgnoreReturnValue
+    public Builder rawEvent(Map<String, Object> rawEvent) {
+      if (rawEvent().isPresent()) {
+        Map<String, Object> map = new java.util.HashMap<>(rawEvent().get());
+        map.putAll(rawEvent);
+        return rawEvent(java.util.Optional.of(map));
+      }
+      return rawEvent(java.util.Optional.of(rawEvent));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, Object>> rawEvent();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder rawEvent(Optional<Map<String, Object>> rawEvent);

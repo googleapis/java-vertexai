@@ -84,6 +84,9 @@ public abstract class MemoryGenerationTriggerConfigGenerationTriggerRule extends
     public abstract Builder eventCount(Integer eventCount);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Integer> eventCount();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder eventCount(Optional<Integer> eventCount);
 
     /** Clears the value of eventCount field. */
@@ -101,6 +104,9 @@ public abstract class MemoryGenerationTriggerConfigGenerationTriggerRule extends
      */
     @JsonProperty("fixedInterval")
     public abstract Builder fixedInterval(Duration fixedInterval);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Duration> fixedInterval();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder fixedInterval(Optional<Duration> fixedInterval);
@@ -123,6 +129,9 @@ public abstract class MemoryGenerationTriggerConfigGenerationTriggerRule extends
     public abstract Builder idleDuration(Duration idleDuration);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Duration> idleDuration();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder idleDuration(Optional<Duration> idleDuration);
 
     /** Clears the value of idleDuration field. */
@@ -140,6 +149,9 @@ public abstract class MemoryGenerationTriggerConfigGenerationTriggerRule extends
      */
     @JsonProperty("overlapEventCount")
     public abstract Builder overlapEventCount(Integer overlapEventCount);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Integer> overlapEventCount();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder overlapEventCount(Optional<Integer> overlapEventCount);

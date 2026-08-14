@@ -85,6 +85,9 @@ public abstract class ReasoningEngineSpecSourceCodeSpecAgentConfigSource extends
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineSpecSourceCodeSpecAgentConfigSourceAdkConfig> adkConfig();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder adkConfig(
         Optional<ReasoningEngineSpecSourceCodeSpecAgentConfigSourceAdkConfig> adkConfig);
 
@@ -120,6 +123,9 @@ public abstract class ReasoningEngineSpecSourceCodeSpecAgentConfigSource extends
         ReasoningEngineSpecSourceCodeSpecInlineSource.Builder inlineSourceBuilder) {
       return inlineSource(inlineSourceBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineSpecSourceCodeSpecInlineSource> inlineSource();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder inlineSource(

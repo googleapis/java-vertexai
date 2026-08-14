@@ -69,6 +69,9 @@ public abstract class GetMemoryBankRequestParameters extends JsonSerializable {
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -95,6 +98,9 @@ public abstract class GetMemoryBankRequestParameters extends JsonSerializable {
     public Builder config(GetMemoryBankConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<GetMemoryBankConfig> config();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<GetMemoryBankConfig> config);

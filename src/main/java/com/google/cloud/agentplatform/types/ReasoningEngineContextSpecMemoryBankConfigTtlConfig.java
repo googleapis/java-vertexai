@@ -85,6 +85,9 @@ public abstract class ReasoningEngineContextSpecMemoryBankConfigTtlConfig extend
     public abstract Builder defaultTtl(Duration defaultTtl);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Duration> defaultTtl();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder defaultTtl(Optional<Duration> defaultTtl);
 
     /** Clears the value of defaultTtl field. */
@@ -118,6 +121,10 @@ public abstract class ReasoningEngineContextSpecMemoryBankConfigTtlConfig extend
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineContextSpecMemoryBankConfigTtlConfigGranularTtlConfig>
+        granularTtlConfig();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder granularTtlConfig(
         Optional<ReasoningEngineContextSpecMemoryBankConfigTtlConfigGranularTtlConfig>
             granularTtlConfig);
@@ -138,6 +145,9 @@ public abstract class ReasoningEngineContextSpecMemoryBankConfigTtlConfig extend
      */
     @JsonProperty("memoryRevisionDefaultTtl")
     public abstract Builder memoryRevisionDefaultTtl(Duration memoryRevisionDefaultTtl);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Duration> memoryRevisionDefaultTtl();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder memoryRevisionDefaultTtl(Optional<Duration> memoryRevisionDefaultTtl);

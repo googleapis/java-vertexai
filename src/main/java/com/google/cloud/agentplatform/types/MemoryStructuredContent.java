@@ -63,7 +63,18 @@ public abstract class MemoryStructuredContent extends JsonSerializable {
      * <p>data: Required. Represents the structured value of the memory.
      */
     @JsonProperty("data")
-    public abstract Builder data(Map<String, Object> data);
+    @CanIgnoreReturnValue
+    public Builder data(Map<String, Object> data) {
+      if (data().isPresent()) {
+        Map<String, Object> map = new java.util.HashMap<>(data().get());
+        map.putAll(data);
+        return data(java.util.Optional.of(map));
+      }
+      return data(java.util.Optional.of(data));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, Object>> data();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder data(Optional<Map<String, Object>> data);
@@ -82,6 +93,9 @@ public abstract class MemoryStructuredContent extends JsonSerializable {
      */
     @JsonProperty("schemaId")
     public abstract Builder schemaId(String schemaId);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> schemaId();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder schemaId(Optional<String> schemaId);

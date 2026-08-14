@@ -104,6 +104,9 @@ public abstract class CreateAgentEngineSandboxConfig extends JsonSerializable {
     public abstract Builder httpOptions(HttpOptions httpOptions);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<HttpOptions> httpOptions();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder httpOptions(Optional<HttpOptions> httpOptions);
 
     /** Clears the value of httpOptions field. */
@@ -120,6 +123,9 @@ public abstract class CreateAgentEngineSandboxConfig extends JsonSerializable {
      */
     @JsonProperty("displayName")
     public abstract Builder displayName(String displayName);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> displayName();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder displayName(Optional<String> displayName);
@@ -140,6 +146,9 @@ public abstract class CreateAgentEngineSandboxConfig extends JsonSerializable {
     public abstract Builder description(String description);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> description();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder description(Optional<String> description);
 
     /** Clears the value of description field. */
@@ -158,6 +167,9 @@ public abstract class CreateAgentEngineSandboxConfig extends JsonSerializable {
     public abstract Builder waitForCompletion(boolean waitForCompletion);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Boolean> waitForCompletion();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder waitForCompletion(Optional<Boolean> waitForCompletion);
 
     /** Clears the value of waitForCompletion field. */
@@ -174,6 +186,9 @@ public abstract class CreateAgentEngineSandboxConfig extends JsonSerializable {
      */
     @JsonProperty("ttl")
     public abstract Builder ttl(Duration ttl);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Duration> ttl();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder ttl(Optional<Duration> ttl);
@@ -196,6 +211,9 @@ public abstract class CreateAgentEngineSandboxConfig extends JsonSerializable {
     public abstract Builder sandboxEnvironmentTemplate(String sandboxEnvironmentTemplate);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> sandboxEnvironmentTemplate();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder sandboxEnvironmentTemplate(Optional<String> sandboxEnvironmentTemplate);
 
     /** Clears the value of sandboxEnvironmentTemplate field. */
@@ -216,6 +234,9 @@ public abstract class CreateAgentEngineSandboxConfig extends JsonSerializable {
     public abstract Builder sandboxEnvironmentSnapshot(String sandboxEnvironmentSnapshot);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> sandboxEnvironmentSnapshot();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder sandboxEnvironmentSnapshot(Optional<String> sandboxEnvironmentSnapshot);
 
     /** Clears the value of sandboxEnvironmentSnapshot field. */
@@ -233,6 +254,9 @@ public abstract class CreateAgentEngineSandboxConfig extends JsonSerializable {
      */
     @JsonProperty("owner")
     public abstract Builder owner(String owner);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> owner();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder owner(Optional<String> owner);

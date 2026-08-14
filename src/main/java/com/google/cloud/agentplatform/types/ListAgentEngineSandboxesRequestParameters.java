@@ -70,6 +70,9 @@ public abstract class ListAgentEngineSandboxesRequestParameters extends JsonSeri
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -96,6 +99,9 @@ public abstract class ListAgentEngineSandboxesRequestParameters extends JsonSeri
     public Builder config(ListAgentEngineSandboxesConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ListAgentEngineSandboxesConfig> config();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<ListAgentEngineSandboxesConfig> config);

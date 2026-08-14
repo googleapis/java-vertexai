@@ -65,6 +65,9 @@ public abstract class KeepAliveProbeHttpGet extends JsonSerializable {
     public abstract Builder path(String path);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> path();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder path(Optional<String> path);
 
     /** Clears the value of path field. */
@@ -81,6 +84,9 @@ public abstract class KeepAliveProbeHttpGet extends JsonSerializable {
      */
     @JsonProperty("port")
     public abstract Builder port(Integer port);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Integer> port();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder port(Optional<Integer> port);

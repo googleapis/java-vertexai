@@ -87,6 +87,9 @@ public abstract class SandboxEnvironmentTemplateEgressControlConfig extends Json
     public abstract Builder internetAccess(boolean internetAccess);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Boolean> internetAccess();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder internetAccess(Optional<Boolean> internetAccess);
 
     /** Clears the value of internetAccess field. */
@@ -105,6 +108,9 @@ public abstract class SandboxEnvironmentTemplateEgressControlConfig extends Json
     public abstract Builder customerVpcNetwork(String customerVpcNetwork);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> customerVpcNetwork();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder customerVpcNetwork(Optional<String> customerVpcNetwork);
 
     /** Clears the value of customerVpcNetwork field. */
@@ -121,8 +127,17 @@ public abstract class SandboxEnvironmentTemplateEgressControlConfig extends Json
      * resolve customer-internal domains via the customer VPC.
      */
     @JsonProperty("dnsPeeringConfigs")
-    public abstract Builder dnsPeeringConfigs(
-        List<SandboxEnvironmentTemplateEgressControlConfigDnsPeeringConfig> dnsPeeringConfigs);
+    @CanIgnoreReturnValue
+    public Builder dnsPeeringConfigs(
+        List<SandboxEnvironmentTemplateEgressControlConfigDnsPeeringConfig> dnsPeeringConfigs) {
+      if (dnsPeeringConfigs().isPresent()) {
+        List<SandboxEnvironmentTemplateEgressControlConfigDnsPeeringConfig> list =
+            new java.util.ArrayList<>(dnsPeeringConfigs().get());
+        list.addAll(dnsPeeringConfigs);
+        return dnsPeeringConfigs(java.util.Optional.of(list));
+      }
+      return dnsPeeringConfigs(java.util.Optional.of(dnsPeeringConfigs));
+    }
 
     /**
      * Setter for dnsPeeringConfigs.
@@ -153,6 +168,10 @@ public abstract class SandboxEnvironmentTemplateEgressControlConfig extends Json
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<SandboxEnvironmentTemplateEgressControlConfigDnsPeeringConfig>>
+        dnsPeeringConfigs();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder dnsPeeringConfigs(
         Optional<List<SandboxEnvironmentTemplateEgressControlConfigDnsPeeringConfig>>
             dnsPeeringConfigs);
@@ -172,6 +191,9 @@ public abstract class SandboxEnvironmentTemplateEgressControlConfig extends Json
      */
     @JsonProperty("networkAttachment")
     public abstract Builder networkAttachment(String networkAttachment);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> networkAttachment();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder networkAttachment(Optional<String> networkAttachment);

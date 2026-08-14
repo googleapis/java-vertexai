@@ -70,6 +70,9 @@ public abstract class CreateSandboxEnvironmentSnapshotRequestParameters extends 
     public abstract Builder sourceSandboxEnvironmentName(String sourceSandboxEnvironmentName);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> sourceSandboxEnvironmentName();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder sourceSandboxEnvironmentName(Optional<String> sourceSandboxEnvironmentName);
 
     /** Clears the value of sourceSandboxEnvironmentName field. */
@@ -96,6 +99,9 @@ public abstract class CreateSandboxEnvironmentSnapshotRequestParameters extends 
     public Builder config(CreateAgentEngineSandboxSnapshotConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<CreateAgentEngineSandboxSnapshotConfig> config();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<CreateAgentEngineSandboxSnapshotConfig> config);

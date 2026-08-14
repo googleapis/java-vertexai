@@ -125,7 +125,18 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
      * https://a2a-protocol.org/latest/specification/#5-agent-discovery-the-agent-card.
      */
     @JsonProperty("agentCard")
-    public abstract Builder agentCard(Map<String, Object> agentCard);
+    @CanIgnoreReturnValue
+    public Builder agentCard(Map<String, Object> agentCard) {
+      if (agentCard().isPresent()) {
+        Map<String, Object> map = new java.util.HashMap<>(agentCard().get());
+        map.putAll(agentCard);
+        return agentCard(java.util.Optional.of(map));
+      }
+      return agentCard(java.util.Optional.of(agentCard));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, Object>> agentCard();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder agentCard(Optional<Map<String, Object>> agentCard);
@@ -147,6 +158,9 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
     public abstract Builder agentFramework(String agentFramework);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> agentFramework();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder agentFramework(Optional<String> agentFramework);
 
     /** Clears the value of agentFramework field. */
@@ -163,7 +177,15 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
      * format.
      */
     @JsonProperty("classMethods")
-    public abstract Builder classMethods(List<Map<String, Object>> classMethods);
+    @CanIgnoreReturnValue
+    public Builder classMethods(List<Map<String, Object>> classMethods) {
+      if (classMethods().isPresent()) {
+        List<Map<String, Object>> list = new java.util.ArrayList<>(classMethods().get());
+        list.addAll(classMethods);
+        return classMethods(java.util.Optional.of(list));
+      }
+      return classMethods(java.util.Optional.of(classMethods));
+    }
 
     /**
      * Setter for classMethods.
@@ -175,6 +197,9 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
     public Builder classMethods(Map<String, Object>... classMethods) {
       return classMethods(Arrays.asList(classMethods));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<Map<String, Object>>> classMethods();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder classMethods(Optional<List<Map<String, Object>>> classMethods);
@@ -205,6 +230,9 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineSpecDeploymentSpec> deploymentSpec();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder deploymentSpec(Optional<ReasoningEngineSpecDeploymentSpec> deploymentSpec);
 
     /** Clears the value of deploymentSpec field. */
@@ -228,6 +256,9 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
     public abstract Builder effectiveIdentity(String effectiveIdentity);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> effectiveIdentity();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder effectiveIdentity(Optional<String> effectiveIdentity);
 
     /** Clears the value of effectiveIdentity field. */
@@ -246,6 +277,9 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
      */
     @JsonProperty("identityType")
     public abstract Builder identityType(IdentityType identityType);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<IdentityType> identityType();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder identityType(Optional<IdentityType> identityType);
@@ -308,6 +342,9 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineSpecPackageSpec> packageSpec();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder packageSpec(Optional<ReasoningEngineSpecPackageSpec> packageSpec);
 
     /** Clears the value of packageSpec field. */
@@ -327,6 +364,9 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
      */
     @JsonProperty("serviceAccount")
     public abstract Builder serviceAccount(String serviceAccount);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> serviceAccount();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder serviceAccount(Optional<String> serviceAccount);
@@ -357,6 +397,9 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineSpecSourceCodeSpec> sourceCodeSpec();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder sourceCodeSpec(Optional<ReasoningEngineSpecSourceCodeSpec> sourceCodeSpec);
 
     /** Clears the value of sourceCodeSpec field. */
@@ -383,6 +426,9 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
     public Builder containerSpec(ReasoningEngineSpecContainerSpec.Builder containerSpecBuilder) {
       return containerSpec(containerSpecBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineSpecContainerSpec> containerSpec();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder containerSpec(Optional<ReasoningEngineSpecContainerSpec> containerSpec);

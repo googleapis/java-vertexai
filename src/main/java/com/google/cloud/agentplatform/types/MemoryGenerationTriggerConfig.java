@@ -80,6 +80,9 @@ public abstract class MemoryGenerationTriggerConfig extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<MemoryGenerationTriggerConfigGenerationTriggerRule> generationRule();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder generationRule(
         Optional<MemoryGenerationTriggerConfigGenerationTriggerRule> generationRule);
 

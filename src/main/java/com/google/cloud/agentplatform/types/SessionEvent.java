@@ -103,6 +103,9 @@ public abstract class SessionEvent extends JsonSerializable {
     public abstract Builder content(Content content);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Content> content();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder content(Optional<Content> content);
 
     /** Clears the value of content field. */
@@ -131,6 +134,9 @@ public abstract class SessionEvent extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<EventActions> actions();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder actions(Optional<EventActions> actions);
 
     /** Clears the value of actions field. */
@@ -147,6 +153,9 @@ public abstract class SessionEvent extends JsonSerializable {
      */
     @JsonProperty("author")
     public abstract Builder author(String author);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> author();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder author(Optional<String> author);
@@ -167,6 +176,9 @@ public abstract class SessionEvent extends JsonSerializable {
     public abstract Builder errorCode(String errorCode);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> errorCode();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder errorCode(Optional<String> errorCode);
 
     /** Clears the value of errorCode field. */
@@ -183,6 +195,9 @@ public abstract class SessionEvent extends JsonSerializable {
      */
     @JsonProperty("errorMessage")
     public abstract Builder errorMessage(String errorMessage);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> errorMessage();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder errorMessage(Optional<String> errorMessage);
@@ -213,6 +228,9 @@ public abstract class SessionEvent extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<EventMetadata> eventMetadata();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder eventMetadata(Optional<EventMetadata> eventMetadata);
 
     /** Clears the value of eventMetadata field. */
@@ -230,6 +248,9 @@ public abstract class SessionEvent extends JsonSerializable {
      */
     @JsonProperty("invocationId")
     public abstract Builder invocationId(String invocationId);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> invocationId();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder invocationId(Optional<String> invocationId);
@@ -251,6 +272,9 @@ public abstract class SessionEvent extends JsonSerializable {
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -269,6 +293,9 @@ public abstract class SessionEvent extends JsonSerializable {
     public abstract Builder timestamp(Instant timestamp);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Instant> timestamp();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder timestamp(Optional<Instant> timestamp);
 
     /** Clears the value of timestamp field. */
@@ -284,7 +311,18 @@ public abstract class SessionEvent extends JsonSerializable {
      * <p>rawEvent: Optional. Weakly typed raw event data in proto struct format.
      */
     @JsonProperty("rawEvent")
-    public abstract Builder rawEvent(Map<String, Object> rawEvent);
+    @CanIgnoreReturnValue
+    public Builder rawEvent(Map<String, Object> rawEvent) {
+      if (rawEvent().isPresent()) {
+        Map<String, Object> map = new java.util.HashMap<>(rawEvent().get());
+        map.putAll(rawEvent);
+        return rawEvent(java.util.Optional.of(map));
+      }
+      return rawEvent(java.util.Optional.of(rawEvent));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, Object>> rawEvent();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder rawEvent(Optional<Map<String, Object>> rawEvent);

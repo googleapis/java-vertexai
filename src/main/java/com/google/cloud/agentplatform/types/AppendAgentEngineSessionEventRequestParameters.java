@@ -83,6 +83,9 @@ public abstract class AppendAgentEngineSessionEventRequestParameters extends Jso
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -99,6 +102,9 @@ public abstract class AppendAgentEngineSessionEventRequestParameters extends Jso
      */
     @JsonProperty("author")
     public abstract Builder author(String author);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> author();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder author(Optional<String> author);
@@ -119,6 +125,9 @@ public abstract class AppendAgentEngineSessionEventRequestParameters extends Jso
     public abstract Builder invocationId(String invocationId);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> invocationId();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder invocationId(Optional<String> invocationId);
 
     /** Clears the value of invocationId field. */
@@ -135,6 +144,9 @@ public abstract class AppendAgentEngineSessionEventRequestParameters extends Jso
      */
     @JsonProperty("timestamp")
     public abstract Builder timestamp(Instant timestamp);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Instant> timestamp();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder timestamp(Optional<Instant> timestamp);
@@ -163,6 +175,9 @@ public abstract class AppendAgentEngineSessionEventRequestParameters extends Jso
     public Builder config(AppendAgentEngineSessionEventConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<AppendAgentEngineSessionEventConfig> config();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<AppendAgentEngineSessionEventConfig> config);

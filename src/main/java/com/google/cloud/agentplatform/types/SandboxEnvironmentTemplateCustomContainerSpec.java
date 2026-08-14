@@ -70,6 +70,9 @@ public abstract class SandboxEnvironmentTemplateCustomContainerSpec extends Json
     public abstract Builder imageUri(String imageUri);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> imageUri();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder imageUri(Optional<String> imageUri);
 
     /** Clears the value of imageUri field. */

@@ -70,6 +70,9 @@ public abstract class UpdateAgentEngineSessionRequestParameters extends JsonSeri
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -96,6 +99,9 @@ public abstract class UpdateAgentEngineSessionRequestParameters extends JsonSeri
     public Builder config(UpdateAgentEngineSessionConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<UpdateAgentEngineSessionConfig> config();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<UpdateAgentEngineSessionConfig> config);

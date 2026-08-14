@@ -134,6 +134,9 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
     public abstract Builder agentServerMode(AgentServerMode agentServerMode);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<AgentServerMode> agentServerMode();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder agentServerMode(Optional<AgentServerMode> agentServerMode);
 
     /** Clears the value of agentServerMode field. */
@@ -173,6 +176,9 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
     public abstract Builder containerConcurrency(Integer containerConcurrency);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Integer> containerConcurrency();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder containerConcurrency(Optional<Integer> containerConcurrency);
 
     /** Clears the value of containerConcurrency field. */
@@ -189,7 +195,15 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
      * environment variables can be updated through the UpdateReasoningEngine API.
      */
     @JsonProperty("env")
-    public abstract Builder env(List<EnvVar> env);
+    @CanIgnoreReturnValue
+    public Builder env(List<EnvVar> env) {
+      if (env().isPresent()) {
+        List<EnvVar> list = new java.util.ArrayList<>(env().get());
+        list.addAll(env);
+        return env(java.util.Optional.of(list));
+      }
+      return env(java.util.Optional.of(env));
+    }
 
     /**
      * Setter for env.
@@ -217,6 +231,9 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<EnvVar>> env();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder env(Optional<List<EnvVar>> env);
 
     /** Clears the value of env field. */
@@ -237,6 +254,9 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
     public abstract Builder maxInstances(Integer maxInstances);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Integer> maxInstances();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder maxInstances(Optional<Integer> maxInstances);
 
     /** Clears the value of maxInstances field. */
@@ -254,6 +274,9 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
      */
     @JsonProperty("minInstances")
     public abstract Builder minInstances(Integer minInstances);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Integer> minInstances();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder minInstances(Optional<Integer> minInstances);
@@ -284,6 +307,9 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<PscInterfaceConfig> pscInterfaceConfig();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder pscInterfaceConfig(Optional<PscInterfaceConfig> pscInterfaceConfig);
 
     /** Clears the value of pscInterfaceConfig field. */
@@ -304,7 +330,18 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
      * https://cloud.google.com/run/docs/configuring/memory-limits
      */
     @JsonProperty("resourceLimits")
-    public abstract Builder resourceLimits(Map<String, String> resourceLimits);
+    @CanIgnoreReturnValue
+    public Builder resourceLimits(Map<String, String> resourceLimits) {
+      if (resourceLimits().isPresent()) {
+        Map<String, String> map = new java.util.HashMap<>(resourceLimits().get());
+        map.putAll(resourceLimits);
+        return resourceLimits(java.util.Optional.of(map));
+      }
+      return resourceLimits(java.util.Optional.of(resourceLimits));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, String>> resourceLimits();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder resourceLimits(Optional<Map<String, String>> resourceLimits);
@@ -324,7 +361,15 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
      * (roles/secretmanager.secretAccessor) to AI Platform Reasoning Engine Service Agent.
      */
     @JsonProperty("secretEnv")
-    public abstract Builder secretEnv(List<SecretEnvVar> secretEnv);
+    @CanIgnoreReturnValue
+    public Builder secretEnv(List<SecretEnvVar> secretEnv) {
+      if (secretEnv().isPresent()) {
+        List<SecretEnvVar> list = new java.util.ArrayList<>(secretEnv().get());
+        list.addAll(secretEnv);
+        return secretEnv(java.util.Optional.of(list));
+      }
+      return secretEnv(java.util.Optional.of(secretEnv));
+    }
 
     /**
      * Setter for secretEnv.
@@ -352,6 +397,9 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
               .map(SecretEnvVar.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<SecretEnvVar>> secretEnv();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder secretEnv(Optional<List<SecretEnvVar>> secretEnv);
@@ -386,6 +434,9 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineSpecDeploymentSpecAgentGatewayConfig> agentGatewayConfig();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder agentGatewayConfig(
         Optional<ReasoningEngineSpecDeploymentSpecAgentGatewayConfig> agentGatewayConfig);
 
@@ -417,6 +468,9 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
     public Builder keepAliveProbe(KeepAliveProbe.Builder keepAliveProbeBuilder) {
       return keepAliveProbe(keepAliveProbeBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<KeepAliveProbe> keepAliveProbe();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder keepAliveProbe(Optional<KeepAliveProbe> keepAliveProbe);

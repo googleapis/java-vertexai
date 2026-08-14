@@ -74,6 +74,9 @@ public abstract class DeleteAgentEngineRequestParameters extends JsonSerializabl
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -90,6 +93,9 @@ public abstract class DeleteAgentEngineRequestParameters extends JsonSerializabl
      */
     @JsonProperty("force")
     public abstract Builder force(boolean force);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Boolean> force();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder force(Optional<Boolean> force);
@@ -118,6 +124,9 @@ public abstract class DeleteAgentEngineRequestParameters extends JsonSerializabl
     public Builder config(DeleteAgentEngineConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<DeleteAgentEngineConfig> config();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<DeleteAgentEngineConfig> config);

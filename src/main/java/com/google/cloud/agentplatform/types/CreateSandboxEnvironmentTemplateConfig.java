@@ -83,6 +83,9 @@ public abstract class CreateSandboxEnvironmentTemplateConfig extends JsonSeriali
     public abstract Builder httpOptions(HttpOptions httpOptions);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<HttpOptions> httpOptions();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder httpOptions(Optional<HttpOptions> httpOptions);
 
     /** Clears the value of httpOptions field. */
@@ -112,6 +115,10 @@ public abstract class CreateSandboxEnvironmentTemplateConfig extends JsonSeriali
             customContainerEnvironmentBuilder) {
       return customContainerEnvironment(customContainerEnvironmentBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<SandboxEnvironmentTemplateCustomContainerEnvironment>
+        customContainerEnvironment();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder customContainerEnvironment(
@@ -146,6 +153,10 @@ public abstract class CreateSandboxEnvironmentTemplateConfig extends JsonSeriali
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<SandboxEnvironmentTemplateDefaultContainerEnvironment>
+        defaultContainerEnvironment();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder defaultContainerEnvironment(
         Optional<SandboxEnvironmentTemplateDefaultContainerEnvironment>
             defaultContainerEnvironment);
@@ -178,6 +189,9 @@ public abstract class CreateSandboxEnvironmentTemplateConfig extends JsonSeriali
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<SandboxEnvironmentTemplateEgressControlConfig> egressControlConfig();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder egressControlConfig(
         Optional<SandboxEnvironmentTemplateEgressControlConfig> egressControlConfig);
 
@@ -195,6 +209,9 @@ public abstract class CreateSandboxEnvironmentTemplateConfig extends JsonSeriali
      */
     @JsonProperty("waitForCompletion")
     public abstract Builder waitForCompletion(boolean waitForCompletion);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Boolean> waitForCompletion();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder waitForCompletion(Optional<Boolean> waitForCompletion);

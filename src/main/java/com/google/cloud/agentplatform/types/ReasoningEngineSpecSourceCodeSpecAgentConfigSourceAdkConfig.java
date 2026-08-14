@@ -64,7 +64,18 @@ public abstract class ReasoningEngineSpecSourceCodeSpecAgentConfigSourceAdkConfi
      * <p>jsonConfig: Required. The value of the ADK config in JSON format.
      */
     @JsonProperty("jsonConfig")
-    public abstract Builder jsonConfig(Map<String, Object> jsonConfig);
+    @CanIgnoreReturnValue
+    public Builder jsonConfig(Map<String, Object> jsonConfig) {
+      if (jsonConfig().isPresent()) {
+        Map<String, Object> map = new java.util.HashMap<>(jsonConfig().get());
+        map.putAll(jsonConfig);
+        return jsonConfig(java.util.Optional.of(map));
+      }
+      return jsonConfig(java.util.Optional.of(jsonConfig));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, Object>> jsonConfig();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder jsonConfig(Optional<Map<String, Object>> jsonConfig);

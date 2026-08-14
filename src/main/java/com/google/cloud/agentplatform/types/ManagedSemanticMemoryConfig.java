@@ -105,6 +105,9 @@ public abstract class ManagedSemanticMemoryConfig extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ManagedSemanticMemoryConfigGenerationConfig> generationConfig();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder generationConfig(
         Optional<ManagedSemanticMemoryConfigGenerationConfig> generationConfig);
 
@@ -136,6 +139,9 @@ public abstract class ManagedSemanticMemoryConfig extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ManagedSemanticMemoryConfigSimilaritySearchConfig> similaritySearchConfig();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder similaritySearchConfig(
         Optional<ManagedSemanticMemoryConfigSimilaritySearchConfig> similaritySearchConfig);
 
@@ -153,8 +159,17 @@ public abstract class ManagedSemanticMemoryConfig extends JsonSerializable {
      * particular scope for unstructured memories.
      */
     @JsonProperty("unstructuredMemoryConfigs")
-    public abstract Builder unstructuredMemoryConfigs(
-        List<MemoryBankCustomizationConfig> unstructuredMemoryConfigs);
+    @CanIgnoreReturnValue
+    public Builder unstructuredMemoryConfigs(
+        List<MemoryBankCustomizationConfig> unstructuredMemoryConfigs) {
+      if (unstructuredMemoryConfigs().isPresent()) {
+        List<MemoryBankCustomizationConfig> list =
+            new java.util.ArrayList<>(unstructuredMemoryConfigs().get());
+        list.addAll(unstructuredMemoryConfigs);
+        return unstructuredMemoryConfigs(java.util.Optional.of(list));
+      }
+      return unstructuredMemoryConfigs(java.util.Optional.of(unstructuredMemoryConfigs));
+    }
 
     /**
      * Setter for unstructuredMemoryConfigs.
@@ -184,6 +199,9 @@ public abstract class ManagedSemanticMemoryConfig extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<MemoryBankCustomizationConfig>> unstructuredMemoryConfigs();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder unstructuredMemoryConfigs(
         Optional<List<MemoryBankCustomizationConfig>> unstructuredMemoryConfigs);
 
@@ -201,8 +219,16 @@ public abstract class ManagedSemanticMemoryConfig extends JsonSerializable {
      * scope.
      */
     @JsonProperty("structuredMemoryConfigs")
-    public abstract Builder structuredMemoryConfigs(
-        List<StructuredMemoryConfig> structuredMemoryConfigs);
+    @CanIgnoreReturnValue
+    public Builder structuredMemoryConfigs(List<StructuredMemoryConfig> structuredMemoryConfigs) {
+      if (structuredMemoryConfigs().isPresent()) {
+        List<StructuredMemoryConfig> list =
+            new java.util.ArrayList<>(structuredMemoryConfigs().get());
+        list.addAll(structuredMemoryConfigs);
+        return structuredMemoryConfigs(java.util.Optional.of(list));
+      }
+      return structuredMemoryConfigs(java.util.Optional.of(structuredMemoryConfigs));
+    }
 
     /**
      * Setter for structuredMemoryConfigs.
@@ -229,6 +255,9 @@ public abstract class ManagedSemanticMemoryConfig extends JsonSerializable {
               .map(StructuredMemoryConfig.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<StructuredMemoryConfig>> structuredMemoryConfigs();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder structuredMemoryConfigs(
@@ -264,6 +293,9 @@ public abstract class ManagedSemanticMemoryConfig extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ManagedSemanticMemoryConfigTtlConfig> ttlConfig();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder ttlConfig(Optional<ManagedSemanticMemoryConfigTtlConfig> ttlConfig);
 
     /** Clears the value of ttlConfig field. */
@@ -281,6 +313,9 @@ public abstract class ManagedSemanticMemoryConfig extends JsonSerializable {
      */
     @JsonProperty("disableMemoryRevisions")
     public abstract Builder disableMemoryRevisions(boolean disableMemoryRevisions);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Boolean> disableMemoryRevisions();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder disableMemoryRevisions(Optional<Boolean> disableMemoryRevisions);

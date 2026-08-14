@@ -79,6 +79,9 @@ public abstract class ReasoningEngineSpecPackageSpec extends JsonSerializable {
     public abstract Builder dependencyFilesGcsUri(String dependencyFilesGcsUri);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> dependencyFilesGcsUri();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder dependencyFilesGcsUri(Optional<String> dependencyFilesGcsUri);
 
     /** Clears the value of dependencyFilesGcsUri field. */
@@ -95,6 +98,9 @@ public abstract class ReasoningEngineSpecPackageSpec extends JsonSerializable {
      */
     @JsonProperty("pickleObjectGcsUri")
     public abstract Builder pickleObjectGcsUri(String pickleObjectGcsUri);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> pickleObjectGcsUri();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder pickleObjectGcsUri(Optional<String> pickleObjectGcsUri);
@@ -116,6 +122,9 @@ public abstract class ReasoningEngineSpecPackageSpec extends JsonSerializable {
     public abstract Builder pythonVersion(String pythonVersion);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> pythonVersion();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder pythonVersion(Optional<String> pythonVersion);
 
     /** Clears the value of pythonVersion field. */
@@ -132,6 +141,9 @@ public abstract class ReasoningEngineSpecPackageSpec extends JsonSerializable {
      */
     @JsonProperty("requirementsGcsUri")
     public abstract Builder requirementsGcsUri(String requirementsGcsUri);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> requirementsGcsUri();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder requirementsGcsUri(Optional<String> requirementsGcsUri);

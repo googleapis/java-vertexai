@@ -68,7 +68,15 @@ public abstract class SchemaPromptSpecInteractionData extends JsonSerializable {
      * interaction ID.
      */
     @JsonProperty("interactionIds")
-    public abstract Builder interactionIds(List<String> interactionIds);
+    @CanIgnoreReturnValue
+    public Builder interactionIds(List<String> interactionIds) {
+      if (interactionIds().isPresent()) {
+        List<String> list = new java.util.ArrayList<>(interactionIds().get());
+        list.addAll(interactionIds);
+        return interactionIds(java.util.Optional.of(list));
+      }
+      return interactionIds(java.util.Optional.of(interactionIds));
+    }
 
     /**
      * Setter for interactionIds.
@@ -81,6 +89,9 @@ public abstract class SchemaPromptSpecInteractionData extends JsonSerializable {
     public Builder interactionIds(String... interactionIds) {
       return interactionIds(Arrays.asList(interactionIds));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<String>> interactionIds();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder interactionIds(Optional<List<String>> interactionIds);

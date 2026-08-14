@@ -69,6 +69,9 @@ public abstract class DeleteMemoryRequestParameters extends JsonSerializable {
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -95,6 +98,9 @@ public abstract class DeleteMemoryRequestParameters extends JsonSerializable {
     public Builder config(DeleteMemoryConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<DeleteMemoryConfig> config();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<DeleteMemoryConfig> config);

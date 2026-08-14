@@ -63,6 +63,9 @@ public abstract class QueryReasoningEngineResponse extends JsonSerializable {
     public abstract Builder output(Object output);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Object> output();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder output(Optional<Object> output);
 
     /** Clears the value of output field. */

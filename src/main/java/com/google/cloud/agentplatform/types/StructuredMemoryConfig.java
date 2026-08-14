@@ -71,7 +71,15 @@ public abstract class StructuredMemoryConfig extends JsonSerializable {
      * <p>schemaConfigs: Optional. Represents configuration of the structured memories' schemas.
      */
     @JsonProperty("schemaConfigs")
-    public abstract Builder schemaConfigs(List<StructuredMemorySchemaConfig> schemaConfigs);
+    @CanIgnoreReturnValue
+    public Builder schemaConfigs(List<StructuredMemorySchemaConfig> schemaConfigs) {
+      if (schemaConfigs().isPresent()) {
+        List<StructuredMemorySchemaConfig> list = new java.util.ArrayList<>(schemaConfigs().get());
+        list.addAll(schemaConfigs);
+        return schemaConfigs(java.util.Optional.of(list));
+      }
+      return schemaConfigs(java.util.Optional.of(schemaConfigs));
+    }
 
     /**
      * Setter for schemaConfigs.
@@ -97,6 +105,9 @@ public abstract class StructuredMemoryConfig extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<StructuredMemorySchemaConfig>> schemaConfigs();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder schemaConfigs(Optional<List<StructuredMemorySchemaConfig>> schemaConfigs);
 
     /** Clears the value of schemaConfigs field. */
@@ -115,7 +126,15 @@ public abstract class StructuredMemoryConfig extends JsonSerializable {
      * have a more specific config. Only one default config is allowed per Memory Bank.
      */
     @JsonProperty("scopeKeys")
-    public abstract Builder scopeKeys(List<String> scopeKeys);
+    @CanIgnoreReturnValue
+    public Builder scopeKeys(List<String> scopeKeys) {
+      if (scopeKeys().isPresent()) {
+        List<String> list = new java.util.ArrayList<>(scopeKeys().get());
+        list.addAll(scopeKeys);
+        return scopeKeys(java.util.Optional.of(list));
+      }
+      return scopeKeys(java.util.Optional.of(scopeKeys));
+    }
 
     /**
      * Setter for scopeKeys.
@@ -129,6 +148,9 @@ public abstract class StructuredMemoryConfig extends JsonSerializable {
     public Builder scopeKeys(String... scopeKeys) {
       return scopeKeys(Arrays.asList(scopeKeys));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<String>> scopeKeys();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder scopeKeys(Optional<List<String>> scopeKeys);

@@ -73,6 +73,9 @@ public abstract class IntermediateExtractedMemory extends JsonSerializable {
     public abstract Builder fact(String fact);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> fact();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder fact(Optional<String> fact);
 
     /** Clears the value of fact field. */
@@ -88,7 +91,18 @@ public abstract class IntermediateExtractedMemory extends JsonSerializable {
      * <p>structuredData: Output only. Represents the structured value of the extracted memory.
      */
     @JsonProperty("structuredData")
-    public abstract Builder structuredData(Map<String, Object> structuredData);
+    @CanIgnoreReturnValue
+    public Builder structuredData(Map<String, Object> structuredData) {
+      if (structuredData().isPresent()) {
+        Map<String, Object> map = new java.util.HashMap<>(structuredData().get());
+        map.putAll(structuredData);
+        return structuredData(java.util.Optional.of(map));
+      }
+      return structuredData(java.util.Optional.of(structuredData));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, Object>> structuredData();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder structuredData(Optional<Map<String, Object>> structuredData);
@@ -108,6 +122,9 @@ public abstract class IntermediateExtractedMemory extends JsonSerializable {
      */
     @JsonProperty("context")
     public abstract Builder context(String context);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> context();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder context(Optional<String> context);

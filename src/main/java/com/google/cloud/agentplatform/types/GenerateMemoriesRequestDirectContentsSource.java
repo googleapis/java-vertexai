@@ -65,7 +65,16 @@ public abstract class GenerateMemoriesRequestDirectContentsSource extends JsonSe
      * <p>events: Required. The source content (i.e. chat history) to generate memories from.
      */
     @JsonProperty("events")
-    public abstract Builder events(List<GenerateMemoriesRequestDirectContentsSourceEvent> events);
+    @CanIgnoreReturnValue
+    public Builder events(List<GenerateMemoriesRequestDirectContentsSourceEvent> events) {
+      if (events().isPresent()) {
+        List<GenerateMemoriesRequestDirectContentsSourceEvent> list =
+            new java.util.ArrayList<>(events().get());
+        list.addAll(events);
+        return events(java.util.Optional.of(list));
+      }
+      return events(java.util.Optional.of(events));
+    }
 
     /**
      * Setter for events.
@@ -90,6 +99,9 @@ public abstract class GenerateMemoriesRequestDirectContentsSource extends JsonSe
               .map(GenerateMemoriesRequestDirectContentsSourceEvent.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<GenerateMemoriesRequestDirectContentsSourceEvent>> events();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder events(

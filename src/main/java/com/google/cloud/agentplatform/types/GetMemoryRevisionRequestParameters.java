@@ -70,6 +70,9 @@ public abstract class GetMemoryRevisionRequestParameters extends JsonSerializabl
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -96,6 +99,9 @@ public abstract class GetMemoryRevisionRequestParameters extends JsonSerializabl
     public Builder config(GetMemoryRevisionConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<GetMemoryRevisionConfig> config();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<GetMemoryRevisionConfig> config);

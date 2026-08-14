@@ -70,6 +70,9 @@ public abstract class UpdateAgentEngineRequestParameters extends JsonSerializabl
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -96,6 +99,9 @@ public abstract class UpdateAgentEngineRequestParameters extends JsonSerializabl
     public Builder config(UpdateAgentEngineConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<UpdateAgentEngineConfig> config();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<UpdateAgentEngineConfig> config);

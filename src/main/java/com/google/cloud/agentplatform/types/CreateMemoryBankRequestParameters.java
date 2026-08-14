@@ -82,6 +82,9 @@ public abstract class CreateMemoryBankRequestParameters extends JsonSerializable
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineContextSpecMemoryBankConfig> memoryBankConfig();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder memoryBankConfig(
         Optional<ReasoningEngineContextSpecMemoryBankConfig> memoryBankConfig);
 
@@ -109,6 +112,9 @@ public abstract class CreateMemoryBankRequestParameters extends JsonSerializable
     public Builder config(CreateMemoryBankConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<CreateMemoryBankConfig> config();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<CreateMemoryBankConfig> config);

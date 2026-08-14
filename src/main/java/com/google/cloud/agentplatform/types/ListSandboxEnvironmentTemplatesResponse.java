@@ -77,6 +77,9 @@ public abstract class ListSandboxEnvironmentTemplatesResponse extends JsonSerial
     public abstract Builder sdkHttpResponse(HttpResponse sdkHttpResponse);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<HttpResponse> sdkHttpResponse();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder sdkHttpResponse(Optional<HttpResponse> sdkHttpResponse);
 
     /** Clears the value of sdkHttpResponse field. */
@@ -95,6 +98,9 @@ public abstract class ListSandboxEnvironmentTemplatesResponse extends JsonSerial
     public abstract Builder nextPageToken(String nextPageToken);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> nextPageToken();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder nextPageToken(Optional<String> nextPageToken);
 
     /** Clears the value of nextPageToken field. */
@@ -110,8 +116,17 @@ public abstract class ListSandboxEnvironmentTemplatesResponse extends JsonSerial
      * <p>sandboxEnvironmentTemplates: List of sandbox templates.
      */
     @JsonProperty("sandboxEnvironmentTemplates")
-    public abstract Builder sandboxEnvironmentTemplates(
-        List<SandboxEnvironmentTemplate> sandboxEnvironmentTemplates);
+    @CanIgnoreReturnValue
+    public Builder sandboxEnvironmentTemplates(
+        List<SandboxEnvironmentTemplate> sandboxEnvironmentTemplates) {
+      if (sandboxEnvironmentTemplates().isPresent()) {
+        List<SandboxEnvironmentTemplate> list =
+            new java.util.ArrayList<>(sandboxEnvironmentTemplates().get());
+        list.addAll(sandboxEnvironmentTemplates);
+        return sandboxEnvironmentTemplates(java.util.Optional.of(list));
+      }
+      return sandboxEnvironmentTemplates(java.util.Optional.of(sandboxEnvironmentTemplates));
+    }
 
     /**
      * Setter for sandboxEnvironmentTemplates.
@@ -137,6 +152,9 @@ public abstract class ListSandboxEnvironmentTemplatesResponse extends JsonSerial
               .map(SandboxEnvironmentTemplate.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<SandboxEnvironmentTemplate>> sandboxEnvironmentTemplates();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder sandboxEnvironmentTemplates(

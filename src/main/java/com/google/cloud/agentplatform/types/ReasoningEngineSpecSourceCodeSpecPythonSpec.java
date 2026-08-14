@@ -94,6 +94,9 @@ public abstract class ReasoningEngineSpecSourceCodeSpecPythonSpec extends JsonSe
     public abstract Builder entrypointModule(String entrypointModule);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> entrypointModule();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder entrypointModule(Optional<String> entrypointModule);
 
     /** Clears the value of entrypointModule field. */
@@ -112,6 +115,9 @@ public abstract class ReasoningEngineSpecSourceCodeSpecPythonSpec extends JsonSe
      */
     @JsonProperty("entrypointObject")
     public abstract Builder entrypointObject(String entrypointObject);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> entrypointObject();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder entrypointObject(Optional<String> entrypointObject);
@@ -133,6 +139,9 @@ public abstract class ReasoningEngineSpecSourceCodeSpecPythonSpec extends JsonSe
     public abstract Builder requirementsFile(String requirementsFile);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> requirementsFile();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder requirementsFile(Optional<String> requirementsFile);
 
     /** Clears the value of requirementsFile field. */
@@ -150,6 +159,9 @@ public abstract class ReasoningEngineSpecSourceCodeSpecPythonSpec extends JsonSe
      */
     @JsonProperty("version")
     public abstract Builder version(String version);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> version();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder version(Optional<String> version);

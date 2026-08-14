@@ -77,6 +77,9 @@ public abstract class ListSandboxEnvironmentTemplatesConfig extends JsonSerializ
     public abstract Builder httpOptions(HttpOptions httpOptions);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<HttpOptions> httpOptions();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder httpOptions(Optional<HttpOptions> httpOptions);
 
     /** Clears the value of httpOptions field. */
@@ -93,6 +96,9 @@ public abstract class ListSandboxEnvironmentTemplatesConfig extends JsonSerializ
      */
     @JsonProperty("pageSize")
     public abstract Builder pageSize(Integer pageSize);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Integer> pageSize();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder pageSize(Optional<Integer> pageSize);
@@ -113,6 +119,9 @@ public abstract class ListSandboxEnvironmentTemplatesConfig extends JsonSerializ
     public abstract Builder pageToken(String pageToken);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> pageToken();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder pageToken(Optional<String> pageToken);
 
     /** Clears the value of pageToken field. */
@@ -129,6 +138,9 @@ public abstract class ListSandboxEnvironmentTemplatesConfig extends JsonSerializ
      */
     @JsonProperty("filter")
     public abstract Builder filter(String filter);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> filter();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder filter(Optional<String> filter);

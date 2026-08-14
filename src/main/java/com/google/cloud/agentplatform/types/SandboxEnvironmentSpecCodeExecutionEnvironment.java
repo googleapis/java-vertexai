@@ -68,6 +68,9 @@ public abstract class SandboxEnvironmentSpecCodeExecutionEnvironment extends Jso
     public abstract Builder codeLanguage(Language codeLanguage);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Language> codeLanguage();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder codeLanguage(Optional<Language> codeLanguage);
 
     /** Clears the value of codeLanguage field. */
@@ -104,6 +107,9 @@ public abstract class SandboxEnvironmentSpecCodeExecutionEnvironment extends Jso
      */
     @JsonProperty("machineConfig")
     public abstract Builder machineConfig(MachineConfig machineConfig);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<MachineConfig> machineConfig();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder machineConfig(Optional<MachineConfig> machineConfig);

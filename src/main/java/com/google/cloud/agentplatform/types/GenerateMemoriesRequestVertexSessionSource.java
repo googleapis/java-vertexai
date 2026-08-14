@@ -80,6 +80,9 @@ public abstract class GenerateMemoriesRequestVertexSessionSource extends JsonSer
     public abstract Builder endTime(Instant endTime);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Instant> endTime();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder endTime(Optional<Instant> endTime);
 
     /** Clears the value of endTime field. */
@@ -99,6 +102,9 @@ public abstract class GenerateMemoriesRequestVertexSessionSource extends JsonSer
     public abstract Builder session(String session);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> session();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder session(Optional<String> session);
 
     /** Clears the value of session field. */
@@ -116,6 +122,9 @@ public abstract class GenerateMemoriesRequestVertexSessionSource extends JsonSer
      */
     @JsonProperty("startTime")
     public abstract Builder startTime(Instant startTime);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Instant> startTime();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder startTime(Optional<Instant> startTime);

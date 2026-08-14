@@ -78,6 +78,9 @@ public abstract class CheckQueryJobResult extends JsonSerializable {
     public abstract Builder httpOptions(HttpOptions httpOptions);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<HttpOptions> httpOptions();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder httpOptions(Optional<HttpOptions> httpOptions);
 
     /** Clears the value of httpOptions field. */
@@ -94,6 +97,9 @@ public abstract class CheckQueryJobResult extends JsonSerializable {
      */
     @JsonProperty("operationName")
     public abstract Builder operationName(String operationName);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> operationName();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder operationName(Optional<String> operationName);
@@ -114,6 +120,9 @@ public abstract class CheckQueryJobResult extends JsonSerializable {
     public abstract Builder outputGcsUri(String outputGcsUri);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> outputGcsUri();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder outputGcsUri(Optional<String> outputGcsUri);
 
     /** Clears the value of outputGcsUri field. */
@@ -132,6 +141,9 @@ public abstract class CheckQueryJobResult extends JsonSerializable {
     public abstract Builder status(String status);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> status();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder status(Optional<String> status);
 
     /** Clears the value of status field. */
@@ -148,6 +160,9 @@ public abstract class CheckQueryJobResult extends JsonSerializable {
      */
     @JsonProperty("result")
     public abstract Builder result(String result);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> result();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder result(Optional<String> result);

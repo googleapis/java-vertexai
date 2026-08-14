@@ -74,6 +74,9 @@ public abstract class CreateAgentEngineSessionRequestParameters extends JsonSeri
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -90,6 +93,9 @@ public abstract class CreateAgentEngineSessionRequestParameters extends JsonSeri
      */
     @JsonProperty("userId")
     public abstract Builder userId(String userId);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> userId();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder userId(Optional<String> userId);
@@ -118,6 +124,9 @@ public abstract class CreateAgentEngineSessionRequestParameters extends JsonSeri
     public Builder config(CreateAgentEngineSessionConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<CreateAgentEngineSessionConfig> config();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<CreateAgentEngineSessionConfig> config);

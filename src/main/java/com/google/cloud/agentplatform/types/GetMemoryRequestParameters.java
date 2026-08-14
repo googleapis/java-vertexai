@@ -67,6 +67,9 @@ public abstract class GetMemoryRequestParameters extends JsonSerializable {
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -93,6 +96,9 @@ public abstract class GetMemoryRequestParameters extends JsonSerializable {
     public Builder config(GetMemoryConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<GetMemoryConfig> config();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<GetMemoryConfig> config);

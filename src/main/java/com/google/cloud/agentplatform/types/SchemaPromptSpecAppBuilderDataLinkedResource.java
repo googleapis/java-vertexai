@@ -80,6 +80,9 @@ public abstract class SchemaPromptSpecAppBuilderDataLinkedResource extends JsonS
     public abstract Builder displayName(String displayName);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> displayName();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder displayName(Optional<String> displayName);
 
     /** Clears the value of displayName field. */
@@ -100,6 +103,9 @@ public abstract class SchemaPromptSpecAppBuilderDataLinkedResource extends JsonS
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -118,6 +124,9 @@ public abstract class SchemaPromptSpecAppBuilderDataLinkedResource extends JsonS
      */
     @JsonProperty("type")
     public abstract Builder type(String type);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> type();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder type(Optional<String> type);

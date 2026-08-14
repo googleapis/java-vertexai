@@ -101,6 +101,9 @@ public abstract class PurgeMemoriesRequestParameters extends JsonSerializable {
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -118,6 +121,9 @@ public abstract class PurgeMemoriesRequestParameters extends JsonSerializable {
      */
     @JsonProperty("filter")
     public abstract Builder filter(String filter);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> filter();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder filter(Optional<String> filter);
@@ -143,7 +149,15 @@ public abstract class PurgeMemoriesRequestParameters extends JsonSerializable {
      * (metadata.label = "travel" AND metadata.author = "agent 321"))`.
      */
     @JsonProperty("filterGroups")
-    public abstract Builder filterGroups(List<MemoryConjunctionFilter> filterGroups);
+    @CanIgnoreReturnValue
+    public Builder filterGroups(List<MemoryConjunctionFilter> filterGroups) {
+      if (filterGroups().isPresent()) {
+        List<MemoryConjunctionFilter> list = new java.util.ArrayList<>(filterGroups().get());
+        list.addAll(filterGroups);
+        return filterGroups(java.util.Optional.of(list));
+      }
+      return filterGroups(java.util.Optional.of(filterGroups));
+    }
 
     /**
      * Setter for filterGroups.
@@ -185,6 +199,9 @@ public abstract class PurgeMemoriesRequestParameters extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<MemoryConjunctionFilter>> filterGroups();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder filterGroups(Optional<List<MemoryConjunctionFilter>> filterGroups);
 
     /** Clears the value of filterGroups field. */
@@ -202,6 +219,9 @@ public abstract class PurgeMemoriesRequestParameters extends JsonSerializable {
      */
     @JsonProperty("force")
     public abstract Builder force(boolean force);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Boolean> force();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder force(Optional<Boolean> force);
@@ -230,6 +250,9 @@ public abstract class PurgeMemoriesRequestParameters extends JsonSerializable {
     public Builder config(PurgeMemoriesConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<PurgeMemoriesConfig> config();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<PurgeMemoriesConfig> config);

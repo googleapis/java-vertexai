@@ -71,6 +71,9 @@ public abstract class SecretRef extends JsonSerializable {
     public abstract Builder secret(String secret);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> secret();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder secret(Optional<String> secret);
 
     /** Clears the value of secret field. */
@@ -88,6 +91,9 @@ public abstract class SecretRef extends JsonSerializable {
      */
     @JsonProperty("version")
     public abstract Builder version(String version);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> version();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder version(Optional<String> version);

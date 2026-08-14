@@ -91,6 +91,9 @@ public abstract class IngestEventsRequestParameters extends JsonSerializable {
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -107,6 +110,9 @@ public abstract class IngestEventsRequestParameters extends JsonSerializable {
      */
     @JsonProperty("streamId")
     public abstract Builder streamId(String streamId);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> streamId();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder streamId(Optional<String> streamId);
@@ -139,6 +145,9 @@ public abstract class IngestEventsRequestParameters extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<IngestionDirectContentsSource> directContentsSource();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder directContentsSource(
         Optional<IngestionDirectContentsSource> directContentsSource);
 
@@ -158,7 +167,18 @@ public abstract class IngestEventsRequestParameters extends JsonSerializable {
      * contain the wildcard character '*'.
      */
     @JsonProperty("scope")
-    public abstract Builder scope(Map<String, String> scope);
+    @CanIgnoreReturnValue
+    public Builder scope(Map<String, String> scope) {
+      if (scope().isPresent()) {
+        Map<String, String> map = new java.util.HashMap<>(scope().get());
+        map.putAll(scope);
+        return scope(java.util.Optional.of(map));
+      }
+      return scope(java.util.Optional.of(scope));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, String>> scope();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder scope(Optional<Map<String, String>> scope);
@@ -191,6 +211,9 @@ public abstract class IngestEventsRequestParameters extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<MemoryGenerationTriggerConfig> generationTriggerConfig();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder generationTriggerConfig(
         Optional<MemoryGenerationTriggerConfig> generationTriggerConfig);
 
@@ -218,6 +241,9 @@ public abstract class IngestEventsRequestParameters extends JsonSerializable {
     public Builder config(IngestEventsConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<IngestEventsConfig> config();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<IngestEventsConfig> config);

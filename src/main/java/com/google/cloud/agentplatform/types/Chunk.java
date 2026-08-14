@@ -72,6 +72,9 @@ public abstract class Chunk extends JsonSerializable {
     public abstract Builder data(byte[] data);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<byte[]> data();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder data(Optional<byte[]> data);
 
     /** Clears the value of data field. */
@@ -100,6 +103,9 @@ public abstract class Chunk extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Metadata> metadata();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder metadata(Optional<Metadata> metadata);
 
     /** Clears the value of metadata field. */
@@ -117,6 +123,9 @@ public abstract class Chunk extends JsonSerializable {
      */
     @JsonProperty("mimeType")
     public abstract Builder mimeType(String mimeType);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> mimeType();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder mimeType(Optional<String> mimeType);

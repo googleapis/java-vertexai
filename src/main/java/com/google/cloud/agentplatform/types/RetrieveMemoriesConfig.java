@@ -99,6 +99,9 @@ public abstract class RetrieveMemoriesConfig extends JsonSerializable {
     public abstract Builder httpOptions(HttpOptions httpOptions);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<HttpOptions> httpOptions();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder httpOptions(Optional<HttpOptions> httpOptions);
 
     /** Clears the value of httpOptions field. */
@@ -118,6 +121,9 @@ public abstract class RetrieveMemoriesConfig extends JsonSerializable {
      */
     @JsonProperty("filter")
     public abstract Builder filter(String filter);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> filter();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder filter(Optional<String> filter);
@@ -143,7 +149,15 @@ public abstract class RetrieveMemoriesConfig extends JsonSerializable {
      * (metadata.label = "travel" AND metadata.author = "agent 321"))`.
      */
     @JsonProperty("filterGroups")
-    public abstract Builder filterGroups(List<MemoryConjunctionFilter> filterGroups);
+    @CanIgnoreReturnValue
+    public Builder filterGroups(List<MemoryConjunctionFilter> filterGroups) {
+      if (filterGroups().isPresent()) {
+        List<MemoryConjunctionFilter> list = new java.util.ArrayList<>(filterGroups().get());
+        list.addAll(filterGroups);
+        return filterGroups(java.util.Optional.of(list));
+      }
+      return filterGroups(java.util.Optional.of(filterGroups));
+    }
 
     /**
      * Setter for filterGroups.
@@ -185,6 +199,9 @@ public abstract class RetrieveMemoriesConfig extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<MemoryConjunctionFilter>> filterGroups();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder filterGroups(Optional<List<MemoryConjunctionFilter>> filterGroups);
 
     /** Clears the value of filterGroups field. */
@@ -203,7 +220,15 @@ public abstract class RetrieveMemoriesConfig extends JsonSerializable {
      * of the specified `MemoryType` values.
      */
     @JsonProperty("memoryTypes")
-    public abstract Builder memoryTypes(List<MemoryType> memoryTypes);
+    @CanIgnoreReturnValue
+    public Builder memoryTypes(List<MemoryType> memoryTypes) {
+      if (memoryTypes().isPresent()) {
+        List<MemoryType> list = new java.util.ArrayList<>(memoryTypes().get());
+        list.addAll(memoryTypes);
+        return memoryTypes(java.util.Optional.of(list));
+      }
+      return memoryTypes(java.util.Optional.of(memoryTypes));
+    }
 
     /**
      * Setter for memoryTypes.
@@ -217,6 +242,9 @@ public abstract class RetrieveMemoriesConfig extends JsonSerializable {
     public Builder memoryTypes(MemoryType... memoryTypes) {
       return memoryTypes(Arrays.asList(memoryTypes));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<MemoryType>> memoryTypes();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder memoryTypes(Optional<List<MemoryType>> memoryTypes);

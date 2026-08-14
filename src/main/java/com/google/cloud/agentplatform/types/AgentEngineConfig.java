@@ -271,6 +271,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     public abstract Builder httpOptions(HttpOptions httpOptions);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<HttpOptions> httpOptions();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder httpOptions(Optional<HttpOptions> httpOptions);
 
     /** Clears the value of httpOptions field. */
@@ -290,6 +293,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
      */
     @JsonProperty("stagingBucket")
     public abstract Builder stagingBucket(String stagingBucket);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> stagingBucket();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder stagingBucket(Optional<String> stagingBucket);
@@ -313,6 +319,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     public abstract Builder requirements(Object requirements);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Object> requirements();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder requirements(Optional<Object> requirements);
 
     /** Clears the value of requirements field. */
@@ -333,6 +342,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     public abstract Builder displayName(String displayName);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> displayName();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder displayName(Optional<String> displayName);
 
     /** Clears the value of displayName field. */
@@ -349,6 +361,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
      */
     @JsonProperty("description")
     public abstract Builder description(String description);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> description();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder description(Optional<String> description);
@@ -370,6 +385,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     public abstract Builder gcsDirName(String gcsDirName);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> gcsDirName();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder gcsDirName(Optional<String> gcsDirName);
 
     /** Clears the value of gcsDirName field. */
@@ -385,7 +403,15 @@ public abstract class AgentEngineConfig extends JsonSerializable {
      * <p>extraPackages: The set of extra user-provided packages (if any).
      */
     @JsonProperty("extraPackages")
-    public abstract Builder extraPackages(List<String> extraPackages);
+    @CanIgnoreReturnValue
+    public Builder extraPackages(List<String> extraPackages) {
+      if (extraPackages().isPresent()) {
+        List<String> list = new java.util.ArrayList<>(extraPackages().get());
+        list.addAll(extraPackages);
+        return extraPackages(java.util.Optional.of(list));
+      }
+      return extraPackages(java.util.Optional.of(extraPackages));
+    }
 
     /**
      * Setter for extraPackages.
@@ -396,6 +422,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     public Builder extraPackages(String... extraPackages) {
       return extraPackages(Arrays.asList(extraPackages));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<String>> extraPackages();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder extraPackages(Optional<List<String>> extraPackages);
@@ -419,6 +448,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     public abstract Builder envVars(Object envVars);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Object> envVars();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder envVars(Optional<Object> envVars);
 
     /** Clears the value of envVars field. */
@@ -439,6 +471,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     public abstract Builder serviceAccount(String serviceAccount);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> serviceAccount();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder serviceAccount(Optional<String> serviceAccount);
 
     /** Clears the value of serviceAccount field. */
@@ -455,6 +490,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
      */
     @JsonProperty("identityType")
     public abstract Builder identityType(IdentityType identityType);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<IdentityType> identityType();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder identityType(Optional<IdentityType> identityType);
@@ -505,6 +543,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineContextSpec> contextSpec();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder contextSpec(Optional<ReasoningEngineContextSpec> contextSpec);
 
     /** Clears the value of contextSpec field. */
@@ -533,6 +574,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<PscInterfaceConfig> pscInterfaceConfig();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder pscInterfaceConfig(Optional<PscInterfaceConfig> pscInterfaceConfig);
 
     /** Clears the value of pscInterfaceConfig field. */
@@ -550,6 +594,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
      */
     @JsonProperty("minInstances")
     public abstract Builder minInstances(Integer minInstances);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Integer> minInstances();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder minInstances(Optional<Integer> minInstances);
@@ -571,6 +618,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     public abstract Builder maxInstances(Integer maxInstances);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Integer> maxInstances();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder maxInstances(Optional<Integer> maxInstances);
 
     /** Clears the value of maxInstances field. */
@@ -588,7 +638,18 @@ public abstract class AgentEngineConfig extends JsonSerializable {
      * 'memory': '1Gi', '2Gi', ..., '32Gi'.
      */
     @JsonProperty("resourceLimits")
-    public abstract Builder resourceLimits(Map<String, String> resourceLimits);
+    @CanIgnoreReturnValue
+    public Builder resourceLimits(Map<String, String> resourceLimits) {
+      if (resourceLimits().isPresent()) {
+        Map<String, String> map = new java.util.HashMap<>(resourceLimits().get());
+        map.putAll(resourceLimits);
+        return resourceLimits(java.util.Optional.of(map));
+      }
+      return resourceLimits(java.util.Optional.of(resourceLimits));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, String>> resourceLimits();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder resourceLimits(Optional<Map<String, String>> resourceLimits);
@@ -608,6 +669,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
      */
     @JsonProperty("containerConcurrency")
     public abstract Builder containerConcurrency(Integer containerConcurrency);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Integer> containerConcurrency();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder containerConcurrency(Optional<Integer> containerConcurrency);
@@ -638,6 +702,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<EncryptionSpec> encryptionSpec();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder encryptionSpec(Optional<EncryptionSpec> encryptionSpec);
 
     /** Clears the value of encryptionSpec field. */
@@ -653,7 +720,18 @@ public abstract class AgentEngineConfig extends JsonSerializable {
      * <p>labels: The labels to be used for the Agent Engine.
      */
     @JsonProperty("labels")
-    public abstract Builder labels(Map<String, String> labels);
+    @CanIgnoreReturnValue
+    public Builder labels(Map<String, String> labels) {
+      if (labels().isPresent()) {
+        Map<String, String> map = new java.util.HashMap<>(labels().get());
+        map.putAll(labels);
+        return labels(java.util.Optional.of(map));
+      }
+      return labels(java.util.Optional.of(labels));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, String>> labels();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder labels(Optional<Map<String, String>> labels);
@@ -672,6 +750,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
      */
     @JsonProperty("agentServerMode")
     public abstract Builder agentServerMode(AgentServerMode agentServerMode);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<AgentServerMode> agentServerMode();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder agentServerMode(Optional<AgentServerMode> agentServerMode);
@@ -712,7 +793,15 @@ public abstract class AgentEngineConfig extends JsonSerializable {
      * method defined on the agent class.
      */
     @JsonProperty("classMethods")
-    public abstract Builder classMethods(List<Map<String, Object>> classMethods);
+    @CanIgnoreReturnValue
+    public Builder classMethods(List<Map<String, Object>> classMethods) {
+      if (classMethods().isPresent()) {
+        List<Map<String, Object>> list = new java.util.ArrayList<>(classMethods().get());
+        list.addAll(classMethods);
+        return classMethods(java.util.Optional.of(list));
+      }
+      return classMethods(java.util.Optional.of(classMethods));
+    }
 
     /**
      * Setter for classMethods.
@@ -726,6 +815,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     public Builder classMethods(Map<String, Object>... classMethods) {
       return classMethods(Arrays.asList(classMethods));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<Map<String, Object>>> classMethods();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder classMethods(Optional<List<Map<String, Object>>> classMethods);
@@ -748,7 +840,15 @@ public abstract class AgentEngineConfig extends JsonSerializable {
      * entrypoint_object (required) - requirements_file (optional) - class_methods (required)
      */
     @JsonProperty("sourcePackages")
-    public abstract Builder sourcePackages(List<String> sourcePackages);
+    @CanIgnoreReturnValue
+    public Builder sourcePackages(List<String> sourcePackages) {
+      if (sourcePackages().isPresent()) {
+        List<String> list = new java.util.ArrayList<>(sourcePackages().get());
+        list.addAll(sourcePackages);
+        return sourcePackages(java.util.Optional.of(list));
+      }
+      return sourcePackages(java.util.Optional.of(sourcePackages));
+    }
 
     /**
      * Setter for sourcePackages.
@@ -764,6 +864,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     public Builder sourcePackages(String... sourcePackages) {
       return sourcePackages(Arrays.asList(sourcePackages));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<String>> sourcePackages();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder sourcePackages(Optional<List<String>> sourcePackages);
@@ -801,6 +904,10 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineSpecSourceCodeSpecDeveloperConnectConfig>
+        developerConnectSource();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder developerConnectSource(
         Optional<ReasoningEngineSpecSourceCodeSpecDeveloperConnectConfig> developerConnectSource);
 
@@ -821,6 +928,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     public abstract Builder entrypointModule(String entrypointModule);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> entrypointModule();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder entrypointModule(Optional<String> entrypointModule);
 
     /** Clears the value of entrypointModule field. */
@@ -838,6 +948,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
      */
     @JsonProperty("entrypointObject")
     public abstract Builder entrypointObject(String entrypointObject);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> entrypointObject();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder entrypointObject(Optional<String> entrypointObject);
@@ -860,6 +973,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     public abstract Builder requirementsFile(String requirementsFile);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> requirementsFile();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder requirementsFile(Optional<String> requirementsFile);
 
     /** Clears the value of requirementsFile field. */
@@ -880,6 +996,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
      */
     @JsonProperty("agentFramework")
     public abstract Builder agentFramework(AgentFramework agentFramework);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<AgentFramework> agentFramework();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder agentFramework(Optional<AgentFramework> agentFramework);
@@ -930,6 +1049,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     public abstract Builder pythonVersion(PythonVersion pythonVersion);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<PythonVersion> pythonVersion();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder pythonVersion(Optional<PythonVersion> pythonVersion);
 
     /** Clears the value of pythonVersion field. */
@@ -972,7 +1094,18 @@ public abstract class AgentEngineConfig extends JsonSerializable {
      * path must be added to `extra_packages`.
      */
     @JsonProperty("buildOptions")
-    public abstract Builder buildOptions(Map<String, List<String>> buildOptions);
+    @CanIgnoreReturnValue
+    public Builder buildOptions(Map<String, List<String>> buildOptions) {
+      if (buildOptions().isPresent()) {
+        Map<String, List<String>> map = new java.util.HashMap<>(buildOptions().get());
+        map.putAll(buildOptions);
+        return buildOptions(java.util.Optional.of(map));
+      }
+      return buildOptions(java.util.Optional.of(buildOptions));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, List<String>>> buildOptions();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder buildOptions(Optional<Map<String, List<String>>> buildOptions);
@@ -1001,6 +1134,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     public Builder imageSpec(ReasoningEngineSpecSourceCodeSpecImageSpec.Builder imageSpecBuilder) {
       return imageSpec(imageSpecBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineSpecSourceCodeSpecImageSpec> imageSpec();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder imageSpec(Optional<ReasoningEngineSpecSourceCodeSpecImageSpec> imageSpec);
@@ -1033,6 +1169,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineSpecSourceCodeSpecAgentConfigSource> agentConfigSource();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder agentConfigSource(
         Optional<ReasoningEngineSpecSourceCodeSpecAgentConfigSource> agentConfigSource);
 
@@ -1060,6 +1199,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     public Builder containerSpec(ReasoningEngineSpecContainerSpec.Builder containerSpecBuilder) {
       return containerSpec(containerSpecBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineSpecContainerSpec> containerSpec();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder containerSpec(Optional<ReasoningEngineSpecContainerSpec> containerSpec);
@@ -1090,6 +1232,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
         ReasoningEngineSpecDeploymentSpecAgentGatewayConfig.Builder agentGatewayConfigBuilder) {
       return agentGatewayConfig(agentGatewayConfigBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineSpecDeploymentSpecAgentGatewayConfig> agentGatewayConfig();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder agentGatewayConfig(
@@ -1123,6 +1268,9 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     public Builder keepAliveProbe(KeepAliveProbe.Builder keepAliveProbeBuilder) {
       return keepAliveProbe(keepAliveProbeBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<KeepAliveProbe> keepAliveProbe();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder keepAliveProbe(Optional<KeepAliveProbe> keepAliveProbe);

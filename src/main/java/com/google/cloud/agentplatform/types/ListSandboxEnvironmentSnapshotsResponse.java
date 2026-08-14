@@ -77,6 +77,9 @@ public abstract class ListSandboxEnvironmentSnapshotsResponse extends JsonSerial
     public abstract Builder sdkHttpResponse(HttpResponse sdkHttpResponse);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<HttpResponse> sdkHttpResponse();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder sdkHttpResponse(Optional<HttpResponse> sdkHttpResponse);
 
     /** Clears the value of sdkHttpResponse field. */
@@ -95,6 +98,9 @@ public abstract class ListSandboxEnvironmentSnapshotsResponse extends JsonSerial
     public abstract Builder nextPageToken(String nextPageToken);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> nextPageToken();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder nextPageToken(Optional<String> nextPageToken);
 
     /** Clears the value of nextPageToken field. */
@@ -110,8 +116,17 @@ public abstract class ListSandboxEnvironmentSnapshotsResponse extends JsonSerial
      * <p>sandboxEnvironmentSnapshots: List of sandbox environment snapshots.
      */
     @JsonProperty("sandboxEnvironmentSnapshots")
-    public abstract Builder sandboxEnvironmentSnapshots(
-        List<SandboxEnvironmentSnapshot> sandboxEnvironmentSnapshots);
+    @CanIgnoreReturnValue
+    public Builder sandboxEnvironmentSnapshots(
+        List<SandboxEnvironmentSnapshot> sandboxEnvironmentSnapshots) {
+      if (sandboxEnvironmentSnapshots().isPresent()) {
+        List<SandboxEnvironmentSnapshot> list =
+            new java.util.ArrayList<>(sandboxEnvironmentSnapshots().get());
+        list.addAll(sandboxEnvironmentSnapshots);
+        return sandboxEnvironmentSnapshots(java.util.Optional.of(list));
+      }
+      return sandboxEnvironmentSnapshots(java.util.Optional.of(sandboxEnvironmentSnapshots));
+    }
 
     /**
      * Setter for sandboxEnvironmentSnapshots.
@@ -137,6 +152,9 @@ public abstract class ListSandboxEnvironmentSnapshotsResponse extends JsonSerial
               .map(SandboxEnvironmentSnapshot.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<SandboxEnvironmentSnapshot>> sandboxEnvironmentSnapshots();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder sandboxEnvironmentSnapshots(

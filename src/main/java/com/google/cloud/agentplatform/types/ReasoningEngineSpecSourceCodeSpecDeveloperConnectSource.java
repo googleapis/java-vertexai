@@ -84,6 +84,9 @@ public abstract class ReasoningEngineSpecSourceCodeSpecDeveloperConnectSource
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineSpecSourceCodeSpecDeveloperConnectConfig> config();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder config(
         Optional<ReasoningEngineSpecSourceCodeSpecDeveloperConnectConfig> config);
 

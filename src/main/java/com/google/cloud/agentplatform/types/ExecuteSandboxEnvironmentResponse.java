@@ -65,7 +65,15 @@ public abstract class ExecuteSandboxEnvironmentResponse extends JsonSerializable
      * <p>outputs: The outputs from the sandbox environment.
      */
     @JsonProperty("outputs")
-    public abstract Builder outputs(List<Chunk> outputs);
+    @CanIgnoreReturnValue
+    public Builder outputs(List<Chunk> outputs) {
+      if (outputs().isPresent()) {
+        List<Chunk> list = new java.util.ArrayList<>(outputs().get());
+        list.addAll(outputs);
+        return outputs(java.util.Optional.of(list));
+      }
+      return outputs(java.util.Optional.of(outputs));
+    }
 
     /**
      * Setter for outputs.
@@ -89,6 +97,9 @@ public abstract class ExecuteSandboxEnvironmentResponse extends JsonSerializable
               .map(Chunk.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<Chunk>> outputs();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder outputs(Optional<List<Chunk>> outputs);

@@ -70,8 +70,17 @@ public abstract class GenerateMemoriesRequestDirectMemoriesSource extends JsonSe
      * memories are allowed per request.
      */
     @JsonProperty("directMemories")
-    public abstract Builder directMemories(
-        List<GenerateMemoriesRequestDirectMemoriesSourceDirectMemory> directMemories);
+    @CanIgnoreReturnValue
+    public Builder directMemories(
+        List<GenerateMemoriesRequestDirectMemoriesSourceDirectMemory> directMemories) {
+      if (directMemories().isPresent()) {
+        List<GenerateMemoriesRequestDirectMemoriesSourceDirectMemory> list =
+            new java.util.ArrayList<>(directMemories().get());
+        list.addAll(directMemories);
+        return directMemories(java.util.Optional.of(list));
+      }
+      return directMemories(java.util.Optional.of(directMemories));
+    }
 
     /**
      * Setter for directMemories.
@@ -99,6 +108,10 @@ public abstract class GenerateMemoriesRequestDirectMemoriesSource extends JsonSe
               .map(GenerateMemoriesRequestDirectMemoriesSourceDirectMemory.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<GenerateMemoriesRequestDirectMemoriesSourceDirectMemory>>
+        directMemories();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder directMemories(

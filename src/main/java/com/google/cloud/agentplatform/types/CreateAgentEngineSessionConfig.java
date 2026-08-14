@@ -112,6 +112,9 @@ public abstract class CreateAgentEngineSessionConfig extends JsonSerializable {
     public abstract Builder httpOptions(HttpOptions httpOptions);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<HttpOptions> httpOptions();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder httpOptions(Optional<HttpOptions> httpOptions);
 
     /** Clears the value of httpOptions field. */
@@ -130,6 +133,9 @@ public abstract class CreateAgentEngineSessionConfig extends JsonSerializable {
     public abstract Builder displayName(String displayName);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> displayName();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder displayName(Optional<String> displayName);
 
     /** Clears the value of displayName field. */
@@ -145,7 +151,18 @@ public abstract class CreateAgentEngineSessionConfig extends JsonSerializable {
      * <p>sessionState: Session state which stores key conversation points.
      */
     @JsonProperty("sessionState")
-    public abstract Builder sessionState(Map<String, Object> sessionState);
+    @CanIgnoreReturnValue
+    public Builder sessionState(Map<String, Object> sessionState) {
+      if (sessionState().isPresent()) {
+        Map<String, Object> map = new java.util.HashMap<>(sessionState().get());
+        map.putAll(sessionState);
+        return sessionState(java.util.Optional.of(map));
+      }
+      return sessionState(java.util.Optional.of(sessionState));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, Object>> sessionState();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder sessionState(Optional<Map<String, Object>> sessionState);
@@ -164,6 +181,9 @@ public abstract class CreateAgentEngineSessionConfig extends JsonSerializable {
      */
     @JsonProperty("waitForCompletion")
     public abstract Builder waitForCompletion(boolean waitForCompletion);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Boolean> waitForCompletion();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder waitForCompletion(Optional<Boolean> waitForCompletion);
@@ -186,6 +206,9 @@ public abstract class CreateAgentEngineSessionConfig extends JsonSerializable {
     public abstract Builder ttl(Duration ttl);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Duration> ttl();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder ttl(Optional<Duration> ttl);
 
     /** Clears the value of ttl field. */
@@ -203,6 +226,9 @@ public abstract class CreateAgentEngineSessionConfig extends JsonSerializable {
      */
     @JsonProperty("expireTime")
     public abstract Builder expireTime(Instant expireTime);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Instant> expireTime();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder expireTime(Optional<Instant> expireTime);
@@ -223,7 +249,18 @@ public abstract class CreateAgentEngineSessionConfig extends JsonSerializable {
      * allowed. See https://goo.gl/xmQnxf for more information and examples of labels.
      */
     @JsonProperty("labels")
-    public abstract Builder labels(Map<String, String> labels);
+    @CanIgnoreReturnValue
+    public Builder labels(Map<String, String> labels) {
+      if (labels().isPresent()) {
+        Map<String, String> map = new java.util.HashMap<>(labels().get());
+        map.putAll(labels);
+        return labels(java.util.Optional.of(map));
+      }
+      return labels(java.util.Optional.of(labels));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, String>> labels();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder labels(Optional<Map<String, String>> labels);
@@ -245,6 +282,9 @@ public abstract class CreateAgentEngineSessionConfig extends JsonSerializable {
      */
     @JsonProperty("sessionId")
     public abstract Builder sessionId(String sessionId);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> sessionId();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder sessionId(Optional<String> sessionId);

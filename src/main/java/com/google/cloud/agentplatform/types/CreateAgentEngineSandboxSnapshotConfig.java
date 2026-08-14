@@ -82,6 +82,9 @@ public abstract class CreateAgentEngineSandboxSnapshotConfig extends JsonSeriali
     public abstract Builder httpOptions(HttpOptions httpOptions);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<HttpOptions> httpOptions();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder httpOptions(Optional<HttpOptions> httpOptions);
 
     /** Clears the value of httpOptions field. */
@@ -98,6 +101,9 @@ public abstract class CreateAgentEngineSandboxSnapshotConfig extends JsonSeriali
      */
     @JsonProperty("displayName")
     public abstract Builder displayName(String displayName);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> displayName();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder displayName(Optional<String> displayName);
@@ -118,6 +124,9 @@ public abstract class CreateAgentEngineSandboxSnapshotConfig extends JsonSeriali
     public abstract Builder owner(String owner);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> owner();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder owner(Optional<String> owner);
 
     /** Clears the value of owner field. */
@@ -136,6 +145,9 @@ public abstract class CreateAgentEngineSandboxSnapshotConfig extends JsonSeriali
     public abstract Builder ttl(Duration ttl);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Duration> ttl();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder ttl(Optional<Duration> ttl);
 
     /** Clears the value of ttl field. */
@@ -152,6 +164,9 @@ public abstract class CreateAgentEngineSandboxSnapshotConfig extends JsonSeriali
      */
     @JsonProperty("waitForCompletion")
     public abstract Builder waitForCompletion(boolean waitForCompletion);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Boolean> waitForCompletion();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder waitForCompletion(Optional<Boolean> waitForCompletion);
