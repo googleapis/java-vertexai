@@ -37,34 +37,28 @@ import com.google.genai.Common.BuiltRequest;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-/** Async module of {@link Sandboxes} */
-public final class AsyncSandboxes {
-  public final AsyncSandboxEnvironments environments;
-  public final AsyncSandboxTemplates templates;
-  public final AsyncSandboxSnapshots snapshots;
+/** Async module of {@link SandboxEnvironments} */
+public final class AsyncSandboxEnvironments {
 
-  Sandboxes sandboxes;
+  SandboxEnvironments sandboxEnvironments;
   ApiClient apiClient;
 
-  public AsyncSandboxes(ApiClient apiClient) {
+  public AsyncSandboxEnvironments(ApiClient apiClient) {
     this.apiClient = apiClient;
-    this.sandboxes = new Sandboxes(apiClient);
-
-    this.environments = new AsyncSandboxEnvironments(apiClient);
-    this.templates = new AsyncSandboxTemplates(apiClient);
-    this.snapshots = new AsyncSandboxSnapshots(apiClient);
+    this.sandboxEnvironments = new SandboxEnvironments(apiClient);
   }
 
   CompletableFuture<AgentEngineSandboxOperation> privateCreate(
       String name, SandboxEnvironmentSpec spec, CreateAgentEngineSandboxConfig config) {
 
-    BuiltRequest builtRequest = sandboxes.buildRequestForPrivateCreate(name, spec, config);
+    BuiltRequest builtRequest =
+        sandboxEnvironments.buildRequestForPrivateCreate(name, spec, config);
     return this.apiClient
         .asyncRequest("post", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())
         .thenApplyAsync(
             response -> {
               try (ApiResponse res = response) {
-                return sandboxes.processResponseForPrivateCreate(res, config);
+                return sandboxEnvironments.processResponseForPrivateCreate(res, config);
               }
             });
   }
@@ -72,14 +66,14 @@ public final class AsyncSandboxes {
   CompletableFuture<DeleteAgentEngineSandboxOperation> privateDelete(
       String name, DeleteAgentEngineSandboxConfig config) {
 
-    BuiltRequest builtRequest = sandboxes.buildRequestForPrivateDelete(name, config);
+    BuiltRequest builtRequest = sandboxEnvironments.buildRequestForPrivateDelete(name, config);
     return this.apiClient
         .asyncRequest(
             "delete", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())
         .thenApplyAsync(
             response -> {
               try (ApiResponse res = response) {
-                return sandboxes.processResponseForPrivateDelete(res, config);
+                return sandboxEnvironments.processResponseForPrivateDelete(res, config);
               }
             });
   }
@@ -87,13 +81,14 @@ public final class AsyncSandboxes {
   CompletableFuture<ExecuteSandboxEnvironmentResponse> privateExecuteCode(
       String name, List<Chunk> inputs, ExecuteCodeAgentEngineSandboxConfig config) {
 
-    BuiltRequest builtRequest = sandboxes.buildRequestForPrivateExecuteCode(name, inputs, config);
+    BuiltRequest builtRequest =
+        sandboxEnvironments.buildRequestForPrivateExecuteCode(name, inputs, config);
     return this.apiClient
         .asyncRequest("post", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())
         .thenApplyAsync(
             response -> {
               try (ApiResponse res = response) {
-                return sandboxes.processResponseForPrivateExecuteCode(res, config);
+                return sandboxEnvironments.processResponseForPrivateExecuteCode(res, config);
               }
             });
   }
@@ -101,13 +96,13 @@ public final class AsyncSandboxes {
   CompletableFuture<SandboxEnvironment> privateGet(
       String name, GetAgentEngineSandboxConfig config) {
 
-    BuiltRequest builtRequest = sandboxes.buildRequestForPrivateGet(name, config);
+    BuiltRequest builtRequest = sandboxEnvironments.buildRequestForPrivateGet(name, config);
     return this.apiClient
         .asyncRequest("get", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())
         .thenApplyAsync(
             response -> {
               try (ApiResponse res = response) {
-                return sandboxes.processResponseForPrivateGet(res, config);
+                return sandboxEnvironments.processResponseForPrivateGet(res, config);
               }
             });
   }
@@ -115,13 +110,13 @@ public final class AsyncSandboxes {
   CompletableFuture<ListAgentEngineSandboxesResponse> privateList(
       String name, ListAgentEngineSandboxesConfig config) {
 
-    BuiltRequest builtRequest = sandboxes.buildRequestForPrivateList(name, config);
+    BuiltRequest builtRequest = sandboxEnvironments.buildRequestForPrivateList(name, config);
     return this.apiClient
         .asyncRequest("get", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())
         .thenApplyAsync(
             response -> {
               try (ApiResponse res = response) {
-                return sandboxes.processResponseForPrivateList(res, config);
+                return sandboxEnvironments.processResponseForPrivateList(res, config);
               }
             });
   }
@@ -130,13 +125,14 @@ public final class AsyncSandboxes {
       String operationName, GetAgentEngineOperationConfig config) {
 
     BuiltRequest builtRequest =
-        sandboxes.buildRequestForPrivateGetSandboxOperation(operationName, config);
+        sandboxEnvironments.buildRequestForPrivateGetSandboxOperation(operationName, config);
     return this.apiClient
         .asyncRequest("get", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())
         .thenApplyAsync(
             response -> {
               try (ApiResponse res = response) {
-                return sandboxes.processResponseForPrivateGetSandboxOperation(res, config);
+                return sandboxEnvironments.processResponseForPrivateGetSandboxOperation(
+                    res, config);
               }
             });
   }

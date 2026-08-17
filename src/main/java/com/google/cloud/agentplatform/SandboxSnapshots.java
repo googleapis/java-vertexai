@@ -572,4 +572,64 @@ public final class SandboxSnapshots {
       return processResponseForGetSandboxSnapshotOperation(response, config);
     }
   }
+
+  /**
+   * Creates a snapshot of a running sandbox environment.
+   *
+   * @param sourceSandboxEnvironmentName The resource name of the source sandbox environment to
+   *     snapshot.
+   * @param config The configuration for creating the snapshot.
+   * @return The operation representing the creation process.
+   */
+  public AgentEngineSandboxSnapshotOperation create(
+      String sourceSandboxEnvironmentName, CreateAgentEngineSandboxSnapshotConfig config) {
+    return privateCreate(sourceSandboxEnvironmentName, config);
+  }
+
+  /**
+   * Returns the sandbox environment snapshot with the specified name.
+   *
+   * @param name The resource name of the sandbox environment snapshot.
+   * @param config The configuration for getting the snapshot.
+   * @return The sandbox environment snapshot.
+   */
+  public SandboxEnvironmentSnapshot get(String name, GetSandboxEnvironmentSnapshotConfig config) {
+    return privateGet(name, config);
+  }
+
+  /**
+   * Lists the sandbox environment snapshots for the given agent engine.
+   *
+   * @param name The resource name of the agent engine.
+   * @param config The configuration for listing the snapshots.
+   * @return The list of sandbox environment snapshots.
+   */
+  public ListSandboxEnvironmentSnapshotsResponse list(
+      String name, ListSandboxEnvironmentSnapshotsConfig config) {
+    return privateList(name, config);
+  }
+
+  /**
+   * Lists the sandbox environment snapshots under a shared default agent engine (created lazily),
+   * for callers that do not manage an agent engine directly.
+   *
+   * @param config The configuration for listing the snapshots.
+   * @return The list of sandbox environment snapshots.
+   */
+  public ListSandboxEnvironmentSnapshotsResponse list(
+      ListSandboxEnvironmentSnapshotsConfig config) {
+    return list(AgentEngines.ensureDefaultAgentEngine(apiClient), config);
+  }
+
+  /**
+   * Deletes the sandbox environment snapshot with the specified name.
+   *
+   * @param name The resource name of the sandbox environment snapshot.
+   * @param config The configuration for deleting the snapshot.
+   * @return The operation representing the deletion process.
+   */
+  public DeleteSandboxEnvironmentSnapshotOperation delete(
+      String name, DeleteSandboxEnvironmentSnapshotConfig config) {
+    return privateDelete(name, config);
+  }
 }

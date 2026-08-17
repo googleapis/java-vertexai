@@ -1401,4 +1401,71 @@ public final class AgentEngines {
       return processResponseForPrivateUpdate(response, config);
     }
   }
+
+  private static final java.util.concurrent.ConcurrentHashMap<String, String>
+      DEFAULT_AGENT_ENGINE_BY_LOCATION = new java.util.concurrent.ConcurrentHashMap<>();
+
+  private static final String DEFAULT_AGENT_ENGINE_DISPLAY_NAME =
+      "default-agent-platform-sandbox-host";
+
+  /** Maximum number of times to poll for the default agent engine creation to finish. */
+  private static final int DEFAULT_AGENT_ENGINE_MAX_POLLS = 60;
+
+  /** Interval between polls while waiting for the default agent engine creation. */
+  private static final java.time.Duration DEFAULT_AGENT_ENGINE_POLL_INTERVAL =
+      java.time.Duration.ofSeconds(5);
+
+  /**
+   * Returns the resource name of a shared "default" agent engine for the client's project and
+   * location, creating it lazily if it does not exist. Backs sandbox calls where the caller does
+   * not supply an agent engine name, so repeated calls reuse one agent engine instead of creating
+   * many.
+   */
+  static String ensureDefaultAgentEngine(ApiClient apiClient) {
+    String key = apiClient.project() + "/" + apiClient.location();
+    String cached = DEFAULT_AGENT_ENGINE_BY_LOCATION.get(key);
+    if (cached != null) {
+      return cached;
+    }
+
+    String resolved = new AgentEngines(apiClient).resolveDefaultAgentEngine();
+    String existing = DEFAULT_AGENT_ENGINE_BY_LOCATION.putIfAbsent(key, resolved);
+    return existing != null ? existing : resolved;
+  }
+
+  private String resolveDefaultAgentEngine() {
+    ListReasoningEnginesResponse listResponse = privateList(null);
+    if (listResponse.reasoningEngines().isPresent()) {
+      for (ReasoningEngine reasoningEngine : listResponse.reasoningEngines().get()) {
+        if (DEFAULT_AGENT_ENGINE_DISPLAY_NAME.equals(reasoningEngine.displayName().orElse(null))
+            && reasoningEngine.name().isPresent()) {
+          return reasoningEngine.name().get();
+        }
+      }
+    }
+    AgentEngineOperation operation =
+        privateCreate(
+            CreateAgentEngineConfig.builder()
+                .displayName(DEFAULT_AGENT_ENGINE_DISPLAY_NAME)
+                .build());
+    int polls = 0;
+    while (!operation.done().filter(Boolean::booleanValue).isPresent()) {
+      if (polls++ >= DEFAULT_AGENT_ENGINE_MAX_POLLS) {
+        throw new IllegalStateException(
+            "Timed out waiting for the default agent engine to be created.");
+      }
+      try {
+        Thread.sleep(DEFAULT_AGENT_ENGINE_POLL_INTERVAL.toMillis());
+      } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+        throw new IllegalStateException("Interrupted while creating default agent engine.", e);
+      }
+      operation = privateGetAgentOperation(operation.name().get(), null);
+    }
+    if (operation.error().isPresent()) {
+      throw new IllegalStateException(
+          "Failed to create default agent engine: " + operation.error().get());
+    }
+    return operation.response().get().name().get();
+  }
 }

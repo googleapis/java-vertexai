@@ -37,10 +37,19 @@ public final class Client implements AutoCloseable {
 
   /** Async class for GenAI. */
   public final class Async {
-    public final AsyncAgentEngines agentEngines;
+    // Package-private: the Agent Engine brand is not part of the public API surface. Callers reach
+    // sandboxes via the top-level `sandboxes` accessor below.
+    final AsyncAgentEngines agentEngines;
+
+    /**
+     * Provides access to the Agent Platform Sandboxes API, including its {@code environments},
+     * {@code templates}, and {@code snapshots} submodules.
+     */
+    public final AsyncSandboxes sandboxes;
 
     public Async(ApiClient apiClient) {
       this.agentEngines = new AsyncAgentEngines(apiClient);
+      this.sandboxes = this.agentEngines.sandboxes;
     }
   }
 
@@ -62,7 +71,15 @@ public final class Client implements AutoCloseable {
 
   private final DebugConfig debugConfig;
   private final ApiClient apiClient;
-  public final AgentEngines agentEngines;
+  // Package-private: the Agent Engine brand is not part of the public API surface. Callers reach
+  // sandboxes via the top-level `sandboxes` accessor below.
+  final AgentEngines agentEngines;
+
+  /**
+   * Provides access to the Agent Platform Sandboxes API, including its {@code environments}, {@code
+   * templates}, and {@code snapshots} submodules.
+   */
+  public final Sandboxes sandboxes;
 
   /** Builder for {@link Client}. */
   public static class Builder {
@@ -222,6 +239,7 @@ public final class Client implements AutoCloseable {
               /* clientOptions= */ clientOptions);
     }
     agentEngines = new AgentEngines(this.apiClient);
+    sandboxes = agentEngines.sandboxes;
   }
 
   /** Returns the project ID for Vertex AI APIs. */

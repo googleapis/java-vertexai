@@ -20,20 +20,25 @@ package com.google.cloud.agentplatform;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.google.cloud.agentplatform.types.CreateSandboxEnvironmentTemplateConfig;
-import com.google.cloud.agentplatform.types.CreateSandboxEnvironmentTemplateRequestParameters;
-import com.google.cloud.agentplatform.types.DeleteSandboxEnvironmentTemplateConfig;
-import com.google.cloud.agentplatform.types.DeleteSandboxEnvironmentTemplateOperation;
-import com.google.cloud.agentplatform.types.DeleteSandboxEnvironmentTemplateRequestParameters;
+import com.google.cloud.agentplatform.types.AgentEngineSandboxOperation;
+import com.google.cloud.agentplatform.types.Chunk;
+import com.google.cloud.agentplatform.types.CreateAgentEngineSandboxConfig;
+import com.google.cloud.agentplatform.types.CreateAgentEngineSandboxRequestParameters;
+import com.google.cloud.agentplatform.types.DeleteAgentEngineSandboxConfig;
+import com.google.cloud.agentplatform.types.DeleteAgentEngineSandboxOperation;
+import com.google.cloud.agentplatform.types.DeleteAgentEngineSandboxRequestParameters;
+import com.google.cloud.agentplatform.types.ExecuteCodeAgentEngineSandboxConfig;
+import com.google.cloud.agentplatform.types.ExecuteCodeAgentEngineSandboxRequestParameters;
+import com.google.cloud.agentplatform.types.ExecuteSandboxEnvironmentResponse;
 import com.google.cloud.agentplatform.types.GetAgentEngineOperationConfig;
-import com.google.cloud.agentplatform.types.GetSandboxEnvironmentTemplateConfig;
-import com.google.cloud.agentplatform.types.GetSandboxEnvironmentTemplateOperationParameters;
-import com.google.cloud.agentplatform.types.GetSandboxEnvironmentTemplateRequestParameters;
-import com.google.cloud.agentplatform.types.ListSandboxEnvironmentTemplatesConfig;
-import com.google.cloud.agentplatform.types.ListSandboxEnvironmentTemplatesRequestParameters;
-import com.google.cloud.agentplatform.types.ListSandboxEnvironmentTemplatesResponse;
-import com.google.cloud.agentplatform.types.SandboxEnvironmentTemplate;
-import com.google.cloud.agentplatform.types.SandboxEnvironmentTemplateOperation;
+import com.google.cloud.agentplatform.types.GetAgentEngineSandboxConfig;
+import com.google.cloud.agentplatform.types.GetAgentEngineSandboxOperationParameters;
+import com.google.cloud.agentplatform.types.GetAgentEngineSandboxRequestParameters;
+import com.google.cloud.agentplatform.types.ListAgentEngineSandboxesConfig;
+import com.google.cloud.agentplatform.types.ListAgentEngineSandboxesRequestParameters;
+import com.google.cloud.agentplatform.types.ListAgentEngineSandboxesResponse;
+import com.google.cloud.agentplatform.types.SandboxEnvironment;
+import com.google.cloud.agentplatform.types.SandboxEnvironmentSpec;
 import com.google.genai.ApiClient;
 import com.google.genai.ApiResponse;
 import com.google.genai.Common;
@@ -42,48 +47,69 @@ import com.google.genai.JsonSerializable;
 import com.google.genai.errors.GenAiIOException;
 import com.google.genai.types.HttpOptions;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 import okhttp3.ResponseBody;
 
-public final class SandboxTemplates {
+public final class SandboxEnvironments {
 
   final ApiClient apiClient;
 
-  public SandboxTemplates(ApiClient apiClient) {
+  public SandboxEnvironments(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
 
   @ExcludeFromGeneratedCoverageReport
-  ObjectNode createSandboxEnvironmentTemplateConfigToVertex(
-      JsonNode fromObject, ObjectNode parentObject) {
+  ObjectNode createAgentEngineSandboxConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
     ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
 
-    if (Common.getValueByPath(fromObject, new String[] {"customContainerEnvironment"}) != null) {
+    if (Common.getValueByPath(fromObject, new String[] {"displayName"}) != null) {
       Common.setValueByPath(
           parentObject,
-          new String[] {"customContainerEnvironment"},
-          Common.getValueByPath(fromObject, new String[] {"customContainerEnvironment"}));
+          new String[] {"displayName"},
+          Common.getValueByPath(fromObject, new String[] {"displayName"}));
     }
 
-    if (Common.getValueByPath(fromObject, new String[] {"defaultContainerEnvironment"}) != null) {
+    if (Common.getValueByPath(fromObject, new String[] {"description"}) != null) {
       Common.setValueByPath(
           parentObject,
-          new String[] {"defaultContainerEnvironment"},
-          Common.getValueByPath(fromObject, new String[] {"defaultContainerEnvironment"}));
+          new String[] {"description"},
+          Common.getValueByPath(fromObject, new String[] {"description"}));
     }
 
-    if (Common.getValueByPath(fromObject, new String[] {"egressControlConfig"}) != null) {
+    if (Common.getValueByPath(fromObject, new String[] {"ttl"}) != null) {
       Common.setValueByPath(
           parentObject,
-          new String[] {"egressControlConfig"},
-          Common.getValueByPath(fromObject, new String[] {"egressControlConfig"}));
+          new String[] {"ttl"},
+          Common.getValueByPath(fromObject, new String[] {"ttl"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"sandboxEnvironmentTemplate"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"sandboxEnvironmentTemplate"},
+          Common.getValueByPath(fromObject, new String[] {"sandboxEnvironmentTemplate"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"sandboxEnvironmentSnapshot"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"sandboxEnvironmentSnapshot"},
+          Common.getValueByPath(fromObject, new String[] {"sandboxEnvironmentSnapshot"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"owner"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"owner"},
+          Common.getValueByPath(fromObject, new String[] {"owner"}));
     }
 
     return toObject;
   }
 
   @ExcludeFromGeneratedCoverageReport
-  ObjectNode createSandboxEnvironmentTemplateRequestParametersToVertex(
+  ObjectNode createAgentEngineSandboxRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
     ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
@@ -93,16 +119,16 @@ public final class SandboxTemplates {
           Common.getValueByPath(fromObject, new String[] {"name"}));
     }
 
-    if (Common.getValueByPath(fromObject, new String[] {"displayName"}) != null) {
+    if (Common.getValueByPath(fromObject, new String[] {"spec"}) != null) {
       Common.setValueByPath(
           toObject,
-          new String[] {"displayName"},
-          Common.getValueByPath(fromObject, new String[] {"displayName"}));
+          new String[] {"spec"},
+          Common.getValueByPath(fromObject, new String[] {"spec"}));
     }
 
     if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
       JsonNode unused =
-          createSandboxEnvironmentTemplateConfigToVertex(
+          createAgentEngineSandboxConfigToVertex(
               JsonSerializable.toJsonNode(
                   Common.getValueByPath(fromObject, new String[] {"config"})),
               toObject);
@@ -112,7 +138,7 @@ public final class SandboxTemplates {
   }
 
   @ExcludeFromGeneratedCoverageReport
-  ObjectNode deleteSandboxEnvironmentTemplateRequestParametersToVertex(
+  ObjectNode deleteAgentEngineSandboxRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
     ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
@@ -126,7 +152,28 @@ public final class SandboxTemplates {
   }
 
   @ExcludeFromGeneratedCoverageReport
-  ObjectNode getSandboxEnvironmentTemplateOperationParametersToVertex(
+  ObjectNode executeCodeAgentEngineSandboxRequestParametersToVertex(
+      JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"_url", "name"},
+          Common.getValueByPath(fromObject, new String[] {"name"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"inputs"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"inputs"},
+          Common.getValueByPath(fromObject, new String[] {"inputs"}));
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode getAgentEngineSandboxOperationParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
     ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"operationName"}) != null) {
@@ -140,7 +187,7 @@ public final class SandboxTemplates {
   }
 
   @ExcludeFromGeneratedCoverageReport
-  ObjectNode getSandboxEnvironmentTemplateRequestParametersToVertex(
+  ObjectNode getAgentEngineSandboxRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
     ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
@@ -154,8 +201,7 @@ public final class SandboxTemplates {
   }
 
   @ExcludeFromGeneratedCoverageReport
-  ObjectNode listSandboxEnvironmentTemplatesConfigToVertex(
-      JsonNode fromObject, ObjectNode parentObject) {
+  ObjectNode listAgentEngineSandboxesConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
     ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
 
     if (Common.getValueByPath(fromObject, new String[] {"pageSize"}) != null) {
@@ -183,7 +229,7 @@ public final class SandboxTemplates {
   }
 
   @ExcludeFromGeneratedCoverageReport
-  ObjectNode listSandboxEnvironmentTemplatesRequestParametersToVertex(
+  ObjectNode listAgentEngineSandboxesRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
     ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
     if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
@@ -195,7 +241,7 @@ public final class SandboxTemplates {
 
     if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
       JsonNode unused =
-          listSandboxEnvironmentTemplatesConfigToVertex(
+          listAgentEngineSandboxesConfigToVertex(
               JsonSerializable.toJsonNode(
                   Common.getValueByPath(fromObject, new String[] {"config"})),
               toObject);
@@ -206,16 +252,16 @@ public final class SandboxTemplates {
 
   /** A shared buildRequest method for both sync and async methods. */
   BuiltRequest buildRequestForPrivateCreate(
-      String name, String displayName, CreateSandboxEnvironmentTemplateConfig config) {
+      String name, SandboxEnvironmentSpec spec, CreateAgentEngineSandboxConfig config) {
 
-    CreateSandboxEnvironmentTemplateRequestParameters.Builder parameterBuilder =
-        CreateSandboxEnvironmentTemplateRequestParameters.builder();
+    CreateAgentEngineSandboxRequestParameters.Builder parameterBuilder =
+        CreateAgentEngineSandboxRequestParameters.builder();
 
     if (!Common.isZero(name)) {
       parameterBuilder.name(name);
     }
-    if (!Common.isZero(displayName)) {
-      parameterBuilder.displayName(displayName);
+    if (!Common.isZero(spec)) {
+      parameterBuilder.spec(spec);
     }
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
@@ -225,8 +271,8 @@ public final class SandboxTemplates {
     ObjectNode body;
     String path;
     if (this.apiClient.vertexAI()) {
-      body = createSandboxEnvironmentTemplateRequestParametersToVertex(parameterNode, null);
-      path = Common.formatMap("{name}/sandboxEnvironmentTemplates", body.get("_url"));
+      body = createAgentEngineSandboxRequestParametersToVertex(parameterNode, null);
+      path = Common.formatMap("{name}/sandboxEnvironments", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
           "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
@@ -250,8 +296,8 @@ public final class SandboxTemplates {
   }
 
   /** A shared processResponse function for both sync and async methods. */
-  SandboxEnvironmentTemplateOperation processResponseForPrivateCreate(
-      ApiResponse response, CreateSandboxEnvironmentTemplateConfig config) {
+  AgentEngineSandboxOperation processResponseForPrivateCreate(
+      ApiResponse response, CreateAgentEngineSandboxConfig config) {
     ResponseBody responseBody = response.getBody();
     String responseString;
     try {
@@ -268,12 +314,12 @@ public final class SandboxTemplates {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, SandboxEnvironmentTemplateOperation.class);
+    return JsonSerializable.fromJsonNode(responseNode, AgentEngineSandboxOperation.class);
   }
 
-  public SandboxEnvironmentTemplateOperation privateCreate(
-      String name, String displayName, CreateSandboxEnvironmentTemplateConfig config) {
-    BuiltRequest builtRequest = buildRequestForPrivateCreate(name, displayName, config);
+  public AgentEngineSandboxOperation privateCreate(
+      String name, SandboxEnvironmentSpec spec, CreateAgentEngineSandboxConfig config) {
+    BuiltRequest builtRequest = buildRequestForPrivateCreate(name, spec, config);
 
     try (ApiResponse response =
         this.apiClient.request(
@@ -283,11 +329,10 @@ public final class SandboxTemplates {
   }
 
   /** A shared buildRequest method for both sync and async methods. */
-  BuiltRequest buildRequestForPrivateDelete(
-      String name, DeleteSandboxEnvironmentTemplateConfig config) {
+  BuiltRequest buildRequestForPrivateDelete(String name, DeleteAgentEngineSandboxConfig config) {
 
-    DeleteSandboxEnvironmentTemplateRequestParameters.Builder parameterBuilder =
-        DeleteSandboxEnvironmentTemplateRequestParameters.builder();
+    DeleteAgentEngineSandboxRequestParameters.Builder parameterBuilder =
+        DeleteAgentEngineSandboxRequestParameters.builder();
 
     if (!Common.isZero(name)) {
       parameterBuilder.name(name);
@@ -300,7 +345,7 @@ public final class SandboxTemplates {
     ObjectNode body;
     String path;
     if (this.apiClient.vertexAI()) {
-      body = deleteSandboxEnvironmentTemplateRequestParametersToVertex(parameterNode, null);
+      body = deleteAgentEngineSandboxRequestParametersToVertex(parameterNode, null);
       path = Common.formatMap("{name}", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
@@ -325,8 +370,8 @@ public final class SandboxTemplates {
   }
 
   /** A shared processResponse function for both sync and async methods. */
-  DeleteSandboxEnvironmentTemplateOperation processResponseForPrivateDelete(
-      ApiResponse response, DeleteSandboxEnvironmentTemplateConfig config) {
+  DeleteAgentEngineSandboxOperation processResponseForPrivateDelete(
+      ApiResponse response, DeleteAgentEngineSandboxConfig config) {
     ResponseBody responseBody = response.getBody();
     String responseString;
     try {
@@ -343,12 +388,11 @@ public final class SandboxTemplates {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(
-        responseNode, DeleteSandboxEnvironmentTemplateOperation.class);
+    return JsonSerializable.fromJsonNode(responseNode, DeleteAgentEngineSandboxOperation.class);
   }
 
-  public DeleteSandboxEnvironmentTemplateOperation privateDelete(
-      String name, DeleteSandboxEnvironmentTemplateConfig config) {
+  public DeleteAgentEngineSandboxOperation privateDelete(
+      String name, DeleteAgentEngineSandboxConfig config) {
     BuiltRequest builtRequest = buildRequestForPrivateDelete(name, config);
 
     try (ApiResponse response =
@@ -359,10 +403,88 @@ public final class SandboxTemplates {
   }
 
   /** A shared buildRequest method for both sync and async methods. */
-  BuiltRequest buildRequestForPrivateGet(String name, GetSandboxEnvironmentTemplateConfig config) {
+  BuiltRequest buildRequestForPrivateExecuteCode(
+      String name, List<Chunk> inputs, ExecuteCodeAgentEngineSandboxConfig config) {
 
-    GetSandboxEnvironmentTemplateRequestParameters.Builder parameterBuilder =
-        GetSandboxEnvironmentTemplateRequestParameters.builder();
+    ExecuteCodeAgentEngineSandboxRequestParameters.Builder parameterBuilder =
+        ExecuteCodeAgentEngineSandboxRequestParameters.builder();
+
+    if (!Common.isZero(name)) {
+      parameterBuilder.name(name);
+    }
+    if (!Common.isZero(inputs)) {
+      parameterBuilder.inputs(inputs);
+    }
+    if (!Common.isZero(config)) {
+      parameterBuilder.config(config);
+    }
+    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+
+    ObjectNode body;
+    String path;
+    if (this.apiClient.vertexAI()) {
+      body = executeCodeAgentEngineSandboxRequestParametersToVertex(parameterNode, null);
+      path = Common.formatMap("{name}/:execute", body.get("_url"));
+    } else {
+      throw new UnsupportedOperationException(
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
+    }
+    body.remove("_url");
+
+    JsonNode queryParams = body.get("_query");
+    if (queryParams != null) {
+      body.remove("_query");
+      path = String.format("%s?%s", path, Common.urlEncode((ObjectNode) queryParams));
+    }
+
+    // TODO: Remove the hack that removes config.
+    Optional<HttpOptions> requestHttpOptions = Optional.empty();
+    if (config != null) {
+      requestHttpOptions = config.httpOptions();
+    }
+
+    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+  }
+
+  /** A shared processResponse function for both sync and async methods. */
+  ExecuteSandboxEnvironmentResponse processResponseForPrivateExecuteCode(
+      ApiResponse response, ExecuteCodeAgentEngineSandboxConfig config) {
+    ResponseBody responseBody = response.getBody();
+    String responseString;
+    try {
+      responseString = responseBody.string();
+    } catch (IOException e) {
+      throw new GenAiIOException("Failed to read HTTP response.", e);
+    }
+
+    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+
+    if (!this.apiClient.vertexAI()) {
+      throw new UnsupportedOperationException(
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
+    }
+
+    return JsonSerializable.fromJsonNode(responseNode, ExecuteSandboxEnvironmentResponse.class);
+  }
+
+  public ExecuteSandboxEnvironmentResponse privateExecuteCode(
+      String name, List<Chunk> inputs, ExecuteCodeAgentEngineSandboxConfig config) {
+    BuiltRequest builtRequest = buildRequestForPrivateExecuteCode(name, inputs, config);
+
+    try (ApiResponse response =
+        this.apiClient.request(
+            "post", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())) {
+      return processResponseForPrivateExecuteCode(response, config);
+    }
+  }
+
+  /** A shared buildRequest method for both sync and async methods. */
+  BuiltRequest buildRequestForPrivateGet(String name, GetAgentEngineSandboxConfig config) {
+
+    GetAgentEngineSandboxRequestParameters.Builder parameterBuilder =
+        GetAgentEngineSandboxRequestParameters.builder();
 
     if (!Common.isZero(name)) {
       parameterBuilder.name(name);
@@ -375,7 +497,7 @@ public final class SandboxTemplates {
     ObjectNode body;
     String path;
     if (this.apiClient.vertexAI()) {
-      body = getSandboxEnvironmentTemplateRequestParametersToVertex(parameterNode, null);
+      body = getAgentEngineSandboxRequestParametersToVertex(parameterNode, null);
       path = Common.formatMap("{name}", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
@@ -400,8 +522,8 @@ public final class SandboxTemplates {
   }
 
   /** A shared processResponse function for both sync and async methods. */
-  SandboxEnvironmentTemplate processResponseForPrivateGet(
-      ApiResponse response, GetSandboxEnvironmentTemplateConfig config) {
+  SandboxEnvironment processResponseForPrivateGet(
+      ApiResponse response, GetAgentEngineSandboxConfig config) {
     ResponseBody responseBody = response.getBody();
     String responseString;
     try {
@@ -418,11 +540,10 @@ public final class SandboxTemplates {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, SandboxEnvironmentTemplate.class);
+    return JsonSerializable.fromJsonNode(responseNode, SandboxEnvironment.class);
   }
 
-  public SandboxEnvironmentTemplate privateGet(
-      String name, GetSandboxEnvironmentTemplateConfig config) {
+  public SandboxEnvironment privateGet(String name, GetAgentEngineSandboxConfig config) {
     BuiltRequest builtRequest = buildRequestForPrivateGet(name, config);
 
     try (ApiResponse response =
@@ -433,11 +554,10 @@ public final class SandboxTemplates {
   }
 
   /** A shared buildRequest method for both sync and async methods. */
-  BuiltRequest buildRequestForPrivateList(
-      String name, ListSandboxEnvironmentTemplatesConfig config) {
+  BuiltRequest buildRequestForPrivateList(String name, ListAgentEngineSandboxesConfig config) {
 
-    ListSandboxEnvironmentTemplatesRequestParameters.Builder parameterBuilder =
-        ListSandboxEnvironmentTemplatesRequestParameters.builder();
+    ListAgentEngineSandboxesRequestParameters.Builder parameterBuilder =
+        ListAgentEngineSandboxesRequestParameters.builder();
 
     if (!Common.isZero(name)) {
       parameterBuilder.name(name);
@@ -450,8 +570,8 @@ public final class SandboxTemplates {
     ObjectNode body;
     String path;
     if (this.apiClient.vertexAI()) {
-      body = listSandboxEnvironmentTemplatesRequestParametersToVertex(parameterNode, null);
-      path = Common.formatMap("{name}/sandboxEnvironmentTemplates", body.get("_url"));
+      body = listAgentEngineSandboxesRequestParametersToVertex(parameterNode, null);
+      path = Common.formatMap("{name}/sandboxEnvironments", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
           "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
@@ -475,8 +595,8 @@ public final class SandboxTemplates {
   }
 
   /** A shared processResponse function for both sync and async methods. */
-  ListSandboxEnvironmentTemplatesResponse processResponseForPrivateList(
-      ApiResponse response, ListSandboxEnvironmentTemplatesConfig config) {
+  ListAgentEngineSandboxesResponse processResponseForPrivateList(
+      ApiResponse response, ListAgentEngineSandboxesConfig config) {
     ResponseBody responseBody = response.getBody();
     String responseString;
     try {
@@ -493,12 +613,11 @@ public final class SandboxTemplates {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(
-        responseNode, ListSandboxEnvironmentTemplatesResponse.class);
+    return JsonSerializable.fromJsonNode(responseNode, ListAgentEngineSandboxesResponse.class);
   }
 
-  public ListSandboxEnvironmentTemplatesResponse privateList(
-      String name, ListSandboxEnvironmentTemplatesConfig config) {
+  public ListAgentEngineSandboxesResponse privateList(
+      String name, ListAgentEngineSandboxesConfig config) {
     BuiltRequest builtRequest = buildRequestForPrivateList(name, config);
 
     try (ApiResponse response =
@@ -509,11 +628,11 @@ public final class SandboxTemplates {
   }
 
   /** A shared buildRequest method for both sync and async methods. */
-  BuiltRequest buildRequestForGetSandboxEnvironmentTemplateOperation(
+  BuiltRequest buildRequestForPrivateGetSandboxOperation(
       String operationName, GetAgentEngineOperationConfig config) {
 
-    GetSandboxEnvironmentTemplateOperationParameters.Builder parameterBuilder =
-        GetSandboxEnvironmentTemplateOperationParameters.builder();
+    GetAgentEngineSandboxOperationParameters.Builder parameterBuilder =
+        GetAgentEngineSandboxOperationParameters.builder();
 
     if (!Common.isZero(operationName)) {
       parameterBuilder.operationName(operationName);
@@ -526,7 +645,7 @@ public final class SandboxTemplates {
     ObjectNode body;
     String path;
     if (this.apiClient.vertexAI()) {
-      body = getSandboxEnvironmentTemplateOperationParametersToVertex(parameterNode, null);
+      body = getAgentEngineSandboxOperationParametersToVertex(parameterNode, null);
       path = Common.formatMap("{operationName}", body.get("_url"));
     } else {
       throw new UnsupportedOperationException(
@@ -551,7 +670,7 @@ public final class SandboxTemplates {
   }
 
   /** A shared processResponse function for both sync and async methods. */
-  SandboxEnvironmentTemplateOperation processResponseForGetSandboxEnvironmentTemplateOperation(
+  AgentEngineSandboxOperation processResponseForPrivateGetSandboxOperation(
       ApiResponse response, GetAgentEngineOperationConfig config) {
     ResponseBody responseBody = response.getBody();
     String responseString;
@@ -569,91 +688,113 @@ public final class SandboxTemplates {
               + " Developer API mode.");
     }
 
-    return JsonSerializable.fromJsonNode(responseNode, SandboxEnvironmentTemplateOperation.class);
+    return JsonSerializable.fromJsonNode(responseNode, AgentEngineSandboxOperation.class);
   }
 
-  public SandboxEnvironmentTemplateOperation getSandboxEnvironmentTemplateOperation(
+  public AgentEngineSandboxOperation privateGetSandboxOperation(
       String operationName, GetAgentEngineOperationConfig config) {
-    BuiltRequest builtRequest =
-        buildRequestForGetSandboxEnvironmentTemplateOperation(operationName, config);
+    BuiltRequest builtRequest = buildRequestForPrivateGetSandboxOperation(operationName, config);
 
     try (ApiResponse response =
         this.apiClient.request(
             "get", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())) {
-      return processResponseForGetSandboxEnvironmentTemplateOperation(response, config);
+      return processResponseForPrivateGetSandboxOperation(response, config);
     }
   }
 
   /**
-   * Creates a sandbox environment template.
+   * Creates a sandbox environment.
    *
    * @param name The resource name of the agent engine.
-   * @param displayName The display name of the template.
-   * @param config The configuration for creating the template.
+   * @param spec The specification of the sandbox environment.
+   * @param config The configuration for creating the sandbox.
    * @return The operation representing the creation process.
    */
-  public SandboxEnvironmentTemplateOperation create(
-      String name, String displayName, CreateSandboxEnvironmentTemplateConfig config) {
-    return privateCreate(name, displayName, config);
+  public AgentEngineSandboxOperation create(
+      String name, SandboxEnvironmentSpec spec, CreateAgentEngineSandboxConfig config) {
+    return privateCreate(name, spec, config);
   }
 
   /**
-   * Creates a sandbox environment template under a shared default agent engine (created lazily),
-   * for callers that do not manage an agent engine directly.
+   * Creates a sandbox environment under a shared default agent engine (created lazily), for callers
+   * that do not manage an agent engine directly.
    *
-   * @param displayName The display name of the template.
-   * @param config The configuration for creating the template.
+   * @param spec The specification of the sandbox environment.
+   * @param config The configuration for creating the sandbox.
    * @return The operation representing the creation process.
    */
-  public SandboxEnvironmentTemplateOperation create(
-      String displayName, CreateSandboxEnvironmentTemplateConfig config) {
-    return create(AgentEngines.ensureDefaultAgentEngine(apiClient), displayName, config);
+  public AgentEngineSandboxOperation create(
+      SandboxEnvironmentSpec spec, CreateAgentEngineSandboxConfig config) {
+    return create(AgentEngines.ensureDefaultAgentEngine(apiClient), spec, config);
   }
 
   /**
-   * Returns the sandbox environment template with the specified name.
+   * Deletes the sandbox environment with the specified name.
    *
-   * @param name The resource name of the sandbox environment template.
-   * @param config The configuration for getting the template.
-   * @return The sandbox environment template.
+   * @param name The resource name of the sandbox environment.
+   * @param config The configuration for deleting the sandbox.
+   * @return The operation representing the deletion process.
    */
-  public SandboxEnvironmentTemplate get(String name, GetSandboxEnvironmentTemplateConfig config) {
+  public DeleteAgentEngineSandboxOperation delete(
+      String name, DeleteAgentEngineSandboxConfig config) {
+    return privateDelete(name, config);
+  }
+
+  /**
+   * Executes code in the sandbox environment.
+   *
+   * @param name The resource name of the sandbox environment.
+   * @param inputs The code inputs to execute.
+   * @param config The configuration for executing the code.
+   * @return The response from executing the code.
+   */
+  public ExecuteSandboxEnvironmentResponse executeCode(
+      String name, List<Chunk> inputs, ExecuteCodeAgentEngineSandboxConfig config) {
+    return privateExecuteCode(name, inputs, config);
+  }
+
+  /**
+   * Returns the sandbox environment with the specified name.
+   *
+   * @param name The resource name of the sandbox environment.
+   * @param config The configuration for getting the sandbox.
+   * @return The sandbox environment.
+   */
+  public SandboxEnvironment get(String name, GetAgentEngineSandboxConfig config) {
     return privateGet(name, config);
   }
 
   /**
-   * Lists the sandbox environment templates for the given agent engine.
+   * Lists the sandbox environments for the given agent engine.
    *
    * @param name The resource name of the agent engine.
-   * @param config The configuration for listing the templates.
-   * @return The list of sandbox environment templates.
+   * @param config The configuration for listing the sandboxes.
+   * @return The list of sandbox environments.
    */
-  public ListSandboxEnvironmentTemplatesResponse list(
-      String name, ListSandboxEnvironmentTemplatesConfig config) {
+  public ListAgentEngineSandboxesResponse list(String name, ListAgentEngineSandboxesConfig config) {
     return privateList(name, config);
   }
 
   /**
-   * Lists the sandbox environment templates under a shared default agent engine (created lazily),
-   * for callers that do not manage an agent engine directly.
+   * Lists the sandbox environments under a shared default agent engine (created lazily), for
+   * callers that do not manage an agent engine directly.
    *
-   * @param config The configuration for listing the templates.
-   * @return The list of sandbox environment templates.
+   * @param config The configuration for listing the sandboxes.
+   * @return The list of sandbox environments.
    */
-  public ListSandboxEnvironmentTemplatesResponse list(
-      ListSandboxEnvironmentTemplatesConfig config) {
+  public ListAgentEngineSandboxesResponse list(ListAgentEngineSandboxesConfig config) {
     return list(AgentEngines.ensureDefaultAgentEngine(apiClient), config);
   }
 
   /**
-   * Deletes the sandbox environment template with the specified name.
+   * Returns the sandbox operation with the specified name.
    *
-   * @param name The resource name of the sandbox environment template.
-   * @param config The configuration for deleting the template.
-   * @return The operation representing the deletion process.
+   * @param operationName The name of the sandbox operation.
+   * @param config The configuration for getting the operation.
+   * @return The sandbox operation.
    */
-  public DeleteSandboxEnvironmentTemplateOperation delete(
-      String name, DeleteSandboxEnvironmentTemplateConfig config) {
-    return privateDelete(name, config);
+  public AgentEngineSandboxOperation getSandboxOperation(
+      String operationName, GetAgentEngineOperationConfig config) {
+    return privateGetSandboxOperation(operationName, config);
   }
 }

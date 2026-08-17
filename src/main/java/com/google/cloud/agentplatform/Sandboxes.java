@@ -52,6 +52,7 @@ import java.util.Optional;
 import okhttp3.ResponseBody;
 
 public final class Sandboxes {
+  public final SandboxEnvironments environments;
   public final SandboxTemplates templates;
   public final SandboxSnapshots snapshots;
 
@@ -59,6 +60,7 @@ public final class Sandboxes {
 
   public Sandboxes(ApiClient apiClient) {
     this.apiClient = apiClient;
+    this.environments = new SandboxEnvironments(apiClient);
     this.templates = new SandboxTemplates(apiClient);
     this.snapshots = new SandboxSnapshots(apiClient);
   }
@@ -704,5 +706,101 @@ public final class Sandboxes {
             "get", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())) {
       return processResponseForPrivateGetSandboxOperation(response, config);
     }
+  }
+
+  /**
+   * Creates a sandbox environment.
+   *
+   * @param name The resource name of the agent engine.
+   * @param spec The specification of the sandbox environment.
+   * @param config The configuration for creating the sandbox.
+   * @return The operation representing the creation process.
+   */
+  public AgentEngineSandboxOperation create(
+      String name, SandboxEnvironmentSpec spec, CreateAgentEngineSandboxConfig config) {
+    return privateCreate(name, spec, config);
+  }
+
+  /**
+   * Creates a sandbox environment under a shared default agent engine (created lazily), for callers
+   * that do not manage an agent engine directly.
+   *
+   * @param spec The specification of the sandbox environment.
+   * @param config The configuration for creating the sandbox.
+   * @return The operation representing the creation process.
+   */
+  public AgentEngineSandboxOperation create(
+      SandboxEnvironmentSpec spec, CreateAgentEngineSandboxConfig config) {
+    return create(AgentEngines.ensureDefaultAgentEngine(apiClient), spec, config);
+  }
+
+  /**
+   * Deletes the sandbox environment with the specified name.
+   *
+   * @param name The resource name of the sandbox environment.
+   * @param config The configuration for deleting the sandbox.
+   * @return The operation representing the deletion process.
+   */
+  public DeleteAgentEngineSandboxOperation delete(
+      String name, DeleteAgentEngineSandboxConfig config) {
+    return privateDelete(name, config);
+  }
+
+  /**
+   * Executes code in the sandbox environment.
+   *
+   * @param name The resource name of the sandbox environment.
+   * @param inputs The code inputs to execute.
+   * @param config The configuration for executing the code.
+   * @return The response from executing the code.
+   */
+  public ExecuteSandboxEnvironmentResponse executeCode(
+      String name, List<Chunk> inputs, ExecuteCodeAgentEngineSandboxConfig config) {
+    return privateExecuteCode(name, inputs, config);
+  }
+
+  /**
+   * Returns the sandbox environment with the specified name.
+   *
+   * @param name The resource name of the sandbox environment.
+   * @param config The configuration for getting the sandbox.
+   * @return The sandbox environment.
+   */
+  public SandboxEnvironment get(String name, GetAgentEngineSandboxConfig config) {
+    return privateGet(name, config);
+  }
+
+  /**
+   * Lists the sandbox environments for the given agent engine.
+   *
+   * @param name The resource name of the agent engine.
+   * @param config The configuration for listing the sandboxes.
+   * @return The list of sandbox environments.
+   */
+  public ListAgentEngineSandboxesResponse list(String name, ListAgentEngineSandboxesConfig config) {
+    return privateList(name, config);
+  }
+
+  /**
+   * Lists the sandbox environments under a shared default agent engine (created lazily), for
+   * callers that do not manage an agent engine directly.
+   *
+   * @param config The configuration for listing the sandboxes.
+   * @return The list of sandbox environments.
+   */
+  public ListAgentEngineSandboxesResponse list(ListAgentEngineSandboxesConfig config) {
+    return list(AgentEngines.ensureDefaultAgentEngine(apiClient), config);
+  }
+
+  /**
+   * Returns the sandbox operation with the specified name.
+   *
+   * @param operationName The name of the sandbox operation.
+   * @param config The configuration for getting the operation.
+   * @return The sandbox operation.
+   */
+  public AgentEngineSandboxOperation getSandboxOperation(
+      String operationName, GetAgentEngineOperationConfig config) {
+    return privateGetSandboxOperation(operationName, config);
   }
 }
