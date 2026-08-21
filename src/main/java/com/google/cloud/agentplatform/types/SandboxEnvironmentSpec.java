@@ -39,6 +39,10 @@ public abstract class SandboxEnvironmentSpec extends JsonSerializable {
   @JsonProperty("computerUseEnvironment")
   public abstract Optional<SandboxEnvironmentSpecComputerUseEnvironment> computerUseEnvironment();
 
+  /** Optional. The shell environment. */
+  @JsonProperty("shellEnvironment")
+  public abstract Optional<SandboxEnvironmentSpecShellEnvironment> shellEnvironment();
+
   /** Instantiates a builder for SandboxEnvironmentSpec. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -117,6 +121,37 @@ public abstract class SandboxEnvironmentSpec extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearComputerUseEnvironment() {
       return computerUseEnvironment(Optional.empty());
+    }
+
+    /**
+     * Setter for shellEnvironment.
+     *
+     * <p>shellEnvironment: Optional. The shell environment.
+     */
+    @JsonProperty("shellEnvironment")
+    public abstract Builder shellEnvironment(
+        SandboxEnvironmentSpecShellEnvironment shellEnvironment);
+
+    /**
+     * Setter for shellEnvironment builder.
+     *
+     * <p>shellEnvironment: Optional. The shell environment.
+     */
+    @CanIgnoreReturnValue
+    public Builder shellEnvironment(
+        SandboxEnvironmentSpecShellEnvironment.Builder shellEnvironmentBuilder) {
+      return shellEnvironment(shellEnvironmentBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder shellEnvironment(
+        Optional<SandboxEnvironmentSpecShellEnvironment> shellEnvironment);
+
+    /** Clears the value of shellEnvironment field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearShellEnvironment() {
+      return shellEnvironment(Optional.empty());
     }
 
     public abstract SandboxEnvironmentSpec build();
