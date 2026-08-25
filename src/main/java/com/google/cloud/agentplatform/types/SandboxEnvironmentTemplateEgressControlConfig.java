@@ -51,7 +51,7 @@ public abstract class SandboxEnvironmentTemplateEgressControlConfig extends Json
       dnsPeeringConfigs();
 
   /**
-   * Optional. The name of the customer VPC NetworkAttachment used to draw a PSC interface IP into
+   * Optional. The name of the customer VPC `NetworkAttachment` used to draw a PSC interface IP into
    * the customer VPC for sandbox egress.
    */
   @JsonProperty("networkAttachment")
@@ -167,8 +167,8 @@ public abstract class SandboxEnvironmentTemplateEgressControlConfig extends Json
     /**
      * Setter for networkAttachment.
      *
-     * <p>networkAttachment: Optional. The name of the customer VPC NetworkAttachment used to draw a
-     * PSC interface IP into the customer VPC for sandbox egress.
+     * <p>networkAttachment: Optional. The name of the customer VPC `NetworkAttachment` used to draw
+     * a PSC interface IP into the customer VPC for sandbox egress.
      */
     @JsonProperty("networkAttachment")
     public abstract Builder networkAttachment(String networkAttachment);

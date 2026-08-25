@@ -46,6 +46,9 @@ public class SandboxState {
     /** Sandbox runtime has been deleted. */
     STATE_DELETED,
 
+    /** Sandbox runtime is stopping. */
+    STATE_STOPPING,
+
     SANDBOX_STATE_UNSPECIFIED
   }
 
