@@ -27,69 +27,55 @@ import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.genai.JsonSerializable;
 import java.util.Optional;
 
-/** Parameters for creating memory banks. */
+/** Parameters for getting a Memory Bank. */
 @AutoValue
 @InternalApi
-@JsonDeserialize(builder = CreateMemoryBankRequestParameters.Builder.class)
-public abstract class CreateMemoryBankRequestParameters extends JsonSerializable {
-  /** */
-  @JsonProperty("memoryBankConfig")
-  public abstract Optional<ReasoningEngineContextSpecMemoryBankConfig> memoryBankConfig();
+@JsonDeserialize(builder = GetMemoryBankRequestParameters.Builder.class)
+public abstract class GetMemoryBankRequestParameters extends JsonSerializable {
+  /** Name of the Memory Bank. */
+  @JsonProperty("name")
+  public abstract Optional<String> name();
 
   /** */
   @JsonProperty("config")
-  public abstract Optional<CreateMemoryBankConfig> config();
+  public abstract Optional<GetMemoryBankConfig> config();
 
-  /** Instantiates a builder for CreateMemoryBankRequestParameters. */
+  /** Instantiates a builder for GetMemoryBankRequestParameters. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
-    return new AutoValue_CreateMemoryBankRequestParameters.Builder();
+    return new AutoValue_GetMemoryBankRequestParameters.Builder();
   }
 
   /** Creates a builder with the same values as this instance. */
   public abstract Builder toBuilder();
 
-  /** Builder for CreateMemoryBankRequestParameters. */
+  /** Builder for GetMemoryBankRequestParameters. */
   @AutoValue.Builder
   public abstract static class Builder {
     /**
-     * For internal usage. Please use `CreateMemoryBankRequestParameters.builder()` for
-     * instantiation.
+     * For internal usage. Please use `GetMemoryBankRequestParameters.builder()` for instantiation.
      */
     @JsonCreator
     private static Builder create() {
-      return new AutoValue_CreateMemoryBankRequestParameters.Builder();
+      return new AutoValue_GetMemoryBankRequestParameters.Builder();
     }
 
     /**
-     * Setter for memoryBankConfig.
+     * Setter for name.
      *
-     * <p>memoryBankConfig:
+     * <p>name: Name of the Memory Bank.
      */
-    @JsonProperty("memoryBankConfig")
-    public abstract Builder memoryBankConfig(
-        ReasoningEngineContextSpecMemoryBankConfig memoryBankConfig);
-
-    /**
-     * Setter for memoryBankConfig builder.
-     *
-     * <p>memoryBankConfig:
-     */
-    @CanIgnoreReturnValue
-    public Builder memoryBankConfig(
-        ReasoningEngineContextSpecMemoryBankConfig.Builder memoryBankConfigBuilder) {
-      return memoryBankConfig(memoryBankConfigBuilder.build());
-    }
+    @JsonProperty("name")
+    public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
-    abstract Builder memoryBankConfig(
-        Optional<ReasoningEngineContextSpecMemoryBankConfig> memoryBankConfig);
+    abstract Builder name(Optional<String> name);
 
-    /** Clears the value of memoryBankConfig field. */
+    /** Clears the value of name field. */
     @ExcludeFromGeneratedCoverageReport
     @CanIgnoreReturnValue
-    public Builder clearMemoryBankConfig() {
-      return memoryBankConfig(Optional.empty());
+    public Builder clearName() {
+      return name(Optional.empty());
     }
 
     /**
@@ -98,7 +84,7 @@ public abstract class CreateMemoryBankRequestParameters extends JsonSerializable
      * <p>config:
      */
     @JsonProperty("config")
-    public abstract Builder config(CreateMemoryBankConfig config);
+    public abstract Builder config(GetMemoryBankConfig config);
 
     /**
      * Setter for config builder.
@@ -106,12 +92,12 @@ public abstract class CreateMemoryBankRequestParameters extends JsonSerializable
      * <p>config:
      */
     @CanIgnoreReturnValue
-    public Builder config(CreateMemoryBankConfig.Builder configBuilder) {
+    public Builder config(GetMemoryBankConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
 
     @ExcludeFromGeneratedCoverageReport
-    abstract Builder config(Optional<CreateMemoryBankConfig> config);
+    abstract Builder config(Optional<GetMemoryBankConfig> config);
 
     /** Clears the value of config field. */
     @ExcludeFromGeneratedCoverageReport
@@ -120,12 +106,12 @@ public abstract class CreateMemoryBankRequestParameters extends JsonSerializable
       return config(Optional.empty());
     }
 
-    public abstract CreateMemoryBankRequestParameters build();
+    public abstract GetMemoryBankRequestParameters build();
   }
 
-  /** Deserializes a JSON string to a CreateMemoryBankRequestParameters object. */
+  /** Deserializes a JSON string to a GetMemoryBankRequestParameters object. */
   @ExcludeFromGeneratedCoverageReport
-  public static CreateMemoryBankRequestParameters fromJson(String jsonString) {
-    return JsonSerializable.fromJsonString(jsonString, CreateMemoryBankRequestParameters.class);
+  public static GetMemoryBankRequestParameters fromJson(String jsonString) {
+    return JsonSerializable.fromJsonString(jsonString, GetMemoryBankRequestParameters.class);
   }
 }

@@ -21,12 +21,17 @@ package com.google.cloud.agentplatform;
 import com.google.cloud.agentplatform.types.CreateMemoryBankConfig;
 import com.google.cloud.agentplatform.types.DeleteMemoryBankConfig;
 import com.google.cloud.agentplatform.types.DeleteMemoryBankOperation;
+import com.google.cloud.agentplatform.types.GetMemoryBankConfig;
 import com.google.cloud.agentplatform.types.GetMemoryBankOperationConfig;
 import com.google.cloud.agentplatform.types.IngestEventsConfig;
 import com.google.cloud.agentplatform.types.IngestionDirectContentsSource;
+import com.google.cloud.agentplatform.types.ListMemoryBanksConfig;
+import com.google.cloud.agentplatform.types.ListReasoningEnginesResponse;
 import com.google.cloud.agentplatform.types.MemoryBankIngestEventsOperation;
 import com.google.cloud.agentplatform.types.MemoryBankOperation;
 import com.google.cloud.agentplatform.types.MemoryGenerationTriggerConfig;
+import com.google.cloud.agentplatform.types.ReasoningEngine;
+import com.google.cloud.agentplatform.types.ReasoningEngineContextSpecMemoryBankConfig;
 import com.google.genai.ApiClient;
 import com.google.genai.ApiResponse;
 import com.google.genai.Common.BuiltRequest;
@@ -47,9 +52,10 @@ public final class AsyncMemoryBanks {
     this.memories = new AsyncMemories(apiClient);
   }
 
-  CompletableFuture<MemoryBankOperation> privateCreate(CreateMemoryBankConfig config) {
+  CompletableFuture<MemoryBankOperation> privateCreate(
+      ReasoningEngineContextSpecMemoryBankConfig memoryBankConfig, CreateMemoryBankConfig config) {
 
-    BuiltRequest builtRequest = memoryBanks.buildRequestForPrivateCreate(config);
+    BuiltRequest builtRequest = memoryBanks.buildRequestForPrivateCreate(memoryBankConfig, config);
     return this.apiClient
         .asyncRequest("post", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())
         .thenApplyAsync(
@@ -75,6 +81,19 @@ public final class AsyncMemoryBanks {
             });
   }
 
+  CompletableFuture<ReasoningEngine> privateGet(String name, GetMemoryBankConfig config) {
+
+    BuiltRequest builtRequest = memoryBanks.buildRequestForPrivateGet(name, config);
+    return this.apiClient
+        .asyncRequest("get", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())
+        .thenApplyAsync(
+            response -> {
+              try (ApiResponse res = response) {
+                return memoryBanks.processResponseForPrivateGet(res, config);
+              }
+            });
+  }
+
   CompletableFuture<MemoryBankIngestEventsOperation> privateIngestEvents(
       String name,
       String streamId,
@@ -92,6 +111,19 @@ public final class AsyncMemoryBanks {
             response -> {
               try (ApiResponse res = response) {
                 return memoryBanks.processResponseForPrivateIngestEvents(res, config);
+              }
+            });
+  }
+
+  CompletableFuture<ListReasoningEnginesResponse> privateList(ListMemoryBanksConfig config) {
+
+    BuiltRequest builtRequest = memoryBanks.buildRequestForPrivateList(config);
+    return this.apiClient
+        .asyncRequest("get", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())
+        .thenApplyAsync(
+            response -> {
+              try (ApiResponse res = response) {
+                return memoryBanks.processResponseForPrivateList(res, config);
               }
             });
   }

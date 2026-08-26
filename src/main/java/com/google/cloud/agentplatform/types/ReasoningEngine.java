@@ -113,6 +113,17 @@ public abstract class ReasoningEngine extends JsonSerializable {
     @JsonProperty("encryptionSpec")
     public abstract Builder encryptionSpec(EncryptionSpec encryptionSpec);
 
+    /**
+     * Setter for encryptionSpec builder.
+     *
+     * <p>encryptionSpec: Customer-managed encryption key spec for a ReasoningEngine. If set, this
+     * ReasoningEngine and all sub-resources of this ReasoningEngine will be secured by this key.
+     */
+    @CanIgnoreReturnValue
+    public Builder encryptionSpec(EncryptionSpec.Builder encryptionSpecBuilder) {
+      return encryptionSpec(encryptionSpecBuilder.build());
+    }
+
     @ExcludeFromGeneratedCoverageReport
     abstract Builder encryptionSpec(Optional<EncryptionSpec> encryptionSpec);
 

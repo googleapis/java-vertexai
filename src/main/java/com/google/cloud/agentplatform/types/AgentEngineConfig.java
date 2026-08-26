@@ -627,6 +627,16 @@ public abstract class AgentEngineConfig extends JsonSerializable {
     @JsonProperty("encryptionSpec")
     public abstract Builder encryptionSpec(EncryptionSpec encryptionSpec);
 
+    /**
+     * Setter for encryptionSpec builder.
+     *
+     * <p>encryptionSpec: The encryption spec to be used for the Agent Engine.
+     */
+    @CanIgnoreReturnValue
+    public Builder encryptionSpec(EncryptionSpec.Builder encryptionSpecBuilder) {
+      return encryptionSpec(encryptionSpecBuilder.build());
+    }
+
     @ExcludeFromGeneratedCoverageReport
     abstract Builder encryptionSpec(Optional<EncryptionSpec> encryptionSpec);
 

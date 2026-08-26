@@ -19,20 +19,29 @@
 package com.google.cloud.agentplatform;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.cloud.agentplatform.types.CreateMemoryBankConfig;
 import com.google.cloud.agentplatform.types.CreateMemoryBankRequestParameters;
 import com.google.cloud.agentplatform.types.DeleteMemoryBankConfig;
 import com.google.cloud.agentplatform.types.DeleteMemoryBankOperation;
 import com.google.cloud.agentplatform.types.DeleteMemoryBankRequestParameters;
+import com.google.cloud.agentplatform.types.GetMemoryBankConfig;
 import com.google.cloud.agentplatform.types.GetMemoryBankOperationConfig;
 import com.google.cloud.agentplatform.types.GetMemoryBankOperationParameters;
+import com.google.cloud.agentplatform.types.GetMemoryBankRequestParameters;
 import com.google.cloud.agentplatform.types.IngestEventsConfig;
 import com.google.cloud.agentplatform.types.IngestEventsRequestParameters;
 import com.google.cloud.agentplatform.types.IngestionDirectContentsSource;
+import com.google.cloud.agentplatform.types.ListMemoryBanksConfig;
+import com.google.cloud.agentplatform.types.ListMemoryBanksRequestParameters;
+import com.google.cloud.agentplatform.types.ListReasoningEnginesResponse;
 import com.google.cloud.agentplatform.types.MemoryBankIngestEventsOperation;
 import com.google.cloud.agentplatform.types.MemoryBankOperation;
 import com.google.cloud.agentplatform.types.MemoryGenerationTriggerConfig;
+import com.google.cloud.agentplatform.types.ReasoningEngine;
+import com.google.cloud.agentplatform.types.ReasoningEngineContextSpecMemoryBankConfig;
 import com.google.genai.ApiClient;
 import com.google.genai.ApiResponse;
 import com.google.genai.Common;
@@ -56,9 +65,54 @@ public final class MemoryBanks {
   }
 
   @ExcludeFromGeneratedCoverageReport
+  ObjectNode createMemoryBankConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+
+    if (Common.getValueByPath(fromObject, new String[] {"displayName"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"displayName"},
+          Common.getValueByPath(fromObject, new String[] {"displayName"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"description"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"description"},
+          Common.getValueByPath(fromObject, new String[] {"description"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"encryptionSpec"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"encryptionSpec"},
+          Common.getValueByPath(fromObject, new String[] {"encryptionSpec"}));
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
   ObjectNode createMemoryBankRequestParametersToVertex(
       JsonNode fromObject, ObjectNode parentObject) {
     ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"memoryBankConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"context_spec", "memory_bank_config"},
+          reasoningEngineContextSpecMemoryBankConfigToVertex(
+              JsonSerializable.toJsonNode(
+                  Common.getValueByPath(fromObject, new String[] {"memoryBankConfig"})),
+              toObject));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
+      JsonNode unused =
+          createMemoryBankConfigToVertex(
+              JsonSerializable.toJsonNode(
+                  Common.getValueByPath(fromObject, new String[] {"config"})),
+              toObject);
+    }
 
     return toObject;
   }
@@ -93,6 +147,19 @@ public final class MemoryBanks {
           toObject,
           new String[] {"_url", "operationName"},
           Common.getValueByPath(fromObject, new String[] {"operationName"}));
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode getMemoryBankRequestParametersToVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"_url", "name"},
+          Common.getValueByPath(fromObject, new String[] {"name"}));
     }
 
     return toObject;
@@ -203,12 +270,551 @@ public final class MemoryBanks {
     return toObject;
   }
 
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode listMemoryBanksConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+
+    if (Common.getValueByPath(fromObject, new String[] {"pageSize"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"_query", "pageSize"},
+          Common.getValueByPath(fromObject, new String[] {"pageSize"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"pageToken"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"_query", "pageToken"},
+          Common.getValueByPath(fromObject, new String[] {"pageToken"}));
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode listMemoryBanksRequestParametersToVertex(
+      JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
+      JsonNode unused =
+          listMemoryBanksConfigToVertex(
+              JsonSerializable.toJsonNode(
+                  Common.getValueByPath(fromObject, new String[] {"config"})),
+              toObject);
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode listReasoningEnginesResponseFromVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"sdkHttpResponse"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"sdkHttpResponse"},
+          Common.getValueByPath(fromObject, new String[] {"sdkHttpResponse"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"nextPageToken"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"nextPageToken"},
+          Common.getValueByPath(fromObject, new String[] {"nextPageToken"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"reasoningEngines"}) != null) {
+      ArrayNode keyArray =
+          (ArrayNode) Common.getValueByPath(fromObject, new String[] {"reasoningEngines"});
+      ObjectMapper objectMapper = new ObjectMapper();
+      ArrayNode result = objectMapper.createArrayNode();
+
+      for (JsonNode item : keyArray) {
+        result.add(reasoningEngineFromVertex(JsonSerializable.toJsonNode(item), toObject));
+      }
+      Common.setValueByPath(toObject, new String[] {"reasoningEngines"}, result);
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode managedSemanticMemoryConfigFromVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"generationConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"generationConfig"},
+          Common.getValueByPath(fromObject, new String[] {"generationConfig"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"similaritySearchConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"similaritySearchConfig"},
+          Common.getValueByPath(fromObject, new String[] {"similaritySearchConfig"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"unstructuredMemoryConfigs"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"unstructuredMemoryConfigs"},
+          Common.getValueByPath(fromObject, new String[] {"unstructuredMemoryConfigs"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"structuredMemoryConfigs"}) != null) {
+      ArrayNode keyArray =
+          (ArrayNode) Common.getValueByPath(fromObject, new String[] {"structuredMemoryConfigs"});
+      ObjectMapper objectMapper = new ObjectMapper();
+      ArrayNode result = objectMapper.createArrayNode();
+
+      for (JsonNode item : keyArray) {
+        result.add(structuredMemoryConfigFromVertex(JsonSerializable.toJsonNode(item), toObject));
+      }
+      Common.setValueByPath(toObject, new String[] {"structuredMemoryConfigs"}, result);
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"ttlConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"ttlConfig"},
+          Common.getValueByPath(fromObject, new String[] {"ttlConfig"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"disableMemoryRevisions"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"disableMemoryRevisions"},
+          Common.getValueByPath(fromObject, new String[] {"disableMemoryRevisions"}));
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode memoryBankFromVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"name"},
+          Common.getValueByPath(fromObject, new String[] {"name"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"managedSemanticMemoryConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"managedSemanticMemoryConfig"},
+          managedSemanticMemoryConfigFromVertex(
+              JsonSerializable.toJsonNode(
+                  Common.getValueByPath(fromObject, new String[] {"managedSemanticMemoryConfig"})),
+              toObject));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"displayName"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"displayName"},
+          Common.getValueByPath(fromObject, new String[] {"displayName"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"description"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"description"},
+          Common.getValueByPath(fromObject, new String[] {"description"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"createTime"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"createTime"},
+          Common.getValueByPath(fromObject, new String[] {"createTime"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"updateTime"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"updateTime"},
+          Common.getValueByPath(fromObject, new String[] {"updateTime"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"encryptionSpec"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"encryptionSpec"},
+          Common.getValueByPath(fromObject, new String[] {"encryptionSpec"}));
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode memoryBankOperationFromVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"name"},
+          Common.getValueByPath(fromObject, new String[] {"name"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"metadata"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"metadata"},
+          Common.getValueByPath(fromObject, new String[] {"metadata"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"done"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"done"},
+          Common.getValueByPath(fromObject, new String[] {"done"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"error"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"error"},
+          Common.getValueByPath(fromObject, new String[] {"error"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"response"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"response"},
+          memoryBankFromVertex(
+              JsonSerializable.toJsonNode(
+                  Common.getValueByPath(fromObject, new String[] {"response"})),
+              toObject));
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode reasoningEngineContextSpecFromVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"memoryBankConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"memoryBankConfig"},
+          reasoningEngineContextSpecMemoryBankConfigFromVertex(
+              JsonSerializable.toJsonNode(
+                  Common.getValueByPath(fromObject, new String[] {"memoryBankConfig"})),
+              toObject));
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode reasoningEngineContextSpecMemoryBankConfigFromVertex(
+      JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"customizationConfigs"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"customizationConfigs"},
+          Common.getValueByPath(fromObject, new String[] {"customizationConfigs"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"disableMemoryRevisions"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"disableMemoryRevisions"},
+          Common.getValueByPath(fromObject, new String[] {"disableMemoryRevisions"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"generationConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"generationConfig"},
+          Common.getValueByPath(fromObject, new String[] {"generationConfig"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"similaritySearchConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"similaritySearchConfig"},
+          Common.getValueByPath(fromObject, new String[] {"similaritySearchConfig"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"ttlConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"ttlConfig"},
+          Common.getValueByPath(fromObject, new String[] {"ttlConfig"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"structuredMemoryConfigs"}) != null) {
+      ArrayNode keyArray =
+          (ArrayNode) Common.getValueByPath(fromObject, new String[] {"structuredMemoryConfigs"});
+      ObjectMapper objectMapper = new ObjectMapper();
+      ArrayNode result = objectMapper.createArrayNode();
+
+      for (JsonNode item : keyArray) {
+        result.add(structuredMemoryConfigFromVertex(JsonSerializable.toJsonNode(item), toObject));
+      }
+      Common.setValueByPath(toObject, new String[] {"structuredMemoryConfigs"}, result);
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode reasoningEngineContextSpecMemoryBankConfigToVertex(
+      JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"customizationConfigs"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"customizationConfigs"},
+          Common.getValueByPath(fromObject, new String[] {"customizationConfigs"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"disableMemoryRevisions"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"disableMemoryRevisions"},
+          Common.getValueByPath(fromObject, new String[] {"disableMemoryRevisions"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"generationConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"generationConfig"},
+          Common.getValueByPath(fromObject, new String[] {"generationConfig"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"similaritySearchConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"similaritySearchConfig"},
+          Common.getValueByPath(fromObject, new String[] {"similaritySearchConfig"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"ttlConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"ttlConfig"},
+          Common.getValueByPath(fromObject, new String[] {"ttlConfig"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"structuredMemoryConfigs"}) != null) {
+      ArrayNode keyArray =
+          (ArrayNode) Common.getValueByPath(fromObject, new String[] {"structuredMemoryConfigs"});
+      ObjectMapper objectMapper = new ObjectMapper();
+      ArrayNode result = objectMapper.createArrayNode();
+
+      for (JsonNode item : keyArray) {
+        result.add(structuredMemoryConfigToVertex(JsonSerializable.toJsonNode(item), toObject));
+      }
+      Common.setValueByPath(toObject, new String[] {"structuredMemoryConfigs"}, result);
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode reasoningEngineFromVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"encryptionSpec"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"encryptionSpec"},
+          Common.getValueByPath(fromObject, new String[] {"encryptionSpec"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"contextSpec"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"contextSpec"},
+          reasoningEngineContextSpecFromVertex(
+              JsonSerializable.toJsonNode(
+                  Common.getValueByPath(fromObject, new String[] {"contextSpec"})),
+              toObject));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"createTime"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"createTime"},
+          Common.getValueByPath(fromObject, new String[] {"createTime"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"description"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"description"},
+          Common.getValueByPath(fromObject, new String[] {"description"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"displayName"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"displayName"},
+          Common.getValueByPath(fromObject, new String[] {"displayName"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"etag"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"etag"},
+          Common.getValueByPath(fromObject, new String[] {"etag"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"labels"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"labels"},
+          Common.getValueByPath(fromObject, new String[] {"labels"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"name"},
+          Common.getValueByPath(fromObject, new String[] {"name"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"spec"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"spec"},
+          Common.getValueByPath(fromObject, new String[] {"spec"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"updateTime"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"updateTime"},
+          Common.getValueByPath(fromObject, new String[] {"updateTime"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"trafficConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"trafficConfig"},
+          Common.getValueByPath(fromObject, new String[] {"trafficConfig"}));
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode structuredMemoryConfigFromVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"schemaConfigs"}) != null) {
+      ArrayNode keyArray =
+          (ArrayNode) Common.getValueByPath(fromObject, new String[] {"schemaConfigs"});
+      ObjectMapper objectMapper = new ObjectMapper();
+      ArrayNode result = objectMapper.createArrayNode();
+
+      for (JsonNode item : keyArray) {
+        result.add(
+            structuredMemorySchemaConfigFromVertex(JsonSerializable.toJsonNode(item), toObject));
+      }
+      Common.setValueByPath(toObject, new String[] {"schemaConfigs"}, result);
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"scopeKeys"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"scopeKeys"},
+          Common.getValueByPath(fromObject, new String[] {"scopeKeys"}));
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode structuredMemoryConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"schemaConfigs"}) != null) {
+      ArrayNode keyArray =
+          (ArrayNode) Common.getValueByPath(fromObject, new String[] {"schemaConfigs"});
+      ObjectMapper objectMapper = new ObjectMapper();
+      ArrayNode result = objectMapper.createArrayNode();
+
+      for (JsonNode item : keyArray) {
+        result.add(
+            structuredMemorySchemaConfigToVertex(JsonSerializable.toJsonNode(item), toObject));
+      }
+      Common.setValueByPath(toObject, new String[] {"schemaConfigs"}, result);
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"scopeKeys"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"scopeKeys"},
+          Common.getValueByPath(fromObject, new String[] {"scopeKeys"}));
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode structuredMemorySchemaConfigFromVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"schema"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"memorySchema"},
+          Common.getValueByPath(fromObject, new String[] {"schema"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"id"}) != null) {
+      Common.setValueByPath(
+          toObject, new String[] {"id"}, Common.getValueByPath(fromObject, new String[] {"id"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"memoryType"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"memoryType"},
+          Common.getValueByPath(fromObject, new String[] {"memoryType"}));
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode structuredMemorySchemaConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"memorySchema"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"schema"},
+          Common.getValueByPath(fromObject, new String[] {"memorySchema"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"id"}) != null) {
+      Common.setValueByPath(
+          toObject, new String[] {"id"}, Common.getValueByPath(fromObject, new String[] {"id"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"memoryType"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"memoryType"},
+          Common.getValueByPath(fromObject, new String[] {"memoryType"}));
+    }
+
+    return toObject;
+  }
+
   /** A shared buildRequest method for both sync and async methods. */
-  BuiltRequest buildRequestForPrivateCreate(CreateMemoryBankConfig config) {
+  BuiltRequest buildRequestForPrivateCreate(
+      ReasoningEngineContextSpecMemoryBankConfig memoryBankConfig, CreateMemoryBankConfig config) {
 
     CreateMemoryBankRequestParameters.Builder parameterBuilder =
         CreateMemoryBankRequestParameters.builder();
 
+    if (!Common.isZero(memoryBankConfig)) {
+      parameterBuilder.memoryBankConfig(memoryBankConfig);
+    }
     if (!Common.isZero(config)) {
       parameterBuilder.config(config);
     }
@@ -254,6 +860,10 @@ public final class MemoryBanks {
 
     JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
 
+    if (this.apiClient.vertexAI()) {
+      responseNode = memoryBankOperationFromVertex(responseNode, null);
+    }
+
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
           "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
@@ -263,8 +873,9 @@ public final class MemoryBanks {
     return JsonSerializable.fromJsonNode(responseNode, MemoryBankOperation.class);
   }
 
-  public MemoryBankOperation privateCreate(CreateMemoryBankConfig config) {
-    BuiltRequest builtRequest = buildRequestForPrivateCreate(config);
+  public MemoryBankOperation privateCreate(
+      ReasoningEngineContextSpecMemoryBankConfig memoryBankConfig, CreateMemoryBankConfig config) {
+    BuiltRequest builtRequest = buildRequestForPrivateCreate(memoryBankConfig, config);
 
     try (ApiResponse response =
         this.apiClient.request(
@@ -348,6 +959,82 @@ public final class MemoryBanks {
         this.apiClient.request(
             "delete", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())) {
       return processResponseForPrivateDelete(response, config);
+    }
+  }
+
+  /** A shared buildRequest method for both sync and async methods. */
+  BuiltRequest buildRequestForPrivateGet(String name, GetMemoryBankConfig config) {
+
+    GetMemoryBankRequestParameters.Builder parameterBuilder =
+        GetMemoryBankRequestParameters.builder();
+
+    if (!Common.isZero(name)) {
+      parameterBuilder.name(name);
+    }
+    if (!Common.isZero(config)) {
+      parameterBuilder.config(config);
+    }
+    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+
+    ObjectNode body;
+    String path;
+    if (this.apiClient.vertexAI()) {
+      body = getMemoryBankRequestParametersToVertex(parameterNode, null);
+      path = Common.formatMap("{name}", body.get("_url"));
+    } else {
+      throw new UnsupportedOperationException(
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
+    }
+    body.remove("_url");
+
+    JsonNode queryParams = body.get("_query");
+    if (queryParams != null) {
+      body.remove("_query");
+      path = String.format("%s?%s", path, Common.urlEncode((ObjectNode) queryParams));
+    }
+
+    // TODO: Remove the hack that removes config.
+    Optional<HttpOptions> requestHttpOptions = Optional.empty();
+    if (config != null) {
+      requestHttpOptions = config.httpOptions();
+    }
+
+    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+  }
+
+  /** A shared processResponse function for both sync and async methods. */
+  ReasoningEngine processResponseForPrivateGet(ApiResponse response, GetMemoryBankConfig config) {
+    ResponseBody responseBody = response.getBody();
+    String responseString;
+    try {
+      responseString = responseBody.string();
+    } catch (IOException e) {
+      throw new GenAiIOException("Failed to read HTTP response.", e);
+    }
+
+    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+
+    if (this.apiClient.vertexAI()) {
+      responseNode = reasoningEngineFromVertex(responseNode, null);
+    }
+
+    if (!this.apiClient.vertexAI()) {
+      throw new UnsupportedOperationException(
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
+    }
+
+    return JsonSerializable.fromJsonNode(responseNode, ReasoningEngine.class);
+  }
+
+  public ReasoningEngine privateGet(String name, GetMemoryBankConfig config) {
+    BuiltRequest builtRequest = buildRequestForPrivateGet(name, config);
+
+    try (ApiResponse response =
+        this.apiClient.request(
+            "get", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())) {
+      return processResponseForPrivateGet(response, config);
     }
   }
 
@@ -451,6 +1138,80 @@ public final class MemoryBanks {
   }
 
   /** A shared buildRequest method for both sync and async methods. */
+  BuiltRequest buildRequestForPrivateList(ListMemoryBanksConfig config) {
+
+    ListMemoryBanksRequestParameters.Builder parameterBuilder =
+        ListMemoryBanksRequestParameters.builder();
+
+    if (!Common.isZero(config)) {
+      parameterBuilder.config(config);
+    }
+    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+
+    ObjectNode body;
+    String path;
+    if (this.apiClient.vertexAI()) {
+      body = listMemoryBanksRequestParametersToVertex(parameterNode, null);
+      path = Common.formatMap("reasoningEngines", body.get("_url"));
+    } else {
+      throw new UnsupportedOperationException(
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
+    }
+    body.remove("_url");
+
+    JsonNode queryParams = body.get("_query");
+    if (queryParams != null) {
+      body.remove("_query");
+      path = String.format("%s?%s", path, Common.urlEncode((ObjectNode) queryParams));
+    }
+
+    // TODO: Remove the hack that removes config.
+    Optional<HttpOptions> requestHttpOptions = Optional.empty();
+    if (config != null) {
+      requestHttpOptions = config.httpOptions();
+    }
+
+    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+  }
+
+  /** A shared processResponse function for both sync and async methods. */
+  ListReasoningEnginesResponse processResponseForPrivateList(
+      ApiResponse response, ListMemoryBanksConfig config) {
+    ResponseBody responseBody = response.getBody();
+    String responseString;
+    try {
+      responseString = responseBody.string();
+    } catch (IOException e) {
+      throw new GenAiIOException("Failed to read HTTP response.", e);
+    }
+
+    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+
+    if (this.apiClient.vertexAI()) {
+      responseNode = listReasoningEnginesResponseFromVertex(responseNode, null);
+    }
+
+    if (!this.apiClient.vertexAI()) {
+      throw new UnsupportedOperationException(
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
+    }
+
+    return JsonSerializable.fromJsonNode(responseNode, ListReasoningEnginesResponse.class);
+  }
+
+  public ListReasoningEnginesResponse privateList(ListMemoryBanksConfig config) {
+    BuiltRequest builtRequest = buildRequestForPrivateList(config);
+
+    try (ApiResponse response =
+        this.apiClient.request(
+            "get", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())) {
+      return processResponseForPrivateList(response, config);
+    }
+  }
+
+  /** A shared buildRequest method for both sync and async methods. */
   BuiltRequest buildRequestForPrivateGetMemoryBankOperation(
       String operationName, GetMemoryBankOperationConfig config) {
 
@@ -504,6 +1265,10 @@ public final class MemoryBanks {
     }
 
     JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+
+    if (this.apiClient.vertexAI()) {
+      responseNode = memoryBankOperationFromVertex(responseNode, null);
+    }
 
     if (!this.apiClient.vertexAI()) {
       throw new UnsupportedOperationException(
