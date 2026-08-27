@@ -29,6 +29,8 @@ import com.google.cloud.agentplatform.types.GetAgentEngineOperationConfig;
 import com.google.cloud.agentplatform.types.GetAgentEngineSandboxConfig;
 import com.google.cloud.agentplatform.types.ListAgentEngineSandboxesConfig;
 import com.google.cloud.agentplatform.types.ListAgentEngineSandboxesResponse;
+import com.google.cloud.agentplatform.types.PauseAgentEngineSandboxConfig;
+import com.google.cloud.agentplatform.types.ResumeAgentEngineSandboxConfig;
 import com.google.cloud.agentplatform.types.SandboxEnvironment;
 import com.google.cloud.agentplatform.types.SandboxEnvironmentSpec;
 import com.google.genai.ApiClient;
@@ -137,6 +139,34 @@ public final class AsyncSandboxes {
             response -> {
               try (ApiResponse res = response) {
                 return sandboxes.processResponseForPrivateGetSandboxOperation(res, config);
+              }
+            });
+  }
+
+  CompletableFuture<AgentEngineSandboxOperation> privatePause(
+      String name, PauseAgentEngineSandboxConfig config) {
+
+    BuiltRequest builtRequest = sandboxes.buildRequestForPrivatePause(name, config);
+    return this.apiClient
+        .asyncRequest("post", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())
+        .thenApplyAsync(
+            response -> {
+              try (ApiResponse res = response) {
+                return sandboxes.processResponseForPrivatePause(res, config);
+              }
+            });
+  }
+
+  CompletableFuture<AgentEngineSandboxOperation> privateResume(
+      String name, ResumeAgentEngineSandboxConfig config) {
+
+    BuiltRequest builtRequest = sandboxes.buildRequestForPrivateResume(name, config);
+    return this.apiClient
+        .asyncRequest("post", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())
+        .thenApplyAsync(
+            response -> {
+              try (ApiResponse res = response) {
+                return sandboxes.processResponseForPrivateResume(res, config);
               }
             });
   }
