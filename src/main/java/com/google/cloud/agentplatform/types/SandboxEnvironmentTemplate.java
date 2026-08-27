@@ -68,6 +68,19 @@ public abstract class SandboxEnvironmentTemplate extends JsonSerializable {
   @JsonProperty("updateTime")
   public abstract Optional<Instant> updateTime();
 
+  /**
+   * Optional. The configuration for private ingress (PSC-E) of this template. When set, the sandbox
+   * router is exposed privately via a PSC service attachment so VPC-SC customers can connect from
+   * their VPC over a private endpoint instead of the public internet. The resulting service
+   * attachment is surfaced on `SandboxEnvironment.connection_info.service_attachment`. Only the
+   * PSC-E (service-attachment/ingress) portion of `PrivateServiceConnectConfig` applies here:
+   * `enable_private_service_connect` and `project_allowlist` (the consumer projects allowed to
+   * connect). The nested `psc_interface_config` (PSC-I / egress) is not used for sandbox ingress;
+   * sandbox egress is configured via `egress_control_config` instead.
+   */
+  @JsonProperty("ingressControlConfig")
+  public abstract Optional<PrivateServiceConnectConfig> ingressControlConfig();
+
   /** Instantiates a builder for SandboxEnvironmentTemplate. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -292,6 +305,52 @@ public abstract class SandboxEnvironmentTemplate extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearUpdateTime() {
       return updateTime(Optional.empty());
+    }
+
+    /**
+     * Setter for ingressControlConfig.
+     *
+     * <p>ingressControlConfig: Optional. The configuration for private ingress (PSC-E) of this
+     * template. When set, the sandbox router is exposed privately via a PSC service attachment so
+     * VPC-SC customers can connect from their VPC over a private endpoint instead of the public
+     * internet. The resulting service attachment is surfaced on
+     * `SandboxEnvironment.connection_info.service_attachment`. Only the PSC-E
+     * (service-attachment/ingress) portion of `PrivateServiceConnectConfig` applies here:
+     * `enable_private_service_connect` and `project_allowlist` (the consumer projects allowed to
+     * connect). The nested `psc_interface_config` (PSC-I / egress) is not used for sandbox ingress;
+     * sandbox egress is configured via `egress_control_config` instead.
+     */
+    @JsonProperty("ingressControlConfig")
+    public abstract Builder ingressControlConfig(PrivateServiceConnectConfig ingressControlConfig);
+
+    /**
+     * Setter for ingressControlConfig builder.
+     *
+     * <p>ingressControlConfig: Optional. The configuration for private ingress (PSC-E) of this
+     * template. When set, the sandbox router is exposed privately via a PSC service attachment so
+     * VPC-SC customers can connect from their VPC over a private endpoint instead of the public
+     * internet. The resulting service attachment is surfaced on
+     * `SandboxEnvironment.connection_info.service_attachment`. Only the PSC-E
+     * (service-attachment/ingress) portion of `PrivateServiceConnectConfig` applies here:
+     * `enable_private_service_connect` and `project_allowlist` (the consumer projects allowed to
+     * connect). The nested `psc_interface_config` (PSC-I / egress) is not used for sandbox ingress;
+     * sandbox egress is configured via `egress_control_config` instead.
+     */
+    @CanIgnoreReturnValue
+    public Builder ingressControlConfig(
+        PrivateServiceConnectConfig.Builder ingressControlConfigBuilder) {
+      return ingressControlConfig(ingressControlConfigBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder ingressControlConfig(
+        Optional<PrivateServiceConnectConfig> ingressControlConfig);
+
+    /** Clears the value of ingressControlConfig field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearIngressControlConfig() {
+      return ingressControlConfig(Optional.empty());
     }
 
     public abstract SandboxEnvironmentTemplate build();
