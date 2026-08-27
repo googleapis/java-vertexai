@@ -50,6 +50,14 @@ public abstract class SchemaPromptSpecAppBuilderData extends JsonSerializable {
   @JsonProperty("linkedResources")
   public abstract Optional<List<SchemaPromptSpecAppBuilderDataLinkedResource>> linkedResources();
 
+  /**
+   * Optional. The Cloud Run regions in which the application is currently deployed. Used to
+   * rediscover and redeploy the app in the regions it already runs in, which may differ from the
+   * prompt's location.
+   */
+  @JsonProperty("deployedRegions")
+  public abstract Optional<List<String>> deployedRegions();
+
   /** Instantiates a builder for SchemaPromptSpecAppBuilderData. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -171,6 +179,38 @@ public abstract class SchemaPromptSpecAppBuilderData extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearLinkedResources() {
       return linkedResources(Optional.empty());
+    }
+
+    /**
+     * Setter for deployedRegions.
+     *
+     * <p>deployedRegions: Optional. The Cloud Run regions in which the application is currently
+     * deployed. Used to rediscover and redeploy the app in the regions it already runs in, which
+     * may differ from the prompt's location.
+     */
+    @JsonProperty("deployedRegions")
+    public abstract Builder deployedRegions(List<String> deployedRegions);
+
+    /**
+     * Setter for deployedRegions.
+     *
+     * <p>deployedRegions: Optional. The Cloud Run regions in which the application is currently
+     * deployed. Used to rediscover and redeploy the app in the regions it already runs in, which
+     * may differ from the prompt's location.
+     */
+    @CanIgnoreReturnValue
+    public Builder deployedRegions(String... deployedRegions) {
+      return deployedRegions(Arrays.asList(deployedRegions));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder deployedRegions(Optional<List<String>> deployedRegions);
+
+    /** Clears the value of deployedRegions field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearDeployedRegions() {
+      return deployedRegions(Optional.empty());
     }
 
     public abstract SchemaPromptSpecAppBuilderData build();
