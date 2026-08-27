@@ -46,6 +46,15 @@ public abstract class SandboxEnvironmentConnectionInfo extends JsonSerializable 
   @JsonProperty("routingToken")
   public abstract Optional<String> routingToken();
 
+  /**
+   * Output only. The name of the PSC-E service attachment created for private ingress to this
+   * SandboxEnvironment. Only populated when the template enables private ingress (see
+   * SandboxEnvironmentTemplate.ingress_control_config). VPC-SC customers use this to create a PSC
+   * endpoint in their VPC.
+   */
+  @JsonProperty("serviceAttachment")
+  public abstract Optional<String> serviceAttachment();
+
   /** Instantiates a builder for SandboxEnvironmentConnectionInfo. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -137,6 +146,27 @@ public abstract class SandboxEnvironmentConnectionInfo extends JsonSerializable 
     @CanIgnoreReturnValue
     public Builder clearRoutingToken() {
       return routingToken(Optional.empty());
+    }
+
+    /**
+     * Setter for serviceAttachment.
+     *
+     * <p>serviceAttachment: Output only. The name of the PSC-E service attachment created for
+     * private ingress to this SandboxEnvironment. Only populated when the template enables private
+     * ingress (see SandboxEnvironmentTemplate.ingress_control_config). VPC-SC customers use this to
+     * create a PSC endpoint in their VPC.
+     */
+    @JsonProperty("serviceAttachment")
+    public abstract Builder serviceAttachment(String serviceAttachment);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder serviceAttachment(Optional<String> serviceAttachment);
+
+    /** Clears the value of serviceAttachment field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearServiceAttachment() {
+      return serviceAttachment(Optional.empty());
     }
 
     public abstract SandboxEnvironmentConnectionInfo build();
