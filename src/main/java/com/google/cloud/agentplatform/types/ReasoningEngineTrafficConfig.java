@@ -89,6 +89,10 @@ public abstract class ReasoningEngineTrafficConfig extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineTrafficConfigTrafficSplitAlwaysLatest>
+        trafficSplitAlwaysLatest();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder trafficSplitAlwaysLatest(
         Optional<ReasoningEngineTrafficConfigTrafficSplitAlwaysLatest> trafficSplitAlwaysLatest);
 
@@ -120,6 +124,9 @@ public abstract class ReasoningEngineTrafficConfig extends JsonSerializable {
         ReasoningEngineTrafficConfigTrafficSplitManual.Builder trafficSplitManualBuilder) {
       return trafficSplitManual(trafficSplitManualBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineTrafficConfigTrafficSplitManual> trafficSplitManual();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder trafficSplitManual(

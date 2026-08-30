@@ -77,6 +77,9 @@ public abstract class ManagedSemanticMemoryConfigTtlConfigGranularTtlConfig
     public abstract Builder createTtl(String createTtl);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> createTtl();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder createTtl(Optional<String> createTtl);
 
     /** Clears the value of createTtl field. */
@@ -94,6 +97,9 @@ public abstract class ManagedSemanticMemoryConfigTtlConfigGranularTtlConfig
      */
     @JsonProperty("generateCreatedTtl")
     public abstract Builder generateCreatedTtl(String generateCreatedTtl);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> generateCreatedTtl();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder generateCreatedTtl(Optional<String> generateCreatedTtl);
@@ -114,6 +120,9 @@ public abstract class ManagedSemanticMemoryConfigTtlConfigGranularTtlConfig
      */
     @JsonProperty("generateUpdatedTtl")
     public abstract Builder generateUpdatedTtl(String generateUpdatedTtl);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> generateUpdatedTtl();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder generateUpdatedTtl(Optional<String> generateUpdatedTtl);

@@ -77,6 +77,9 @@ public abstract class MemoryFilter extends JsonSerializable {
     public abstract Builder key(String key);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> key();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder key(Optional<String> key);
 
     /** Clears the value of key field. */
@@ -95,6 +98,9 @@ public abstract class MemoryFilter extends JsonSerializable {
     public abstract Builder negate(boolean negate);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Boolean> negate();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder negate(Optional<Boolean> negate);
 
     /** Clears the value of negate field. */
@@ -111,6 +117,9 @@ public abstract class MemoryFilter extends JsonSerializable {
      */
     @JsonProperty("op")
     public abstract Builder op(Operator op);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Operator> op();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder op(Optional<Operator> op);
@@ -159,6 +168,9 @@ public abstract class MemoryFilter extends JsonSerializable {
     public Builder value(MemoryMetadataValue.Builder valueBuilder) {
       return value(valueBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<MemoryMetadataValue> value();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder value(Optional<MemoryMetadataValue> value);

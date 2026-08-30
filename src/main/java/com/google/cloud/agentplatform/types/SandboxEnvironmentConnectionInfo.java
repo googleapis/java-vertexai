@@ -85,6 +85,9 @@ public abstract class SandboxEnvironmentConnectionInfo extends JsonSerializable 
     public abstract Builder loadBalancerHostname(String loadBalancerHostname);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> loadBalancerHostname();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder loadBalancerHostname(Optional<String> loadBalancerHostname);
 
     /** Clears the value of loadBalancerHostname field. */
@@ -101,6 +104,9 @@ public abstract class SandboxEnvironmentConnectionInfo extends JsonSerializable 
      */
     @JsonProperty("loadBalancerIp")
     public abstract Builder loadBalancerIp(String loadBalancerIp);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> loadBalancerIp();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder loadBalancerIp(Optional<String> loadBalancerIp);
@@ -121,6 +127,9 @@ public abstract class SandboxEnvironmentConnectionInfo extends JsonSerializable 
     public abstract Builder sandboxInternalIp(String sandboxInternalIp);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> sandboxInternalIp();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder sandboxInternalIp(Optional<String> sandboxInternalIp);
 
     /** Clears the value of sandboxInternalIp field. */
@@ -137,6 +146,9 @@ public abstract class SandboxEnvironmentConnectionInfo extends JsonSerializable 
      */
     @JsonProperty("routingToken")
     public abstract Builder routingToken(String routingToken);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> routingToken();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder routingToken(Optional<String> routingToken);

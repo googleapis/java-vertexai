@@ -74,6 +74,9 @@ public abstract class MemoryBankCustomizationConfigGenerateMemoriesExampleConver
     public abstract Builder content(Content content);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Content> content();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder content(Optional<Content> content);
 
     /** Clears the value of content field. */

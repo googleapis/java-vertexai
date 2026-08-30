@@ -93,6 +93,9 @@ public abstract class ReasoningEngineSpecSourceCodeSpec extends JsonSerializable
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineSpecSourceCodeSpecAgentConfigSource> agentConfigSource();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder agentConfigSource(
         Optional<ReasoningEngineSpecSourceCodeSpecAgentConfigSource> agentConfigSource);
 
@@ -125,6 +128,10 @@ public abstract class ReasoningEngineSpecSourceCodeSpec extends JsonSerializable
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineSpecSourceCodeSpecDeveloperConnectSource>
+        developerConnectSource();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder developerConnectSource(
         Optional<ReasoningEngineSpecSourceCodeSpecDeveloperConnectSource> developerConnectSource);
 
@@ -152,6 +159,9 @@ public abstract class ReasoningEngineSpecSourceCodeSpec extends JsonSerializable
     public Builder imageSpec(ReasoningEngineSpecSourceCodeSpecImageSpec.Builder imageSpecBuilder) {
       return imageSpec(imageSpecBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineSpecSourceCodeSpecImageSpec> imageSpec();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder imageSpec(Optional<ReasoningEngineSpecSourceCodeSpecImageSpec> imageSpec);
@@ -184,6 +194,9 @@ public abstract class ReasoningEngineSpecSourceCodeSpec extends JsonSerializable
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineSpecSourceCodeSpecInlineSource> inlineSource();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder inlineSource(
         Optional<ReasoningEngineSpecSourceCodeSpecInlineSource> inlineSource);
 
@@ -212,6 +225,9 @@ public abstract class ReasoningEngineSpecSourceCodeSpec extends JsonSerializable
         ReasoningEngineSpecSourceCodeSpecPythonSpec.Builder pythonSpecBuilder) {
       return pythonSpec(pythonSpecBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineSpecSourceCodeSpecPythonSpec> pythonSpec();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder pythonSpec(Optional<ReasoningEngineSpecSourceCodeSpecPythonSpec> pythonSpec);

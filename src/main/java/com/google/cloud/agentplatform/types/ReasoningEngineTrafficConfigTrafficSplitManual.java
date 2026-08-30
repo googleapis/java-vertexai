@@ -71,8 +71,16 @@ public abstract class ReasoningEngineTrafficConfigTrafficSplitManual extends Jso
      * equal to 100.
      */
     @JsonProperty("targets")
-    public abstract Builder targets(
-        List<ReasoningEngineTrafficConfigTrafficSplitManualTarget> targets);
+    @CanIgnoreReturnValue
+    public Builder targets(List<ReasoningEngineTrafficConfigTrafficSplitManualTarget> targets) {
+      if (targets().isPresent()) {
+        List<ReasoningEngineTrafficConfigTrafficSplitManualTarget> list =
+            new java.util.ArrayList<>(targets().get());
+        list.addAll(targets);
+        return targets(java.util.Optional.of(list));
+      }
+      return targets(java.util.Optional.of(targets));
+    }
 
     /**
      * Setter for targets.
@@ -99,6 +107,9 @@ public abstract class ReasoningEngineTrafficConfigTrafficSplitManual extends Jso
               .map(ReasoningEngineTrafficConfigTrafficSplitManualTarget.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<ReasoningEngineTrafficConfigTrafficSplitManualTarget>> targets();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder targets(

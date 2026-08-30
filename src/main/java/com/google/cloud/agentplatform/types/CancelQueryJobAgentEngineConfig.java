@@ -68,6 +68,9 @@ public abstract class CancelQueryJobAgentEngineConfig extends JsonSerializable {
     public abstract Builder httpOptions(HttpOptions httpOptions);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<HttpOptions> httpOptions();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder httpOptions(Optional<HttpOptions> httpOptions);
 
     /** Clears the value of httpOptions field. */
@@ -84,6 +87,9 @@ public abstract class CancelQueryJobAgentEngineConfig extends JsonSerializable {
      */
     @JsonProperty("operationName")
     public abstract Builder operationName(String operationName);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> operationName();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder operationName(Optional<String> operationName);

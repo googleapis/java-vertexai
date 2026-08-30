@@ -75,8 +75,17 @@ public abstract class MemoryBankCustomizationConfigGenerateMemoriesExampleConver
      * <p>events: Optional. Represents the input conversation events for the example.
      */
     @JsonProperty("events")
-    public abstract Builder events(
-        List<MemoryBankCustomizationConfigGenerateMemoriesExampleConversationSourceEvent> events);
+    @CanIgnoreReturnValue
+    public Builder events(
+        List<MemoryBankCustomizationConfigGenerateMemoriesExampleConversationSourceEvent> events) {
+      if (events().isPresent()) {
+        List<MemoryBankCustomizationConfigGenerateMemoriesExampleConversationSourceEvent> list =
+            new java.util.ArrayList<>(events().get());
+        list.addAll(events);
+        return events(java.util.Optional.of(list));
+      }
+      return events(java.util.Optional.of(events));
+    }
 
     /**
      * Setter for events.
@@ -106,6 +115,11 @@ public abstract class MemoryBankCustomizationConfigGenerateMemoriesExampleConver
                       ::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<
+            List<MemoryBankCustomizationConfigGenerateMemoriesExampleConversationSourceEvent>>
+        events();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder events(

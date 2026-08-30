@@ -81,7 +81,15 @@ public abstract class PscInterfaceConfig extends JsonSerializable {
      * Vertex AI Service Agent on the target project.
      */
     @JsonProperty("dnsPeeringConfigs")
-    public abstract Builder dnsPeeringConfigs(List<DnsPeeringConfig> dnsPeeringConfigs);
+    @CanIgnoreReturnValue
+    public Builder dnsPeeringConfigs(List<DnsPeeringConfig> dnsPeeringConfigs) {
+      if (dnsPeeringConfigs().isPresent()) {
+        List<DnsPeeringConfig> list = new java.util.ArrayList<>(dnsPeeringConfigs().get());
+        list.addAll(dnsPeeringConfigs);
+        return dnsPeeringConfigs(java.util.Optional.of(list));
+      }
+      return dnsPeeringConfigs(java.util.Optional.of(dnsPeeringConfigs));
+    }
 
     /**
      * Setter for dnsPeeringConfigs.
@@ -113,6 +121,9 @@ public abstract class PscInterfaceConfig extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<DnsPeeringConfig>> dnsPeeringConfigs();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder dnsPeeringConfigs(Optional<List<DnsPeeringConfig>> dnsPeeringConfigs);
 
     /** Clears the value of dnsPeeringConfigs field. */
@@ -134,6 +145,9 @@ public abstract class PscInterfaceConfig extends JsonSerializable {
      */
     @JsonProperty("networkAttachment")
     public abstract Builder networkAttachment(String networkAttachment);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> networkAttachment();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder networkAttachment(Optional<String> networkAttachment);

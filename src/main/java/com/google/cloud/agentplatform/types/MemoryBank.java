@@ -96,6 +96,9 @@ public abstract class MemoryBank extends JsonSerializable {
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -128,6 +131,9 @@ public abstract class MemoryBank extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ManagedSemanticMemoryConfig> managedSemanticMemoryConfig();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder managedSemanticMemoryConfig(
         Optional<ManagedSemanticMemoryConfig> managedSemanticMemoryConfig);
 
@@ -145,6 +151,9 @@ public abstract class MemoryBank extends JsonSerializable {
      */
     @JsonProperty("displayName")
     public abstract Builder displayName(String displayName);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> displayName();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder displayName(Optional<String> displayName);
@@ -165,6 +174,9 @@ public abstract class MemoryBank extends JsonSerializable {
     public abstract Builder description(String description);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> description();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder description(Optional<String> description);
 
     /** Clears the value of description field. */
@@ -183,6 +195,9 @@ public abstract class MemoryBank extends JsonSerializable {
     public abstract Builder createTime(Instant createTime);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Instant> createTime();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder createTime(Optional<Instant> createTime);
 
     /** Clears the value of createTime field. */
@@ -199,6 +214,9 @@ public abstract class MemoryBank extends JsonSerializable {
      */
     @JsonProperty("updateTime")
     public abstract Builder updateTime(Instant updateTime);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Instant> updateTime();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder updateTime(Optional<Instant> updateTime);
@@ -229,6 +247,9 @@ public abstract class MemoryBank extends JsonSerializable {
     public Builder encryptionSpec(EncryptionSpec.Builder encryptionSpecBuilder) {
       return encryptionSpec(encryptionSpecBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<EncryptionSpec> encryptionSpec();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder encryptionSpec(Optional<EncryptionSpec> encryptionSpec);

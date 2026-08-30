@@ -78,6 +78,9 @@ public abstract class ExecuteCodeAgentEngineSandboxRequestParameters extends Jso
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -93,7 +96,15 @@ public abstract class ExecuteCodeAgentEngineSandboxRequestParameters extends Jso
      * <p>inputs: Inputs to the code execution.
      */
     @JsonProperty("inputs")
-    public abstract Builder inputs(List<Chunk> inputs);
+    @CanIgnoreReturnValue
+    public Builder inputs(List<Chunk> inputs) {
+      if (inputs().isPresent()) {
+        List<Chunk> list = new java.util.ArrayList<>(inputs().get());
+        list.addAll(inputs);
+        return inputs(java.util.Optional.of(list));
+      }
+      return inputs(java.util.Optional.of(inputs));
+    }
 
     /**
      * Setter for inputs.
@@ -117,6 +128,9 @@ public abstract class ExecuteCodeAgentEngineSandboxRequestParameters extends Jso
               .map(Chunk.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<Chunk>> inputs();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder inputs(Optional<List<Chunk>> inputs);
@@ -145,6 +159,9 @@ public abstract class ExecuteCodeAgentEngineSandboxRequestParameters extends Jso
     public Builder config(ExecuteCodeAgentEngineSandboxConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ExecuteCodeAgentEngineSandboxConfig> config();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<ExecuteCodeAgentEngineSandboxConfig> config);

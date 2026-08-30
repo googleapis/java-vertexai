@@ -88,6 +88,9 @@ public abstract class RetrieveMemoriesRequestParameters extends JsonSerializable
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -106,7 +109,18 @@ public abstract class RetrieveMemoriesRequestParameters extends JsonSerializable
      * same keys and values). Order does not matter, but it is case-sensitive.
      */
     @JsonProperty("scope")
-    public abstract Builder scope(Map<String, String> scope);
+    @CanIgnoreReturnValue
+    public Builder scope(Map<String, String> scope) {
+      if (scope().isPresent()) {
+        Map<String, String> map = new java.util.HashMap<>(scope().get());
+        map.putAll(scope);
+        return scope(java.util.Optional.of(map));
+      }
+      return scope(java.util.Optional.of(scope));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, String>> scope();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder scope(Optional<Map<String, String>> scope);
@@ -137,6 +151,9 @@ public abstract class RetrieveMemoriesRequestParameters extends JsonSerializable
         RetrieveMemoriesRequestSimilaritySearchParams.Builder similaritySearchParamsBuilder) {
       return similaritySearchParams(similaritySearchParamsBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<RetrieveMemoriesRequestSimilaritySearchParams> similaritySearchParams();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder similaritySearchParams(
@@ -170,6 +187,9 @@ public abstract class RetrieveMemoriesRequestParameters extends JsonSerializable
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<RetrieveMemoriesRequestSimpleRetrievalParams> simpleRetrievalParams();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder simpleRetrievalParams(
         Optional<RetrieveMemoriesRequestSimpleRetrievalParams> simpleRetrievalParams);
 
@@ -197,6 +217,9 @@ public abstract class RetrieveMemoriesRequestParameters extends JsonSerializable
     public Builder config(RetrieveMemoriesConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<RetrieveMemoriesConfig> config();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<RetrieveMemoriesConfig> config);

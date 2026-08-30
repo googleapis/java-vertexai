@@ -125,6 +125,9 @@ public abstract class ReasoningEngine extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<EncryptionSpec> encryptionSpec();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder encryptionSpec(Optional<EncryptionSpec> encryptionSpec);
 
     /** Clears the value of encryptionSpec field. */
@@ -155,6 +158,9 @@ public abstract class ReasoningEngine extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineContextSpec> contextSpec();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder contextSpec(Optional<ReasoningEngineContextSpec> contextSpec);
 
     /** Clears the value of contextSpec field. */
@@ -171,6 +177,9 @@ public abstract class ReasoningEngine extends JsonSerializable {
      */
     @JsonProperty("createTime")
     public abstract Builder createTime(Instant createTime);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Instant> createTime();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder createTime(Optional<Instant> createTime);
@@ -191,6 +200,9 @@ public abstract class ReasoningEngine extends JsonSerializable {
     public abstract Builder description(String description);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> description();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder description(Optional<String> description);
 
     /** Clears the value of description field. */
@@ -207,6 +219,9 @@ public abstract class ReasoningEngine extends JsonSerializable {
      */
     @JsonProperty("displayName")
     public abstract Builder displayName(String displayName);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> displayName();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder displayName(Optional<String> displayName);
@@ -228,6 +243,9 @@ public abstract class ReasoningEngine extends JsonSerializable {
     public abstract Builder etag(String etag);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> etag();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder etag(Optional<String> etag);
 
     /** Clears the value of etag field. */
@@ -243,7 +261,18 @@ public abstract class ReasoningEngine extends JsonSerializable {
      * <p>labels: Labels for the ReasoningEngine.
      */
     @JsonProperty("labels")
-    public abstract Builder labels(Map<String, String> labels);
+    @CanIgnoreReturnValue
+    public Builder labels(Map<String, String> labels) {
+      if (labels().isPresent()) {
+        Map<String, String> map = new java.util.HashMap<>(labels().get());
+        map.putAll(labels);
+        return labels(java.util.Optional.of(map));
+      }
+      return labels(java.util.Optional.of(labels));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, String>> labels();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder labels(Optional<Map<String, String>> labels);
@@ -263,6 +292,9 @@ public abstract class ReasoningEngine extends JsonSerializable {
      */
     @JsonProperty("name")
     public abstract Builder name(String name);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
@@ -293,6 +325,9 @@ public abstract class ReasoningEngine extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineSpec> spec();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder spec(Optional<ReasoningEngineSpec> spec);
 
     /** Clears the value of spec field. */
@@ -309,6 +344,9 @@ public abstract class ReasoningEngine extends JsonSerializable {
      */
     @JsonProperty("updateTime")
     public abstract Builder updateTime(Instant updateTime);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Instant> updateTime();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder updateTime(Optional<Instant> updateTime);
@@ -337,6 +375,9 @@ public abstract class ReasoningEngine extends JsonSerializable {
     public Builder trafficConfig(ReasoningEngineTrafficConfig.Builder trafficConfigBuilder) {
       return trafficConfig(trafficConfigBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineTrafficConfig> trafficConfig();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder trafficConfig(Optional<ReasoningEngineTrafficConfig> trafficConfig);

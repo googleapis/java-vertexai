@@ -64,7 +64,15 @@ public abstract class IngestionDirectContentsSource extends JsonSerializable {
      * <p>events: Required. The events to ingest.
      */
     @JsonProperty("events")
-    public abstract Builder events(List<IngestionDirectContentsSourceEvent> events);
+    @CanIgnoreReturnValue
+    public Builder events(List<IngestionDirectContentsSourceEvent> events) {
+      if (events().isPresent()) {
+        List<IngestionDirectContentsSourceEvent> list = new java.util.ArrayList<>(events().get());
+        list.addAll(events);
+        return events(java.util.Optional.of(list));
+      }
+      return events(java.util.Optional.of(events));
+    }
 
     /**
      * Setter for events.
@@ -88,6 +96,9 @@ public abstract class IngestionDirectContentsSource extends JsonSerializable {
               .map(IngestionDirectContentsSourceEvent.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<IngestionDirectContentsSourceEvent>> events();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder events(Optional<List<IngestionDirectContentsSourceEvent>> events);

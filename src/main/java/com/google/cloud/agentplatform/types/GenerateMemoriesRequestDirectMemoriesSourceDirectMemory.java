@@ -73,6 +73,9 @@ public abstract class GenerateMemoriesRequestDirectMemoriesSourceDirectMemory
     public abstract Builder fact(String fact);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> fact();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder fact(Optional<String> fact);
 
     /** Clears the value of fact field. */
@@ -88,7 +91,15 @@ public abstract class GenerateMemoriesRequestDirectMemoriesSourceDirectMemory
      * <p>topics: Optional. The topics that the consolidated memories should be associated with.
      */
     @JsonProperty("topics")
-    public abstract Builder topics(List<MemoryTopicId> topics);
+    @CanIgnoreReturnValue
+    public Builder topics(List<MemoryTopicId> topics) {
+      if (topics().isPresent()) {
+        List<MemoryTopicId> list = new java.util.ArrayList<>(topics().get());
+        list.addAll(topics);
+        return topics(java.util.Optional.of(list));
+      }
+      return topics(java.util.Optional.of(topics));
+    }
 
     /**
      * Setter for topics.
@@ -112,6 +123,9 @@ public abstract class GenerateMemoriesRequestDirectMemoriesSourceDirectMemory
               .map(MemoryTopicId.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<MemoryTopicId>> topics();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder topics(Optional<List<MemoryTopicId>> topics);

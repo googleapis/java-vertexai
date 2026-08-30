@@ -75,6 +75,9 @@ public abstract class RetrieveMemoriesResponse extends JsonSerializable {
     public abstract Builder nextPageToken(String nextPageToken);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> nextPageToken();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder nextPageToken(Optional<String> nextPageToken);
 
     /** Clears the value of nextPageToken field. */
@@ -90,8 +93,17 @@ public abstract class RetrieveMemoriesResponse extends JsonSerializable {
      * <p>retrievedMemories: The retrieved memories.
      */
     @JsonProperty("retrievedMemories")
-    public abstract Builder retrievedMemories(
-        List<RetrieveMemoriesResponseRetrievedMemory> retrievedMemories);
+    @CanIgnoreReturnValue
+    public Builder retrievedMemories(
+        List<RetrieveMemoriesResponseRetrievedMemory> retrievedMemories) {
+      if (retrievedMemories().isPresent()) {
+        List<RetrieveMemoriesResponseRetrievedMemory> list =
+            new java.util.ArrayList<>(retrievedMemories().get());
+        list.addAll(retrievedMemories);
+        return retrievedMemories(java.util.Optional.of(list));
+      }
+      return retrievedMemories(java.util.Optional.of(retrievedMemories));
+    }
 
     /**
      * Setter for retrievedMemories.
@@ -116,6 +128,9 @@ public abstract class RetrieveMemoriesResponse extends JsonSerializable {
               .map(RetrieveMemoriesResponseRetrievedMemory.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<RetrieveMemoriesResponseRetrievedMemory>> retrievedMemories();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder retrievedMemories(

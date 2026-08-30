@@ -66,6 +66,9 @@ public abstract class CheckQueryJobResponse extends JsonSerializable {
     public abstract Builder httpOptions(HttpOptions httpOptions);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<HttpOptions> httpOptions();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder httpOptions(Optional<HttpOptions> httpOptions);
 
     /** Clears the value of httpOptions field. */
@@ -82,6 +85,9 @@ public abstract class CheckQueryJobResponse extends JsonSerializable {
      */
     @JsonProperty("outputGcsUri")
     public abstract Builder outputGcsUri(String outputGcsUri);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> outputGcsUri();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder outputGcsUri(Optional<String> outputGcsUri);

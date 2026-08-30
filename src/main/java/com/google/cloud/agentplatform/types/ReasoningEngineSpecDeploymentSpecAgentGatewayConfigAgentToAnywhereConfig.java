@@ -79,6 +79,9 @@ public abstract class ReasoningEngineSpecDeploymentSpecAgentGatewayConfigAgentTo
     public abstract Builder agentGateway(String agentGateway);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> agentGateway();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder agentGateway(Optional<String> agentGateway);
 
     /** Clears the value of agentGateway field. */

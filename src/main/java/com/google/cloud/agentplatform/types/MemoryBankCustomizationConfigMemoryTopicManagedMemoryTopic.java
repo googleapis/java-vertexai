@@ -65,6 +65,9 @@ public abstract class MemoryBankCustomizationConfigMemoryTopicManagedMemoryTopic
     public abstract Builder managedTopicEnum(ManagedTopicEnum managedTopicEnum);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ManagedTopicEnum> managedTopicEnum();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder managedTopicEnum(Optional<ManagedTopicEnum> managedTopicEnum);
 
     /** Clears the value of managedTopicEnum field. */

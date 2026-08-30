@@ -76,6 +76,9 @@ public abstract class ListReasoningEnginesResponse extends JsonSerializable {
     public abstract Builder sdkHttpResponse(HttpResponse sdkHttpResponse);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<HttpResponse> sdkHttpResponse();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder sdkHttpResponse(Optional<HttpResponse> sdkHttpResponse);
 
     /** Clears the value of sdkHttpResponse field. */
@@ -94,6 +97,9 @@ public abstract class ListReasoningEnginesResponse extends JsonSerializable {
     public abstract Builder nextPageToken(String nextPageToken);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> nextPageToken();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder nextPageToken(Optional<String> nextPageToken);
 
     /** Clears the value of nextPageToken field. */
@@ -109,7 +115,15 @@ public abstract class ListReasoningEnginesResponse extends JsonSerializable {
      * <p>reasoningEngines: List of agent engines.
      */
     @JsonProperty("reasoningEngines")
-    public abstract Builder reasoningEngines(List<ReasoningEngine> reasoningEngines);
+    @CanIgnoreReturnValue
+    public Builder reasoningEngines(List<ReasoningEngine> reasoningEngines) {
+      if (reasoningEngines().isPresent()) {
+        List<ReasoningEngine> list = new java.util.ArrayList<>(reasoningEngines().get());
+        list.addAll(reasoningEngines);
+        return reasoningEngines(java.util.Optional.of(list));
+      }
+      return reasoningEngines(java.util.Optional.of(reasoningEngines));
+    }
 
     /**
      * Setter for reasoningEngines.
@@ -133,6 +147,9 @@ public abstract class ListReasoningEnginesResponse extends JsonSerializable {
               .map(ReasoningEngine.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<ReasoningEngine>> reasoningEngines();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder reasoningEngines(Optional<List<ReasoningEngine>> reasoningEngines);

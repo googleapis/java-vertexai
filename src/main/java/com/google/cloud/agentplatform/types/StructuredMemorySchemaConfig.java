@@ -78,6 +78,9 @@ public abstract class StructuredMemorySchemaConfig extends JsonSerializable {
     public abstract Builder memorySchema(Schema memorySchema);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Schema> memorySchema();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder memorySchema(Optional<Schema> memorySchema);
 
     /** Clears the value of memorySchema field. */
@@ -97,6 +100,9 @@ public abstract class StructuredMemorySchemaConfig extends JsonSerializable {
     public abstract Builder id(String id);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> id();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder id(Optional<String> id);
 
     /** Clears the value of id field. */
@@ -114,6 +120,9 @@ public abstract class StructuredMemorySchemaConfig extends JsonSerializable {
      */
     @JsonProperty("memoryType")
     public abstract Builder memoryType(MemoryType memoryType);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<MemoryType> memoryType();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder memoryType(Optional<MemoryType> memoryType);

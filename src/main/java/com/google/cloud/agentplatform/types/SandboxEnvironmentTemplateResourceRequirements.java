@@ -76,7 +76,18 @@ public abstract class SandboxEnvironmentTemplateResourceRequirements extends Jso
      * names (e.g., "cpu", "memory"). Values are quantities (e.g., "500m", "1Gi").
      */
     @JsonProperty("limits")
-    public abstract Builder limits(Map<String, String> limits);
+    @CanIgnoreReturnValue
+    public Builder limits(Map<String, String> limits) {
+      if (limits().isPresent()) {
+        Map<String, String> map = new java.util.HashMap<>(limits().get());
+        map.putAll(limits);
+        return limits(java.util.Optional.of(map));
+      }
+      return limits(java.util.Optional.of(limits));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, String>> limits();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder limits(Optional<Map<String, String>> limits);
@@ -95,7 +106,18 @@ public abstract class SandboxEnvironmentTemplateResourceRequirements extends Jso
      * (e.g., "cpu", "memory"). Values are quantities (e.g., "250m", "512Mi").
      */
     @JsonProperty("requests")
-    public abstract Builder requests(Map<String, String> requests);
+    @CanIgnoreReturnValue
+    public Builder requests(Map<String, String> requests) {
+      if (requests().isPresent()) {
+        Map<String, String> map = new java.util.HashMap<>(requests().get());
+        map.putAll(requests);
+        return requests(java.util.Optional.of(map));
+      }
+      return requests(java.util.Optional.of(requests));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, String>> requests();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder requests(Optional<Map<String, String>> requests);

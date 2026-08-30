@@ -93,6 +93,9 @@ public abstract class GenerateMemoriesRequestParameters extends JsonSerializable
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -121,6 +124,9 @@ public abstract class GenerateMemoriesRequestParameters extends JsonSerializable
         GenerateMemoriesRequestVertexSessionSource.Builder vertexSessionSourceBuilder) {
       return vertexSessionSource(vertexSessionSourceBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<GenerateMemoriesRequestVertexSessionSource> vertexSessionSource();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder vertexSessionSource(
@@ -154,6 +160,9 @@ public abstract class GenerateMemoriesRequestParameters extends JsonSerializable
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<GenerateMemoriesRequestDirectContentsSource> directContentsSource();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder directContentsSource(
         Optional<GenerateMemoriesRequestDirectContentsSource> directContentsSource);
 
@@ -185,6 +194,9 @@ public abstract class GenerateMemoriesRequestParameters extends JsonSerializable
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<GenerateMemoriesRequestDirectMemoriesSource> directMemoriesSource();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder directMemoriesSource(
         Optional<GenerateMemoriesRequestDirectMemoriesSource> directMemoriesSource);
 
@@ -205,7 +217,18 @@ public abstract class GenerateMemoriesRequestParameters extends JsonSerializable
      * scope defined in the source content. Scope values cannot contain the wildcard character '*'.
      */
     @JsonProperty("scope")
-    public abstract Builder scope(Map<String, String> scope);
+    @CanIgnoreReturnValue
+    public Builder scope(Map<String, String> scope) {
+      if (scope().isPresent()) {
+        Map<String, String> map = new java.util.HashMap<>(scope().get());
+        map.putAll(scope);
+        return scope(java.util.Optional.of(map));
+      }
+      return scope(java.util.Optional.of(scope));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, String>> scope();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder scope(Optional<Map<String, String>> scope);
@@ -234,6 +257,9 @@ public abstract class GenerateMemoriesRequestParameters extends JsonSerializable
     public Builder config(GenerateMemoriesConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<GenerateMemoriesConfig> config();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<GenerateMemoriesConfig> config);

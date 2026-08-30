@@ -95,8 +95,16 @@ public abstract class ReasoningEngineContextSpecMemoryBankConfig extends JsonSer
      * for a particular scope.
      */
     @JsonProperty("customizationConfigs")
-    public abstract Builder customizationConfigs(
-        List<MemoryBankCustomizationConfig> customizationConfigs);
+    @CanIgnoreReturnValue
+    public Builder customizationConfigs(List<MemoryBankCustomizationConfig> customizationConfigs) {
+      if (customizationConfigs().isPresent()) {
+        List<MemoryBankCustomizationConfig> list =
+            new java.util.ArrayList<>(customizationConfigs().get());
+        list.addAll(customizationConfigs);
+        return customizationConfigs(java.util.Optional.of(list));
+      }
+      return customizationConfigs(java.util.Optional.of(customizationConfigs));
+    }
 
     /**
      * Setter for customizationConfigs.
@@ -125,6 +133,9 @@ public abstract class ReasoningEngineContextSpecMemoryBankConfig extends JsonSer
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<MemoryBankCustomizationConfig>> customizationConfigs();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder customizationConfigs(
         Optional<List<MemoryBankCustomizationConfig>> customizationConfigs);
 
@@ -143,6 +154,9 @@ public abstract class ReasoningEngineContextSpecMemoryBankConfig extends JsonSer
      */
     @JsonProperty("disableMemoryRevisions")
     public abstract Builder disableMemoryRevisions(boolean disableMemoryRevisions);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Boolean> disableMemoryRevisions();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder disableMemoryRevisions(Optional<Boolean> disableMemoryRevisions);
@@ -176,6 +190,10 @@ public abstract class ReasoningEngineContextSpecMemoryBankConfig extends JsonSer
             generationConfigBuilder) {
       return generationConfig(generationConfigBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineContextSpecMemoryBankConfigGenerationConfig>
+        generationConfig();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder generationConfig(
@@ -214,6 +232,10 @@ public abstract class ReasoningEngineContextSpecMemoryBankConfig extends JsonSer
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineContextSpecMemoryBankConfigSimilaritySearchConfig>
+        similaritySearchConfig();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder similaritySearchConfig(
         Optional<ReasoningEngineContextSpecMemoryBankConfigSimilaritySearchConfig>
             similaritySearchConfig);
@@ -250,6 +272,9 @@ public abstract class ReasoningEngineContextSpecMemoryBankConfig extends JsonSer
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineContextSpecMemoryBankConfigTtlConfig> ttlConfig();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder ttlConfig(
         Optional<ReasoningEngineContextSpecMemoryBankConfigTtlConfig> ttlConfig);
 
@@ -267,8 +292,16 @@ public abstract class ReasoningEngineContextSpecMemoryBankConfig extends JsonSer
      * particular scope.
      */
     @JsonProperty("structuredMemoryConfigs")
-    public abstract Builder structuredMemoryConfigs(
-        List<StructuredMemoryConfig> structuredMemoryConfigs);
+    @CanIgnoreReturnValue
+    public Builder structuredMemoryConfigs(List<StructuredMemoryConfig> structuredMemoryConfigs) {
+      if (structuredMemoryConfigs().isPresent()) {
+        List<StructuredMemoryConfig> list =
+            new java.util.ArrayList<>(structuredMemoryConfigs().get());
+        list.addAll(structuredMemoryConfigs);
+        return structuredMemoryConfigs(java.util.Optional.of(list));
+      }
+      return structuredMemoryConfigs(java.util.Optional.of(structuredMemoryConfigs));
+    }
 
     /**
      * Setter for structuredMemoryConfigs.
@@ -295,6 +328,9 @@ public abstract class ReasoningEngineContextSpecMemoryBankConfig extends JsonSer
               .map(StructuredMemoryConfig.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<StructuredMemoryConfig>> structuredMemoryConfigs();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder structuredMemoryConfigs(

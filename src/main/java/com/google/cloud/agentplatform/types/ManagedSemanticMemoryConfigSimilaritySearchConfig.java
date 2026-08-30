@@ -68,6 +68,9 @@ public abstract class ManagedSemanticMemoryConfigSimilaritySearchConfig extends 
     public abstract Builder embeddingModel(String embeddingModel);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> embeddingModel();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder embeddingModel(Optional<String> embeddingModel);
 
     /** Clears the value of embeddingModel field. */

@@ -62,7 +62,15 @@ public abstract class MemoryConjunctionFilter extends JsonSerializable {
      * <p>filters: Represents filters that will be combined using AND logic.
      */
     @JsonProperty("filters")
-    public abstract Builder filters(List<MemoryFilter> filters);
+    @CanIgnoreReturnValue
+    public Builder filters(List<MemoryFilter> filters) {
+      if (filters().isPresent()) {
+        List<MemoryFilter> list = new java.util.ArrayList<>(filters().get());
+        list.addAll(filters);
+        return filters(java.util.Optional.of(list));
+      }
+      return filters(java.util.Optional.of(filters));
+    }
 
     /**
      * Setter for filters.
@@ -86,6 +94,9 @@ public abstract class MemoryConjunctionFilter extends JsonSerializable {
               .map(MemoryFilter.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<MemoryFilter>> filters();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder filters(Optional<List<MemoryFilter>> filters);

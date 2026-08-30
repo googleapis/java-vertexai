@@ -80,6 +80,9 @@ public abstract class RetrieveMemoryProfilesRequestParameters extends JsonSerial
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -98,7 +101,18 @@ public abstract class RetrieveMemoryProfilesRequestParameters extends JsonSerial
      * same keys and values). Order does not matter, but it is case-sensitive.
      */
     @JsonProperty("scope")
-    public abstract Builder scope(Map<String, String> scope);
+    @CanIgnoreReturnValue
+    public Builder scope(Map<String, String> scope) {
+      if (scope().isPresent()) {
+        Map<String, String> map = new java.util.HashMap<>(scope().get());
+        map.putAll(scope);
+        return scope(java.util.Optional.of(map));
+      }
+      return scope(java.util.Optional.of(scope));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, String>> scope();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder scope(Optional<Map<String, String>> scope);
@@ -127,6 +141,9 @@ public abstract class RetrieveMemoryProfilesRequestParameters extends JsonSerial
     public Builder config(RetrieveMemoryProfilesConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<RetrieveMemoryProfilesConfig> config();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<RetrieveMemoryProfilesConfig> config);

@@ -65,6 +65,9 @@ public abstract class GenerateMemoriesRequestDirectContentsSourceEvent extends J
     public abstract Builder content(Content content);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Content> content();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder content(Optional<Content> content);
 
     /** Clears the value of content field. */

@@ -75,6 +75,9 @@ public abstract class ReasoningEngineContextSpec extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineContextSpecMemoryBankConfig> memoryBankConfig();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder memoryBankConfig(
         Optional<ReasoningEngineContextSpecMemoryBankConfig> memoryBankConfig);
 

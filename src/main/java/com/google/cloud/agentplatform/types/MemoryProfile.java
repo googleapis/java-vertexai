@@ -70,6 +70,9 @@ public abstract class MemoryProfile extends JsonSerializable {
     public abstract Builder schemaId(String schemaId);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> schemaId();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder schemaId(Optional<String> schemaId);
 
     /** Clears the value of schemaId field. */
@@ -85,7 +88,18 @@ public abstract class MemoryProfile extends JsonSerializable {
      * <p>profile: Represents the profile data.
      */
     @JsonProperty("profile")
-    public abstract Builder profile(Map<String, Object> profile);
+    @CanIgnoreReturnValue
+    public Builder profile(Map<String, Object> profile) {
+      if (profile().isPresent()) {
+        Map<String, Object> map = new java.util.HashMap<>(profile().get());
+        map.putAll(profile);
+        return profile(java.util.Optional.of(map));
+      }
+      return profile(java.util.Optional.of(profile));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, Object>> profile();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder profile(Optional<Map<String, Object>> profile);

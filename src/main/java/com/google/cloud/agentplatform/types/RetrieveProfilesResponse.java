@@ -66,7 +66,18 @@ public abstract class RetrieveProfilesResponse extends JsonSerializable {
      * `StructuredMemoryCustomizationConfig`.
      */
     @JsonProperty("profiles")
-    public abstract Builder profiles(Map<String, MemoryProfile> profiles);
+    @CanIgnoreReturnValue
+    public Builder profiles(Map<String, MemoryProfile> profiles) {
+      if (profiles().isPresent()) {
+        Map<String, MemoryProfile> map = new java.util.HashMap<>(profiles().get());
+        map.putAll(profiles);
+        return profiles(java.util.Optional.of(map));
+      }
+      return profiles(java.util.Optional.of(profiles));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, MemoryProfile>> profiles();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder profiles(Optional<Map<String, MemoryProfile>> profiles);

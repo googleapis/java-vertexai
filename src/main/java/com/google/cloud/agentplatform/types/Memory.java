@@ -162,6 +162,9 @@ public abstract class Memory extends JsonSerializable {
     public abstract Builder createTime(Instant createTime);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Instant> createTime();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder createTime(Optional<Instant> createTime);
 
     /** Clears the value of createTime field. */
@@ -178,6 +181,9 @@ public abstract class Memory extends JsonSerializable {
      */
     @JsonProperty("description")
     public abstract Builder description(String description);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> description();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder description(Optional<String> description);
@@ -199,6 +205,9 @@ public abstract class Memory extends JsonSerializable {
     public abstract Builder disableMemoryRevisions(boolean disableMemoryRevisions);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Boolean> disableMemoryRevisions();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder disableMemoryRevisions(Optional<Boolean> disableMemoryRevisions);
 
     /** Clears the value of disableMemoryRevisions field. */
@@ -215,6 +224,9 @@ public abstract class Memory extends JsonSerializable {
      */
     @JsonProperty("displayName")
     public abstract Builder displayName(String displayName);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> displayName();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder displayName(Optional<String> displayName);
@@ -237,6 +249,9 @@ public abstract class Memory extends JsonSerializable {
     public abstract Builder expireTime(Instant expireTime);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Instant> expireTime();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder expireTime(Optional<Instant> expireTime);
 
     /** Clears the value of expireTime field. */
@@ -253,6 +268,9 @@ public abstract class Memory extends JsonSerializable {
      */
     @JsonProperty("fact")
     public abstract Builder fact(String fact);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> fact();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder fact(Optional<String> fact);
@@ -272,7 +290,18 @@ public abstract class Memory extends JsonSerializable {
      * Bank.
      */
     @JsonProperty("metadata")
-    public abstract Builder metadata(Map<String, MemoryMetadataValue> metadata);
+    @CanIgnoreReturnValue
+    public Builder metadata(Map<String, MemoryMetadataValue> metadata) {
+      if (metadata().isPresent()) {
+        Map<String, MemoryMetadataValue> map = new java.util.HashMap<>(metadata().get());
+        map.putAll(metadata);
+        return metadata(java.util.Optional.of(map));
+      }
+      return metadata(java.util.Optional.of(metadata));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, MemoryMetadataValue>> metadata();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder metadata(Optional<Map<String, MemoryMetadataValue>> metadata);
@@ -294,6 +323,9 @@ public abstract class Memory extends JsonSerializable {
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -313,6 +345,9 @@ public abstract class Memory extends JsonSerializable {
     public abstract Builder revisionExpireTime(Instant revisionExpireTime);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Instant> revisionExpireTime();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder revisionExpireTime(Optional<Instant> revisionExpireTime);
 
     /** Clears the value of revisionExpireTime field. */
@@ -329,7 +364,18 @@ public abstract class Memory extends JsonSerializable {
      * Revision created as a result of this request.
      */
     @JsonProperty("revisionLabels")
-    public abstract Builder revisionLabels(Map<String, String> revisionLabels);
+    @CanIgnoreReturnValue
+    public Builder revisionLabels(Map<String, String> revisionLabels) {
+      if (revisionLabels().isPresent()) {
+        Map<String, String> map = new java.util.HashMap<>(revisionLabels().get());
+        map.putAll(revisionLabels);
+        return revisionLabels(java.util.Optional.of(map));
+      }
+      return revisionLabels(java.util.Optional.of(revisionLabels));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, String>> revisionLabels();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder revisionLabels(Optional<Map<String, String>> revisionLabels);
@@ -351,6 +397,9 @@ public abstract class Memory extends JsonSerializable {
     public abstract Builder revisionTtl(Duration revisionTtl);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Duration> revisionTtl();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder revisionTtl(Optional<Duration> revisionTtl);
 
     /** Clears the value of revisionTtl field. */
@@ -368,7 +417,18 @@ public abstract class Memory extends JsonSerializable {
      * cannot contain the wildcard character '*'.
      */
     @JsonProperty("scope")
-    public abstract Builder scope(Map<String, String> scope);
+    @CanIgnoreReturnValue
+    public Builder scope(Map<String, String> scope) {
+      if (scope().isPresent()) {
+        Map<String, String> map = new java.util.HashMap<>(scope().get());
+        map.putAll(scope);
+        return scope(java.util.Optional.of(map));
+      }
+      return scope(java.util.Optional.of(scope));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, String>> scope();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder scope(Optional<Map<String, String>> scope);
@@ -386,7 +446,15 @@ public abstract class Memory extends JsonSerializable {
      * <p>topics: Optional. Represents the Topics of the Memory.
      */
     @JsonProperty("topics")
-    public abstract Builder topics(List<MemoryTopicId> topics);
+    @CanIgnoreReturnValue
+    public Builder topics(List<MemoryTopicId> topics) {
+      if (topics().isPresent()) {
+        List<MemoryTopicId> list = new java.util.ArrayList<>(topics().get());
+        list.addAll(topics);
+        return topics(java.util.Optional.of(list));
+      }
+      return topics(java.util.Optional.of(topics));
+    }
 
     /**
      * Setter for topics.
@@ -412,6 +480,9 @@ public abstract class Memory extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<MemoryTopicId>> topics();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder topics(Optional<List<MemoryTopicId>> topics);
 
     /** Clears the value of topics field. */
@@ -429,6 +500,9 @@ public abstract class Memory extends JsonSerializable {
      */
     @JsonProperty("ttl")
     public abstract Builder ttl(Duration ttl);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Duration> ttl();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder ttl(Optional<Duration> ttl);
@@ -450,6 +524,9 @@ public abstract class Memory extends JsonSerializable {
     public abstract Builder updateTime(Instant updateTime);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Instant> updateTime();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder updateTime(Optional<Instant> updateTime);
 
     /** Clears the value of updateTime field. */
@@ -468,6 +545,9 @@ public abstract class Memory extends JsonSerializable {
      */
     @JsonProperty("memoryType")
     public abstract Builder memoryType(MemoryType memoryType);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<MemoryType> memoryType();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder memoryType(Optional<MemoryType> memoryType);
@@ -520,6 +600,9 @@ public abstract class Memory extends JsonSerializable {
     public Builder structuredContent(MemoryStructuredContent.Builder structuredContentBuilder) {
       return structuredContent(structuredContentBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<MemoryStructuredContent> structuredContent();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder structuredContent(Optional<MemoryStructuredContent> structuredContent);

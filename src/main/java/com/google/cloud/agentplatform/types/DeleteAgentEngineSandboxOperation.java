@@ -91,6 +91,9 @@ public abstract class DeleteAgentEngineSandboxOperation extends JsonSerializable
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -109,7 +112,18 @@ public abstract class DeleteAgentEngineSandboxOperation extends JsonSerializable
      * type, if any.
      */
     @JsonProperty("metadata")
-    public abstract Builder metadata(Map<String, Object> metadata);
+    @CanIgnoreReturnValue
+    public Builder metadata(Map<String, Object> metadata) {
+      if (metadata().isPresent()) {
+        Map<String, Object> map = new java.util.HashMap<>(metadata().get());
+        map.putAll(metadata);
+        return metadata(java.util.Optional.of(map));
+      }
+      return metadata(java.util.Optional.of(metadata));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, Object>> metadata();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder metadata(Optional<Map<String, Object>> metadata);
@@ -131,6 +145,9 @@ public abstract class DeleteAgentEngineSandboxOperation extends JsonSerializable
     public abstract Builder done(boolean done);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Boolean> done();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder done(Optional<Boolean> done);
 
     /** Clears the value of done field. */
@@ -146,7 +163,18 @@ public abstract class DeleteAgentEngineSandboxOperation extends JsonSerializable
      * <p>error: The error result of the operation in case of failure or cancellation.
      */
     @JsonProperty("error")
-    public abstract Builder error(Map<String, Object> error);
+    @CanIgnoreReturnValue
+    public Builder error(Map<String, Object> error) {
+      if (error().isPresent()) {
+        Map<String, Object> map = new java.util.HashMap<>(error().get());
+        map.putAll(error);
+        return error(java.util.Optional.of(map));
+      }
+      return error(java.util.Optional.of(error));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, Object>> error();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder error(Optional<Map<String, Object>> error);

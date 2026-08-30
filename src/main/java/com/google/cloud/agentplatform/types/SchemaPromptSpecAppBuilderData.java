@@ -81,6 +81,9 @@ public abstract class SchemaPromptSpecAppBuilderData extends JsonSerializable {
     public abstract Builder codeRepositoryState(String codeRepositoryState);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> codeRepositoryState();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder codeRepositoryState(Optional<String> codeRepositoryState);
 
     /** Clears the value of codeRepositoryState field. */
@@ -97,6 +100,9 @@ public abstract class SchemaPromptSpecAppBuilderData extends JsonSerializable {
      */
     @JsonProperty("framework")
     public abstract Builder framework(Framework framework);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Framework> framework();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder framework(Optional<Framework> framework);
@@ -134,8 +140,17 @@ public abstract class SchemaPromptSpecAppBuilderData extends JsonSerializable {
      * <p>linkedResources: Linked resources attached to the application by the user.
      */
     @JsonProperty("linkedResources")
-    public abstract Builder linkedResources(
-        List<SchemaPromptSpecAppBuilderDataLinkedResource> linkedResources);
+    @CanIgnoreReturnValue
+    public Builder linkedResources(
+        List<SchemaPromptSpecAppBuilderDataLinkedResource> linkedResources) {
+      if (linkedResources().isPresent()) {
+        List<SchemaPromptSpecAppBuilderDataLinkedResource> list =
+            new java.util.ArrayList<>(linkedResources().get());
+        list.addAll(linkedResources);
+        return linkedResources(java.util.Optional.of(list));
+      }
+      return linkedResources(java.util.Optional.of(linkedResources));
+    }
 
     /**
      * Setter for linkedResources.
@@ -161,6 +176,9 @@ public abstract class SchemaPromptSpecAppBuilderData extends JsonSerializable {
               .map(SchemaPromptSpecAppBuilderDataLinkedResource.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<SchemaPromptSpecAppBuilderDataLinkedResource>> linkedResources();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder linkedResources(

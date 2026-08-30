@@ -93,6 +93,10 @@ public abstract class MemoryBankCustomizationConfigGenerateMemoriesExample
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<MemoryBankCustomizationConfigGenerateMemoriesExampleConversationSource>
+        conversationSource();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder conversationSource(
         Optional<MemoryBankCustomizationConfigGenerateMemoriesExampleConversationSource>
             conversationSource);
@@ -112,9 +116,18 @@ public abstract class MemoryBankCustomizationConfigGenerateMemoriesExample
      * generated for the input conversation.
      */
     @JsonProperty("generatedMemories")
-    public abstract Builder generatedMemories(
+    @CanIgnoreReturnValue
+    public Builder generatedMemories(
         List<MemoryBankCustomizationConfigGenerateMemoriesExampleGeneratedMemory>
-            generatedMemories);
+            generatedMemories) {
+      if (generatedMemories().isPresent()) {
+        List<MemoryBankCustomizationConfigGenerateMemoriesExampleGeneratedMemory> list =
+            new java.util.ArrayList<>(generatedMemories().get());
+        list.addAll(generatedMemories);
+        return generatedMemories(java.util.Optional.of(list));
+      }
+      return generatedMemories(java.util.Optional.of(generatedMemories));
+    }
 
     /**
      * Setter for generatedMemories.
@@ -147,6 +160,10 @@ public abstract class MemoryBankCustomizationConfigGenerateMemoriesExample
                       ::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<MemoryBankCustomizationConfigGenerateMemoriesExampleGeneratedMemory>>
+        generatedMemories();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder generatedMemories(

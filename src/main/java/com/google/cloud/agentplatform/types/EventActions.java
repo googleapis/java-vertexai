@@ -90,7 +90,18 @@ public abstract class EventActions extends JsonSerializable {
      * filename, value is the version.
      */
     @JsonProperty("artifactDelta")
-    public abstract Builder artifactDelta(Map<String, Integer> artifactDelta);
+    @CanIgnoreReturnValue
+    public Builder artifactDelta(Map<String, Integer> artifactDelta) {
+      if (artifactDelta().isPresent()) {
+        Map<String, Integer> map = new java.util.HashMap<>(artifactDelta().get());
+        map.putAll(artifactDelta);
+        return artifactDelta(java.util.Optional.of(map));
+      }
+      return artifactDelta(java.util.Optional.of(artifactDelta));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, Integer>> artifactDelta();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder artifactDelta(Optional<Map<String, Integer>> artifactDelta);
@@ -111,6 +122,9 @@ public abstract class EventActions extends JsonSerializable {
     public abstract Builder escalate(boolean escalate);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Boolean> escalate();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder escalate(Optional<Boolean> escalate);
 
     /** Clears the value of escalate field. */
@@ -129,7 +143,18 @@ public abstract class EventActions extends JsonSerializable {
      * can be another struct.
      */
     @JsonProperty("requestedAuthConfigs")
-    public abstract Builder requestedAuthConfigs(Map<String, Object> requestedAuthConfigs);
+    @CanIgnoreReturnValue
+    public Builder requestedAuthConfigs(Map<String, Object> requestedAuthConfigs) {
+      if (requestedAuthConfigs().isPresent()) {
+        Map<String, Object> map = new java.util.HashMap<>(requestedAuthConfigs().get());
+        map.putAll(requestedAuthConfigs);
+        return requestedAuthConfigs(java.util.Optional.of(map));
+      }
+      return requestedAuthConfigs(java.util.Optional.of(requestedAuthConfigs));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, Object>> requestedAuthConfigs();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder requestedAuthConfigs(Optional<Map<String, Object>> requestedAuthConfigs);
@@ -151,6 +176,9 @@ public abstract class EventActions extends JsonSerializable {
     public abstract Builder skipSummarization(boolean skipSummarization);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Boolean> skipSummarization();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder skipSummarization(Optional<Boolean> skipSummarization);
 
     /** Clears the value of skipSummarization field. */
@@ -166,7 +194,18 @@ public abstract class EventActions extends JsonSerializable {
      * <p>stateDelta: Optional. Indicates that the event is updating the state with the given delta.
      */
     @JsonProperty("stateDelta")
-    public abstract Builder stateDelta(Map<String, Object> stateDelta);
+    @CanIgnoreReturnValue
+    public Builder stateDelta(Map<String, Object> stateDelta) {
+      if (stateDelta().isPresent()) {
+        Map<String, Object> map = new java.util.HashMap<>(stateDelta().get());
+        map.putAll(stateDelta);
+        return stateDelta(java.util.Optional.of(map));
+      }
+      return stateDelta(java.util.Optional.of(stateDelta));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, Object>> stateDelta();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder stateDelta(Optional<Map<String, Object>> stateDelta);
@@ -185,6 +224,9 @@ public abstract class EventActions extends JsonSerializable {
      */
     @JsonProperty("transferAgent")
     public abstract Builder transferAgent(String transferAgent);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> transferAgent();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder transferAgent(Optional<String> transferAgent);

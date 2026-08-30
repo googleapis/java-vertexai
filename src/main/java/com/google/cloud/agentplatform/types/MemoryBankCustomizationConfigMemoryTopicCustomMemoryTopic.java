@@ -72,6 +72,9 @@ public abstract class MemoryBankCustomizationConfigMemoryTopicCustomMemoryTopic
     public abstract Builder label(String label);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> label();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder label(Optional<String> label);
 
     /** Clears the value of label field. */
@@ -89,6 +92,9 @@ public abstract class MemoryBankCustomizationConfigMemoryTopicCustomMemoryTopic
      */
     @JsonProperty("description")
     public abstract Builder description(String description);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> description();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder description(Optional<String> description);

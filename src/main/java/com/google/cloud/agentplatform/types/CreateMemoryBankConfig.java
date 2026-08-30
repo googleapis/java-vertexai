@@ -79,6 +79,9 @@ public abstract class CreateMemoryBankConfig extends JsonSerializable {
     public abstract Builder httpOptions(HttpOptions httpOptions);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<HttpOptions> httpOptions();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder httpOptions(Optional<HttpOptions> httpOptions);
 
     /** Clears the value of httpOptions field. */
@@ -99,6 +102,9 @@ public abstract class CreateMemoryBankConfig extends JsonSerializable {
     public abstract Builder displayName(String displayName);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> displayName();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder displayName(Optional<String> displayName);
 
     /** Clears the value of displayName field. */
@@ -115,6 +121,9 @@ public abstract class CreateMemoryBankConfig extends JsonSerializable {
      */
     @JsonProperty("description")
     public abstract Builder description(String description);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> description();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder description(Optional<String> description);
@@ -143,6 +152,9 @@ public abstract class CreateMemoryBankConfig extends JsonSerializable {
     public Builder encryptionSpec(EncryptionSpec.Builder encryptionSpecBuilder) {
       return encryptionSpec(encryptionSpecBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<EncryptionSpec> encryptionSpec();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder encryptionSpec(Optional<EncryptionSpec> encryptionSpec);

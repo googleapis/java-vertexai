@@ -70,6 +70,9 @@ public abstract class GetSandboxEnvironmentTemplateRequestParameters extends Jso
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -96,6 +99,9 @@ public abstract class GetSandboxEnvironmentTemplateRequestParameters extends Jso
     public Builder config(GetSandboxEnvironmentTemplateConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<GetSandboxEnvironmentTemplateConfig> config();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<GetSandboxEnvironmentTemplateConfig> config);

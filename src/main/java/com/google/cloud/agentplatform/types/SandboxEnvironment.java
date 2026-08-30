@@ -125,6 +125,9 @@ public abstract class SandboxEnvironment extends JsonSerializable {
     public abstract Builder expireTime(Instant expireTime);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Instant> expireTime();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder expireTime(Optional<Instant> expireTime);
 
     /** Clears the value of expireTime field. */
@@ -153,6 +156,9 @@ public abstract class SandboxEnvironment extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<SandboxEnvironmentConnectionInfo> connectionInfo();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder connectionInfo(Optional<SandboxEnvironmentConnectionInfo> connectionInfo);
 
     /** Clears the value of connectionInfo field. */
@@ -169,6 +175,9 @@ public abstract class SandboxEnvironment extends JsonSerializable {
      */
     @JsonProperty("createTime")
     public abstract Builder createTime(Instant createTime);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Instant> createTime();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder createTime(Optional<Instant> createTime);
@@ -189,6 +198,9 @@ public abstract class SandboxEnvironment extends JsonSerializable {
     public abstract Builder displayName(String displayName);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> displayName();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder displayName(Optional<String> displayName);
 
     /** Clears the value of displayName field. */
@@ -205,6 +217,9 @@ public abstract class SandboxEnvironment extends JsonSerializable {
      */
     @JsonProperty("name")
     public abstract Builder name(String name);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
@@ -235,6 +250,9 @@ public abstract class SandboxEnvironment extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<SandboxEnvironmentSpec> spec();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder spec(Optional<SandboxEnvironmentSpec> spec);
 
     /** Clears the value of spec field. */
@@ -251,6 +269,9 @@ public abstract class SandboxEnvironment extends JsonSerializable {
      */
     @JsonProperty("state")
     public abstract Builder state(SandboxState state);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<SandboxState> state();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder state(Optional<SandboxState> state);
@@ -292,6 +313,9 @@ public abstract class SandboxEnvironment extends JsonSerializable {
     public abstract Builder ttl(Duration ttl);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Duration> ttl();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder ttl(Optional<Duration> ttl);
 
     /** Clears the value of ttl field. */
@@ -309,6 +333,9 @@ public abstract class SandboxEnvironment extends JsonSerializable {
      */
     @JsonProperty("updateTime")
     public abstract Builder updateTime(Instant updateTime);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Instant> updateTime();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder updateTime(Optional<Instant> updateTime);
@@ -329,6 +356,9 @@ public abstract class SandboxEnvironment extends JsonSerializable {
     @JsonProperty("latestSandboxEnvironmentSnapshot")
     public abstract Builder latestSandboxEnvironmentSnapshot(
         String latestSandboxEnvironmentSnapshot);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> latestSandboxEnvironmentSnapshot();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder latestSandboxEnvironmentSnapshot(
@@ -352,6 +382,9 @@ public abstract class SandboxEnvironment extends JsonSerializable {
     public abstract Builder owner(String owner);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> owner();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder owner(Optional<String> owner);
 
     /** Clears the value of owner field. */
@@ -372,6 +405,9 @@ public abstract class SandboxEnvironment extends JsonSerializable {
     public abstract Builder sandboxEnvironmentSnapshot(String sandboxEnvironmentSnapshot);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> sandboxEnvironmentSnapshot();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder sandboxEnvironmentSnapshot(Optional<String> sandboxEnvironmentSnapshot);
 
     /** Clears the value of sandboxEnvironmentSnapshot field. */
@@ -389,6 +425,9 @@ public abstract class SandboxEnvironment extends JsonSerializable {
      */
     @JsonProperty("sandboxEnvironmentTemplate")
     public abstract Builder sandboxEnvironmentTemplate(String sandboxEnvironmentTemplate);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> sandboxEnvironmentTemplate();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder sandboxEnvironmentTemplate(Optional<String> sandboxEnvironmentTemplate);

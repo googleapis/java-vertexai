@@ -77,6 +77,9 @@ public abstract class ListAgentEngineSessionEventsResponse extends JsonSerializa
     public abstract Builder sdkHttpResponse(HttpResponse sdkHttpResponse);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<HttpResponse> sdkHttpResponse();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder sdkHttpResponse(Optional<HttpResponse> sdkHttpResponse);
 
     /** Clears the value of sdkHttpResponse field. */
@@ -95,6 +98,9 @@ public abstract class ListAgentEngineSessionEventsResponse extends JsonSerializa
     public abstract Builder nextPageToken(String nextPageToken);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> nextPageToken();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder nextPageToken(Optional<String> nextPageToken);
 
     /** Clears the value of nextPageToken field. */
@@ -110,7 +116,15 @@ public abstract class ListAgentEngineSessionEventsResponse extends JsonSerializa
      * <p>sessionEvents: List of session events.
      */
     @JsonProperty("sessionEvents")
-    public abstract Builder sessionEvents(List<SessionEvent> sessionEvents);
+    @CanIgnoreReturnValue
+    public Builder sessionEvents(List<SessionEvent> sessionEvents) {
+      if (sessionEvents().isPresent()) {
+        List<SessionEvent> list = new java.util.ArrayList<>(sessionEvents().get());
+        list.addAll(sessionEvents);
+        return sessionEvents(java.util.Optional.of(list));
+      }
+      return sessionEvents(java.util.Optional.of(sessionEvents));
+    }
 
     /**
      * Setter for sessionEvents.
@@ -134,6 +148,9 @@ public abstract class ListAgentEngineSessionEventsResponse extends JsonSerializa
               .map(SessionEvent.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<SessionEvent>> sessionEvents();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder sessionEvents(Optional<List<SessionEvent>> sessionEvents);

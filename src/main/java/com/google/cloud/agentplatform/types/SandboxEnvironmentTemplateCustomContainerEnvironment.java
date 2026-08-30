@@ -89,6 +89,9 @@ public abstract class SandboxEnvironmentTemplateCustomContainerEnvironment
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<SandboxEnvironmentTemplateCustomContainerSpec> customContainerSpec();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder customContainerSpec(
         Optional<SandboxEnvironmentTemplateCustomContainerSpec> customContainerSpec);
 
@@ -105,7 +108,15 @@ public abstract class SandboxEnvironmentTemplateCustomContainerEnvironment
      * <p>ports: Ports to expose from the container.
      */
     @JsonProperty("ports")
-    public abstract Builder ports(List<SandboxEnvironmentTemplateNetworkPort> ports);
+    @CanIgnoreReturnValue
+    public Builder ports(List<SandboxEnvironmentTemplateNetworkPort> ports) {
+      if (ports().isPresent()) {
+        List<SandboxEnvironmentTemplateNetworkPort> list = new java.util.ArrayList<>(ports().get());
+        list.addAll(ports);
+        return ports(java.util.Optional.of(list));
+      }
+      return ports(java.util.Optional.of(ports));
+    }
 
     /**
      * Setter for ports.
@@ -129,6 +140,9 @@ public abstract class SandboxEnvironmentTemplateCustomContainerEnvironment
               .map(SandboxEnvironmentTemplateNetworkPort.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<SandboxEnvironmentTemplateNetworkPort>> ports();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder ports(Optional<List<SandboxEnvironmentTemplateNetworkPort>> ports);
@@ -158,6 +172,9 @@ public abstract class SandboxEnvironmentTemplateCustomContainerEnvironment
         SandboxEnvironmentTemplateResourceRequirements.Builder resourcesBuilder) {
       return resources(resourcesBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<SandboxEnvironmentTemplateResourceRequirements> resources();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder resources(Optional<SandboxEnvironmentTemplateResourceRequirements> resources);

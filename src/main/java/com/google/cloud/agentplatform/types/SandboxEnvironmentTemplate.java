@@ -108,6 +108,9 @@ public abstract class SandboxEnvironmentTemplate extends JsonSerializable {
     public abstract Builder createTime(Instant createTime);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Instant> createTime();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder createTime(Optional<Instant> createTime);
 
     /** Clears the value of createTime field. */
@@ -137,6 +140,10 @@ public abstract class SandboxEnvironmentTemplate extends JsonSerializable {
             customContainerEnvironmentBuilder) {
       return customContainerEnvironment(customContainerEnvironmentBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<SandboxEnvironmentTemplateCustomContainerEnvironment>
+        customContainerEnvironment();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder customContainerEnvironment(
@@ -171,6 +178,10 @@ public abstract class SandboxEnvironmentTemplate extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<SandboxEnvironmentTemplateDefaultContainerEnvironment>
+        defaultContainerEnvironment();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder defaultContainerEnvironment(
         Optional<SandboxEnvironmentTemplateDefaultContainerEnvironment>
             defaultContainerEnvironment);
@@ -189,6 +200,9 @@ public abstract class SandboxEnvironmentTemplate extends JsonSerializable {
      */
     @JsonProperty("displayName")
     public abstract Builder displayName(String displayName);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> displayName();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder displayName(Optional<String> displayName);
@@ -221,6 +235,9 @@ public abstract class SandboxEnvironmentTemplate extends JsonSerializable {
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<SandboxEnvironmentTemplateEgressControlConfig> egressControlConfig();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder egressControlConfig(
         Optional<SandboxEnvironmentTemplateEgressControlConfig> egressControlConfig);
 
@@ -241,6 +258,9 @@ public abstract class SandboxEnvironmentTemplate extends JsonSerializable {
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -257,6 +277,9 @@ public abstract class SandboxEnvironmentTemplate extends JsonSerializable {
      */
     @JsonProperty("state")
     public abstract Builder state(State state);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<State> state();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder state(Optional<State> state);
@@ -296,6 +319,9 @@ public abstract class SandboxEnvironmentTemplate extends JsonSerializable {
      */
     @JsonProperty("updateTime")
     public abstract Builder updateTime(Instant updateTime);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Instant> updateTime();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder updateTime(Optional<Instant> updateTime);

@@ -83,6 +83,10 @@ public abstract class MemoryBankCustomizationConfigMemoryTopic extends JsonSeria
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<MemoryBankCustomizationConfigMemoryTopicCustomMemoryTopic>
+        customMemoryTopic();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder customMemoryTopic(
         Optional<MemoryBankCustomizationConfigMemoryTopicCustomMemoryTopic> customMemoryTopic);
 
@@ -113,6 +117,10 @@ public abstract class MemoryBankCustomizationConfigMemoryTopic extends JsonSeria
             managedMemoryTopicBuilder) {
       return managedMemoryTopic(managedMemoryTopicBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<MemoryBankCustomizationConfigMemoryTopicManagedMemoryTopic>
+        managedMemoryTopic();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder managedMemoryTopic(

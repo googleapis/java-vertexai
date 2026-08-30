@@ -92,6 +92,10 @@ public abstract class ReasoningEngineSpecDeploymentSpecAgentGatewayConfig extend
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineSpecDeploymentSpecAgentGatewayConfigAgentToAnywhereConfig>
+        agentToAnywhereConfig();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder agentToAnywhereConfig(
         Optional<ReasoningEngineSpecDeploymentSpecAgentGatewayConfigAgentToAnywhereConfig>
             agentToAnywhereConfig);
@@ -125,6 +129,10 @@ public abstract class ReasoningEngineSpecDeploymentSpecAgentGatewayConfig extend
             clientToAgentConfigBuilder) {
       return clientToAgentConfig(clientToAgentConfigBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ReasoningEngineSpecDeploymentSpecAgentGatewayConfigClientToAgentConfig>
+        clientToAgentConfig();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder clientToAgentConfig(

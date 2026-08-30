@@ -68,6 +68,9 @@ public abstract class ReasoningEngineSpecSourceCodeSpecInlineSource extends Json
     public abstract Builder sourceArchive(byte[] sourceArchive);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<byte[]> sourceArchive();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder sourceArchive(Optional<byte[]> sourceArchive);
 
     /** Clears the value of sourceArchive field. */

@@ -77,6 +77,9 @@ public abstract class ListAgentEngineSandboxesResponse extends JsonSerializable 
     public abstract Builder sdkHttpResponse(HttpResponse sdkHttpResponse);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<HttpResponse> sdkHttpResponse();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder sdkHttpResponse(Optional<HttpResponse> sdkHttpResponse);
 
     /** Clears the value of sdkHttpResponse field. */
@@ -95,6 +98,9 @@ public abstract class ListAgentEngineSandboxesResponse extends JsonSerializable 
     public abstract Builder nextPageToken(String nextPageToken);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> nextPageToken();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder nextPageToken(Optional<String> nextPageToken);
 
     /** Clears the value of nextPageToken field. */
@@ -110,7 +116,15 @@ public abstract class ListAgentEngineSandboxesResponse extends JsonSerializable 
      * <p>sandboxEnvironments: List of agent engine sandboxes.
      */
     @JsonProperty("sandboxEnvironments")
-    public abstract Builder sandboxEnvironments(List<SandboxEnvironment> sandboxEnvironments);
+    @CanIgnoreReturnValue
+    public Builder sandboxEnvironments(List<SandboxEnvironment> sandboxEnvironments) {
+      if (sandboxEnvironments().isPresent()) {
+        List<SandboxEnvironment> list = new java.util.ArrayList<>(sandboxEnvironments().get());
+        list.addAll(sandboxEnvironments);
+        return sandboxEnvironments(java.util.Optional.of(list));
+      }
+      return sandboxEnvironments(java.util.Optional.of(sandboxEnvironments));
+    }
 
     /**
      * Setter for sandboxEnvironments.
@@ -134,6 +148,9 @@ public abstract class ListAgentEngineSandboxesResponse extends JsonSerializable 
               .map(SandboxEnvironment.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<SandboxEnvironment>> sandboxEnvironments();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder sandboxEnvironments(Optional<List<SandboxEnvironment>> sandboxEnvironments);

@@ -69,6 +69,9 @@ public abstract class SandboxEnvironmentTemplateNetworkPort extends JsonSerializ
     public abstract Builder port(Integer port);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Integer> port();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder port(Optional<Integer> port);
 
     /** Clears the value of port field. */
@@ -85,6 +88,9 @@ public abstract class SandboxEnvironmentTemplateNetworkPort extends JsonSerializ
      */
     @JsonProperty("protocol")
     public abstract Builder protocol(Protocol protocol);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Protocol> protocol();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder protocol(Optional<Protocol> protocol);

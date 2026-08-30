@@ -65,6 +65,9 @@ public abstract class MemoryTopicId extends JsonSerializable {
     public abstract Builder customMemoryTopicLabel(String customMemoryTopicLabel);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> customMemoryTopicLabel();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder customMemoryTopicLabel(Optional<String> customMemoryTopicLabel);
 
     /** Clears the value of customMemoryTopicLabel field. */
@@ -81,6 +84,9 @@ public abstract class MemoryTopicId extends JsonSerializable {
      */
     @JsonProperty("managedMemoryTopic")
     public abstract Builder managedMemoryTopic(ManagedTopicEnum managedMemoryTopic);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ManagedTopicEnum> managedMemoryTopic();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder managedMemoryTopic(Optional<ManagedTopicEnum> managedMemoryTopic);

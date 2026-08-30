@@ -74,6 +74,9 @@ public abstract class ListMemoryRevisionsResponse extends JsonSerializable {
     public abstract Builder sdkHttpResponse(HttpResponse sdkHttpResponse);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<HttpResponse> sdkHttpResponse();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder sdkHttpResponse(Optional<HttpResponse> sdkHttpResponse);
 
     /** Clears the value of sdkHttpResponse field. */
@@ -92,6 +95,9 @@ public abstract class ListMemoryRevisionsResponse extends JsonSerializable {
     public abstract Builder nextPageToken(String nextPageToken);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> nextPageToken();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder nextPageToken(Optional<String> nextPageToken);
 
     /** Clears the value of nextPageToken field. */
@@ -107,7 +113,15 @@ public abstract class ListMemoryRevisionsResponse extends JsonSerializable {
      * <p>memoryRevisions: List of memory revisions.
      */
     @JsonProperty("memoryRevisions")
-    public abstract Builder memoryRevisions(List<MemoryRevision> memoryRevisions);
+    @CanIgnoreReturnValue
+    public Builder memoryRevisions(List<MemoryRevision> memoryRevisions) {
+      if (memoryRevisions().isPresent()) {
+        List<MemoryRevision> list = new java.util.ArrayList<>(memoryRevisions().get());
+        list.addAll(memoryRevisions);
+        return memoryRevisions(java.util.Optional.of(list));
+      }
+      return memoryRevisions(java.util.Optional.of(memoryRevisions));
+    }
 
     /**
      * Setter for memoryRevisions.
@@ -131,6 +145,9 @@ public abstract class ListMemoryRevisionsResponse extends JsonSerializable {
               .map(MemoryRevision.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<MemoryRevision>> memoryRevisions();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder memoryRevisions(Optional<List<MemoryRevision>> memoryRevisions);

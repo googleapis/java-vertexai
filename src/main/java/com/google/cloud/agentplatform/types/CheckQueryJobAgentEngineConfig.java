@@ -68,6 +68,9 @@ public abstract class CheckQueryJobAgentEngineConfig extends JsonSerializable {
     public abstract Builder httpOptions(HttpOptions httpOptions);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<HttpOptions> httpOptions();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder httpOptions(Optional<HttpOptions> httpOptions);
 
     /** Clears the value of httpOptions field. */
@@ -84,6 +87,9 @@ public abstract class CheckQueryJobAgentEngineConfig extends JsonSerializable {
      */
     @JsonProperty("retrieveResult")
     public abstract Builder retrieveResult(boolean retrieveResult);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Boolean> retrieveResult();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder retrieveResult(Optional<Boolean> retrieveResult);

@@ -66,7 +66,18 @@ public abstract class ReasoningEngineSpecSourceCodeSpecImageSpec extends JsonSer
      * flags.
      */
     @JsonProperty("buildArgs")
-    public abstract Builder buildArgs(Map<String, String> buildArgs);
+    @CanIgnoreReturnValue
+    public Builder buildArgs(Map<String, String> buildArgs) {
+      if (buildArgs().isPresent()) {
+        Map<String, String> map = new java.util.HashMap<>(buildArgs().get());
+        map.putAll(buildArgs);
+        return buildArgs(java.util.Optional.of(map));
+      }
+      return buildArgs(java.util.Optional.of(buildArgs));
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Map<String, String>> buildArgs();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder buildArgs(Optional<Map<String, String>> buildArgs);

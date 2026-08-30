@@ -73,6 +73,9 @@ public abstract class RollbackMemoryRequestParameters extends JsonSerializable {
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -89,6 +92,9 @@ public abstract class RollbackMemoryRequestParameters extends JsonSerializable {
      */
     @JsonProperty("targetRevisionId")
     public abstract Builder targetRevisionId(String targetRevisionId);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> targetRevisionId();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder targetRevisionId(Optional<String> targetRevisionId);
@@ -117,6 +123,9 @@ public abstract class RollbackMemoryRequestParameters extends JsonSerializable {
     public Builder config(RollbackMemoryConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<RollbackMemoryConfig> config();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<RollbackMemoryConfig> config);

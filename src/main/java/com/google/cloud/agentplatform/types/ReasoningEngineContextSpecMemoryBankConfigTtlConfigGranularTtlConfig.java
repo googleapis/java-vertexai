@@ -91,6 +91,9 @@ public abstract class ReasoningEngineContextSpecMemoryBankConfigTtlConfigGranula
     public abstract Builder createTtl(Duration createTtl);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Duration> createTtl();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder createTtl(Optional<Duration> createTtl);
 
     /** Clears the value of createTtl field. */
@@ -108,6 +111,9 @@ public abstract class ReasoningEngineContextSpecMemoryBankConfigTtlConfigGranula
      */
     @JsonProperty("generateCreatedTtl")
     public abstract Builder generateCreatedTtl(Duration generateCreatedTtl);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Duration> generateCreatedTtl();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder generateCreatedTtl(Optional<Duration> generateCreatedTtl);
@@ -128,6 +134,9 @@ public abstract class ReasoningEngineContextSpecMemoryBankConfigTtlConfigGranula
      */
     @JsonProperty("generateUpdatedTtl")
     public abstract Builder generateUpdatedTtl(Duration generateUpdatedTtl);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Duration> generateUpdatedTtl();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder generateUpdatedTtl(Optional<Duration> generateUpdatedTtl);

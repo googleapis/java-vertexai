@@ -74,6 +74,9 @@ public abstract class ManagedSemanticMemoryConfigGenerationConfig extends JsonSe
     public abstract Builder model(String model);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> model();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder model(Optional<String> model);
 
     /** Clears the value of model field. */
@@ -102,6 +105,9 @@ public abstract class ManagedSemanticMemoryConfigGenerationConfig extends JsonSe
         MemoryGenerationTriggerConfig.Builder generationTriggerConfigBuilder) {
       return generationTriggerConfig(generationTriggerConfigBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<MemoryGenerationTriggerConfig> generationTriggerConfig();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder generationTriggerConfig(

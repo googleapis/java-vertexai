@@ -77,6 +77,9 @@ public abstract class MemoryMetadataValue extends JsonSerializable {
     public abstract Builder boolValue(boolean boolValue);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Boolean> boolValue();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder boolValue(Optional<Boolean> boolValue);
 
     /** Clears the value of boolValue field. */
@@ -93,6 +96,9 @@ public abstract class MemoryMetadataValue extends JsonSerializable {
      */
     @JsonProperty("doubleValue")
     public abstract Builder doubleValue(Double doubleValue);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Double> doubleValue();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder doubleValue(Optional<Double> doubleValue);
@@ -113,6 +119,9 @@ public abstract class MemoryMetadataValue extends JsonSerializable {
     public abstract Builder stringValue(String stringValue);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> stringValue();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder stringValue(Optional<String> stringValue);
 
     /** Clears the value of stringValue field. */
@@ -130,6 +139,9 @@ public abstract class MemoryMetadataValue extends JsonSerializable {
      */
     @JsonProperty("timestampValue")
     public abstract Builder timestampValue(Instant timestampValue);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Instant> timestampValue();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder timestampValue(Optional<Instant> timestampValue);

@@ -75,6 +75,9 @@ public abstract class ReasoningEngineTrafficConfigTrafficSplitManualTarget
     public abstract Builder percent(Integer percent);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Integer> percent();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder percent(Optional<Integer> percent);
 
     /** Clears the value of percent field. */
@@ -92,6 +95,9 @@ public abstract class ReasoningEngineTrafficConfigTrafficSplitManualTarget
      */
     @JsonProperty("runtimeRevisionName")
     public abstract Builder runtimeRevisionName(String runtimeRevisionName);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> runtimeRevisionName();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder runtimeRevisionName(Optional<String> runtimeRevisionName);

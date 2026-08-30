@@ -74,6 +74,9 @@ public abstract class ReasoningEngineSpecContainerSpec extends JsonSerializable 
     public abstract Builder imageUri(String imageUri);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> imageUri();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder imageUri(Optional<String> imageUri);
 
     /** Clears the value of imageUri field. */
@@ -90,6 +93,9 @@ public abstract class ReasoningEngineSpecContainerSpec extends JsonSerializable 
      */
     @JsonProperty("port")
     public abstract Builder port(Integer port);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Integer> port();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder port(Optional<Integer> port);

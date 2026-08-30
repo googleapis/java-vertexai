@@ -70,6 +70,9 @@ public abstract class ListMemoryBanksConfig extends JsonSerializable {
     public abstract Builder httpOptions(HttpOptions httpOptions);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<HttpOptions> httpOptions();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder httpOptions(Optional<HttpOptions> httpOptions);
 
     /** Clears the value of httpOptions field. */
@@ -88,6 +91,9 @@ public abstract class ListMemoryBanksConfig extends JsonSerializable {
     public abstract Builder pageSize(Integer pageSize);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<Integer> pageSize();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder pageSize(Optional<Integer> pageSize);
 
     /** Clears the value of pageSize field. */
@@ -104,6 +110,9 @@ public abstract class ListMemoryBanksConfig extends JsonSerializable {
      */
     @JsonProperty("pageToken")
     public abstract Builder pageToken(String pageToken);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> pageToken();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder pageToken(Optional<String> pageToken);

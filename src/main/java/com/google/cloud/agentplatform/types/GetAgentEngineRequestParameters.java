@@ -69,6 +69,9 @@ public abstract class GetAgentEngineRequestParameters extends JsonSerializable {
     public abstract Builder name(String name);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> name();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder name(Optional<String> name);
 
     /** Clears the value of name field. */
@@ -95,6 +98,9 @@ public abstract class GetAgentEngineRequestParameters extends JsonSerializable {
     public Builder config(GetAgentEngineConfig.Builder configBuilder) {
       return config(configBuilder.build());
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<GetAgentEngineConfig> config();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder config(Optional<GetAgentEngineConfig> config);

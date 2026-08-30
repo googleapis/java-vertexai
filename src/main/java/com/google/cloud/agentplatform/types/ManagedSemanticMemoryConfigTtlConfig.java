@@ -83,6 +83,9 @@ public abstract class ManagedSemanticMemoryConfigTtlConfig extends JsonSerializa
     public abstract Builder defaultTtl(String defaultTtl);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> defaultTtl();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder defaultTtl(Optional<String> defaultTtl);
 
     /** Clears the value of defaultTtl field. */
@@ -113,6 +116,9 @@ public abstract class ManagedSemanticMemoryConfigTtlConfig extends JsonSerializa
     }
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<ManagedSemanticMemoryConfigTtlConfigGranularTtlConfig> granularTtlConfig();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder granularTtlConfig(
         Optional<ManagedSemanticMemoryConfigTtlConfigGranularTtlConfig> granularTtlConfig);
 
@@ -132,6 +138,9 @@ public abstract class ManagedSemanticMemoryConfigTtlConfig extends JsonSerializa
      */
     @JsonProperty("memoryRevisionDefaultTtl")
     public abstract Builder memoryRevisionDefaultTtl(String memoryRevisionDefaultTtl);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> memoryRevisionDefaultTtl();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder memoryRevisionDefaultTtl(Optional<String> memoryRevisionDefaultTtl);

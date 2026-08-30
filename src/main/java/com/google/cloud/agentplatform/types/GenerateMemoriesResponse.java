@@ -62,8 +62,17 @@ public abstract class GenerateMemoriesResponse extends JsonSerializable {
      * <p>generatedMemories: The generated memories.
      */
     @JsonProperty("generatedMemories")
-    public abstract Builder generatedMemories(
-        List<GenerateMemoriesResponseGeneratedMemory> generatedMemories);
+    @CanIgnoreReturnValue
+    public Builder generatedMemories(
+        List<GenerateMemoriesResponseGeneratedMemory> generatedMemories) {
+      if (generatedMemories().isPresent()) {
+        List<GenerateMemoriesResponseGeneratedMemory> list =
+            new java.util.ArrayList<>(generatedMemories().get());
+        list.addAll(generatedMemories);
+        return generatedMemories(java.util.Optional.of(list));
+      }
+      return generatedMemories(java.util.Optional.of(generatedMemories));
+    }
 
     /**
      * Setter for generatedMemories.
@@ -88,6 +97,9 @@ public abstract class GenerateMemoriesResponse extends JsonSerializable {
               .map(GenerateMemoriesResponseGeneratedMemory.Builder::build)
               .collect(toImmutableList()));
     }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Optional<List<GenerateMemoriesResponseGeneratedMemory>> generatedMemories();
 
     @ExcludeFromGeneratedCoverageReport
     abstract Builder generatedMemories(

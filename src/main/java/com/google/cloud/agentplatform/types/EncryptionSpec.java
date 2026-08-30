@@ -70,6 +70,9 @@ public abstract class EncryptionSpec extends JsonSerializable {
     public abstract Builder kmsKeyName(String kmsKeyName);
 
     @ExcludeFromGeneratedCoverageReport
+    abstract Optional<String> kmsKeyName();
+
+    @ExcludeFromGeneratedCoverageReport
     abstract Builder kmsKeyName(Optional<String> kmsKeyName);
 
     /** Clears the value of kmsKeyName field. */
