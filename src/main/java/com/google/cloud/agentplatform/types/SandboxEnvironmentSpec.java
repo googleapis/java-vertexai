@@ -39,7 +39,7 @@ public abstract class SandboxEnvironmentSpec extends JsonSerializable {
   @JsonProperty("computerUseEnvironment")
   public abstract Optional<SandboxEnvironmentSpecComputerUseEnvironment> computerUseEnvironment();
 
-  /** Optional. The shell environment. */
+  /** Optional. The shell environment for executing shell commands and scripts. */
   @JsonProperty("shellEnvironment")
   public abstract Optional<SandboxEnvironmentSpecShellEnvironment> shellEnvironment();
 
@@ -126,7 +126,8 @@ public abstract class SandboxEnvironmentSpec extends JsonSerializable {
     /**
      * Setter for shellEnvironment.
      *
-     * <p>shellEnvironment: Optional. The shell environment.
+     * <p>shellEnvironment: Optional. The shell environment for executing shell commands and
+     * scripts.
      */
     @JsonProperty("shellEnvironment")
     public abstract Builder shellEnvironment(
@@ -135,7 +136,8 @@ public abstract class SandboxEnvironmentSpec extends JsonSerializable {
     /**
      * Setter for shellEnvironment builder.
      *
-     * <p>shellEnvironment: Optional. The shell environment.
+     * <p>shellEnvironment: Optional. The shell environment for executing shell commands and
+     * scripts.
      */
     @CanIgnoreReturnValue
     public Builder shellEnvironment(

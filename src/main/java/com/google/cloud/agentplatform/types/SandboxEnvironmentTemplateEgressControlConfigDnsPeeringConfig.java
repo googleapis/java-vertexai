@@ -43,14 +43,14 @@ public abstract class SandboxEnvironmentTemplateEgressControlConfigDnsPeeringCon
   public abstract Optional<String> domain();
 
   /**
-   * Required. The VPC network name in the target_project where the DNS zone specified by 'domain'
+   * Required. The VPC network name in the target_project where the DNS zone specified by `domain`
    * is visible.
    */
   @JsonProperty("targetNetwork")
   public abstract Optional<String> targetNetwork();
 
   /**
-   * Required. The project ID hosting the Cloud DNS managed zone that contains the 'domain'. The
+   * Required. The project ID hosting the Cloud DNS managed zone that contains the `domain`. The
    * Vertex AI Service Agent requires the dns.peer role on this project.
    */
   @JsonProperty("targetProject")
@@ -100,7 +100,7 @@ public abstract class SandboxEnvironmentTemplateEgressControlConfigDnsPeeringCon
      * Setter for targetNetwork.
      *
      * <p>targetNetwork: Required. The VPC network name in the target_project where the DNS zone
-     * specified by 'domain' is visible.
+     * specified by `domain` is visible.
      */
     @JsonProperty("targetNetwork")
     public abstract Builder targetNetwork(String targetNetwork);
@@ -119,7 +119,7 @@ public abstract class SandboxEnvironmentTemplateEgressControlConfigDnsPeeringCon
      * Setter for targetProject.
      *
      * <p>targetProject: Required. The project ID hosting the Cloud DNS managed zone that contains
-     * the 'domain'. The Vertex AI Service Agent requires the dns.peer role on this project.
+     * the `domain`. The Vertex AI Service Agent requires the dns.peer role on this project.
      */
     @JsonProperty("targetProject")
     public abstract Builder targetProject(String targetProject);

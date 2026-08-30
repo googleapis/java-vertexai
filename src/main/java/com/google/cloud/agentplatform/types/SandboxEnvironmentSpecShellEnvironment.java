@@ -23,7 +23,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
 import com.google.genai.JsonSerializable;
 
-/** The shell environment with customized settings. */
+/** The shell environment. */
 @AutoValue
 @JsonDeserialize(builder = SandboxEnvironmentSpecShellEnvironment.Builder.class)
 public abstract class SandboxEnvironmentSpecShellEnvironment extends JsonSerializable {
