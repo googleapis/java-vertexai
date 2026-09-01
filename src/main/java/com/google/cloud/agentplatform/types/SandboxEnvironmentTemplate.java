@@ -62,7 +62,7 @@ public abstract class SandboxEnvironmentTemplate extends JsonSerializable {
 
   /** Output only. The state of the sandbox environment template. */
   @JsonProperty("state")
-  public abstract Optional<State> state();
+  public abstract Optional<SandboxEnvironmentTemplateState> state();
 
   /** Output only. The timestamp when this SandboxEnvironmentTemplate was most recently updated. */
   @JsonProperty("updateTime")
@@ -256,10 +256,10 @@ public abstract class SandboxEnvironmentTemplate extends JsonSerializable {
      * <p>state: Output only. The state of the sandbox environment template.
      */
     @JsonProperty("state")
-    public abstract Builder state(State state);
+    public abstract Builder state(SandboxEnvironmentTemplateState state);
 
     @ExcludeFromGeneratedCoverageReport
-    abstract Builder state(Optional<State> state);
+    abstract Builder state(Optional<SandboxEnvironmentTemplateState> state);
 
     /** Clears the value of state field. */
     @ExcludeFromGeneratedCoverageReport
@@ -274,8 +274,8 @@ public abstract class SandboxEnvironmentTemplate extends JsonSerializable {
      * <p>state: Output only. The state of the sandbox environment template.
      */
     @CanIgnoreReturnValue
-    public Builder state(State.Known knownType) {
-      return state(new State(knownType));
+    public Builder state(SandboxEnvironmentTemplateState.Known knownType) {
+      return state(new SandboxEnvironmentTemplateState(knownType));
     }
 
     /**
@@ -285,7 +285,7 @@ public abstract class SandboxEnvironmentTemplate extends JsonSerializable {
      */
     @CanIgnoreReturnValue
     public Builder state(String state) {
-      return state(new State(state));
+      return state(new SandboxEnvironmentTemplateState(state));
     }
 
     /**
