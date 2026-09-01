@@ -53,6 +53,10 @@ public abstract class CreateSandboxEnvironmentTemplateConfig extends JsonSeriali
   @JsonProperty("waitForCompletion")
   public abstract Optional<Boolean> waitForCompletion();
 
+  /** The ingress control config for the sandbox template. */
+  @JsonProperty("ingressControlConfig")
+  public abstract Optional<PrivateServiceConnectConfig> ingressControlConfig();
+
   /** Instantiates a builder for CreateSandboxEnvironmentTemplateConfig. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -204,6 +208,36 @@ public abstract class CreateSandboxEnvironmentTemplateConfig extends JsonSeriali
     @CanIgnoreReturnValue
     public Builder clearWaitForCompletion() {
       return waitForCompletion(Optional.empty());
+    }
+
+    /**
+     * Setter for ingressControlConfig.
+     *
+     * <p>ingressControlConfig: The ingress control config for the sandbox template.
+     */
+    @JsonProperty("ingressControlConfig")
+    public abstract Builder ingressControlConfig(PrivateServiceConnectConfig ingressControlConfig);
+
+    /**
+     * Setter for ingressControlConfig builder.
+     *
+     * <p>ingressControlConfig: The ingress control config for the sandbox template.
+     */
+    @CanIgnoreReturnValue
+    public Builder ingressControlConfig(
+        PrivateServiceConnectConfig.Builder ingressControlConfigBuilder) {
+      return ingressControlConfig(ingressControlConfigBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder ingressControlConfig(
+        Optional<PrivateServiceConnectConfig> ingressControlConfig);
+
+    /** Clears the value of ingressControlConfig field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearIngressControlConfig() {
+      return ingressControlConfig(Optional.empty());
     }
 
     public abstract CreateSandboxEnvironmentTemplateConfig build();

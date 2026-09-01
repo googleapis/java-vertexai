@@ -79,6 +79,13 @@ public final class SandboxTemplates {
           Common.getValueByPath(fromObject, new String[] {"egressControlConfig"}));
     }
 
+    if (Common.getValueByPath(fromObject, new String[] {"ingressControlConfig"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"ingressControlConfig"},
+          Common.getValueByPath(fromObject, new String[] {"ingressControlConfig"}));
+    }
+
     return toObject;
   }
 
