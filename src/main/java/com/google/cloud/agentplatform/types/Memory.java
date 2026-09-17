@@ -135,6 +135,10 @@ public abstract class Memory extends JsonSerializable {
   @JsonProperty("structuredContent")
   public abstract Optional<MemoryStructuredContent> structuredContent();
 
+  /** Optional. Represents the context of the memory. */
+  @JsonProperty("context")
+  public abstract Optional<String> context();
+
   /** Instantiates a builder for Memory. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -529,6 +533,24 @@ public abstract class Memory extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearStructuredContent() {
       return structuredContent(Optional.empty());
+    }
+
+    /**
+     * Setter for context.
+     *
+     * <p>context: Optional. Represents the context of the memory.
+     */
+    @JsonProperty("context")
+    public abstract Builder context(String context);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder context(Optional<String> context);
+
+    /** Clears the value of context field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearContext() {
+      return context(Optional.empty());
     }
 
     public abstract Memory build();

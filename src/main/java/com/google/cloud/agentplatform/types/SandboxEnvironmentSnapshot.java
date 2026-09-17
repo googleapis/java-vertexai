@@ -93,6 +93,10 @@ public abstract class SandboxEnvironmentSnapshot extends JsonSerializable {
   @JsonProperty("updateTime")
   public abstract Optional<Instant> updateTime();
 
+  /** Output only. Whether the source SandboxEnvironment uses the GKE TD pool. */
+  @JsonProperty("useGkeTd")
+  public abstract Optional<Boolean> useGkeTd();
+
   /** Instantiates a builder for SandboxEnvironmentSnapshot. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -341,6 +345,24 @@ public abstract class SandboxEnvironmentSnapshot extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearUpdateTime() {
       return updateTime(Optional.empty());
+    }
+
+    /**
+     * Setter for useGkeTd.
+     *
+     * <p>useGkeTd: Output only. Whether the source SandboxEnvironment uses the GKE TD pool.
+     */
+    @JsonProperty("useGkeTd")
+    public abstract Builder useGkeTd(boolean useGkeTd);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder useGkeTd(Optional<Boolean> useGkeTd);
+
+    /** Clears the value of useGkeTd field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearUseGkeTd() {
+      return useGkeTd(Optional.empty());
     }
 
     public abstract SandboxEnvironmentSnapshot build();

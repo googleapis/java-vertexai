@@ -39,9 +39,16 @@ public abstract class SandboxEnvironmentSpec extends JsonSerializable {
   @JsonProperty("computerUseEnvironment")
   public abstract Optional<SandboxEnvironmentSpecComputerUseEnvironment> computerUseEnvironment();
 
-  /** Optional. The shell environment. */
+  /** Optional. The shell environment for executing shell commands and scripts. */
   @JsonProperty("shellEnvironment")
   public abstract Optional<SandboxEnvironmentSpecShellEnvironment> shellEnvironment();
+
+  /**
+   * Optional. Immutable. Whether to provision the SandboxEnvironment via the GKE TD pool.
+   * Immutable.
+   */
+  @JsonProperty("useGkeTd")
+  public abstract Optional<Boolean> useGkeTd();
 
   /** Instantiates a builder for SandboxEnvironmentSpec. */
   @ExcludeFromGeneratedCoverageReport
@@ -126,7 +133,8 @@ public abstract class SandboxEnvironmentSpec extends JsonSerializable {
     /**
      * Setter for shellEnvironment.
      *
-     * <p>shellEnvironment: Optional. The shell environment.
+     * <p>shellEnvironment: Optional. The shell environment for executing shell commands and
+     * scripts.
      */
     @JsonProperty("shellEnvironment")
     public abstract Builder shellEnvironment(
@@ -135,7 +143,8 @@ public abstract class SandboxEnvironmentSpec extends JsonSerializable {
     /**
      * Setter for shellEnvironment builder.
      *
-     * <p>shellEnvironment: Optional. The shell environment.
+     * <p>shellEnvironment: Optional. The shell environment for executing shell commands and
+     * scripts.
      */
     @CanIgnoreReturnValue
     public Builder shellEnvironment(
@@ -152,6 +161,25 @@ public abstract class SandboxEnvironmentSpec extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearShellEnvironment() {
       return shellEnvironment(Optional.empty());
+    }
+
+    /**
+     * Setter for useGkeTd.
+     *
+     * <p>useGkeTd: Optional. Immutable. Whether to provision the SandboxEnvironment via the GKE TD
+     * pool. Immutable.
+     */
+    @JsonProperty("useGkeTd")
+    public abstract Builder useGkeTd(boolean useGkeTd);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder useGkeTd(Optional<Boolean> useGkeTd);
+
+    /** Clears the value of useGkeTd field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearUseGkeTd() {
+      return useGkeTd(Optional.empty());
     }
 
     public abstract SandboxEnvironmentSpec build();

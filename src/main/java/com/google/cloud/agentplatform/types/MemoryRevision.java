@@ -79,6 +79,13 @@ public abstract class MemoryRevision extends JsonSerializable {
   @JsonProperty("structuredData")
   public abstract Optional<Map<String, Object>> structuredData();
 
+  /**
+   * Output only. Represents the context of the Memory Revision. The context may include context
+   * from both the historical revisions and the extracted content.
+   */
+  @JsonProperty("context")
+  public abstract Optional<String> context();
+
   /** Instantiates a builder for MemoryRevision. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -258,6 +265,25 @@ public abstract class MemoryRevision extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearStructuredData() {
       return structuredData(Optional.empty());
+    }
+
+    /**
+     * Setter for context.
+     *
+     * <p>context: Output only. Represents the context of the Memory Revision. The context may
+     * include context from both the historical revisions and the extracted content.
+     */
+    @JsonProperty("context")
+    public abstract Builder context(String context);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder context(Optional<String> context);
+
+    /** Clears the value of context field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearContext() {
+      return context(Optional.empty());
     }
 
     public abstract MemoryRevision build();

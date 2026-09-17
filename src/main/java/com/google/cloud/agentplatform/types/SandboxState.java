@@ -55,6 +55,9 @@ public class SandboxState {
     /** Sandbox runtime is resuming. */
     STATE_RESUMING,
 
+    /** Sandbox runtime is stopping. */
+    STATE_STOPPING,
+
     SANDBOX_STATE_UNSPECIFIED
   }
 

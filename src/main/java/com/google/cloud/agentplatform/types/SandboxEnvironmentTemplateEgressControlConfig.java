@@ -38,10 +38,6 @@ public abstract class SandboxEnvironmentTemplateEgressControlConfig extends Json
   @JsonProperty("internetAccess")
   public abstract Optional<Boolean> internetAccess();
 
-  /** Optional. The customer VPC network that sandbox egress is routed into. */
-  @JsonProperty("customerVpcNetwork")
-  public abstract Optional<String> customerVpcNetwork();
-
   /**
    * Optional. DNS peering configurations that allow sandbox egress to resolve customer-internal
    * domains via the customer VPC.
@@ -51,7 +47,7 @@ public abstract class SandboxEnvironmentTemplateEgressControlConfig extends Json
       dnsPeeringConfigs();
 
   /**
-   * Optional. The name of the customer VPC NetworkAttachment used to draw a PSC interface IP into
+   * Optional. The name of the customer VPC `NetworkAttachment` used to draw a PSC interface IP into
    * the customer VPC for sandbox egress.
    */
   @JsonProperty("networkAttachment")
@@ -94,24 +90,6 @@ public abstract class SandboxEnvironmentTemplateEgressControlConfig extends Json
     @CanIgnoreReturnValue
     public Builder clearInternetAccess() {
       return internetAccess(Optional.empty());
-    }
-
-    /**
-     * Setter for customerVpcNetwork.
-     *
-     * <p>customerVpcNetwork: Optional. The customer VPC network that sandbox egress is routed into.
-     */
-    @JsonProperty("customerVpcNetwork")
-    public abstract Builder customerVpcNetwork(String customerVpcNetwork);
-
-    @ExcludeFromGeneratedCoverageReport
-    abstract Builder customerVpcNetwork(Optional<String> customerVpcNetwork);
-
-    /** Clears the value of customerVpcNetwork field. */
-    @ExcludeFromGeneratedCoverageReport
-    @CanIgnoreReturnValue
-    public Builder clearCustomerVpcNetwork() {
-      return customerVpcNetwork(Optional.empty());
     }
 
     /**
@@ -167,8 +145,8 @@ public abstract class SandboxEnvironmentTemplateEgressControlConfig extends Json
     /**
      * Setter for networkAttachment.
      *
-     * <p>networkAttachment: Optional. The name of the customer VPC NetworkAttachment used to draw a
-     * PSC interface IP into the customer VPC for sandbox egress.
+     * <p>networkAttachment: Optional. The name of the customer VPC `NetworkAttachment` used to draw
+     * a PSC interface IP into the customer VPC for sandbox egress.
      */
     @JsonProperty("networkAttachment")
     public abstract Builder networkAttachment(String networkAttachment);

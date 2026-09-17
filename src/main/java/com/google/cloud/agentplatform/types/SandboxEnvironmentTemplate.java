@@ -81,6 +81,12 @@ public abstract class SandboxEnvironmentTemplate extends JsonSerializable {
   @JsonProperty("ingressControlConfig")
   public abstract Optional<PrivateServiceConnectConfig> ingressControlConfig();
 
+  /**
+   * Optional. Immutable. Whether to provision the SandboxEnvironmentTemplate via the GKE TD pool.
+   */
+  @JsonProperty("useGkeTd")
+  public abstract Optional<Boolean> useGkeTd();
+
   /** Instantiates a builder for SandboxEnvironmentTemplate. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -351,6 +357,25 @@ public abstract class SandboxEnvironmentTemplate extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearIngressControlConfig() {
       return ingressControlConfig(Optional.empty());
+    }
+
+    /**
+     * Setter for useGkeTd.
+     *
+     * <p>useGkeTd: Optional. Immutable. Whether to provision the SandboxEnvironmentTemplate via the
+     * GKE TD pool.
+     */
+    @JsonProperty("useGkeTd")
+    public abstract Builder useGkeTd(boolean useGkeTd);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder useGkeTd(Optional<Boolean> useGkeTd);
+
+    /** Clears the value of useGkeTd field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearUseGkeTd() {
+      return useGkeTd(Optional.empty());
     }
 
     public abstract SandboxEnvironmentTemplate build();
