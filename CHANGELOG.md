@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/googleapis/java-vertexai/compare/v0.4.0...v0.5.0) (2026-09-23)
+
+
+### Features
+
+* include labels for LiveClientSetup ([db66381](https://github.com/googleapis/java-vertexai/commit/db66381edee1c965b067600de7673d356bf8ef74))
+
 ## [0.4.0](https://github.com/googleapis/java-vertexai/compare/v0.3.0...v0.4.0) (2026-09-22)
 
 
