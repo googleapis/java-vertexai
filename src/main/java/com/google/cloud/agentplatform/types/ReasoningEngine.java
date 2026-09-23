@@ -86,6 +86,11 @@ public abstract class ReasoningEngine extends JsonSerializable {
   @JsonProperty("trafficConfig")
   public abstract Optional<ReasoningEngineTrafficConfig> trafficConfig();
 
+  /** Optional. Configures garbage collection of Runtime Revisions. */
+  @JsonProperty("revisionGarbageCollectionStrategy")
+  public abstract Optional<ReasoningEngineRevisionGarbageCollectionStrategy>
+      revisionGarbageCollectionStrategy();
+
   /** Instantiates a builder for ReasoningEngine. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -346,6 +351,41 @@ public abstract class ReasoningEngine extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearTrafficConfig() {
       return trafficConfig(Optional.empty());
+    }
+
+    /**
+     * Setter for revisionGarbageCollectionStrategy.
+     *
+     * <p>revisionGarbageCollectionStrategy: Optional. Configures garbage collection of Runtime
+     * Revisions.
+     */
+    @JsonProperty("revisionGarbageCollectionStrategy")
+    public abstract Builder revisionGarbageCollectionStrategy(
+        ReasoningEngineRevisionGarbageCollectionStrategy revisionGarbageCollectionStrategy);
+
+    /**
+     * Setter for revisionGarbageCollectionStrategy builder.
+     *
+     * <p>revisionGarbageCollectionStrategy: Optional. Configures garbage collection of Runtime
+     * Revisions.
+     */
+    @CanIgnoreReturnValue
+    public Builder revisionGarbageCollectionStrategy(
+        ReasoningEngineRevisionGarbageCollectionStrategy.Builder
+            revisionGarbageCollectionStrategyBuilder) {
+      return revisionGarbageCollectionStrategy(revisionGarbageCollectionStrategyBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder revisionGarbageCollectionStrategy(
+        Optional<ReasoningEngineRevisionGarbageCollectionStrategy>
+            revisionGarbageCollectionStrategy);
+
+    /** Clears the value of revisionGarbageCollectionStrategy field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearRevisionGarbageCollectionStrategy() {
+      return revisionGarbageCollectionStrategy(Optional.empty());
     }
 
     public abstract ReasoningEngine build();

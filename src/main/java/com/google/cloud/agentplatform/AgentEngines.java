@@ -627,6 +627,14 @@ public final class AgentEngines {
           Common.getValueByPath(fromObject, new String[] {"trafficConfig"}));
     }
 
+    if (Common.getValueByPath(fromObject, new String[] {"revisionGarbageCollectionStrategy"})
+        != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"revisionGarbageCollectionStrategy"},
+          Common.getValueByPath(fromObject, new String[] {"revisionGarbageCollectionStrategy"}));
+    }
+
     return toObject;
   }
 

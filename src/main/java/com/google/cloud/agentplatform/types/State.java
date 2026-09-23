@@ -34,8 +34,8 @@ public class State {
     /** Is deployed and ready to be used. */
     ACTIVE,
 
-    /** Is deprecated, may not be used, only preserved for historical purposes. */
-    DEPRECATED
+    /** Is archived and can no longer receive traffic, only preserved for historical purposes. */
+    ARCHIVED
   }
 
   private Known stateEnum;
