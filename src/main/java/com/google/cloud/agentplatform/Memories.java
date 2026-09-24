@@ -412,6 +412,13 @@ public final class Memories {
           Common.getValueByPath(fromObject, new String[] {"memoryId"}));
     }
 
+    if (Common.getValueByPath(fromObject, new String[] {"context"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"context"},
+          Common.getValueByPath(fromObject, new String[] {"context"}));
+    }
+
     return toObject;
   }
 
@@ -633,6 +640,13 @@ public final class Memories {
           parentObject,
           new String[] {"_query", "memoryId"},
           Common.getValueByPath(fromObject, new String[] {"memoryId"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"context"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"context"},
+          Common.getValueByPath(fromObject, new String[] {"context"}));
     }
 
     if (Common.getValueByPath(fromObject, new String[] {"updateMask"}) != null) {
