@@ -104,6 +104,10 @@ public abstract class UpdateMemoryConfig extends JsonSerializable {
   @JsonProperty("memoryId")
   public abstract Optional<String> memoryId();
 
+  /** Optional. Represents the context of the memory. */
+  @JsonProperty("context")
+  public abstract Optional<String> context();
+
   /**
    * The update mask to apply. For the `FieldMask` definition, see
    * https://protobuf.dev/reference/protobuf/google.protobuf/#field-mask.
@@ -376,6 +380,24 @@ public abstract class UpdateMemoryConfig extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearMemoryId() {
       return memoryId(Optional.empty());
+    }
+
+    /**
+     * Setter for context.
+     *
+     * <p>context: Optional. Represents the context of the memory.
+     */
+    @JsonProperty("context")
+    public abstract Builder context(String context);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder context(Optional<String> context);
+
+    /** Clears the value of context field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearContext() {
+      return context(Optional.empty());
     }
 
     /**
