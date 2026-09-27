@@ -87,6 +87,15 @@ public abstract class SandboxEnvironmentTemplate extends JsonSerializable {
   @JsonProperty("useGkeTd")
   public abstract Optional<Boolean> useGkeTd();
 
+  /**
+   * Optional. Configuration for attaching a persistent disk (PD) to each SandboxEnvironment created
+   * from this template. When unset (or when `enabled` is `false`), sandboxes created from this
+   * template are not backed by a persistent disk and rely on ephemeral storage only. See
+   * PersistentDiskConfig for details.
+   */
+  @JsonProperty("persistentDiskConfig")
+  public abstract Optional<SandboxEnvironmentTemplatePersistentDiskConfig> persistentDiskConfig();
+
   /** Instantiates a builder for SandboxEnvironmentTemplate. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -376,6 +385,43 @@ public abstract class SandboxEnvironmentTemplate extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearUseGkeTd() {
       return useGkeTd(Optional.empty());
+    }
+
+    /**
+     * Setter for persistentDiskConfig.
+     *
+     * <p>persistentDiskConfig: Optional. Configuration for attaching a persistent disk (PD) to each
+     * SandboxEnvironment created from this template. When unset (or when `enabled` is `false`),
+     * sandboxes created from this template are not backed by a persistent disk and rely on
+     * ephemeral storage only. See PersistentDiskConfig for details.
+     */
+    @JsonProperty("persistentDiskConfig")
+    public abstract Builder persistentDiskConfig(
+        SandboxEnvironmentTemplatePersistentDiskConfig persistentDiskConfig);
+
+    /**
+     * Setter for persistentDiskConfig builder.
+     *
+     * <p>persistentDiskConfig: Optional. Configuration for attaching a persistent disk (PD) to each
+     * SandboxEnvironment created from this template. When unset (or when `enabled` is `false`),
+     * sandboxes created from this template are not backed by a persistent disk and rely on
+     * ephemeral storage only. See PersistentDiskConfig for details.
+     */
+    @CanIgnoreReturnValue
+    public Builder persistentDiskConfig(
+        SandboxEnvironmentTemplatePersistentDiskConfig.Builder persistentDiskConfigBuilder) {
+      return persistentDiskConfig(persistentDiskConfigBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder persistentDiskConfig(
+        Optional<SandboxEnvironmentTemplatePersistentDiskConfig> persistentDiskConfig);
+
+    /** Clears the value of persistentDiskConfig field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearPersistentDiskConfig() {
+      return persistentDiskConfig(Optional.empty());
     }
 
     public abstract SandboxEnvironmentTemplate build();
