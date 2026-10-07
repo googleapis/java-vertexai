@@ -93,7 +93,8 @@ public abstract class SandboxEnvironment extends JsonSerializable {
 
   /**
    * Optional. The name of the SandboxEnvironmentTemplate specified in the parent Agent Engine
-   * resource that this SandboxEnvironment is created from.
+   * resource that this SandboxEnvironment is created from. Only one of
+   * `sandbox_environment_template` and `spec` should be set.
    */
   @JsonProperty("sandboxEnvironmentTemplate")
   public abstract Optional<String> sandboxEnvironmentTemplate();
@@ -385,7 +386,8 @@ public abstract class SandboxEnvironment extends JsonSerializable {
      * Setter for sandboxEnvironmentTemplate.
      *
      * <p>sandboxEnvironmentTemplate: Optional. The name of the SandboxEnvironmentTemplate specified
-     * in the parent Agent Engine resource that this SandboxEnvironment is created from.
+     * in the parent Agent Engine resource that this SandboxEnvironment is created from. Only one of
+     * `sandbox_environment_template` and `spec` should be set.
      */
     @JsonProperty("sandboxEnvironmentTemplate")
     public abstract Builder sandboxEnvironmentTemplate(String sandboxEnvironmentTemplate);
