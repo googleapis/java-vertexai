@@ -49,6 +49,10 @@ public abstract class StructuredMemorySchemaConfig extends JsonSerializable {
   @JsonProperty("memoryType")
   public abstract Optional<MemoryType> memoryType();
 
+  /** Required. Represents the OpenAPI schema of the structured memories. */
+  @JsonProperty("memoryJsonSchema")
+  public abstract Optional<Object> memoryJsonSchema();
+
   /** Instantiates a builder for StructuredMemorySchemaConfig. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -145,6 +149,24 @@ public abstract class StructuredMemorySchemaConfig extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder memoryType(String memoryType) {
       return memoryType(new MemoryType(memoryType));
+    }
+
+    /**
+     * Setter for memoryJsonSchema.
+     *
+     * <p>memoryJsonSchema: Required. Represents the OpenAPI schema of the structured memories.
+     */
+    @JsonProperty("memoryJsonSchema")
+    public abstract Builder memoryJsonSchema(Object memoryJsonSchema);
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder memoryJsonSchema(Optional<Object> memoryJsonSchema);
+
+    /** Clears the value of memoryJsonSchema field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearMemoryJsonSchema() {
+      return memoryJsonSchema(Optional.empty());
     }
 
     public abstract StructuredMemorySchemaConfig build();
