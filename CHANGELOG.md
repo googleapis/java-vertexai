@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/googleapis/java-vertexai/compare/v0.6.0...v0.7.0) (2026-10-14)
+
+
+### Features
+
+* Add client.memory_banks.update method. ([ed74f1b](https://github.com/googleapis/java-vertexai/commit/ed74f1b293d8545e9d5746c9bee1486410afd83e))
+
 ## [0.6.0](https://github.com/googleapis/java-vertexai/compare/v0.5.0...v0.6.0) (2026-10-06)
 
 
