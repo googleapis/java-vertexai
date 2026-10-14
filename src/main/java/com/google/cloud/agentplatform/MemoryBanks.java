@@ -42,6 +42,8 @@ import com.google.cloud.agentplatform.types.MemoryBankOperation;
 import com.google.cloud.agentplatform.types.MemoryGenerationTriggerConfig;
 import com.google.cloud.agentplatform.types.ReasoningEngine;
 import com.google.cloud.agentplatform.types.ReasoningEngineContextSpecMemoryBankConfig;
+import com.google.cloud.agentplatform.types.UpdateMemoryBankConfig;
+import com.google.cloud.agentplatform.types.UpdateMemoryBankRequestParameters;
 import com.google.genai.ApiClient;
 import com.google.genai.ApiResponse;
 import com.google.genai.Common;
@@ -813,6 +815,59 @@ public final class MemoryBanks {
     return toObject;
   }
 
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode updateMemoryBankConfigToVertex(JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+
+    if (Common.getValueByPath(fromObject, new String[] {"displayName"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"displayName"},
+          Common.getValueByPath(fromObject, new String[] {"displayName"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"description"}) != null) {
+      Common.setValueByPath(
+          parentObject,
+          new String[] {"description"},
+          Common.getValueByPath(fromObject, new String[] {"description"}));
+    }
+
+    return toObject;
+  }
+
+  @ExcludeFromGeneratedCoverageReport
+  ObjectNode updateMemoryBankRequestParametersToVertex(
+      JsonNode fromObject, ObjectNode parentObject) {
+    ObjectNode toObject = JsonSerializable.objectMapper().createObjectNode();
+    if (Common.getValueByPath(fromObject, new String[] {"name"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"_url", "name"},
+          Common.getValueByPath(fromObject, new String[] {"name"}));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"memoryBankConfig"}) != null) {
+      Common.setValueByPath(
+          toObject,
+          new String[] {"context_spec", "memory_bank_config"},
+          reasoningEngineContextSpecMemoryBankConfigToVertex(
+              JsonSerializable.toJsonNode(
+                  Common.getValueByPath(fromObject, new String[] {"memoryBankConfig"})),
+              toObject));
+    }
+
+    if (Common.getValueByPath(fromObject, new String[] {"config"}) != null) {
+      JsonNode unused =
+          updateMemoryBankConfigToVertex(
+              JsonSerializable.toJsonNode(
+                  Common.getValueByPath(fromObject, new String[] {"config"})),
+              toObject);
+    }
+
+    return toObject;
+  }
+
   /** A shared buildRequest method for both sync and async methods. */
   BuiltRequest buildRequestForPrivateCreate(
       ReasoningEngineContextSpecMemoryBankConfig memoryBankConfig, CreateMemoryBankConfig config) {
@@ -889,6 +944,92 @@ public final class MemoryBanks {
         this.apiClient.request(
             "post", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())) {
       return processResponseForPrivateCreate(response, config);
+    }
+  }
+
+  /** A shared buildRequest method for both sync and async methods. */
+  BuiltRequest buildRequestForPrivateUpdate(
+      String name,
+      ReasoningEngineContextSpecMemoryBankConfig memoryBankConfig,
+      UpdateMemoryBankConfig config) {
+
+    UpdateMemoryBankRequestParameters.Builder parameterBuilder =
+        UpdateMemoryBankRequestParameters.builder();
+
+    if (!Common.isZero(name)) {
+      parameterBuilder.name(name);
+    }
+    if (!Common.isZero(memoryBankConfig)) {
+      parameterBuilder.memoryBankConfig(memoryBankConfig);
+    }
+    if (!Common.isZero(config)) {
+      parameterBuilder.config(config);
+    }
+    JsonNode parameterNode = JsonSerializable.toJsonNode(parameterBuilder.build());
+
+    ObjectNode body;
+    String path;
+    if (this.apiClient.vertexAI()) {
+      body = updateMemoryBankRequestParametersToVertex(parameterNode, null);
+      path = Common.formatMap("{name}", body.get("_url"));
+    } else {
+      throw new UnsupportedOperationException(
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
+    }
+    body.remove("_url");
+
+    JsonNode queryParams = body.get("_query");
+    if (queryParams != null) {
+      body.remove("_query");
+      path = String.format("%s?%s", path, Common.urlEncode((ObjectNode) queryParams));
+    }
+
+    // TODO: Remove the hack that removes config.
+    Optional<HttpOptions> requestHttpOptions = Optional.empty();
+    if (config != null) {
+      requestHttpOptions = config.httpOptions();
+    }
+
+    return new BuiltRequest(path, JsonSerializable.toJsonString(body), requestHttpOptions);
+  }
+
+  /** A shared processResponse function for both sync and async methods. */
+  MemoryBankOperation processResponseForPrivateUpdate(
+      ApiResponse response, UpdateMemoryBankConfig config) {
+    ResponseBody responseBody = response.getBody();
+    String responseString;
+    try {
+      responseString = responseBody.string();
+    } catch (IOException e) {
+      throw new GenAiIOException("Failed to read HTTP response.", e);
+    }
+
+    JsonNode responseNode = JsonSerializable.stringToJsonNode(responseString);
+
+    if (this.apiClient.vertexAI()) {
+      responseNode = memoryBankOperationFromVertex(responseNode, null);
+    }
+
+    if (!this.apiClient.vertexAI()) {
+      throw new UnsupportedOperationException(
+          "This method is only supported in Gemini Enterprise Agent Platform mode, not in Gemini"
+              + " Developer API mode.");
+    }
+
+    return JsonSerializable.fromJsonNode(responseNode, MemoryBankOperation.class);
+  }
+
+  public MemoryBankOperation privateUpdate(
+      String name,
+      ReasoningEngineContextSpecMemoryBankConfig memoryBankConfig,
+      UpdateMemoryBankConfig config) {
+    BuiltRequest builtRequest = buildRequestForPrivateUpdate(name, memoryBankConfig, config);
+
+    try (ApiResponse response =
+        this.apiClient.request(
+            "patch", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())) {
+      return processResponseForPrivateUpdate(response, config);
     }
   }
 

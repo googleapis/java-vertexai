@@ -32,6 +32,7 @@ import com.google.cloud.agentplatform.types.MemoryBankOperation;
 import com.google.cloud.agentplatform.types.MemoryGenerationTriggerConfig;
 import com.google.cloud.agentplatform.types.ReasoningEngine;
 import com.google.cloud.agentplatform.types.ReasoningEngineContextSpecMemoryBankConfig;
+import com.google.cloud.agentplatform.types.UpdateMemoryBankConfig;
 import com.google.genai.ApiClient;
 import com.google.genai.ApiResponse;
 import com.google.genai.Common.BuiltRequest;
@@ -62,6 +63,23 @@ public final class AsyncMemoryBanks {
             response -> {
               try (ApiResponse res = response) {
                 return memoryBanks.processResponseForPrivateCreate(res, config);
+              }
+            });
+  }
+
+  CompletableFuture<MemoryBankOperation> privateUpdate(
+      String name,
+      ReasoningEngineContextSpecMemoryBankConfig memoryBankConfig,
+      UpdateMemoryBankConfig config) {
+
+    BuiltRequest builtRequest =
+        memoryBanks.buildRequestForPrivateUpdate(name, memoryBankConfig, config);
+    return this.apiClient
+        .asyncRequest("patch", builtRequest.path(), builtRequest.body(), builtRequest.httpOptions())
+        .thenApplyAsync(
+            response -> {
+              try (ApiResponse res = response) {
+                return memoryBanks.processResponseForPrivateUpdate(res, config);
               }
             });
   }
