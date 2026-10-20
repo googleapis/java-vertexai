@@ -113,6 +113,16 @@ public abstract class EventMetadata extends JsonSerializable {
     @JsonProperty("groundingMetadata")
     public abstract Builder groundingMetadata(GroundingMetadata groundingMetadata);
 
+    /**
+     * Setter for groundingMetadata builder.
+     *
+     * <p>groundingMetadata: Optional. Metadata returned to client when grounding is enabled.
+     */
+    @CanIgnoreReturnValue
+    public Builder groundingMetadata(GroundingMetadata.Builder groundingMetadataBuilder) {
+      return groundingMetadata(groundingMetadataBuilder.build());
+    }
+
     @ExcludeFromGeneratedCoverageReport
     abstract Builder groundingMetadata(Optional<GroundingMetadata> groundingMetadata);
 
