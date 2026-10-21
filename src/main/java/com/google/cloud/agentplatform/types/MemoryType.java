@@ -23,7 +23,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.google.common.base.Ascii;
 import java.util.Objects;
 
-/** The type of the memory. */
+/**
+ * Represents the type of the memory. If not set, the `NATURAL_LANGUAGE_COLLECTION` type is used. If
+ * `STRUCTURED_COLLECTION` or `STRUCTURED_PROFILE` is used, then `structured_data` must be provided.
+ */
 public class MemoryType {
 
   /** Enum representing the known values for MemoryType. */
