@@ -51,6 +51,10 @@ public abstract class ReasoningEngineSpecSourceCodeSpec extends JsonSerializable
   @JsonProperty("pythonSpec")
   public abstract Optional<ReasoningEngineSpecSourceCodeSpecPythonSpec> pythonSpec();
 
+  /** Source code is in a public Git repository. */
+  @JsonProperty("gitSource")
+  public abstract Optional<ReasoningEngineSpecSourceCodeSpecGitSource> gitSource();
+
   /** Instantiates a builder for ReasoningEngineSpecSourceCodeSpec. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -221,6 +225,34 @@ public abstract class ReasoningEngineSpecSourceCodeSpec extends JsonSerializable
     @CanIgnoreReturnValue
     public Builder clearPythonSpec() {
       return pythonSpec(Optional.empty());
+    }
+
+    /**
+     * Setter for gitSource.
+     *
+     * <p>gitSource: Source code is in a public Git repository.
+     */
+    @JsonProperty("gitSource")
+    public abstract Builder gitSource(ReasoningEngineSpecSourceCodeSpecGitSource gitSource);
+
+    /**
+     * Setter for gitSource builder.
+     *
+     * <p>gitSource: Source code is in a public Git repository.
+     */
+    @CanIgnoreReturnValue
+    public Builder gitSource(ReasoningEngineSpecSourceCodeSpecGitSource.Builder gitSourceBuilder) {
+      return gitSource(gitSourceBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder gitSource(Optional<ReasoningEngineSpecSourceCodeSpecGitSource> gitSource);
+
+    /** Clears the value of gitSource field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearGitSource() {
+      return gitSource(Optional.empty());
     }
 
     public abstract ReasoningEngineSpecSourceCodeSpec build();
