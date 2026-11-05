@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/googleapis/java-vertexai/compare/v0.7.0...v0.8.0) (2026-11-05)
+
+
+### Features
+
+* update discovery doc ([cc08877](https://github.com/googleapis/java-vertexai/commit/cc08877d33ed44e6d53472da2a1c447455eb1c10))
+
 ## [0.7.0](https://github.com/googleapis/java-vertexai/compare/v0.6.0...v0.7.0) (2026-10-20)
 
 
