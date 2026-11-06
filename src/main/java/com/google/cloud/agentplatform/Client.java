@@ -46,10 +46,12 @@ public final class Client implements AutoCloseable {
      * {@code templates}, and {@code snapshots} submodules.
      */
     public final AsyncSandboxes sandboxes;
+    public final AsyncDetections detections;
 
     public Async(ApiClient apiClient) {
       this.agentEngines = new AsyncAgentEngines(apiClient);
       this.sandboxes = this.agentEngines.sandboxes;
+      this.detections = new AsyncDetections(apiClient);
     }
   }
 
@@ -80,6 +82,8 @@ public final class Client implements AutoCloseable {
    * templates}, and {@code snapshots} submodules.
    */
   public final Sandboxes sandboxes;
+  public final Detections detections;
+  public final Async async;
 
   /** Builder for {@link Client}. */
   public static class Builder {
@@ -240,6 +244,8 @@ public final class Client implements AutoCloseable {
     }
     agentEngines = new AgentEngines(this.apiClient);
     sandboxes = agentEngines.sandboxes;
+    detections = new Detections(this.apiClient);
+    async = new Async(this.apiClient);
   }
 
   /** Returns the project ID for Vertex AI APIs. */
