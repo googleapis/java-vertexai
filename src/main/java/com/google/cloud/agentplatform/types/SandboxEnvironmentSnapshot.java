@@ -32,11 +32,14 @@ import java.util.Optional;
 @AutoValue
 @JsonDeserialize(builder = SandboxEnvironmentSnapshot.Builder.class)
 public abstract class SandboxEnvironmentSnapshot extends JsonSerializable {
-  /** The display name of the sandbox environment snapshot. */
+  /** Required. The display name of the SandboxEnvironmentSnapshot. */
   @JsonProperty("displayName")
   public abstract Optional<String> displayName();
 
-  /** Expiration time of the sandbox environment snapshot. */
+  /**
+   * Optional. Timestamp in UTC of when this SandboxEnvironmentSnapshot is considered expired. This
+   * is *always* provided on output, regardless of what `expiration` was sent on input.
+   */
   @JsonProperty("expireTime")
   public abstract Optional<Instant> expireTime();
 
@@ -118,7 +121,7 @@ public abstract class SandboxEnvironmentSnapshot extends JsonSerializable {
     /**
      * Setter for displayName.
      *
-     * <p>displayName: The display name of the sandbox environment snapshot.
+     * <p>displayName: Required. The display name of the SandboxEnvironmentSnapshot.
      */
     @JsonProperty("displayName")
     public abstract Builder displayName(String displayName);
@@ -136,7 +139,9 @@ public abstract class SandboxEnvironmentSnapshot extends JsonSerializable {
     /**
      * Setter for expireTime.
      *
-     * <p>expireTime: Expiration time of the sandbox environment snapshot.
+     * <p>expireTime: Optional. Timestamp in UTC of when this SandboxEnvironmentSnapshot is
+     * considered expired. This is *always* provided on output, regardless of what `expiration` was
+     * sent on input.
      */
     @JsonProperty("expireTime")
     public abstract Builder expireTime(Instant expireTime);
