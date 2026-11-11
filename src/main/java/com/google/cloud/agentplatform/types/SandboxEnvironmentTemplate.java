@@ -96,6 +96,10 @@ public abstract class SandboxEnvironmentTemplate extends JsonSerializable {
   @JsonProperty("persistentDiskConfig")
   public abstract Optional<SandboxEnvironmentTemplatePersistentDiskConfig> persistentDiskConfig();
 
+  /** Optional. The configuration for the warm pool of this template. */
+  @JsonProperty("warmPoolConfig")
+  public abstract Optional<SandboxEnvironmentTemplateWarmPoolConfig> warmPoolConfig();
+
   /** Instantiates a builder for SandboxEnvironmentTemplate. */
   @ExcludeFromGeneratedCoverageReport
   public static Builder builder() {
@@ -422,6 +426,36 @@ public abstract class SandboxEnvironmentTemplate extends JsonSerializable {
     @CanIgnoreReturnValue
     public Builder clearPersistentDiskConfig() {
       return persistentDiskConfig(Optional.empty());
+    }
+
+    /**
+     * Setter for warmPoolConfig.
+     *
+     * <p>warmPoolConfig: Optional. The configuration for the warm pool of this template.
+     */
+    @JsonProperty("warmPoolConfig")
+    public abstract Builder warmPoolConfig(SandboxEnvironmentTemplateWarmPoolConfig warmPoolConfig);
+
+    /**
+     * Setter for warmPoolConfig builder.
+     *
+     * <p>warmPoolConfig: Optional. The configuration for the warm pool of this template.
+     */
+    @CanIgnoreReturnValue
+    public Builder warmPoolConfig(
+        SandboxEnvironmentTemplateWarmPoolConfig.Builder warmPoolConfigBuilder) {
+      return warmPoolConfig(warmPoolConfigBuilder.build());
+    }
+
+    @ExcludeFromGeneratedCoverageReport
+    abstract Builder warmPoolConfig(
+        Optional<SandboxEnvironmentTemplateWarmPoolConfig> warmPoolConfig);
+
+    /** Clears the value of warmPoolConfig field. */
+    @ExcludeFromGeneratedCoverageReport
+    @CanIgnoreReturnValue
+    public Builder clearWarmPoolConfig() {
+      return warmPoolConfig(Optional.empty());
     }
 
     public abstract SandboxEnvironmentTemplate build();
