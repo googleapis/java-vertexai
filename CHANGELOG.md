@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.9.0](https://github.com/googleapis/java-vertexai/compare/v0.8.0...v0.9.0) (2026-11-13)
+
+
+### Features
+
+* Add missing enum values to FinishReason and ReinforcementTuningThinkingLevel ([852bda3](https://github.com/googleapis/java-vertexai/commit/852bda3ccc7bc9c6ffa68455df59f301dfe122b7))
+* update discovery doc ([afe5416](https://github.com/googleapis/java-vertexai/commit/afe54166bbb32150d82a10a823beb8bc31deaf9a))
+
+
+### Bug Fixes
+
+* apply HttpOptions.timeout to each attempt instead of the whole operation ([cf76e34](https://github.com/googleapis/java-vertexai/commit/cf76e34d29eaa5e562e07c74c3de4f41ff968a2e))
+* stop retry backoff after the last attempt or once the HTTP call is canceled ([6d5efc6](https://github.com/googleapis/java-vertexai/commit/6d5efc64218913bec67ac094c3a5b08aa1933707))
+
 ## [0.8.0](https://github.com/googleapis/java-vertexai/compare/v0.7.0...v0.8.0) (2026-11-05)
 
 
