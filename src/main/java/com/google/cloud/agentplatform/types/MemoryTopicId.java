@@ -26,7 +26,10 @@ import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.genai.JsonSerializable;
 import java.util.Optional;
 
-/** The topic ID for a memory. */
+/**
+ * A memory topic identifier. This will be used to label a Memory and to restrict which topics are
+ * eligible for generation or retrieval.
+ */
 @AutoValue
 @JsonDeserialize(builder = MemoryTopicId.Builder.class)
 public abstract class MemoryTopicId extends JsonSerializable {

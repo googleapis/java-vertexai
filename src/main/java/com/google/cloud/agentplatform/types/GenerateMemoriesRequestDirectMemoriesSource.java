@@ -30,7 +30,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-/** The direct memories source for generating memories. */
+/**
+ * Defines a direct source of memories that should be uploaded to Memory Bank with consolidation.
+ */
 @AutoValue
 @JsonDeserialize(builder = GenerateMemoriesRequestDirectMemoriesSource.Builder.class)
 public abstract class GenerateMemoriesRequestDirectMemoriesSource extends JsonSerializable {

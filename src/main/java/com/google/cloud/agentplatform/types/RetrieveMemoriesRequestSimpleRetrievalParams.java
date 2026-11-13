@@ -26,7 +26,7 @@ import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.genai.JsonSerializable;
 import java.util.Optional;
 
-/** The parameters for simple (non-similarity search) retrieval. */
+/** Parameters for simple (non-similarity search) retrieval. */
 @AutoValue
 @JsonDeserialize(builder = RetrieveMemoriesRequestSimpleRetrievalParams.Builder.class)
 public abstract class RetrieveMemoriesRequestSimpleRetrievalParams extends JsonSerializable {

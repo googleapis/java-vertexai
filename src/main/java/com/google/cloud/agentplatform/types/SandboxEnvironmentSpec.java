@@ -26,7 +26,7 @@ import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.genai.JsonSerializable;
 import java.util.Optional;
 
-/** The specification of a sandbox environment. */
+/** The specification of a SandboxEnvironment. */
 @AutoValue
 @JsonDeserialize(builder = SandboxEnvironmentSpec.Builder.class)
 public abstract class SandboxEnvironmentSpec extends JsonSerializable {

@@ -26,7 +26,10 @@ import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.genai.JsonSerializable;
 import java.util.Optional;
 
-/** A chunk of data. */
+/**
+ * Container for bytes-encoded data such as video frame, audio sample, or a complete binary/text
+ * data.
+ */
 @AutoValue
 @JsonDeserialize(builder = Chunk.Builder.class)
 public abstract class Chunk extends JsonSerializable {

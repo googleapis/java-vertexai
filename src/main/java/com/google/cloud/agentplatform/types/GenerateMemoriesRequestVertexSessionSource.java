@@ -27,7 +27,10 @@ import com.google.genai.JsonSerializable;
 import java.time.Instant;
 import java.util.Optional;
 
-/** The vertex session source for generating memories. */
+/**
+ * Defines an Agent Engine Session from which to generate the memories. If `scope` is not provided,
+ * the scope will be extracted from the Session (i.e. {"user_id": sesison.user_id}).
+ */
 @AutoValue
 @JsonDeserialize(builder = GenerateMemoriesRequestVertexSessionSource.Builder.class)
 public abstract class GenerateMemoriesRequestVertexSessionSource extends JsonSerializable {

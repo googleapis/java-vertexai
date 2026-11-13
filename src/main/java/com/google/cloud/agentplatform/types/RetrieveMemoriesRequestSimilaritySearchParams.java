@@ -26,7 +26,7 @@ import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.genai.JsonSerializable;
 import java.util.Optional;
 
-/** The parameters for semantic similarity search based retrieval. */
+/** Parameters for semantic similarity search based retrieval. */
 @AutoValue
 @JsonDeserialize(builder = RetrieveMemoriesRequestSimilaritySearchParams.Builder.class)
 public abstract class RetrieveMemoriesRequestSimilaritySearchParams extends JsonSerializable {

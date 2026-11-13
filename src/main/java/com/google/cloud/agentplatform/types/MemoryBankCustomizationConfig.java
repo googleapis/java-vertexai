@@ -30,7 +30,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-/** Represents configuration for organizing natural language memories. */
+/** Represents configuration for organizing natural language memories for a particular scope. */
 @AutoValue
 @JsonDeserialize(builder = MemoryBankCustomizationConfig.Builder.class)
 public abstract class MemoryBankCustomizationConfig extends JsonSerializable {

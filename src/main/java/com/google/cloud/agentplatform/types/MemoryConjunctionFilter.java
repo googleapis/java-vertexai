@@ -30,7 +30,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-/** The conjunction filter for memories. */
+/** A conjunction of filters that will be combined using AND logic. */
 @AutoValue
 @JsonDeserialize(builder = MemoryConjunctionFilter.Builder.class)
 public abstract class MemoryConjunctionFilter extends JsonSerializable {
