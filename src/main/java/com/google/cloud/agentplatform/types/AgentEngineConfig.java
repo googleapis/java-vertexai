@@ -239,7 +239,10 @@ public abstract class AgentEngineConfig extends JsonSerializable {
   /**
    * Optional. Specifies the configuration for keep-alive probe. Contains configuration on a
    * specified endpoint that a deployment host should use to keep the container alive based on the
-   * probe settings.
+   * probe settings. Pass an empty `KeepAliveProbe` (`{}`) to enable the default probe
+   * (`max_seconds=3600`), which is supported for `AdkApp` (`agent_framework='google-adk'`)
+   * deployments. Custom `http_get` and `max_seconds` settings are only supported when deploying
+   * from a custom container (`container_spec`) or Dockerfile (`image_spec`).
    */
   @JsonProperty("keepAliveProbe")
   public abstract Optional<KeepAliveProbe> keepAliveProbe();
@@ -1107,7 +1110,11 @@ public abstract class AgentEngineConfig extends JsonSerializable {
      *
      * <p>keepAliveProbe: Optional. Specifies the configuration for keep-alive probe. Contains
      * configuration on a specified endpoint that a deployment host should use to keep the container
-     * alive based on the probe settings.
+     * alive based on the probe settings. Pass an empty `KeepAliveProbe` (`{}`) to enable the
+     * default probe (`max_seconds=3600`), which is supported for `AdkApp`
+     * (`agent_framework='google-adk'`) deployments. Custom `http_get` and `max_seconds` settings
+     * are only supported when deploying from a custom container (`container_spec`) or Dockerfile
+     * (`image_spec`).
      */
     @JsonProperty("keepAliveProbe")
     public abstract Builder keepAliveProbe(KeepAliveProbe keepAliveProbe);
@@ -1117,7 +1124,11 @@ public abstract class AgentEngineConfig extends JsonSerializable {
      *
      * <p>keepAliveProbe: Optional. Specifies the configuration for keep-alive probe. Contains
      * configuration on a specified endpoint that a deployment host should use to keep the container
-     * alive based on the probe settings.
+     * alive based on the probe settings. Pass an empty `KeepAliveProbe` (`{}`) to enable the
+     * default probe (`max_seconds=3600`), which is supported for `AdkApp`
+     * (`agent_framework='google-adk'`) deployments. Custom `http_get` and `max_seconds` settings
+     * are only supported when deploying from a custom container (`container_spec`) or Dockerfile
+     * (`image_spec`).
      */
     @CanIgnoreReturnValue
     public Builder keepAliveProbe(KeepAliveProbe.Builder keepAliveProbeBuilder) {
