@@ -15,7 +15,7 @@
 <dependency>
   <groupId>com.google.cloud</groupId>
   <artifactId>google-cloud-agentplatform</artifactId>
-  <version>0.8.0</version>
+  <version>0.9.0</version>
 </dependency>
 ```
 <!-- {x-version-update-end} -->
