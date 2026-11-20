@@ -84,9 +84,21 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
   public abstract Optional<Map<String, String>> resourceLimits();
 
   /**
-   * Optional. Environment variables where the value is a secret in Cloud Secret Manager. To use
-   * this feature, add 'Secret Manager Secret Accessor' role (roles/secretmanager.secretAccessor) to
-   * AI Platform Reasoning Engine Service Agent.
+   * Optional. Environment variables where the value is a secret in Secret Manager. Secrets must be
+   * global secrets in the same project as the Reasoning Engine. At startup (and during deployment
+   * validation for service-account-based deployments), the Reasoning Engine accesses the referenced
+   * secrets using its configured runtime identity. Grant the Secret Manager Secret Accessor role
+   * (`roles/secretmanager.secretAccessor`) on the specific secret to an isolated per-agent identity
+   * (`identity_type = AGENT_IDENTITY`) or a dedicated custom `service_account`. When using
+   * `AGENT_IDENTITY`, create the Reasoning Engine first without `secret_env`, grant access to its
+   * provisioned agent identity (prepend `principal://` to `effective_identity`), and then update
+   * the Reasoning Engine to add `secret_env`. WARNING: Avoid granting secret access to the default
+   * Vertex AI Reasoning Engine Service Agent
+   * (`service-{project_number}@gcp-sa-aiplatform-re.iam.gserviceaccount.com`), which is shared
+   * across all Reasoning Engines in the project that do not specify an isolated identity or custom
+   * service account; any principal with permission to deploy or update agents in the project can
+   * access secrets granted to it. Also restrict `aiplatform.reasoningEngines.update` permissions on
+   * `AGENT_IDENTITY` engines.
    */
   @JsonProperty("secretEnv")
   public abstract Optional<List<SecretEnvVar>> secretEnv();
@@ -319,9 +331,21 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
     /**
      * Setter for secretEnv.
      *
-     * <p>secretEnv: Optional. Environment variables where the value is a secret in Cloud Secret
-     * Manager. To use this feature, add 'Secret Manager Secret Accessor' role
-     * (roles/secretmanager.secretAccessor) to AI Platform Reasoning Engine Service Agent.
+     * <p>secretEnv: Optional. Environment variables where the value is a secret in Secret Manager.
+     * Secrets must be global secrets in the same project as the Reasoning Engine. At startup (and
+     * during deployment validation for service-account-based deployments), the Reasoning Engine
+     * accesses the referenced secrets using its configured runtime identity. Grant the Secret
+     * Manager Secret Accessor role (`roles/secretmanager.secretAccessor`) on the specific secret to
+     * an isolated per-agent identity (`identity_type = AGENT_IDENTITY`) or a dedicated custom
+     * `service_account`. When using `AGENT_IDENTITY`, create the Reasoning Engine first without
+     * `secret_env`, grant access to its provisioned agent identity (prepend `principal://` to
+     * `effective_identity`), and then update the Reasoning Engine to add `secret_env`. WARNING:
+     * Avoid granting secret access to the default Vertex AI Reasoning Engine Service Agent
+     * (`service-{project_number}@gcp-sa-aiplatform-re.iam.gserviceaccount.com`), which is shared
+     * across all Reasoning Engines in the project that do not specify an isolated identity or
+     * custom service account; any principal with permission to deploy or update agents in the
+     * project can access secrets granted to it. Also restrict `aiplatform.reasoningEngines.update`
+     * permissions on `AGENT_IDENTITY` engines.
      */
     @JsonProperty("secretEnv")
     public abstract Builder secretEnv(List<SecretEnvVar> secretEnv);
@@ -329,9 +353,21 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
     /**
      * Setter for secretEnv.
      *
-     * <p>secretEnv: Optional. Environment variables where the value is a secret in Cloud Secret
-     * Manager. To use this feature, add 'Secret Manager Secret Accessor' role
-     * (roles/secretmanager.secretAccessor) to AI Platform Reasoning Engine Service Agent.
+     * <p>secretEnv: Optional. Environment variables where the value is a secret in Secret Manager.
+     * Secrets must be global secrets in the same project as the Reasoning Engine. At startup (and
+     * during deployment validation for service-account-based deployments), the Reasoning Engine
+     * accesses the referenced secrets using its configured runtime identity. Grant the Secret
+     * Manager Secret Accessor role (`roles/secretmanager.secretAccessor`) on the specific secret to
+     * an isolated per-agent identity (`identity_type = AGENT_IDENTITY`) or a dedicated custom
+     * `service_account`. When using `AGENT_IDENTITY`, create the Reasoning Engine first without
+     * `secret_env`, grant access to its provisioned agent identity (prepend `principal://` to
+     * `effective_identity`), and then update the Reasoning Engine to add `secret_env`. WARNING:
+     * Avoid granting secret access to the default Vertex AI Reasoning Engine Service Agent
+     * (`service-{project_number}@gcp-sa-aiplatform-re.iam.gserviceaccount.com`), which is shared
+     * across all Reasoning Engines in the project that do not specify an isolated identity or
+     * custom service account; any principal with permission to deploy or update agents in the
+     * project can access secrets granted to it. Also restrict `aiplatform.reasoningEngines.update`
+     * permissions on `AGENT_IDENTITY` engines.
      */
     @CanIgnoreReturnValue
     public Builder secretEnv(SecretEnvVar... secretEnv) {
@@ -341,9 +377,21 @@ public abstract class ReasoningEngineSpecDeploymentSpec extends JsonSerializable
     /**
      * Setter for secretEnv builder.
      *
-     * <p>secretEnv: Optional. Environment variables where the value is a secret in Cloud Secret
-     * Manager. To use this feature, add 'Secret Manager Secret Accessor' role
-     * (roles/secretmanager.secretAccessor) to AI Platform Reasoning Engine Service Agent.
+     * <p>secretEnv: Optional. Environment variables where the value is a secret in Secret Manager.
+     * Secrets must be global secrets in the same project as the Reasoning Engine. At startup (and
+     * during deployment validation for service-account-based deployments), the Reasoning Engine
+     * accesses the referenced secrets using its configured runtime identity. Grant the Secret
+     * Manager Secret Accessor role (`roles/secretmanager.secretAccessor`) on the specific secret to
+     * an isolated per-agent identity (`identity_type = AGENT_IDENTITY`) or a dedicated custom
+     * `service_account`. When using `AGENT_IDENTITY`, create the Reasoning Engine first without
+     * `secret_env`, grant access to its provisioned agent identity (prepend `principal://` to
+     * `effective_identity`), and then update the Reasoning Engine to add `secret_env`. WARNING:
+     * Avoid granting secret access to the default Vertex AI Reasoning Engine Service Agent
+     * (`service-{project_number}@gcp-sa-aiplatform-re.iam.gserviceaccount.com`), which is shared
+     * across all Reasoning Engines in the project that do not specify an isolated identity or
+     * custom service account; any principal with permission to deploy or update agents in the
+     * project can access secrets granted to it. Also restrict `aiplatform.reasoningEngines.update`
+     * permissions on `AGENT_IDENTITY` engines.
      */
     @CanIgnoreReturnValue
     public Builder secretEnv(SecretEnvVar.Builder... secretEnvBuilders) {

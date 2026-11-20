@@ -57,10 +57,13 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
 
   /**
    * Output only. The identity to use for the Reasoning Engine. It can contain one of the following
-   * values: * service-{project}@gcp-sa-aiplatform-re.googleapis.com (for SERVICE_AGENT identity
-   * type) * {name}@{project}.gserviceaccount.com (for SERVICE_ACCOUNT identity type) *
-   * agents.global.{org}.system.id.goog/resources/aiplatform/projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}
-   * (for AGENT_IDENTITY identity type)
+   * values: * `service-{project_number}@gcp-sa-aiplatform-re.iam.gserviceaccount.com` (for the
+   * default service agent when `identity_type` is `IDENTITY_TYPE_UNSPECIFIED` or `SERVICE_ACCOUNT`
+   * and `service_account` is not set) * `{name}@{project}.iam.gserviceaccount.com` (for a custom
+   * `service_account` when `identity_type` is `IDENTITY_TYPE_UNSPECIFIED` or `SERVICE_ACCOUNT`) *
+   * `agents.global.org-{org}.system.id.goog/resources/aiplatform/projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`
+   * (or `agents.global.proj-{project_number}.system.id.goog/...` for org-less projects; for
+   * `AGENT_IDENTITY` identity type -- prepend `principal://` when used in IAM policy bindings)
    */
   @JsonProperty("effectiveIdentity")
   public abstract Optional<String> effectiveIdentity();
@@ -68,7 +71,14 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
   /**
    * Optional. The identity type to use for the Reasoning Engine. If not specified, the
    * `service_account` field will be used if set, otherwise the default Vertex AI Reasoning Engine
-   * Service Agent in the project will be used.
+   * Service Agent in the project will be used. WARNING: The default Vertex AI Reasoning Engine
+   * Service Agent (`service-{project_number}@gcp-sa-aiplatform-re.iam.gserviceaccount.com`) is
+   * shared across all Reasoning Engines in the project that do not specify an isolated identity or
+   * custom service account. Any permissions or secrets granted to it can be accessed by any
+   * principal permitted to deploy or update agents in the project (even without using `secret_env`,
+   * by calling APIs directly from agent code). Prefer `AGENT_IDENTITY` (and restrict
+   * `aiplatform.reasoningEngines.update` permissions on the engine) or a dedicated custom
+   * `service_account` when granting access to sensitive resources such as Secret Manager secrets.
    */
   @JsonProperty("identityType")
   public abstract Optional<IdentityType> identityType();
@@ -85,8 +95,16 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
   /**
    * Optional. The service account that the Reasoning Engine artifact runs as. It should have
    * "roles/storage.objectViewer" for reading the user project's Cloud Storage and
-   * "roles/aiplatform.user" for using Vertex extensions. If not specified, the Vertex AI Reasoning
-   * Engine Service Agent in the project will be used.
+   * "roles/aiplatform.user" for using Vertex extensions. If not specified and `identity_type` is
+   * not `AGENT_IDENTITY`, the default Vertex AI Reasoning Engine Service Agent in the project will
+   * be used. WARNING: The default Vertex AI Reasoning Engine Service Agent
+   * (`service-{project_number}@gcp-sa-aiplatform-re.iam.gserviceaccount.com`) is shared across all
+   * Reasoning Engines in the project that do not specify an isolated identity or custom service
+   * account. Any permissions or secrets granted to it can be accessed by any principal permitted to
+   * deploy or update agents in the project (even without using `secret_env`, by calling APIs
+   * directly from agent code). For sensitive resources such as Secret Manager secrets, use
+   * `identity_type = AGENT_IDENTITY` (restricting `aiplatform.reasoningEngines.update` access to
+   * that engine) or a dedicated custom `service_account`.
    */
   @JsonProperty("serviceAccount")
   public abstract Optional<String> serviceAccount();
@@ -218,11 +236,14 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
      * Setter for effectiveIdentity.
      *
      * <p>effectiveIdentity: Output only. The identity to use for the Reasoning Engine. It can
-     * contain one of the following values: * service-{project}@gcp-sa-aiplatform-re.googleapis.com
-     * (for SERVICE_AGENT identity type) * {name}@{project}.gserviceaccount.com (for SERVICE_ACCOUNT
-     * identity type) *
-     * agents.global.{org}.system.id.goog/resources/aiplatform/projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}
-     * (for AGENT_IDENTITY identity type)
+     * contain one of the following values: *
+     * `service-{project_number}@gcp-sa-aiplatform-re.iam.gserviceaccount.com` (for the default
+     * service agent when `identity_type` is `IDENTITY_TYPE_UNSPECIFIED` or `SERVICE_ACCOUNT` and
+     * `service_account` is not set) * `{name}@{project}.iam.gserviceaccount.com` (for a custom
+     * `service_account` when `identity_type` is `IDENTITY_TYPE_UNSPECIFIED` or `SERVICE_ACCOUNT`) *
+     * `agents.global.org-{org}.system.id.goog/resources/aiplatform/projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`
+     * (or `agents.global.proj-{project_number}.system.id.goog/...` for org-less projects; for
+     * `AGENT_IDENTITY` identity type -- prepend `principal://` when used in IAM policy bindings)
      */
     @JsonProperty("effectiveIdentity")
     public abstract Builder effectiveIdentity(String effectiveIdentity);
@@ -242,7 +263,15 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
      *
      * <p>identityType: Optional. The identity type to use for the Reasoning Engine. If not
      * specified, the `service_account` field will be used if set, otherwise the default Vertex AI
-     * Reasoning Engine Service Agent in the project will be used.
+     * Reasoning Engine Service Agent in the project will be used. WARNING: The default Vertex AI
+     * Reasoning Engine Service Agent
+     * (`service-{project_number}@gcp-sa-aiplatform-re.iam.gserviceaccount.com`) is shared across
+     * all Reasoning Engines in the project that do not specify an isolated identity or custom
+     * service account. Any permissions or secrets granted to it can be accessed by any principal
+     * permitted to deploy or update agents in the project (even without using `secret_env`, by
+     * calling APIs directly from agent code). Prefer `AGENT_IDENTITY` (and restrict
+     * `aiplatform.reasoningEngines.update` permissions on the engine) or a dedicated custom
+     * `service_account` when granting access to sensitive resources such as Secret Manager secrets.
      */
     @JsonProperty("identityType")
     public abstract Builder identityType(IdentityType identityType);
@@ -262,7 +291,15 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
      *
      * <p>identityType: Optional. The identity type to use for the Reasoning Engine. If not
      * specified, the `service_account` field will be used if set, otherwise the default Vertex AI
-     * Reasoning Engine Service Agent in the project will be used.
+     * Reasoning Engine Service Agent in the project will be used. WARNING: The default Vertex AI
+     * Reasoning Engine Service Agent
+     * (`service-{project_number}@gcp-sa-aiplatform-re.iam.gserviceaccount.com`) is shared across
+     * all Reasoning Engines in the project that do not specify an isolated identity or custom
+     * service account. Any permissions or secrets granted to it can be accessed by any principal
+     * permitted to deploy or update agents in the project (even without using `secret_env`, by
+     * calling APIs directly from agent code). Prefer `AGENT_IDENTITY` (and restrict
+     * `aiplatform.reasoningEngines.update` permissions on the engine) or a dedicated custom
+     * `service_account` when granting access to sensitive resources such as Secret Manager secrets.
      */
     @CanIgnoreReturnValue
     public Builder identityType(IdentityType.Known knownType) {
@@ -274,7 +311,15 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
      *
      * <p>identityType: Optional. The identity type to use for the Reasoning Engine. If not
      * specified, the `service_account` field will be used if set, otherwise the default Vertex AI
-     * Reasoning Engine Service Agent in the project will be used.
+     * Reasoning Engine Service Agent in the project will be used. WARNING: The default Vertex AI
+     * Reasoning Engine Service Agent
+     * (`service-{project_number}@gcp-sa-aiplatform-re.iam.gserviceaccount.com`) is shared across
+     * all Reasoning Engines in the project that do not specify an isolated identity or custom
+     * service account. Any permissions or secrets granted to it can be accessed by any principal
+     * permitted to deploy or update agents in the project (even without using `secret_env`, by
+     * calling APIs directly from agent code). Prefer `AGENT_IDENTITY` (and restrict
+     * `aiplatform.reasoningEngines.update` permissions on the engine) or a dedicated custom
+     * `service_account` when granting access to sensitive resources such as Secret Manager secrets.
      */
     @CanIgnoreReturnValue
     public Builder identityType(String identityType) {
@@ -322,8 +367,17 @@ public abstract class ReasoningEngineSpec extends JsonSerializable {
      *
      * <p>serviceAccount: Optional. The service account that the Reasoning Engine artifact runs as.
      * It should have "roles/storage.objectViewer" for reading the user project's Cloud Storage and
-     * "roles/aiplatform.user" for using Vertex extensions. If not specified, the Vertex AI
-     * Reasoning Engine Service Agent in the project will be used.
+     * "roles/aiplatform.user" for using Vertex extensions. If not specified and `identity_type` is
+     * not `AGENT_IDENTITY`, the default Vertex AI Reasoning Engine Service Agent in the project
+     * will be used. WARNING: The default Vertex AI Reasoning Engine Service Agent
+     * (`service-{project_number}@gcp-sa-aiplatform-re.iam.gserviceaccount.com`) is shared across
+     * all Reasoning Engines in the project that do not specify an isolated identity or custom
+     * service account. Any permissions or secrets granted to it can be accessed by any principal
+     * permitted to deploy or update agents in the project (even without using `secret_env`, by
+     * calling APIs directly from agent code). For sensitive resources such as Secret Manager
+     * secrets, use `identity_type = AGENT_IDENTITY` (restricting
+     * `aiplatform.reasoningEngines.update` access to that engine) or a dedicated custom
+     * `service_account`.
      */
     @JsonProperty("serviceAccount")
     public abstract Builder serviceAccount(String serviceAccount);

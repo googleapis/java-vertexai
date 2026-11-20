@@ -81,7 +81,14 @@ public abstract class AgentEngineConfig extends JsonSerializable {
    * The environment variables to be set when running the Agent Engine.
    *
    * <p>If it is a dictionary, the keys are the environment variable names, and the values are the
-   * corresponding values.
+   * corresponding values (strings or Secret Manager references of the form `{'secret':
+   * '&lt;secret_id&gt;', 'version': '&lt;version&gt;'}`).
+   *
+   * <p>When referencing Secret Manager secrets, grant `roles/secretmanager.secretAccessor` on the
+   * specific secret to an isolated `AGENT_IDENTITY` (create the Agent Engine first without secrets,
+   * grant access to `principal://{effective_identity}`, then update) or a dedicated custom
+   * `service_account`. Avoid granting secret access to the shared default Vertex AI Reasoning
+   * Engine Service Agent.
    */
   @JsonProperty("envVars")
   public abstract Optional<Object> envVars();
@@ -89,12 +96,33 @@ public abstract class AgentEngineConfig extends JsonSerializable {
   /**
    * The service account to be used for the Agent Engine.
    *
-   * <p>If not specified, the default Reasoning Engine P6SA service agent will be used.
+   * <p>When creating an Agent Engine, if not specified and `identity_type` is not `AGENT_IDENTITY`,
+   * the default Vertex AI Reasoning Engine Service Agent
+   * (`service-{project_number}@gcp-sa-aiplatform-re.iam.gserviceaccount.com`) will be used; when
+   * updating, omitting it preserves the existing service account.
+   *
+   * <p>WARNING: The default service agent is shared across all Agent Engines in the project that do
+   * not specify an isolated identity or custom service account, so any principal with permission to
+   * deploy or update agents in the project can access permissions or secrets granted to it. Prefer
+   * `identity_type='AGENT_IDENTITY'` (restricting `aiplatform.reasoningEngines.update` permissions
+   * on the engine) or a dedicated custom `service_account` for sensitive resources such as Secret
+   * Manager secrets.
    */
   @JsonProperty("serviceAccount")
   public abstract Optional<String> serviceAccount();
 
-  /** The identity type to use for the Agent Engine. */
+  /**
+   * The identity type to use for the Agent Engine.
+   *
+   * <p>Set to `AGENT_IDENTITY` to run the Agent Engine under a resource-scoped per-agent identity
+   * (`service_account` must not be set), or `SERVICE_ACCOUNT` to use `service_account` (if set) or
+   * the shared default Vertex AI Reasoning Engine Service Agent.
+   *
+   * <p>WARNING: Avoid granting sensitive permissions or Secret Manager secrets to the shared
+   * default service agent. Prefer `AGENT_IDENTITY` (restricting
+   * `aiplatform.reasoningEngines.update` permissions on the engine, since any principal permitted
+   * to update it can run code as its identity) or a dedicated custom `service_account`.
+   */
   @JsonProperty("identityType")
   public abstract Optional<IdentityType> identityType();
 
@@ -416,7 +444,14 @@ public abstract class AgentEngineConfig extends JsonSerializable {
      * <p>envVars: The environment variables to be set when running the Agent Engine.
      *
      * <p>If it is a dictionary, the keys are the environment variable names, and the values are the
-     * corresponding values.
+     * corresponding values (strings or Secret Manager references of the form `{'secret':
+     * '&lt;secret_id&gt;', 'version': '&lt;version&gt;'}`).
+     *
+     * <p>When referencing Secret Manager secrets, grant `roles/secretmanager.secretAccessor` on the
+     * specific secret to an isolated `AGENT_IDENTITY` (create the Agent Engine first without
+     * secrets, grant access to `principal://{effective_identity}`, then update) or a dedicated
+     * custom `service_account`. Avoid granting secret access to the shared default Vertex AI
+     * Reasoning Engine Service Agent.
      */
     @JsonProperty("envVars")
     public abstract Builder envVars(Object envVars);
@@ -436,7 +471,17 @@ public abstract class AgentEngineConfig extends JsonSerializable {
      *
      * <p>serviceAccount: The service account to be used for the Agent Engine.
      *
-     * <p>If not specified, the default Reasoning Engine P6SA service agent will be used.
+     * <p>When creating an Agent Engine, if not specified and `identity_type` is not
+     * `AGENT_IDENTITY`, the default Vertex AI Reasoning Engine Service Agent
+     * (`service-{project_number}@gcp-sa-aiplatform-re.iam.gserviceaccount.com`) will be used; when
+     * updating, omitting it preserves the existing service account.
+     *
+     * <p>WARNING: The default service agent is shared across all Agent Engines in the project that
+     * do not specify an isolated identity or custom service account, so any principal with
+     * permission to deploy or update agents in the project can access permissions or secrets
+     * granted to it. Prefer `identity_type='AGENT_IDENTITY'` (restricting
+     * `aiplatform.reasoningEngines.update` permissions on the engine) or a dedicated custom
+     * `service_account` for sensitive resources such as Secret Manager secrets.
      */
     @JsonProperty("serviceAccount")
     public abstract Builder serviceAccount(String serviceAccount);
@@ -455,6 +500,15 @@ public abstract class AgentEngineConfig extends JsonSerializable {
      * Setter for identityType.
      *
      * <p>identityType: The identity type to use for the Agent Engine.
+     *
+     * <p>Set to `AGENT_IDENTITY` to run the Agent Engine under a resource-scoped per-agent identity
+     * (`service_account` must not be set), or `SERVICE_ACCOUNT` to use `service_account` (if set)
+     * or the shared default Vertex AI Reasoning Engine Service Agent.
+     *
+     * <p>WARNING: Avoid granting sensitive permissions or Secret Manager secrets to the shared
+     * default service agent. Prefer `AGENT_IDENTITY` (restricting
+     * `aiplatform.reasoningEngines.update` permissions on the engine, since any principal permitted
+     * to update it can run code as its identity) or a dedicated custom `service_account`.
      */
     @JsonProperty("identityType")
     public abstract Builder identityType(IdentityType identityType);
@@ -473,6 +527,15 @@ public abstract class AgentEngineConfig extends JsonSerializable {
      * Setter for identityType given a known enum.
      *
      * <p>identityType: The identity type to use for the Agent Engine.
+     *
+     * <p>Set to `AGENT_IDENTITY` to run the Agent Engine under a resource-scoped per-agent identity
+     * (`service_account` must not be set), or `SERVICE_ACCOUNT` to use `service_account` (if set)
+     * or the shared default Vertex AI Reasoning Engine Service Agent.
+     *
+     * <p>WARNING: Avoid granting sensitive permissions or Secret Manager secrets to the shared
+     * default service agent. Prefer `AGENT_IDENTITY` (restricting
+     * `aiplatform.reasoningEngines.update` permissions on the engine, since any principal permitted
+     * to update it can run code as its identity) or a dedicated custom `service_account`.
      */
     @CanIgnoreReturnValue
     public Builder identityType(IdentityType.Known knownType) {
@@ -483,6 +546,15 @@ public abstract class AgentEngineConfig extends JsonSerializable {
      * Setter for identityType given a string.
      *
      * <p>identityType: The identity type to use for the Agent Engine.
+     *
+     * <p>Set to `AGENT_IDENTITY` to run the Agent Engine under a resource-scoped per-agent identity
+     * (`service_account` must not be set), or `SERVICE_ACCOUNT` to use `service_account` (if set)
+     * or the shared default Vertex AI Reasoning Engine Service Agent.
+     *
+     * <p>WARNING: Avoid granting sensitive permissions or Secret Manager secrets to the shared
+     * default service agent. Prefer `AGENT_IDENTITY` (restricting
+     * `aiplatform.reasoningEngines.update` permissions on the engine, since any principal permitted
+     * to update it can run code as its identity) or a dedicated custom `service_account`.
      */
     @CanIgnoreReturnValue
     public Builder identityType(String identityType) {

@@ -23,11 +23,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.google.common.base.Ascii;
 import java.util.Objects;
 
-/**
- * The identity type to use for the Reasoning Engine. If not specified, the `service_account` field
- * will be used if set, otherwise the default Vertex AI Reasoning Engine Service Agent in the
- * project will be used.
- */
+/** The identity type to use for the Reasoning Engine. */
 public class IdentityType {
 
   /** Enum representing the known values for IdentityType. */
@@ -35,17 +31,25 @@ public class IdentityType {
     /**
      * Default value. Use a custom service account if the `service_account` field is set, otherwise
      * use the default Vertex AI Reasoning Engine Service Agent in the project. Same behavior as
-     * SERVICE_ACCOUNT.
+     * `SERVICE_ACCOUNT`. WARNING: The default service agent is shared across all Reasoning Engines
+     * in the project that do not specify an isolated identity or custom service account; see
+     * `identity_type` for security guidance.
      */
     IDENTITY_TYPE_UNSPECIFIED,
 
     /**
      * Use a custom service account if the `service_account` field is set, otherwise use the default
-     * Vertex AI Reasoning Engine Service Agent in the project.
+     * Vertex AI Reasoning Engine Service Agent in the project. WARNING: The default service agent
+     * is shared across all Reasoning Engines in the project that do not specify an isolated
+     * identity or custom service account; see `identity_type` for security guidance.
      */
     SERVICE_ACCOUNT,
 
-    /** Use Agent Identity. The `service_account` field must not be set. */
+    /**
+     * Use Agent Identity. The `service_account` field must not be set. Restrict
+     * `aiplatform.reasoningEngines.update` permissions on the engine because any principal
+     * permitted to update it can run code as its identity.
+     */
     AGENT_IDENTITY
   }
 
