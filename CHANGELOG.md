@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.0](https://github.com/googleapis/java-vertexai/compare/v0.9.0...v0.10.0) (2026-11-20)
+
+
+### Documentation
+
+* update Agent Engine secret_env and runtime identity security guidance ([9682a8a](https://github.com/googleapis/java-vertexai/commit/9682a8a2405bf32cca0e7cff55792284689d896e))
+
 ## [0.9.0](https://github.com/googleapis/java-vertexai/compare/v0.8.0...v0.9.0) (2026-11-16)
 
 
